@@ -50,4 +50,4 @@ git push -u origin <folder-name>
 
 6. Head to the [examples repository](https://github.com/remix-run/examples), GitHub will prompt you to create a pull request against the repository.
 
-7. You're done, thank you! :tada:
+7. You're done, thank you! 🎉
