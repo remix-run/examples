@@ -44,7 +44,7 @@ Make the changes you need for your example, update the `README.md`, make sure th
 5. Commit your changes and push it to your new branch
 ```bash
 git add <folder-name>
-git commit -m "Add an example for <REPLACE ME>"
+git commit -m "feat: add `<FOLDER-NAME>` example"
 git push -u origin <folder-name>
 ```
 
