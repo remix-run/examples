@@ -20,4 +20,4 @@ Enjoy!
 
 ## Contributing
 
-Please see [our guide to contributing](CONTRIBUTING.md).
+Please see [our contribution guide](CONTRIBUTING.md).
