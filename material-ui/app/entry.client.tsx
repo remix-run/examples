@@ -1,18 +1,14 @@
-import * as React from 'react';
-import { useState } from 'react';
-import { hydrate } from 'react-dom';
-import { RemixBrowser } from '@remix-run/react';
-import { CacheProvider } from '@emotion/react';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import ClientStyleContext from './src/ClientStyleContext';
-import createEmotionCache from './src/createEmotionCache';
-import theme from './src/theme';
+import { RemixBrowser } from "@remix-run/react";
+import { PropsWithChildren, useState } from "react";
+import { CacheProvider } from "@emotion/react";
+import ThemeProvider from "@mui/material/styles/ThemeProvider";
+import CssBaseline from "@mui/material/CssBaseline";
+import { hydrateRoot } from "react-dom/client";
+import theme from "./src/theme";
+import createEmotionCache from "./src/createEmotionCache";
+import ClientStyleContext from "./src/ClientStyleContext";
 
-interface ClientCacheProviderProps {
-  children: React.ReactNode;
-}
-function ClientCacheProvider({ children }: ClientCacheProviderProps) {
+function ClientCacheProvider({ children }: PropsWithChildren) {
   const [cache, setCache] = useState(createEmotionCache());
 
   function reset() {
@@ -26,13 +22,12 @@ function ClientCacheProvider({ children }: ClientCacheProviderProps) {
   );
 }
 
-hydrate(
+hydrateRoot(
+  document,
   <ClientCacheProvider>
     <ThemeProvider theme={theme}>
-      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
       <RemixBrowser />
     </ThemeProvider>
   </ClientCacheProvider>,
-  document,
 );
