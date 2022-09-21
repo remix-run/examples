@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography';
 // https://remix.run/api/conventions#meta
 export const meta: MetaFunction = () => {
   return {
-    title: 'Remix Starter',
-    description: 'Welcome to remix!',
+    title: 'Remix MUI Starter',
+    description: 'Welcome to MUI on remix!',
   };
 };
 
@@ -16,7 +16,7 @@ export default function Index() {
   return (
     <React.Fragment>
       <Typography variant="h4" component="h1" gutterBottom>
-        Remix with TypeScript example
+        Material UI on Remix
       </Typography>
       <Link to="/about" color="secondary">
         Go to the about page

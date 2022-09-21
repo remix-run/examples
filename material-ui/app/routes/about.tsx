@@ -7,7 +7,7 @@ export default function About() {
   return (
     <React.Fragment>
       <Typography variant="h4" component="h1" gutterBottom>
-        Remix with TypeScript example
+        Material UI on Remix
       </Typography>
       <Button variant="contained" component={Link} to="/">
         Go to the main page
