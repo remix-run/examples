@@ -6,7 +6,7 @@ This example features how to use [Styled Components](https://styled-components.c
 
 Open this example on [CodeSandbox](https://codesandbox.io/s/styled-components):
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/remix/tree/main/examples/styled-components)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/styled-components)
 
 ## Example
 

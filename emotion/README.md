@@ -29,7 +29,7 @@ This example features how to use [emotion](https://emotion.sh/) with Remix.
 
 Open this example on [CodeSandbox](https://codesandbox.io/):
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/remix/tree/main/examples/emotion)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/emotion)
 
 ## Getting Started
 

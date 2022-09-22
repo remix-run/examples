@@ -38,7 +38,7 @@ SUPABASE_URL="https://{YOUR_INSTANCE_NAME}.supabase.co"
 
 Open this example on [CodeSandbox](https://codesandbox.com):
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/remix/tree/main/examples/supabase-subscription)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/supabase-subscription)
 
 ## Example
 

@@ -27,7 +27,7 @@ This example features how to use [Stitches](https://stitches.dev/) with Remix.
 
 Open this example on [CodeSandbox](https://codesandbox.io/):
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/remix/tree/main/examples/stitches)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/stitches)
 
 ## Getting Started
 

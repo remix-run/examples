@@ -8,7 +8,7 @@ See the screen recording at `./screen_recording.gif` or Open this example on [Co
 
 <!-- TODO: update this link to the path for your example: -->
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/remix/tree/main/examples/firebase)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/firebase)
 
 ## Example
 
