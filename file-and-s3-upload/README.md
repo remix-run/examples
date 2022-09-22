@@ -26,7 +26,7 @@ Note: in order for the image to be displayed after being uploaded to your S3 buc
 
 Open this example on [CodeSandbox](https://codesandbox.com):
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/remix/tree/main/examples/file-and-s3-upload)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/file-and-s3-upload)
 
 ## Related Links
 

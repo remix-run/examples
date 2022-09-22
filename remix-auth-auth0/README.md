@@ -6,7 +6,7 @@ Authentication using Remix Auth with the Auth0Strategy.
 
 Open this example on [CodeSandbox](https://codesandbox.com):
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/remix/tree/main/examples/remix-auth-auth0)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/remix-auth-auth0)
 
 ## Example
 

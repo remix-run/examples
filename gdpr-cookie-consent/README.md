@@ -7,7 +7,7 @@ Till the user doesn't click on the `Accept` button, she will see a banner prompt
 
 Open this example on [CodeSandbox](https://codesandbox.com):
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/remix/tree/main/examples/gdpr-cookie-consent)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/gdpr-cookie-consent)
 
 ## Example
 

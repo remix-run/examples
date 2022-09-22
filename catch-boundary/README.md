@@ -6,7 +6,7 @@ If you want to handle _expected_ errors, you use a `CatchBoundary` to catch thos
 
 Open this example on [CodeSandbox](https://codesandbox.com):
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/remix/tree/main/examples/catch-boundary)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/catch-boundary)
 
 ## Example
 

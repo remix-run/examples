@@ -6,7 +6,7 @@ An example of how to setup [bullmq](https://github.com/taskforcesh/bullmq) with 
 
 Open this example on [CodeSandbox](https://codesandbox.com):
 
-[![Open in codesandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/remix/tree/main/examples/bullmq-task-queue)
+[![Open in codesandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/bullmq-task-queue)
 
 ## Usages
 
