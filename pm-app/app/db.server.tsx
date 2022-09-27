@@ -3,6 +3,8 @@ import type {
   MembersOnProjects,
   Project as PrismaProject,
 } from "@prisma/client";
+import bcrypt from "bcrypt";
+
 import type {
   Project,
   Todo,
@@ -12,7 +14,6 @@ import type {
   User,
   UserSecure,
 } from "~/models";
-import bcrypt from "bcrypt";
 
 const __DEV__ = process.env.NODE_ENV === "development";
 

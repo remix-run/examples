@@ -1,7 +1,9 @@
 import * as React from "react";
+import { matchSorter } from "match-sorter";
+import cx from "clsx";
+
 import type { UserSecure } from "~/models";
 import { useThrottle } from "~/utils/react";
-import { matchSorter } from "match-sorter";
 import { getUserDisplayName, getUserFromDisplayName } from "~/utils";
 import {
   Combobox,
@@ -12,7 +14,6 @@ import {
 } from "~/ui/combobox";
 import type { ComboboxProps } from "~/ui/combobox";
 import { Token, TokenDismissButton } from "~/ui/token";
-import cx from "clsx";
 import { useLayoutEffect } from "~/utils/react";
 import { isFunction } from "~/utils";
 

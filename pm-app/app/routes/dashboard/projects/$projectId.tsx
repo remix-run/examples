@@ -16,7 +16,6 @@ import * as React from "react";
 
 import { Heading, Section } from "~/ui/section-heading";
 import { MaxContainer } from "~/ui/max-container";
-
 import stylesUrl from "~/dist/styles/routes/dashboard/projects/$projectId/index.css";
 import { Link } from "~/ui/link";
 import { requireUser } from "~/session.server";

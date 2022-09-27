@@ -1,8 +1,5 @@
 import * as React from "react";
 import cx from "clsx";
-import { Link } from "~/ui/link";
-import type { LinkProps } from "~/ui/link";
-import { Button } from "~/ui/button";
 import {
   Menu as ReachMenu,
   MenuButton as ReachMenuButton,
@@ -19,6 +16,10 @@ import type {
   MenuLinkProps as ReachMenuLinkProps,
   MenuItemsProps as ReachMenuItemsProps,
 } from "@reach/menu-button";
+
+import { Link } from "~/ui/link";
+import type { LinkProps } from "~/ui/link";
+import { Button } from "~/ui/button";
 import { IconDots } from "~/ui/icons";
 
 const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(

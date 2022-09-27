@@ -13,10 +13,11 @@ import { Link } from "~/ui/link";
 import { ShadowBox } from "~/ui/shadow-box";
 import { Field, FieldError, FieldProvider, Label } from "~/ui/form";
 import { Heading } from "~/ui/section-heading";
-import routeStyles from "../styles/routes/register.css";
 import { createUserSession, register } from "~/session.server";
 import { getUser } from "~/db.server";
 import { validateEmail, validatePassword } from "~/utils/validation";
+
+import routeStyles from "../styles/routes/register.css";
 
 export const meta: MetaFunction = () => {
   return {

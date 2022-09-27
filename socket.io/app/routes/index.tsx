@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import { useSocket } from "~/context";
 
 export default function Index() {

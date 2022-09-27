@@ -1,5 +1,6 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+
 import { Collaboration, ydoc, WebrtcProvider } from "~/utils/webrtc.client";
 
 if (typeof document !== "undefined") {

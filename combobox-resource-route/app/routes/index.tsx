@@ -6,11 +6,9 @@ import {
   ComboboxPopover,
 } from "@reach/combobox";
 import { Form, useFetcher, useSearchParams } from "@remix-run/react";
+import comboboxStyles from "@reach/combobox/styles.css";
 
 import type { Lang } from "~/models/langs";
-
-// Import the Reach UI styles
-import comboboxStyles from "@reach/combobox/styles.css";
 
 export function links() {
   // Add them to the page when this route is active:

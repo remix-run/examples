@@ -4,6 +4,7 @@
  */
 
 import validator from "validator";
+
 import { isFunction, isObject, isPlainObject } from "~/utils";
 
 export class Sanitizer {

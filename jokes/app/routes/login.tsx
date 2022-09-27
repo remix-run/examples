@@ -8,6 +8,7 @@ import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
 
 import { login, createUserSession, register } from "~/utils/session.server";
 import { db } from "~/utils/db.server";
+
 import stylesUrl from "../styles/login.css";
 
 export const meta: MetaFunction = () => {
@@ -34,7 +35,7 @@ function validatePassword(password: unknown) {
 }
 
 function validateUrl(url: any) {
-  let urls = ["/jokes", "/", "https://remix.run"];
+  const urls = ["/jokes", "/", "https://remix.run"];
   if (urls.includes(url)) {
     return url;
   }

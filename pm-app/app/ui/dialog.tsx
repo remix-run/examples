@@ -8,9 +8,11 @@ import type {
   DialogOverlayProps as ReachDialogOverlayProps,
   DialogContentProps as ReachDialogContentProps,
 } from "@reach/dialog";
-import { IconX } from "./icons";
 import cx from "clsx";
+
 import { composeEventHandlers } from "~/utils";
+
+import { IconX } from "./icons";
 
 const DialogContext = React.createContext<any>(null);
 

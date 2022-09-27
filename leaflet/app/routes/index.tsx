@@ -1,4 +1,5 @@
 import type { LinksFunction } from "@remix-run/node";
+
 import { ClientOnly } from "~/components/client-only";
 import { Map } from "~/components/map.client";
 

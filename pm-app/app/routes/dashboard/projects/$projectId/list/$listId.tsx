@@ -9,7 +9,6 @@ import { useFetcher, useFetchers, useLoaderData } from "@remix-run/react";
 import * as React from "react";
 
 import { Heading, Section } from "~/ui/section-heading";
-
 import stylesUrl from "~/dist/styles/routes/dashboard/todo-lists/$listId/index.css";
 import { Link } from "~/ui/link";
 import { requireUser } from "~/session.server";

@@ -10,6 +10,7 @@ import {
 } from "@remix-run/react";
 import type { Socket } from "socket.io-client";
 import io from "socket.io-client";
+
 import { SocketProvider } from "./context";
 
 export const meta: MetaFunction = () => ({

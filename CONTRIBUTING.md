@@ -22,31 +22,33 @@ Most examples should:
 
 2. Clone your fork locally
 
-```bash
-# in a terminal, cd to parent directory where you want your clone to be, then
-git clone https://github.com/<your_github_username>/examples.git
-cd examples
-```
+   ```sh
+   # in a terminal, cd to parent directory where you want your clone to be, then
+   git clone https://github.com/<your_github_username>/examples.git
+   cd examples
+   ```
 
 3. Create a new branch for your example
-```bash
-# Use the new folder you're adding as the branch name
-# Example: git checkout -b vanilla-extract
-git checkout -b <folder-name>
-```
+
+   ```sh
+   # Use the new folder you're adding as the branch name
+   # Example: git checkout -b vanilla-extract
+   git checkout -b <folder-name>
+   ```
 
 4. Add your example
 
-To create an example, simply copy/paste the [`_template`](_template) directory into the folder name you've chosen in the previous step.
+   To create an example, simply copy/paste the [`_template`](_template) directory into the folder name you've chosen in the previous step.
 
-Make the changes you need for your example, update the `README.md`, make sure that it works and that you kept it focused (see above).
+   Make the changes you need for your example, update the `README.md`, make sure that it works and that you kept it focused (see above).
 
 5. Commit your changes and push it to your new branch
-```bash
-git add <folder-name>
-git commit -m "feat: add `<FOLDER-NAME>` example"
-git push -u origin <folder-name>
-```
+
+   ```sh
+   git add <folder-name>
+   git commit -m "feat: add `<FOLDER-NAME>` example"
+   git push -u origin <folder-name>
+   ```
 
 6. Head to the [examples repository](https://github.com/remix-run/examples), GitHub will prompt you to create a pull request against the repository.
 

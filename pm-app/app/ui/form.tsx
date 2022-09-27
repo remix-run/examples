@@ -1,10 +1,11 @@
-import * as React from "react";
 import cx from "clsx";
+import * as React from "react";
+
 import type { Spread } from "~/utils/types";
 
 const FieldContext = React.createContext<FieldContextValue | null>(null);
 
-function useFieldContext() {
+export function useFieldContext() {
   return React.useContext(FieldContext);
 }
 
@@ -20,12 +21,7 @@ const FieldProvider = React.forwardRef<
 });
 FieldProvider.displayName = "FieldProvider";
 
-type ResolvedFieldProps =
-  | FieldProps
-  | SelectProps
-  | CheckboxProps
-  | RadioProps
-  | TextareaProps;
+type ResolvedFieldProps = FieldProps | SelectProps | TextareaProps;
 
 export function getResolvedFieldProps<T extends ResolvedFieldProps>(
   context: FieldContextValue | null,
@@ -54,21 +50,24 @@ export function getResolvedFieldProps<T extends ResolvedFieldProps>(
   };
 }
 
-const Field = React.forwardRef<HTMLInputElement, FieldProps>((props, ref) => {
-  const context = useFieldContext();
-  const resolvedProps = getResolvedFieldProps(context, props);
+export const Field = React.forwardRef<HTMLInputElement, FieldProps>(
+  (props, ref) => {
+    const context = useFieldContext();
+    const resolvedProps = getResolvedFieldProps(context, props);
 
-  return (
-    <input
-      type="text"
-      ref={ref}
-      {...resolvedProps}
-      className={cx(props.className, "ui--form-field")}
-    />
-  );
-});
+    return (
+      <input
+        type="text"
+        ref={ref}
+        {...resolvedProps}
+        className={cx(props.className, "ui--form-field")}
+      />
+    );
+  }
+);
+Field.displayName = "Field";
 
-const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
+export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   (props, ref) => {
     const context = useFieldContext();
     const resolvedProps = getResolvedFieldProps(context, props);
@@ -85,37 +84,9 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     );
   }
 );
+Select.displayName = "Select";
 
-const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  (props, ref) => {
-    const context = useFieldContext();
-    const resolvedProps = getResolvedFieldProps(context, props);
-
-    return (
-      <input
-        type="checkbox"
-        ref={ref}
-        {...resolvedProps}
-        // TODO: className={}
-      />
-    );
-  }
-);
-
-const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
-  const context = useFieldContext();
-  const resolvedProps = getResolvedFieldProps(context, props);
-  return (
-    <input
-      type="radio"
-      ref={ref}
-      {...resolvedProps}
-      // TODO: className={cx()}
-    />
-  );
-});
-
-const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (props, ref) => {
     const context = useFieldContext();
     const { resize = "y", ...resolvedProps } = getResolvedFieldProps(
@@ -141,39 +112,29 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     );
   }
 );
+Textarea.displayName = "Textarea";
 
-const Label = React.forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
-  const ctx = useFieldContext();
-  const { className, children, ...domProps } = props;
-
-  return (
-    <label
-      htmlFor={ctx?.id || props.htmlFor}
-      ref={ref}
-      {...domProps}
-      className={cx(className, "ui--form-label")}
-    >
-      {children}
-      {ctx?.required ? <span className="sr-only"> (Required)</span> : null}
-    </label>
-  );
-});
-
-const FakeLabel = React.forwardRef<HTMLDivElement, FakeLabelProps>(
+export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
   (props, ref) => {
-    const { className, inline, ...domProps } = props;
-    const Comp = inline ? ("span" as "div") : "div";
+    const ctx = useFieldContext();
+    const { className, children, ...domProps } = props;
+
     return (
-      <Comp
+      <label
+        htmlFor={ctx?.id || props.htmlFor}
         ref={ref}
         {...domProps}
         className={cx(className, "ui--form-label")}
-      />
+      >
+        {children}
+        {ctx?.required ? <span className="sr-only"> (Required)</span> : null}
+      </label>
     );
   }
 );
+Label.displayName = "Label";
 
-const FieldError = React.forwardRef<HTMLDivElement, FieldErrorProps>(
+export const FieldError = React.forwardRef<HTMLDivElement, FieldErrorProps>(
   (props, ref) => {
     const context = useFieldContext();
     const { className, id, children, ...domProps } = props;
@@ -197,38 +158,7 @@ const FieldError = React.forwardRef<HTMLDivElement, FieldErrorProps>(
     );
   }
 );
-
-Field.displayName = "Field";
-Textarea.displayName = "Textarea";
-Checkbox.displayName = "Checkbox";
-Radio.displayName = "Radio";
-Select.displayName = "Select";
-Label.displayName = "Label";
-FakeLabel.displayName = "FakeLabel";
 FieldError.displayName = "FieldError";
-
-export {
-  FieldProvider,
-  useFieldContext,
-  Field,
-  Textarea,
-  Checkbox,
-  Radio,
-  Select,
-  Label,
-  FakeLabel,
-  FieldError,
-};
-export type {
-  FieldProps,
-  FieldErrorProps,
-  TextareaProps,
-  CheckboxProps,
-  RadioProps,
-  SelectProps,
-  LabelProps,
-  FakeLabelProps,
-};
 
 // Not intended to be exhaustive!
 type InputType =
@@ -240,32 +170,22 @@ type InputType =
   | "tel"
   | "url";
 
-interface FieldProps
+export interface FieldProps
   extends Omit<React.ComponentPropsWithRef<"input">, "type"> {
   type?: InputType;
 }
 
-interface FieldErrorProps extends React.ComponentPropsWithRef<"div"> {
+export interface FieldErrorProps extends React.ComponentPropsWithRef<"div"> {
   alert?: boolean;
 }
 
-interface CheckboxProps
-  extends Omit<React.ComponentPropsWithRef<"input">, "type"> {}
+export interface SelectProps extends React.ComponentPropsWithRef<"select"> {}
 
-interface RadioProps
-  extends Omit<React.ComponentPropsWithRef<"input">, "type"> {}
-
-interface SelectProps extends React.ComponentPropsWithRef<"select"> {}
-
-interface TextareaProps extends React.ComponentPropsWithRef<"textarea"> {
+export interface TextareaProps extends React.ComponentPropsWithRef<"textarea"> {
   resize?: "x" | "y" | boolean;
 }
 
-interface LabelProps extends React.ComponentPropsWithRef<"label"> {}
-
-interface FakeLabelProps extends React.ComponentPropsWithRef<"div"> {
-  inline?: boolean;
-}
+export interface LabelProps extends React.ComponentPropsWithRef<"label"> {}
 
 interface FieldContextValue {
   name?: string;
