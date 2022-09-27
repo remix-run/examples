@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Link, NavLink } from "~/ui/link";
 import type { LinkProps, NavLinkProps } from "react-router-dom";
 import cx from "clsx";
+
+import { Link, NavLink } from "~/ui/link";
 
 // TODO: Light mode for docs usage
 

@@ -6,7 +6,6 @@ import * as React from "react";
 import type { UserSecure, Project } from "~/models";
 import { Heading, Section } from "~/ui/section-heading";
 import { MaxContainer } from "~/ui/max-container";
-
 import stylesUrl from "~/dist/styles/routes/dashboard/index.css";
 import { ShadowBox } from "~/ui/shadow-box";
 import { Link } from "~/ui/link";

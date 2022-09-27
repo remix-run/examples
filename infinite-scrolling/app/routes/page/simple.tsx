@@ -5,7 +5,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useVirtual } from "react-virtual";
 
 import { countItems, getItemsPaginated } from "~/utils/backend.server";
-
 import stylesUrl from "~/styles/index.css";
 
 export const links: LinksFunction = () => {

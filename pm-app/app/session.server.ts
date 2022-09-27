@@ -1,8 +1,9 @@
 import { createCookieSessionStorage, redirect } from "@remix-run/node";
 
-import { createUser, verifyLogin, getUser as getDbUser } from "./db.server";
 import { getServerSafeEnvVariable } from "~/utils";
 import type { User } from "~/models";
+
+import { createUser, verifyLogin, getUser as getDbUser } from "./db.server";
 
 export const sessionSecret = getServerSafeEnvVariable("SESSION_SECRET");
 export const sessionKey = "super_sick_pm_camp_session_key";

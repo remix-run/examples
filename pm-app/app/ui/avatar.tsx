@@ -1,6 +1,7 @@
 import * as React from "react";
-import type { User } from "~/models";
 import cx from "clsx";
+
+import type { User } from "~/models";
 
 function Avatar({
   className,

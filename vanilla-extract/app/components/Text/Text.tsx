@@ -5,8 +5,10 @@
  * otherwise our `.css.ts` files would go through the Remix
  * compiler and wouldn't generate any static CSS.
  */
-import { componentStyles } from "~/styles";
 import type { ReactNode } from "react";
+
+import { componentStyles } from "~/styles";
+
 import { Box } from "../Box/Box";
 
 // Select the styles that we scoped to this component

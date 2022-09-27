@@ -1,5 +1,6 @@
 import * as React from "react";
 import cx from "clsx";
+
 import type { User } from "~/models";
 
 const AuthHeader: React.VFC<{

@@ -1,4 +1,5 @@
 const path = require("path");
+
 const { createRequestHandler } = require("@remix-run/express");
 
 function purgeAppRequireCache() {

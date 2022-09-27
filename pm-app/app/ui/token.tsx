@@ -1,5 +1,6 @@
 import * as React from "react";
 import cx from "clsx";
+
 import { IconX } from "~/ui/icons";
 
 export function Token({
