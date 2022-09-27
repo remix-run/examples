@@ -34,7 +34,7 @@ function validatePassword(password: unknown) {
 }
 
 function validateUrl(url: any) {
-  let urls = ["/jokes", "/", "https://remix.run"];
+  const urls = ["/jokes", "/", "https://remix.run"];
   if (urls.includes(url)) {
     return url;
   }
