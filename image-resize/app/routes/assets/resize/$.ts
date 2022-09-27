@@ -12,8 +12,6 @@
  * Further improvements could be done by implementing ETags, but that is out of scope for this demo.
  */
 
-
-
 import type { ReadStream } from "fs";
 import { createReadStream, statSync } from "fs";
 import path from "path";
