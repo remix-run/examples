@@ -1,12 +1,11 @@
 import type { Processor } from "bullmq";
-import { Queue as BullQueue, Worker, QueueScheduler } from "bullmq";
+import { Queue as BullQueue, Worker } from "bullmq";
 
 import { redis } from "./redis.server";
 
 type RegisteredQueue = {
   queue: BullQueue;
   worker: Worker;
-  scheduler: QueueScheduler;
 };
 
 declare global {
@@ -33,12 +32,7 @@ export function Queue<Payload>(
   // The scheduler plays an important role in helping workers stay busy.
   const worker = new Worker<Payload>(name, handler, { connection: redis });
 
-  // Schedulers are used to move tasks between states within the queue.
-  // Jobs may be queued in a delayed or waiting state, but the scheduler's
-  // job is to eventually move them to an active state.
-  const scheduler = new QueueScheduler(name, { connection: redis });
-
-  registeredQueues[name] = { queue, scheduler, worker };
+  registeredQueues[name] = { queue, worker };
 
   return queue;
 }

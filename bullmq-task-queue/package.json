@@ -10,15 +10,15 @@
     "@remix-run/node": "*",
     "@remix-run/react": "*",
     "@remix-run/serve": "*",
-    "bullmq": "^1.76.0",
-    "ioredis": "^4.28.5",
+    "bullmq": "^2.1.0",
+    "ioredis": "^5.2.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@remix-run/dev": "*",
     "@remix-run/eslint-config": "*",
-    "@types/ioredis": "^4.28.8",
+    "@types/ioredis": "^4.28.10",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.13",
     "eslint": "^8.10.0",
