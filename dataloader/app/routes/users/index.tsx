@@ -24,9 +24,12 @@ export const loader: LoaderFunction = async ({ context }) => {
     "2cbad877-2da6-422d-baa6-c6a96a9e085f"
   );
   const user3 = context.loaders.usersById.load(
+    "does_not_exist"
+  );
+  const user4 = context.loaders.usersById.load(
     "1dd9e502-343d-4acb-9391-2bc52d5ea904"
   );
-  const users = await Promise.all([user1, user2, user3]);
+  const users = await Promise.all([user1, user2, user3, user4]);
 
   return json({ users });
 };
@@ -38,8 +41,8 @@ export default function UserEmails() {
     <section>
       <h2>Emails</h2>
       <ul>
-        {users.map((user) => (
-          <li key={user.email}>{user.email}</li>
+        {users.map((user, i) => (
+          <li key={i}>{user ? user.email : 'Not found'}</li>
         ))}
       </ul>
     </section>
