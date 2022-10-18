@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://xata_examples-hf8grf.xata.sh/db/remix_minimal",
+  "codegen": {
+    "output": "app/lib/xata.codegen.server.ts"
+  }
+}
