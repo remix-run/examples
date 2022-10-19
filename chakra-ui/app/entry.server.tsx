@@ -1,4 +1,5 @@
 import { PassThrough } from "stream";
+
 import type { EntryContext } from "@remix-run/node";
 import { Response } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
@@ -16,7 +17,7 @@ export default function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext
 ) {
-  let callbackMethod = isbot(request.headers.get("user-agent"))
+  const callbackMethod = isbot(request.headers.get("user-agent"))
     ? "onAllReady"
     : "onShellReady";
 
