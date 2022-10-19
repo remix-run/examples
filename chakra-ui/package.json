@@ -7,15 +7,17 @@
     "start": "remix-serve build"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.8.6",
-    "@emotion/react": "^11.8.1",
-    "@emotion/styled": "^11.8.1",
+    "@chakra-ui/react": "^2.3.6",
+    "@emotion/react": "^11.10.4",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.4",
     "@remix-run/node": "*",
     "@remix-run/react": "*",
     "@remix-run/serve": "*",
-    "framer-motion": "^5.6.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "framer-motion": "^6.5.1",
+    "isbot": "^3.5.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@remix-run/dev": "*",
