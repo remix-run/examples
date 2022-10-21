@@ -23,9 +23,7 @@ export const loader: LoaderFunction = async ({ context }) => {
   const user2 = context.loaders.usersById.load(
     "2cbad877-2da6-422d-baa6-c6a96a9e085f"
   );
-  const user3 = context.loaders.usersById.load(
-    "does_not_exist"
-  );
+  const user3 = context.loaders.usersById.load("does_not_exist");
   const user4 = context.loaders.usersById.load(
     "1dd9e502-343d-4acb-9391-2bc52d5ea904"
   );
@@ -42,7 +40,7 @@ export default function UserEmails() {
       <h2>Emails</h2>
       <ul>
         {users.map((user, i) => (
-          <li key={i}>{user ? user.email : 'Not found'}</li>
+          <li key={i}>{user ? user.email : "Not found"}</li>
         ))}
       </ul>
     </section>
