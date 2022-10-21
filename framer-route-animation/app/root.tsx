@@ -35,7 +35,7 @@ export default function App() {
         </header>
         <AnimatePresence exitBeforeEnter initial={false}>
           <motion.main
-            key={useLocation().key}
+            key={useLocation().pathname}
             initial={{ x: "10%", opacity: 0 }}
             animate={{ x: "0", opacity: 1 }}
             exit={{ x: "-40%", opacity: 0 }}
