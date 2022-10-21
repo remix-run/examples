@@ -20,5 +20,10 @@
   },
   "engines": {
     "node": ">=14"
+  },
+  "dependencies": {
+    "primeflex": "^3.2.1",
+    "primeicons": "^6.0.1",
+    "primereact": "^8.6.1"
   }
 }
