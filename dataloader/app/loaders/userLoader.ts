@@ -3,12 +3,14 @@ import DataLoader from "dataloader";
 import { db } from "~/data.server";
 
 export const createUsersByIdLoader = () =>
-  new DataLoader(async (keys: Readonly<string[]>) =>
-    db.user.findMany({
+  new DataLoader(async (ids: Readonly<string[]>) => {
+    const users = await db.user.findMany({
       where: {
         id: {
-          in: keys,
+          in: ids,
         },
       },
-    })
-  );
+    });
+    const userMap = new Map(users.map((user) => [user.id, user]));
+    return ids.map((id) => userMap.get(id) ?? null);
+  });
