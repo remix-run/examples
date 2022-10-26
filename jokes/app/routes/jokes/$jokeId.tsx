@@ -42,8 +42,8 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
 export const action: ActionFunction = async ({ request, params }) => {
   const form = await request.formData();
-  if (form.get("_method") !== "delete") {
-    throw new Response(`The _method ${form.get("_method")} is not supported`, {
+  if (form.get("intent") !== "delete") {
+    throw new Response(`The intent ${form.get("intent")} is not supported`, {
       status: 400,
     });
   }
