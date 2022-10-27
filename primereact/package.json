@@ -10,9 +10,6 @@
     "@remix-run/node": "*",
     "@remix-run/react": "*",
     "@remix-run/serve": "*",
-    "primeflex": "^3.2.1",
-    "primeicons": "^6.0.1",
-    "primereact": "^8.6.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
