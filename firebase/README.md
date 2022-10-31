@@ -39,6 +39,11 @@ When you run `npm run emulators`, an initial user is created with credentials `u
 4. Run `firebase use --add` and choose the Firebase project you want to deploy to
 5. Deploy with `firebase deploy`
 
+## Integration with Google Sign-in Provider
+
+- In the [Firebase Console](https://console.firebase.google.com), navigate to Authentication > Sign-in method > Add new provider > Google. Make a note of the client ID and secret and add them to the .env file.
+- In the [Google Cloud Credentials Console](https://console.cloud.google.com/apis/credentials), select the Web client (under OAuth 2.0 Client IDs) and add `http://localhost:3000/auth/google` and `https://<projectid>.firebaseapp.com/auth/google` as authorised redirects.
+
 ## Details
 
 ### Auth (`app/server/auth.server.ts`)
