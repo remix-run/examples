@@ -1,15 +1,15 @@
 import { styled } from "baseui";
-import { HeadingLarge } from "baseui/typography";
 import { Button } from "baseui/button";
 
-const Box = styled("div", () => ({
+const Box = styled("div", ({ $theme }) => ({
   fontFamily: "system-ui, sans-serif",
+  color: $theme.colors.accent300,
 }));
 
 export default function Index() {
   return (
     <Box>
-      <HeadingLarge>Welcome to Remix</HeadingLarge>
+      <h1>Welcome to Remix</h1>
       <Button>Okay</Button>
     </Box>
   );
