@@ -1,19 +1,26 @@
-# TODO: Title of Example
+# Example app with [Baseweb](https://baseweb.design) and [Styletron](https://styletron.org)
 
-TODO: Describe the use case here
+This example features how to use [Baseweb](https://baseweb.design) and [Styletron](https://styletron.org) with Remix.
 
 ## Preview
 
-Open this example on [CodeSandbox](https://codesandbox.com):
+Open this example on [CodeSandbox](https://codesandbox.com/s/remix-examples-with-baseweb):
 
-<!-- TODO: update this link to the path for your example: -->
-
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/template)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/with-baseweb)
 
 ## Example
 
-Describe the example and how it demonstrates solving the problem. Reference any relevant files/dependencies if needed.
+This example shows how to use Baseweb and Styletron with Remix.
+
+## Relevant Links
+
+- [app/styletron.ts](./app/styletron.ts) - Here's where we handle the styletron-related logic.
+- [app/root.tsx](./app/root.tsx) - This is where we render the app and if we're rendering on the server.
+  - We indicate where we want the styles to be added by inserting `__STYLES__` at the bottom of `<head>`;
+  - We wrap the `<Outlet>` with `<BaseProvider theme={LightTheme}>` and in turn wrap it with `<StyletronProvider value={styletron}>`
+- [app/entry.server.tsx](./app/entry.server.tsx) - This is where we render the app on the server and replace `__STYLES__` with the styles that styletron collects.
 
 ## Related Links
 
-Link to documentation or other related examples.
+[Base Web React UI Framework](https://baseweb.design)
+[Styletron – Getting Started with React](https://styletron.org/getting-started#with-react)
