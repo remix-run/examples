@@ -1,15 +1,16 @@
 import { styled } from "baseui";
+import { HeadingLarge } from "baseui/typography";
+import { Button } from "baseui/button";
 
 const Box = styled("div", () => ({
-  fontFamily: "Poppins",
-  fontSize: "2rem",
-  color: "pink",
+  fontFamily: "system-ui, sans-serif",
 }));
 
 export default function Index() {
   return (
     <Box>
-      <h1>Welcome to Remix</h1>
+      <HeadingLarge>Welcome to Remix</HeadingLarge>
+      <Button>Okay</Button>
     </Box>
   );
 }
