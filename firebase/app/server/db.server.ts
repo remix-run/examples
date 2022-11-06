@@ -22,7 +22,7 @@ const db = {
 
 export const getUserTodos = async (uid: string): Promise<Todo[]> => {
   const todoSnap = await db.userTodos(uid).get();
-  const todoData = todoSnap.docs.map((doc) => doc.data());
+  const todoData = todoSnap.docs.map((doc) => doc.data() as Todo);
   return todoData;
 };
 
