@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "build": "npm run build:css && remix build",
+    "build:css": "unocss './app/**/*.{js,ts,jsx,tsx}' -o ./app/styles/uno.css",
+    "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
+    "dev:css": "unocss './app/**/*.{js,ts,jsx,tsx}' -o ./app/styles/uno.css --watch",
+    "start": "remix-serve build"
+  },
+  "dependencies": {
+    "@remix-run/node": "*",
+    "@remix-run/react": "*",
+    "@remix-run/serve": "*",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "*",
+    "@remix-run/eslint-config": "*",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.13",
+    "@unocss/cli": "^0.46.4",
+    "@unocss/reset": "^0.46.4",
+    "concurrently": "^7.5.0",
+    "eslint": "^8.10.0",
+    "typescript": "^4.7.4",
+    "unocss": "^0.46.4"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
