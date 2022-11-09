@@ -1,6 +1,8 @@
-import {defineConfig} from "unocss";
+import { defineConfig, presetUno } from "unocss";
 
 export default defineConfig({
-    // https://uno.antfu.me/?s=preset
-    presets: []
+    // more presets: https://uno.antfu.me/?s=preset
+    presets: [
+      presetUno(),
+    ]
 });
