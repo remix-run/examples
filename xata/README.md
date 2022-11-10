@@ -2,7 +2,7 @@
 
 This example showcases how to use Remix with [Xata](https://xata.io) as your data layer.
 
-With this template you get out-of-the-box:
+You get out-of-the-box:
 
 - API Route to connect to your Xata database
 - Type-safe Codegen
