@@ -9,12 +9,11 @@
     "xata:codegen": "xata codegen"
   },
   "dependencies": {
-    "@remix-run/node": "latest",
-    "@remix-run/react": "latest",
-    "@remix-run/serve": "latest",
-    "@xata.io/client": "latest",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@remix-run/node": "*",
+    "@remix-run/react": "*",
+    "@remix-run/serve": "*",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@remix-run/dev": "latest",
