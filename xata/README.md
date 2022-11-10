@@ -14,7 +14,7 @@ You get out-of-the-box:
 
 Open this example on [CodeSandbox](https://codesandbox.com):
 
-- [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/remix/tree/main/examples/xata)
+- [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/xata)
 - [Check it live](https://remix-with-xata.netlify.app)
 
 ## Example
