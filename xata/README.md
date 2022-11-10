@@ -1,4 +1,4 @@
-# Xata template
+# Xata example
 
 This example showcases how to use Remix with [Xata](https://xata.io) as your data layer.
 
