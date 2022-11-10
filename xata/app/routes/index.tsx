@@ -1,10 +1,8 @@
 import type { FC } from 'react'
 import type { ActionFunction, LoaderFunction } from '@remix-run/node'
 import { Form, useFetcher, useLoaderData } from '@remix-run/react'
-import {
-  getXataClient,
-  type RemixWithXataExampleRecord,
-} from '~/lib/xata.codegen.server'
+import type { RemixWithXataExampleRecord } from '~/lib/xata.codegen.server'
+import { getXataClient } from '~/lib/xata.codegen.server'
 import { LINKS } from '~/lib/settings'
 
 type TaskComponent = FC<
