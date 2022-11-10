@@ -6,9 +6,6 @@ You get out-of-the-box:
 
 - API Route to connect to your Xata database
 - Type-safe Codegen
-- Accessibility-Ready
-  - Dark/Light mode
-  - Respects `prefers-reduce-motion` for CSS Transitions
 
 ## Preview
 
@@ -26,19 +23,6 @@ npx create-remix-app --template xata remix-xata-app
 
 ```
 
-<details>
-<summary> Yarn or PNPM</summary>
-
-```sh
-yarn create remix-app --template xata remix-xata-app
-```
-
-```sh
-pnpm create remix-app --template xata remix-xata-app
-```
-
-</details>
-
 ### Link Your Xata Workspace and Run Codegen
 
 ```sh
@@ -48,20 +32,7 @@ npm run start:xata
 > 💡 consider [installing the Xata CLI globally](https://xata.io/docs/cli/getting-started), it will likely improve your experience managing your databases
 
 
-<details>
-<summary> Yarn or PNPM</summary>
-
-```sh
-yarn start:xata
-```
-
-```sh
-pnpm run start:xata
-```
-
-</details>
-
-> ⚠️ once linked, you can just run `xata:codegen` to re-generate types.
+Once linked, you can just run `xata:codegen` to re-generate types.
 
 ### Start Coding
 

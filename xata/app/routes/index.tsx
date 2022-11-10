@@ -3,7 +3,30 @@ import type { ActionFunction, LoaderFunction } from '@remix-run/node'
 import { Form, useFetcher, useLoaderData } from '@remix-run/react'
 import type { RemixWithXataExampleRecord } from '~/lib/xata.codegen.server'
 import { getXataClient } from '~/lib/xata.codegen.server'
-import { LINKS } from '~/lib/settings'
+
+export const LINKS = [
+  {
+    description: 'Everything you need to know about Xata APIs and tools.',
+    title: 'Xata Docs',
+    url: 'https://docs.xata.io',
+  },
+  {
+    description: 'In case you need to check some Remix specifics.',
+    title: 'Remix Docs',
+    url: 'https://remix.run/docs',
+  },
+  {
+    description:
+      'Maintain your flow by managing your Xata Workspace without ever leaving VS Code.',
+    title: 'Xata VS Code Extension',
+    url: 'https://marketplace.visualstudio.com/items?itemName=xata.xata',
+  },
+  {
+    description: 'Get help. Offer help. Show us what you built!',
+    title: 'Xata Discord',
+    url: 'https://xata.io/discord',
+  },
+]
 
 type TaskComponent = FC<
   Pick<RemixWithXataExampleRecord, 'id' | 'title' | 'url' | 'description'>
