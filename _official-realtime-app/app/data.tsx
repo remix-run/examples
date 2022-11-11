@@ -195,7 +195,7 @@ const defaultIssues: Issue[] = [
     priority: 4,
     status: 0,
   },
-].map(issue => {
+].map((issue) => {
   return {
     ...issue,
     owner: users[issue.userId],
@@ -208,11 +208,11 @@ export async function getIssues() {
 }
 
 export async function getIssue(id: string) {
-  return defaultIssues.find(issue => issue.id === id);
+  return defaultIssues.find((issue) => issue.id === id);
 }
 
 export async function updateIssue(id: string, updates: any) {
-  let issue = defaultIssues.find(issue => issue.id === id);
+  const issue = defaultIssues.find((issue) => issue.id === id);
   if (!issue) return null;
   if (updates.priority) {
     updates.priority = parseInt(updates.priority, 10);

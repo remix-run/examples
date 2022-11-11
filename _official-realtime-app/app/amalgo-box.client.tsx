@@ -24,13 +24,13 @@ export class AmalgoBox extends HTMLElement {
 
   get visibleOptions() {
     return Array.from(
-      this.querySelectorAll("amalgo-option:not([hidden])"),
+      this.querySelectorAll("amalgo-option:not([hidden])")
     ) as Option[];
   }
 
   get highlightedIndex() {
-    let activeElement = this.querySelector(
-      "amalgo-option[highlight]",
+    const activeElement = this.querySelector(
+      "amalgo-option[highlight]"
     ) as Option;
     return activeElement ? this.visibleOptions.indexOf(activeElement) : -1;
   }
@@ -71,9 +71,9 @@ export class AmalgoBox extends HTMLElement {
   }
 
   highlightInitial() {
-    let highlightValue = this.getAttribute("highlight");
-    let option = this.querySelector(
-      `amalgo-option[value="${highlightValue}"]`,
+    const highlightValue = this.getAttribute("highlight");
+    const option = this.querySelector(
+      `amalgo-option[value="${highlightValue}"]`
     ) as Option;
     if (option) {
       this.highlightOption(option);
@@ -81,9 +81,9 @@ export class AmalgoBox extends HTMLElement {
   }
 
   filter(query: string) {
-    for (let option of this.allOptions) {
-      let text = option.textContent?.trim().toLowerCase() || "";
-      let matches = text.includes(query.trim().toLowerCase());
+    for (const option of this.allOptions) {
+      const text = option.textContent?.trim().toLowerCase() || "";
+      const matches = text.includes(query.trim().toLowerCase());
       console.log({ matches, text, query });
       if (matches) {
         option.hidden = false;
@@ -114,7 +114,7 @@ export class AmalgoBox extends HTMLElement {
   };
 
   private cycleHighlight(which: number) {
-    let nextOption = this.visibleOptions[this.highlightedIndex + which];
+    const nextOption = this.visibleOptions[this.highlightedIndex + which];
     if (nextOption) {
       this.highlightOption(nextOption);
     }
@@ -127,14 +127,14 @@ export class AmalgoBox extends HTMLElement {
   }
 
   private selectHighlighted() {
-    let option = this.visibleOptions[this.highlightedIndex];
+    const option = this.visibleOptions[this.highlightedIndex];
     if (option) {
       this.select(option);
     }
   }
 
   private documentOuterEvent = (event: Event) => {
-    let interactedInside =
+    const interactedInside =
       event.target instanceof Node && this.contains(event.target);
 
     if (!interactedInside) {
@@ -144,14 +144,14 @@ export class AmalgoBox extends HTMLElement {
 
   clearHighlighted() {
     this.querySelector("amalgo-option[highlight]")?.removeAttribute(
-      "highlight",
+      "highlight"
     );
   }
 
   clearSearch() {
     this.input.value = "";
-    let items = this.querySelectorAll("amalgo-option[hidden]");
-    for (let item of items) {
+    const items = this.querySelectorAll("amalgo-option[hidden]");
+    for (const item of items) {
       item.removeAttribute("hidden");
     }
   }
@@ -160,7 +160,7 @@ export class AmalgoBox extends HTMLElement {
     this.dispatchEvent(
       new CustomEvent("onOptionSelect", {
         detail: option.getAttribute("value"),
-      }),
+      })
     );
     this.close();
     // let focus rest, otherwise "keyup" will be fired on the button when
@@ -174,7 +174,7 @@ export class AmalgoBox extends HTMLElement {
 
 class AmalgoElement extends HTMLElement {
   get root() {
-    let root = this.closest("amalgo-box");
+    const root = this.closest("amalgo-box");
     invariant(root instanceof AmalgoBox);
     return root;
   }
@@ -182,7 +182,7 @@ class AmalgoElement extends HTMLElement {
 
 class Button extends AmalgoElement {
   get button() {
-    let button = this.querySelector("button");
+    const button = this.querySelector("button");
     invariant(button instanceof HTMLButtonElement);
     return button;
   }

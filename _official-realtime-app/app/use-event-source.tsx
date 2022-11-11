@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
 export function useEventSource(href: string) {
-  let [data, setData] = useState("");
+  const [data, setData] = useState("");
 
   useEffect(() => {
-    let eventSource = new EventSource(href);
+    const eventSource = new EventSource(href);
     eventSource.addEventListener("message", handler);
 
     function handler(event: MessageEvent) {

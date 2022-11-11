@@ -6,12 +6,14 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { useEffect } from "react";
+
+import { useEventSource } from "~/use-event-source";
+import { useRevalidator } from "~/use-revalidator";
 
 import styles from "./styles.processed.css";
 import icons from "./icons.svg";
-import { useEventSource } from "~/use-event-source";
-import { useRevalidator } from "~/use-revalidator";
-import { useEffect } from "react";
+
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -42,8 +44,8 @@ export default function App() {
 }
 
 function useRealtimeIssuesRevalidation() {
-  let data = useEventSource("/issues-events");
-  let revalidator = useRevalidator();
+  const data = useEventSource("/issues-events");
+  const revalidator = useRevalidator();
   useEffect(() => {
     revalidator.revalidate();
   }, [data, revalidator]);

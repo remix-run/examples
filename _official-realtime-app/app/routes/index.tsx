@@ -1,9 +1,10 @@
 import { Link, useFetcher, useNavigate } from "@remix-run/react";
 import { useLoaderData } from "@remix-run/react";
-import { getIssues } from "../data";
-import type { Issue } from "../data";
 import classNames from "classnames";
 import { useEffect, useRef } from "react";
+
+import { getIssues } from "../data";
+import type { Issue } from "../data";
 import * as AmalgoBox from "../amalgo-box.client";
 import icons from "../icons.svg";
 
@@ -12,13 +13,13 @@ export function loader() {
 }
 
 export default function Index() {
-  let issues = useLoaderData() as Issue[];
+  const issues = useLoaderData() as Issue[];
 
   useEffect(() => AmalgoBox.registerCustomElements(), []);
   return (
     <div>
       <Header />
-      {issues.map(issue => (
+      {issues.map((issue) => (
         <IssueLine key={issue.id} issue={issue} />
       ))}
     </div>
@@ -65,7 +66,7 @@ function IssueLine({ issue }: { issue: Issue }) {
       className="flex cursor-default justify-between gap-8 border-b border-gray-100 py-3 px-6 text-sm hover:bg-gray-50"
     >
       <div className="flex min-w-0 flex-1 items-center gap-2">
-        <form onClick={e => e.stopPropagation()}>
+        <form onClick={(e) => e.stopPropagation()}>
           <input
             className="opacity-25 checked:opacity-100 hover:opacity-100"
             type="checkbox"
@@ -81,7 +82,7 @@ function IssueLine({ issue }: { issue: Issue }) {
             if (parseInt(priority) !== issue.priority) {
               fetcher.submit(
                 { issueId: issue.id, priority },
-                { method: "post", action: `/issues/${issue.id}/update` },
+                { method: "post", action: `/issues/${issue.id}/update` }
               );
             }
           }}
@@ -92,7 +93,7 @@ function IssueLine({ issue }: { issue: Issue }) {
           to={`/issues/${issue.id}`}
           tabIndex={0}
           className="flex-1 cursor-default truncate font-medium text-gray-700"
-          onClick={e => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
         >
           {issue.title}
         </Link>
@@ -111,7 +112,7 @@ function IssueLine({ issue }: { issue: Issue }) {
 
 function StatusMenu({ issue }: { issue: Issue }) {
   return (
-    <button onClick={e => e.stopPropagation()}>
+    <button onClick={(e) => e.stopPropagation()}>
       <svg
         className={classNames(
           `h-[14px] w-[14px] rounded-full`,
@@ -123,7 +124,7 @@ function StatusMenu({ issue }: { issue: Issue }) {
             ? "text-green-600"
             : issue.status === 4
             ? "text-indigo-600"
-            : "text-gray-300",
+            : "text-gray-300"
         )}
       >
         <use
@@ -151,7 +152,7 @@ function PriorityMenu({
   highlight: number;
   onChange: (priority: string) => void;
 }) {
-  let ref = useRef<HTMLElement>();
+  const ref = useRef<HTMLElement>();
   useCustomElementEvent(ref, "onOptionSelect", onChange);
 
   const iconList = [
@@ -165,7 +166,7 @@ function PriorityMenu({
   return (
     <amalgo-box
       ref={ref}
-      onClick={e => e.stopPropagation()}
+      onClick={(e) => e.stopPropagation()}
       highlight={String(highlight)}
     >
       <amalgo-button>
@@ -174,7 +175,7 @@ function PriorityMenu({
             id={iconList[highlight]}
             className={classNames(
               "h-4 w-4",
-              highlight == 4 ? "text-orange-500" : "text-gray-400",
+              highlight == 4 ? "text-orange-500" : "text-gray-400"
             )}
           />
         </button>
@@ -228,11 +229,11 @@ function Icon({ id, className }: { id: string; className?: string }) {
 function useCustomElementEvent<T>(
   ref: React.MutableRefObject<HTMLElement | undefined>,
   eventName: string,
-  eventHandler: (event: T) => void,
+  eventHandler: (event: T) => void
 ) {
   useEffect(() => {
-    let node = ref.current;
-    let handler = (event: CustomEvent) => {
+    const node = ref.current;
+    const handler = (event: CustomEvent) => {
       eventHandler(event.detail);
     };
     // @ts-ignore

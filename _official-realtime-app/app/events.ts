@@ -4,4 +4,4 @@ export const EVENTS = {
   ISSUE_CHANGED: "ISSUE_CHANGED",
 };
 
-export let emitter = new EventEmitter();
+export const emitter = new EventEmitter();
