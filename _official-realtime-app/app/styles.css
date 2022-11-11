@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+button {
+  @apply cursor-default;
+}
+
+amalgo-box {
+  @apply relative z-10;
+}
+
+amalgo-box input {
+  @apply w-52 border-none bg-inherit py-2 px-4 font-light outline-none;
+}
+
+amalgo-box amalgo-popover {
+  @apply pointer-events-none absolute -top-2 left-3  z-10 block rounded-lg border bg-white shadow-md;
+  @apply origin-top-left scale-90 opacity-0  transition-all;
+}
+
+amalgo-box[open] amalgo-popover {
+  @apply pointer-events-auto scale-100 opacity-100;
+}
+
+amalgo-menu {
+  @apply relative z-10 block border-t;
+}
+
+amalgo-option {
+  @apply relative z-10 m-1 block rounded-md p-2;
+}
+
+amalgo-option[hidden] {
+  @apply hidden;
+}
+
+amalgo-option[highlight] {
+  @apply bg-gray-100;
+}
