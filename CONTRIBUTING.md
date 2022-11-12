@@ -38,7 +38,7 @@ Most examples should:
 
 4. Add your example
 
-   To create an example, simply copy/paste the [`_template`](_template) directory into the folder name you've chosen in the previous step.
+   To create an example, simply copy/paste the [`__template`](__template) directory into the folder name you've chosen in the previous step.
 
    Make the changes you need for your example, update the `README.md`, make sure that it works and that you kept it focused (see above).
 
