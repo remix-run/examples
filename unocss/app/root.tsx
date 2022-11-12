@@ -17,10 +17,10 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-export const links: LinksFunction = () => ([
+export const links: LinksFunction = () => [
   { rel: "stylesheet", href: reset },
   { rel: "stylesheet", href: uno },
-]);
+];
 
 export default function App() {
   return (
