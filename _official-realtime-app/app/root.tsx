@@ -14,7 +14,6 @@ import { useRevalidator } from "~/use-revalidator";
 import styles from "./styles.processed.css";
 import icons from "./icons.svg";
 
-
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "Remix Fake Linear Demo",
