@@ -3,7 +3,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev",
+    "dev": "binode --require ./mocks -- @remix-run/dev:remix dev",
     "start": "remix-serve build"
   },
   "dependencies": {
@@ -18,8 +18,9 @@
     "@remix-run/eslint-config": "*",
     "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.13",
+    "binode": "^1.0.5",
     "eslint": "^8.11.0",
-    "msw": "^0.39.2",
+    "msw": "^0.47.3",
     "typescript": "^4.7.4"
   },
   "engines": {
