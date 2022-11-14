@@ -7,7 +7,7 @@ export async function action({ request }) {
   const price = formData.get('price');
   const description = formData.get('description');
   const category = formData.get('category');
-  //Validaciones
+  // Validations
   if (title === '' || title.trim() === '') {
     return json({ error: 'Tittle is empty' });
   }
