@@ -6,7 +6,7 @@ Add a product to see PrimeReact Toast component
 
 Open this example on [CodeSandbox](https://codesandbox.com):
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://stackblitz.com/edit/node-qvcxdr?file=README.md)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/primereact-toast)
 
 ## Development
 ```sh
