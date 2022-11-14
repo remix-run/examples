@@ -2,7 +2,7 @@ import { json } from '@remix-run/node';
 
 export async function action({ request }) {
   let formData = await request.formData();
-  //Valores
+  // Values
   const title = formData.get('title');
   const price = formData.get('price');
   const description = formData.get('description');
