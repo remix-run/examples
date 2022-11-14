@@ -1,10 +1,10 @@
+import createEmotionCache from "@emotion/cache";
+import { CacheProvider } from "@emotion/react";
 import { RemixBrowser } from "@remix-run/react";
 import { startTransition, StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
-import createEmotionCache from "@emotion/cache";
-import { CacheProvider } from "@emotion/react";
 
-function hydrate() {
+const hydrate = () => {
   const emotionCache = createEmotionCache({ key: "css" });
 
   startTransition(() => {
@@ -17,7 +17,7 @@ function hydrate() {
       </StrictMode>
     );
   });
-}
+};
 
 if (window.requestIdleCallback) {
   window.requestIdleCallback(hydrate);
