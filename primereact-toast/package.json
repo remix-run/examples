@@ -7,9 +7,9 @@
     "start": "remix-serve build"
   },
   "dependencies": {
-    "@remix-run/node": "^1.7.5",
-    "@remix-run/react": "^1.7.5",
-    "@remix-run/serve": "^1.7.5",
+    "@remix-run/node": "*",
+    "@remix-run/react": "*",
+    "@remix-run/serve": "*",
     "primeflex": "^3.3.0",
     "primeicons": "^6.0.1",
     "primereact": "^8.7.2",
