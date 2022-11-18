@@ -8,7 +8,7 @@ const converter = <T>() => ({
 });
 
 // helper to apply converter to multiple collections
-const dataPoint = <T>(collectionPath: string) =>
+const dataPoint = <T extends FirebaseFirestore.DocumentData>(collectionPath: string) =>
   getFirestore().collection(collectionPath).withConverter(converter<T>());
 
 export type Todo = {
@@ -20,7 +20,7 @@ const db = {
   userTodos: (uid: string) => dataPoint<Todo>(`users/${uid}/todos`),
 };
 
-export const getUserTodos = async (uid: string): Promise<Todo[]> => {
+export const getUserTodos = async (uid: string) => {
   const todoSnap = await db.userTodos(uid).get();
   const todoData = todoSnap.docs.map((doc) => doc.data());
   return todoData;
