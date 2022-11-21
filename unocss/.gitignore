@@ -1,0 +1,9 @@
+node_modules
+
+/.cache
+/build
+/public/build
+.env
+
+# UnoCSS generated css file
+/app/styles/uno.css

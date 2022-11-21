@@ -4,7 +4,7 @@ This example features how to use [Styled Components](https://styled-components.c
 
 ## Preview
 
-Open this example on [CodeSandbox](https://codesandbox.io/s/styled-components):
+Open this example on [CodeSandbox](https://codesandbox.com):
 
 [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/styled-components)
 
