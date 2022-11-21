@@ -1,5 +1,6 @@
 {
   "hardReloadOnChange": true,
+  "template": "remix",
   "container": {
     "port": 3000
   }
