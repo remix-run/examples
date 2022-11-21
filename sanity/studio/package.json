@@ -13,7 +13,6 @@
     "@sanity/google-maps-input": "^2.30.1",
     "@sanity/vision": "^2.30.1",
     "prop-types": "^15.8.1",
-    "isbot": "^3.6.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^3.11.0",
