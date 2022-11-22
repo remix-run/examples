@@ -37,6 +37,8 @@ const Document = withEmotionCache(
     const clientStyleData = useContext(ClientStyleContext);
 
     // Only executed on client
+    // When a top level ErrorBoundary or CatchBoundary are rendered,
+    // the document head gets removed, so we have to create the style tags
     useEffect(() => {
       // re-link sheet container
       emotionCache.sheet.container = document.head;
@@ -50,7 +52,8 @@ const Document = withEmotionCache(
 
       // reset cache to re-apply global styles
       clientStyleData.reset();
-    }, [clientStyleData, emotionCache.sheet]);
+      // We only want to do this on mount, not when styles change
+    }, []);
 
     return (
       <html lang="en">
