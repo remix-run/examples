@@ -53,6 +53,7 @@ const Document = withEmotionCache(
       // reset cache to re-apply global styles
       clientStyleData.reset();
       // We only want to do this on mount, not when styles change
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
