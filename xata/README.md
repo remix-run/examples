@@ -15,10 +15,10 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 ## Example
 
-Execute [`create-remix-app`](https://github.com/remix-run/remix/tree/main/packages/create-remix) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+Execute [`create-remix`](https://github.com/remix-run/remix/tree/main/packages/create-remix) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
 ```sh
-npx create-remix-app --template xata remix-xata-app
+npx create-remix@latest --template xata remix-xata-app
 ```
 
 ### Link Your Xata Workspace and Run Codegen
@@ -30,7 +30,6 @@ npm run xata:init
 In case you have a workspace already linked, you will need to use `--force` flag to push the template schema on top of an existing one.
 
 > 💡 consider [installing the Xata CLI globally](https://xata.io/docs/cli/getting-started), it will likely improve your experience managing your databases
-
 
 Once linked, you can just run `xata:codegen` to re-generate types.
 

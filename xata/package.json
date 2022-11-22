@@ -6,7 +6,7 @@
     "dev": "remix dev",
     "start": "remix-serve build",
     "xata:init": "xata init --schema=schema.template.json",
-    "xata:codegen": "xata codegen -o=lib/xata.codegen.server.ts"
+    "xata:codegen": "xata codegen -o=app/lib/xata.codegen.server.ts"
   },
   "dependencies": {
     "@remix-run/node": "*",
