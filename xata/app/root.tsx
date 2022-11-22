@@ -8,7 +8,6 @@ import {
   ScrollRestoration,
 } from '@remix-run/react'
 import styles from '~/styles.css'
-import { metatags } from './lib/settings'
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: styles }]
@@ -17,7 +16,6 @@ export const links: LinksFunction = () => {
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
   viewport: 'width=device-width,initial-scale=1',
-  ...metatags(),
 })
 
 export default function App() {

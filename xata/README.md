@@ -12,22 +12,22 @@ You get out-of-the-box:
 Open this example on [CodeSandbox](https://codesandbox.com):
 
 - [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/xata)
-- [Check it live](https://remix-with-xata.netlify.app)
 
 ## Example
 
-Execute [`create-remix-app`](https://github.com/vercel/next.js/tree/canary/packages/create-remix-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+Execute [`create-remix-app`](https://github.com/remix-run/remix/tree/main/packages/create-remix) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
 ```sh
 npx create-remix-app --template xata remix-xata-app
-
 ```
 
 ### Link Your Xata Workspace and Run Codegen
 
 ```sh
-npm run start:xata
+npm run xata:init
 ```
+
+In case you have a workspace already linked, you will need to use `--force` flag to push the template schema on top of an existing one.
 
 > 💡 consider [installing the Xata CLI globally](https://xata.io/docs/cli/getting-started), it will likely improve your experience managing your databases
 

@@ -1,7 +1,8 @@
 import type { FC } from 'react'
-import type { ActionFunction, LoaderFunction } from '@remix-run/node'
-import { Form, useFetcher, useLoaderData } from '@remix-run/react'
+import type { ActionArgs, LoaderArgs } from '@remix-run/node'
 import type { RemixWithXataExampleRecord } from '~/lib/xata.codegen.server'
+import { json } from '@remix-run/node'
+import { Form, useFetcher, useLoaderData } from '@remix-run/react'
 import { getXataClient } from '~/lib/xata.codegen.server'
 
 export const LINKS = [
@@ -31,25 +32,27 @@ export const LINKS = [
 type TaskComponent = FC<
   Pick<RemixWithXataExampleRecord, 'id' | 'title' | 'url' | 'description'>
 >
-export const loader: LoaderFunction = async () => {
+export const loader = async ({}: LoaderArgs) => {
   const xata = getXataClient()
   const links = await xata.db.remix_with_xata_example.getAll()
 
-  return links
+  return json(links)
 }
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const xata = getXataClient()
   const { action, item } = Object.fromEntries(await request.formData())
 
   if (action === 'delete' && typeof item === 'string') {
     await xata.db.remix_with_xata_example.delete(item)
-    return {}
+
+    return null
   }
 
   if (action === 'create') {
     await xata.db.remix_with_xata_example.create(LINKS)
-    return {}
+    
+    return null
   }
 }
 
@@ -75,7 +78,7 @@ const Task: TaskComponent = ({ id, title, url, description }) => {
 }
 
 export default function Index() {
-  const links = useLoaderData<RemixWithXataExampleRecord[]>()
+  const links = useLoaderData<typeof loader>()
 
   return (
     <main>
@@ -96,8 +99,7 @@ export default function Index() {
           <section>
             <h2>No records found.</h2>
             <strong>
-              Create a `remix_with_xata_example` and push some useful links to
-              see them here.
+              Click the button below to add some useful links to your `remix_with_xata_example` table and see them here.
             </strong>
             <Form method="post">
               <input type="hidden" name="action" value="create" />
