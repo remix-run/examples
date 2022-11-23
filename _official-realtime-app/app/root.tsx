@@ -1,4 +1,5 @@
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import {
   Links,
   Meta,
@@ -52,6 +53,6 @@ function useRealtimeIssuesRevalidation() {
 
 // FIXME: Pointless action for revalidation until:
 // https://github.com/remix-run/remix/issues/4485
-export function action() {
-  return { ok: true };
+export async function action() {
+  return json({ ok: true });
 }

@@ -1,28 +1,22 @@
+import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import type { DataFunctionArgs, SerializeFrom } from "@remix-run/node";
 import { useFetcher, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 
 import { getIssue } from "~/data";
 
-export const loader = async ({ params }: DataFunctionArgs) => {
+export const loader = async ({ params }: LoaderArgs) => {
   invariant(params.id, "Missing issue id");
   const issue = await getIssue(params.id);
   if (!issue) {
     throw json("Issue not found", { status: 404 });
   }
-  return issue;
+  return json(issue);
 };
 
-export const meta = ({
-  data: issue,
-}: {
-  data: SerializeFrom<typeof loader>;
-}) => {
-  return {
-    title: issue?.title || "Not Found",
-  };
-};
+export const meta: MetaFunction<typeof loader> = ({ data: issue }) => ({
+  title: issue?.title || "Not Found",
+});
 
 export default function Issue() {
   const issue = useLoaderData<typeof loader>();
