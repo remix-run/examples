@@ -1,14 +1,11 @@
-import type { Joke } from "@prisma/client";
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useCatch, useLoaderData } from "@remix-run/react";
 
 import { db } from "~/utils/db.server";
 import { getUserId } from "~/utils/session.server";
 
-type LoaderData = { randomJoke: Joke };
-
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const userId = await getUserId(request);
   const count = await db.joke.count();
   const randomRowNumber = Math.floor(Math.random() * count);
@@ -27,12 +24,11 @@ export const loader: LoaderFunction = async ({ request }) => {
   if (!randomJoke) {
     throw new Response("No jokes to be found!", { status: 404 });
   }
-  const data: LoaderData = { randomJoke };
-  return json(data);
+  return json({ randomJoke });
 };
 
 export default function JokesIndexRoute() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<typeof loader>();
 
   return (
     <div>

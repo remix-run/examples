@@ -1,4 +1,4 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import {
   Form,
@@ -10,9 +10,10 @@ import {
 
 import { JokeDisplay } from "~/components/joke";
 import { db } from "~/utils/db.server";
+import { badRequest } from "~/utils/request.server";
 import { getUserId, requireUserId } from "~/utils/session.server";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const userId = await getUserId(request);
   if (!userId) {
     throw new Response("Unauthorized", { status: 401 });
@@ -32,30 +33,18 @@ function validateJokeName(name: string) {
   }
 }
 
-type ActionData = {
-  formError?: string;
-  fieldErrors?: { name: string | undefined; content: string | undefined };
-  fields?: {
-    name: string;
-    content: string;
-  };
-};
-
-/**
- * This helper function gives us typechecking for our ActionData return
- * statements, while still returning the accurate HTTP status, 400 Bad Request,
- * to the client.
- */
-const badRequest = (data: ActionData) => json(data, { status: 400 });
-
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const userId = await requireUserId(request);
 
   const form = await request.formData();
   const name = form.get("name");
   const content = form.get("content");
   if (typeof name !== "string" || typeof content !== "string") {
-    return badRequest({ formError: `Form not submitted correctly.` });
+    return badRequest({
+      fieldErrors: null,
+      fields: null,
+      formError: `Form not submitted correctly.`,
+    });
   }
 
   const fieldErrors = {
@@ -64,7 +53,7 @@ export const action: ActionFunction = async ({ request }) => {
   };
   const fields = { name, content };
   if (Object.values(fieldErrors).some(Boolean)) {
-    return badRequest({ fieldErrors, fields });
+    return badRequest({ fieldErrors, fields, formError: null });
   }
 
   const joke = await db.joke.create({
@@ -74,7 +63,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function NewJokeRoute() {
-  const actionData = useActionData<ActionData>();
+  const actionData = useActionData<typeof action>();
   const transition = useTransition();
 
   if (transition.submission) {

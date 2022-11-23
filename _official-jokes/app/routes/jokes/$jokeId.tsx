@@ -1,9 +1,4 @@
-import type { Joke } from "@prisma/client";
-import type {
-  ActionFunction,
-  LoaderFunction,
-  MetaFunction,
-} from "@remix-run/node";
+import type { ActionArgs, LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { useCatch, useLoaderData, useParams } from "@remix-run/react";
 
@@ -11,11 +6,7 @@ import { db } from "~/utils/db.server";
 import { getUserId, requireUserId } from "~/utils/session.server";
 import { JokeDisplay } from "~/components/joke";
 
-export const meta: MetaFunction = ({
-  data,
-}: {
-  data: LoaderData | undefined;
-}) => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data) {
     return {
       title: "No joke",
@@ -28,19 +19,16 @@ export const meta: MetaFunction = ({
   };
 };
 
-type LoaderData = { joke: Joke; isOwner: boolean };
-
-export const loader: LoaderFunction = async ({ request, params }) => {
+export const loader = async ({ params, request }: LoaderArgs) => {
   const userId = await getUserId(request);
   const joke = await db.joke.findUnique({ where: { id: params.jokeId } });
   if (!joke) {
     throw new Response("What a joke! Not found.", { status: 404 });
   }
-  const data: LoaderData = { joke, isOwner: userId === joke.jokesterId };
-  return json(data);
+  return json({ joke, isOwner: userId === joke.jokesterId });
 };
 
-export const action: ActionFunction = async ({ request, params }) => {
+export const action = async ({ params, request }: ActionArgs) => {
   const form = await request.formData();
   if (form.get("intent") !== "delete") {
     throw new Response(`The intent ${form.get("intent")} is not supported`, {
@@ -64,7 +52,7 @@ export const action: ActionFunction = async ({ request, params }) => {
 };
 
 export default function JokeRoute() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<typeof loader>();
 
   return <JokeDisplay joke={data.joke} isOwner={data.isOwner} />;
 }
