@@ -1,15 +1,15 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useActionData, useLoaderData } from "@remix-run/react";
 
 import { redis } from "~/utils/redis.server";
 
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   const message = await redis.get("message");
   return json({ message });
 };
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const formData = await request.formData();
   const message = formData.get("message");
 
@@ -23,8 +23,8 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function IndexRoute() {
-  const data = useLoaderData();
-  const actionMessage = useActionData<string>();
+  const data = useLoaderData<typeof loader>();
+  const actionMessage = useActionData<typeof action>();
 
   return (
     <main>

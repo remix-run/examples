@@ -17,7 +17,7 @@ import { createReadStream, statSync } from "fs";
 import path from "path";
 import { PassThrough } from "stream";
 
-import type { LoaderFunction, Params } from "@remix-run/node";
+import type { LoaderArgs, Params } from "@remix-run/node";
 import type { FitEnum } from "sharp";
 import sharp from "sharp";
 
@@ -30,7 +30,7 @@ interface ResizeParams {
   fit: keyof FitEnum;
 }
 
-export const loader: LoaderFunction = async ({ params, request }) => {
+export const loader = async ({ params, request }: LoaderArgs) => {
   // extract all the parameters from the url
   const { src, width, height, fit } = extractParams(params, request);
 

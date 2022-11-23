@@ -1,4 +1,4 @@
-import type { LinksFunction, LoaderFunction } from "@remix-run/node";
+import type { LinksFunction, LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useFetcher, useLoaderData, useTransition } from "@remix-run/react";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -19,24 +19,16 @@ const getStartLimit = (searchParams: URLSearchParams) => ({
   limit: Number(searchParams.get("limit") || LIMIT.toString()),
 });
 
-type LoaderData = {
-  items: Array<{ id: string; value: string }>;
-};
-
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const { start, limit } = getStartLimit(new URL(request.url).searchParams);
-  const data: LoaderData = {
-    items: await getItems({ start, limit }),
-  };
-  return json(data, {
-    headers: {
-      "Cache-Control": "public, max-age=120",
-    },
-  });
+  return json(
+    { items: await getItems({ start, limit }) },
+    { headers: { "Cache-Control": "public, max-age=120" } }
+  );
 };
 
 export default function Index() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<typeof loader>();
   const [items, setItems] = useState(data.items);
 
   const transition = useTransition();

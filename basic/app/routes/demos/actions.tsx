@@ -1,4 +1,4 @@
-import type { ActionFunction, MetaFunction } from "@remix-run/node";
+import type { ActionArgs, MetaFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useActionData } from "@remix-run/react";
 import { useEffect, useRef } from "react";
@@ -10,7 +10,7 @@ export const meta: MetaFunction = () => ({
 // When your form sends a POST, the action is called on the server.
 // - https://remix.run/api/conventions#action
 // - https://remix.run/guides/data-updates
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const formData = await request.formData();
   const answer = formData.get("answer");
 
@@ -35,7 +35,7 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function ActionsDemo() {
   // https://remix.run/api/remix#useactiondata
-  const actionMessage = useActionData<string>();
+  const actionMessage = useActionData<typeof action>();
   const answerRef = useRef<HTMLInputElement>(null);
 
   // This form works without JavaScript, but when we have JavaScript we can make

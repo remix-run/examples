@@ -1,8 +1,8 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 
 import { auth } from "~/auth.server";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   return auth.authenticate("github", request, {
     successRedirect: "/private",
     failureRedirect: "/",

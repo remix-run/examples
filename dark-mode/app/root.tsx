@@ -1,4 +1,5 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderArgs, MetaFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -15,21 +16,14 @@ import {
   ThemeProvider,
   useTheme,
 } from "~/utils/theme-provider";
-import type { Theme } from "~/utils/theme-provider";
 import { getThemeSession } from "~/utils/theme.server";
 
-export type LoaderData = {
-  theme: Theme | null;
-};
-
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const themeSession = await getThemeSession(request);
 
-  const data: LoaderData = {
+  return json({
     theme: themeSession.getTheme(),
-  };
-
-  return data;
+  });
 };
 
 export const meta: MetaFunction = () => ({
@@ -39,7 +33,7 @@ export const meta: MetaFunction = () => ({
 });
 
 function App() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<typeof loader>();
   const [theme] = useTheme();
 
   return (
@@ -61,7 +55,7 @@ function App() {
 }
 
 export default function AppWithProviders() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<typeof loader>();
 
   return (
     <ThemeProvider specifiedTheme={data.theme}>

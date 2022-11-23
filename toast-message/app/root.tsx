@@ -1,4 +1,4 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -15,37 +15,33 @@ import { Toaster, toast } from "react-hot-toast";
 import type { ToastMessage } from "./message.server";
 import { commitSession, getSession } from "./message.server";
 
-type LoaderData = {
-  toastMessage: ToastMessage | null;
-};
-
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "Remix + Toast notifications",
   viewport: "width=device-width,initial-scale=1",
 });
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const session = await getSession(request.headers.get("cookie"));
 
   const toastMessage = session.get("toastMessage") as ToastMessage;
 
   if (!toastMessage) {
-    return json<LoaderData>({ toastMessage: null });
+    return json({ toastMessage: null });
   }
 
   if (!toastMessage.type) {
     throw new Error("Message should have a type");
   }
 
-  return json<LoaderData>(
+  return json(
     { toastMessage },
     { headers: { "Set-Cookie": await commitSession(session) } }
   );
 };
 
 export default function App() {
-  const { toastMessage } = useLoaderData<LoaderData>();
+  const { toastMessage } = useLoaderData<typeof loader>();
 
   React.useEffect(() => {
     if (!toastMessage) {

@@ -1,22 +1,19 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 
 import { authenticator, sessionStorage, supabaseStrategy } from "~/auth.server";
 import { signInWithGithub } from "~/supabase.client";
 
-type LoaderData = {
-  error: { message: string } | null;
-};
-
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   await authenticator.authenticate("sb", request, {
     successRedirect: "/private",
     failureRedirect: "/login",
   });
 };
 
-export const loader: LoaderFunction = async ({ request }) => {
+type LoaderError = { message: string } | null;
+export const loader = async ({ request }: LoaderArgs) => {
   await supabaseStrategy.checkSession(request, {
     successRedirect: "/private",
   });
@@ -25,15 +22,13 @@ export const loader: LoaderFunction = async ({ request }) => {
     request.headers.get("Cookie")
   );
 
-  const error = session.get(
-    authenticator.sessionErrorKey
-  ) as LoaderData["error"];
+  const error = session.get(authenticator.sessionErrorKey) as LoaderError;
 
-  return json<LoaderData>({ error });
+  return json({ error });
 };
 
 export default function Screen() {
-  const { error } = useLoaderData<LoaderData>();
+  const { error } = useLoaderData<typeof loader>();
 
   return (
     <>

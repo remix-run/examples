@@ -1,7 +1,7 @@
 import type {
-  ActionFunction,
+  ActionArgs,
   LinksFunction,
-  LoaderFunction,
+  LoaderArgs,
   MetaFunction,
 } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
@@ -19,7 +19,7 @@ import {
   updateTodo,
   updateTodoList,
 } from "~/db.server";
-import type { TodoList as TTodoList, Project, Todo } from "~/models";
+import type { TodoList as TTodoList, Todo } from "~/models";
 import { Field, FieldProvider, Label } from "~/ui/form";
 import { Button } from "~/ui/button";
 import { TodoItem, TodoList } from "~/ui/todo-list";
@@ -37,7 +37,7 @@ export const meta: MetaFunction = ({ data }) => {
   };
 };
 
-export const loader: LoaderFunction = async ({ request, params }) => {
+export const loader = async ({ params, request }: LoaderArgs) => {
   const listId = params.listId as string;
   await requireUser(request, {
     redirect: "/sign-in",
@@ -58,11 +58,10 @@ export const loader: LoaderFunction = async ({ request, params }) => {
     throw redirect("/dashboard");
   }
 
-  const data: LoaderData = { todoList, projects, project };
-  return json(data);
+  return json({ todoList, projects, project });
 };
 
-export const action: ActionFunction = async ({ request, params }) => {
+export const action = async ({ params, request }: ActionArgs) => {
   await requireUser(request, {
     redirect: "/sign-in",
   });
@@ -93,10 +92,9 @@ export const action: ActionFunction = async ({ request, params }) => {
     }
     const fieldErrors: FieldErrors = { project: null };
     if (projectId != null && typeof projectId !== "string") {
-      const data: ActionData = {
+      return json({
         formError: `Something went wrong. Please try again later.`,
-      };
-      return json(data);
+      });
     }
     const fields: Fields = { project: projectId };
     if (Object.values(fieldErrors).some(Boolean)) {
@@ -105,19 +103,17 @@ export const action: ActionFunction = async ({ request, params }) => {
     if (projectId) {
       await updateTodoList(listId, { projectId });
     }
-    const data: ActionData = {
+    return json({
       fieldErrors,
       fields,
-    };
-    return json(data);
+    });
   }
 
-  const data: ActionData = {};
-  return json(data);
+  return json({});
 };
 
 function TodoListRoute() {
-  const { todoList, project } = useLoaderData<LoaderData>();
+  const { todoList, project } = useLoaderData<typeof loader>();
 
   const fetchers = useFetchers();
   const taskFetcherMap = new Map<string, boolean>();
@@ -274,18 +270,6 @@ function NewTodoForm({ listId }: { listId: TTodoList["id"] }) {
 }
 
 export default TodoListRoute;
-
-interface LoaderData {
-  todoList: TTodoList;
-  projects: Project[];
-  project: Project;
-}
-
-interface ActionData {
-  formError?: string;
-  fieldErrors?: FieldErrors;
-  fields?: Fields;
-}
 
 type Fields = Record<SelectFields, string | null>;
 type FieldErrors = Record<SelectFields, string | undefined | null>;

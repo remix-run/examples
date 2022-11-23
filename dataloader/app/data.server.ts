@@ -1,10 +1,10 @@
-export interface User {
+interface User {
   id: string;
   email: string;
   name: string;
 }
 
-export const users: User[] = [
+const users: User[] = [
   {
     id: "ef3fcb93-0623-4d10-adbf-4dd865d6688c",
     email: "Melisa_Treutel38@gmail.com",

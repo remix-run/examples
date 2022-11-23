@@ -1,11 +1,11 @@
-import type { ActionFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { useSubmit } from "@remix-run/react";
 import { useEffect } from "react";
 
 import { authenticator } from "~/auth.server";
 import { supabaseClient } from "~/supabase.client";
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   await authenticator.authenticate("sb-oauth", request, {
     successRedirect: "/private",
     failureRedirect: "/login",

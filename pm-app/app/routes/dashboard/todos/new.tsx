@@ -1,24 +1,21 @@
-import type { ActionFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 
 import { requireUser } from "~/session.server";
 import { createTodo, getTodosFromList } from "~/db.server";
-import type { Todo } from "~/models";
 import { Sanitizer } from "~/utils/sanitizer";
 
-export const action: ActionFunction = async ({ request, params }) => {
+export const action = async ({ params, request }: ActionArgs) => {
   await requireUser(request, {
     redirect: "/sign-in",
   });
 
-  let actionData: ActionData;
   if (request.method.toLowerCase() === "post") {
     const formData = await request.formData();
     const todoListId = params.listId || (formData.get("listId") as string);
 
     if (!todoListId || typeof todoListId !== "string") {
-      actionData = { todo: null };
-      throw json(actionData, 400);
+      throw json({ todo: null }, 400);
     }
 
     const existingTodos = await getTodosFromList(todoListId);
@@ -31,8 +28,7 @@ export const action: ActionFunction = async ({ request, params }) => {
       const order = existingTodos.length - 1;
 
       if (!name) {
-        actionData = { todo: null };
-        throw json(actionData, 400);
+        throw json({ todo: null }, 400);
       }
 
       // TODO: Handle invalid inputs
@@ -48,16 +44,10 @@ export const action: ActionFunction = async ({ request, params }) => {
       }
 
       const todo = await createTodo(todoData);
-      actionData = { todo };
-      return json(actionData, 200);
+      return json({ todo }, 200);
     } catch {
-      actionData = { todo: null };
-      return json(actionData, 400);
+      return json({ todo: null }, 400);
     }
   }
   return json({ todo: null }, 400);
 };
-
-interface ActionData {
-  todo: Todo | null;
-}

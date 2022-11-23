@@ -1,10 +1,10 @@
-import type { ActionFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useActionData, useTransition } from "@remix-run/react";
 
 import { queue } from "~/queues/notifier.server";
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const formData = await request.formData();
   const email = formData.get("email");
 
@@ -23,7 +23,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function Index() {
-  const actionMessage = useActionData<string>();
+  const actionMessage = useActionData<typeof action>();
   const transition = useTransition();
 
   return (

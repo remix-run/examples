@@ -1,21 +1,13 @@
-import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
-import type { ApolloError } from "apollo-server-errors";
 
 import { Code } from "~/components/Code";
 import { fetchFromGraphQL, gql } from "~/utils/index";
-import type { Character } from "~/generated/types";
-
-type LoaderData = {
-  data: { character: Character };
-  errors?: ApolloError[];
-};
 
 /**
  * @description Here we query an external GraphQL API directly via "fetch".
  */
-export const loader: LoaderFunction = async (_args) => {
+export const loader = async () => {
   const getCharacterQuery = gql`
     fragment CharacterFields on Character {
       gender
@@ -51,7 +43,7 @@ export const loader: LoaderFunction = async (_args) => {
  * an array of errors coming back from the GraphQL API.
  */
 export default function CharacterError() {
-  const loader = useLoaderData<LoaderData>();
+  const loader = useLoaderData<typeof loader>();
 
   return (
     <main className="ui-main">

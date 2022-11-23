@@ -1,25 +1,23 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 
 import { authenticator, supabaseStrategy } from "~/auth.server";
 
-type LoaderData = { email?: string };
-
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   await authenticator.logout(request, { redirectTo: "/" });
 };
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const session = await supabaseStrategy.checkSession(request, {
     failureRedirect: "/login",
   });
 
-  return json<LoaderData>({ email: session.user?.email });
+  return json({ email: session.user?.email });
 };
 
 export default function Screen() {
-  const { email } = useLoaderData<LoaderData>();
+  const { email } = useLoaderData<typeof loader>();
   return (
     <>
       <h1>Hello {email}</h1>

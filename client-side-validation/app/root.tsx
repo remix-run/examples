@@ -1,9 +1,4 @@
-import type {
-  ActionFunction,
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-} from "@remix-run/node";
+import type { ActionArgs, LinksFunction, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -27,7 +22,7 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const form = await request.formData();
   const message = `Successfully submitted data:
       - Required text: ${form.get("required-text")}
@@ -42,12 +37,7 @@ export const action: ActionFunction = async ({ request }) => {
   return json({ message }, { status: 200 });
 };
 
-type LoaderData = {
-  todayString: string;
-  tomorrowString: string;
-};
-
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   const date = new Date();
 
   // today string in "YYYY-MM-DD" format
@@ -66,8 +56,8 @@ export const loader: LoaderFunction = async () => {
 };
 
 export default function App() {
-  const actionData = useActionData();
-  const data = useLoaderData<LoaderData>();
+  const actionData = useActionData<typeof action>();
+  const data = useLoaderData<typeof loader>();
 
   return (
     <html lang="en">

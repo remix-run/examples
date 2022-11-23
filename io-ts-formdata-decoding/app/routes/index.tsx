@@ -1,4 +1,4 @@
-import type { ActionFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useActionData, useCatch } from "@remix-run/react";
 import * as t from "io-ts";
@@ -14,13 +14,7 @@ const User = t.type({
   age: t.number,
 });
 
-type ActionData = {
-  // The actual `User`-type
-  // https://gcanti.github.io/io-ts/modules/index.ts.html#typeof-type-alias
-  user: t.TypeOf<typeof User>;
-};
-
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   // Using `FormData` with TypeScript can be a little inconvenient:
   //
   //     const formData = await request.formData();
@@ -81,7 +75,7 @@ const NewUserForm = () => (
 );
 
 export default function App() {
-  const data = useActionData<ActionData>();
+  const data = useActionData<typeof action>();
   const user = data?.user;
 
   return (

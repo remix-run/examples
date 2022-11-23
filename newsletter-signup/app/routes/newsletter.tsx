@@ -1,9 +1,9 @@
-import type { ActionFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, Link, useActionData, useTransition } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   await new Promise((res) => setTimeout(res, 1000));
   const formData = await request.formData();
   const email = formData.get("email");
@@ -24,7 +24,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function Newsletter() {
-  const actionData = useActionData();
+  const actionData = useActionData<typeof action>();
   const transition = useTransition();
   const state: "idle" | "success" | "error" | "submitting" =
     transition.submission

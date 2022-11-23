@@ -1,4 +1,4 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { useLoaderData, Form, useActionData } from "@remix-run/react";
 import { useEffect, useRef } from "react";
@@ -7,24 +7,16 @@ import type { FlashMessage as FlashMessageType } from "~/utils/session.server";
 import { getSession, storage } from "~/utils/session.server";
 import { getSessionFlash } from "~/utils/session.server";
 
-interface LoaderData {
-  message?: FlashMessageType;
-}
-
-interface ActionData {
-  formError: string;
-}
-
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const flash = await getSessionFlash(request);
   if (flash && flash.message) {
     return json({ message: flash.message }, { headers: flash.headers });
   }
 
-  return null;
+  return json({ message: null });
 };
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const form = await request.formData();
   const text = form.get("messageText");
   const color = form.get("messageColor");
@@ -44,8 +36,8 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function Index() {
-  const loaderData = useLoaderData<LoaderData>();
-  const actionData = useActionData<ActionData>();
+  const loaderData = useLoaderData<typeof loader>();
+  const actionData = useActionData<typeof action>();
   return (
     <>
       {loaderData?.message ? (

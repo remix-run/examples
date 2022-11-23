@@ -1,24 +1,17 @@
-import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 
-import type { Client } from "~/db";
 import { getClients } from "~/db";
 
-type LoaderData = {
-  clients: Array<Pick<Client, "id" | "name">>;
-};
-
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   const clients = await getClients();
-  const data: LoaderData = {
+  return json({
     clients: clients.map((c) => ({ id: c.id, name: c.name })),
-  };
-  return json(data);
+  });
 };
 
 export default function ClientsRoute() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<typeof loader>();
   return (
     <div>
       <h1>Clients</h1>

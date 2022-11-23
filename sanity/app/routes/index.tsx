@@ -1,4 +1,4 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import type { FunctionComponent } from "react";
@@ -10,7 +10,7 @@ type Movie = {
   slug: { current: string };
   title: string;
 };
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   const movies = await getClient().fetch(
     `*[_type == "movie"]{ _id, title, slug }`
   );

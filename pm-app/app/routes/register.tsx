@@ -1,7 +1,7 @@
 import type {
-  ActionFunction,
+  ActionArgs,
   LinksFunction,
-  LoaderFunction,
+  LoaderArgs,
   MetaFunction,
 } from "@remix-run/node";
 import { json } from "@remix-run/node";
@@ -19,17 +19,15 @@ import { validateEmail, validatePassword } from "~/utils/validation";
 
 import routeStyles from "../styles/routes/register.css";
 
-export const meta: MetaFunction = () => {
-  return {
-    title: "Register | PM Camp",
-  };
-};
+export const meta: MetaFunction = () => ({
+  title: "Register | PM Camp",
+});
 
 export const links: LinksFunction = () => {
   return [{ href: routeStyles, rel: "stylesheet" }];
 };
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   //   let session = await sessionStorage.getSession(request.headers.get("Cookie"));
 
   //   // If the user is already authenticated, just redirect to `/done`
@@ -40,7 +38,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   return json({});
 };
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   // 1. Get/setup form data from the request
   const formData = await request.formData();
   const fieldErrors = {} as FieldErrors;
@@ -66,10 +64,9 @@ export const action: ActionFunction = async ({ request }) => {
     typeof fields.password !== "string" ||
     typeof redirectTo !== "string"
   ) {
-    const data: ActionData = {
+    return json({
       formError: `Something went wrong. Please try again later.`,
-    };
-    return json(data);
+    });
   }
 
   const { email, password, nameFirst, nameLast } = fields;
@@ -128,7 +125,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function Register() {
-  const actionData = useActionData<ActionData>() || {};
+  const actionData = useActionData<typeof action>() || {};
   const { fieldErrors, fields, formError } = actionData;
   const [searchParams] = useSearchParams();
 
@@ -244,11 +241,6 @@ export default function Register() {
   );
 }
 
-interface ActionData {
-  formError?: string;
-  fieldErrors?: FieldErrors;
-  fields?: Record<TextFields, string>;
-}
 type FieldErrors = Record<TextFields, string | null>;
 
 type TextFields = "email" | "password" | "nameFirst" | "nameLast";

@@ -1,6 +1,6 @@
 import Dialog from "@reach/dialog";
 import styles from "@reach/dialog/styles.css";
-import type { ActionFunction, LinksFunction } from "@remix-run/node";
+import type { ActionArgs, LinksFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import {
   Form,
@@ -18,7 +18,7 @@ export const links: LinksFunction = () => {
   ];
 };
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   // Here we can update our database with the new invoice
 
   // This is just so we can see the transition
@@ -31,7 +31,7 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function Add() {
   const navigate = useNavigate();
-  const actionData = useActionData();
+  const actionData = useActionData<typeof action>();
   const transition = useTransition();
 
   function onDismiss() {

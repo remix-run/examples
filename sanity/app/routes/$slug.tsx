@@ -1,4 +1,4 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import type { FunctionComponent } from "react";
@@ -12,14 +12,7 @@ import {
   urlFor,
 } from "~/lib/sanity";
 
-type LoaderData = {
-  initialData: unknown;
-  preview: boolean;
-  query: string;
-  queryParams: Record<string, unknown>;
-};
-
-export const loader: LoaderFunction = async ({ params, request }) => {
+export const loader = async ({ params, request }: LoaderArgs) => {
   const requestUrl = new URL(request?.url);
   const preview =
     requestUrl?.searchParams?.get("preview") ===
@@ -31,7 +24,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   const queryParams = { slug: params.slug };
   const initialData = await getClient(preview).fetch(query, queryParams);
 
-  return json<LoaderData>({
+  return json({
     initialData,
     preview,
     // If `preview` mode is active, we'll need these for live updates
@@ -42,7 +35,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
 const Movie: FunctionComponent = () => {
   const { initialData, preview, query, queryParams } =
-    useLoaderData<LoaderData>();
+    useLoaderData<typeof loader>();
 
   // If `preview` mode is active, its component update this state for us
   const [data, setData] = useState(initialData);

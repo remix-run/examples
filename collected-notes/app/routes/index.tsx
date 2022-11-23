@@ -1,16 +1,10 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, Link, useLoaderData, useSearchParams } from "@remix-run/react";
-import type { Note, Site } from "collected-notes";
 
 import { cn, sitePath } from "~/cn.server";
 
-type LoaderData = {
-  site: Site;
-  notes: Note[];
-};
-
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const url = new URL(request.url);
   const term = url.searchParams.get("term") || "";
   const page = Number(url.searchParams.get("page") || "1");
@@ -24,11 +18,11 @@ export const loader: LoaderFunction = async ({ request }) => {
     cn.site(sitePath),
   ]);
 
-  return json<LoaderData>({ notes, site });
+  return json({ notes, site });
 };
 
 export default function Screen() {
-  const { site, notes } = useLoaderData<LoaderData>();
+  const { site, notes } = useLoaderData<typeof loader>();
   const [params] = useSearchParams();
   const term = params.get("term") || "";
   const page = Number(params.get("page") || "1");

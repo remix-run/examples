@@ -1,14 +1,8 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
-import type { User } from "~/data.server";
-
-interface LoaderData {
-  users: User[];
-}
-
-export const loader: LoaderFunction = async ({ context }) => {
+export const loader = async ({ context }: LoaderArgs) => {
   /*
    * For demo purposes:
    * Batching & caching also works with multiple calls to `DataLoader#load`
@@ -33,7 +27,7 @@ export const loader: LoaderFunction = async ({ context }) => {
 };
 
 export default function UserEmails() {
-  const { users } = useLoaderData<LoaderData>();
+  const { users } = useLoaderData<typeof loader>();
 
   return (
     <section>

@@ -17,7 +17,6 @@ export type TodoList = _TodoList & {
 };
 
 export type UserSecure = Omit<User, "passwordHash">;
-export type UserPublic = Omit<User, "passwordHash" | "createdAt" | "updatedAt">;
 export type TodoData = Omit<
   Pick<Todo, "name" | "todoListId"> &
     Partial<Omit<Todo, "name" | "todoListId">>,

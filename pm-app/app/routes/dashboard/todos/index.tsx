@@ -1,4 +1,4 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Form,
@@ -9,16 +9,14 @@ import {
 import * as React from "react";
 
 import { getAllTodos, getTodo, updateTodo } from "~/db.server";
-import type { Todo } from "~/models";
 
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   const todos = await getAllTodos();
-  return json({
-    todos,
-  });
+
+  return json({ todos });
 };
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const formData = await request.formData();
   const todoId = formData.get("update") as string;
   const orderRaw = formData.get("order") || "";
@@ -32,12 +30,10 @@ export const action: ActionFunction = async ({ request }) => {
   return json({ todo });
 };
 
-export default function Llllll() {
-  const loaderData = useLoaderData();
-  const actionData = useActionData();
+export default function Index() {
+  const { todos } = useLoaderData<typeof loader>();
+  const { todo: nextTodo = null } = useActionData<typeof action>() || {};
   const transtion = useTransition();
-  const todos: Todo[] = loaderData.todos;
-  const nextTodo: Todo | null = actionData?.todo || null;
 
   const keyMapRef = React.useRef<Map<string, string>>();
   if (!keyMapRef.current) {
