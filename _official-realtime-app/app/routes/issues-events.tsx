@@ -1,6 +1,6 @@
 import { type DataFunctionArgs } from "@remix-run/node";
-
 import { eventStream } from "remix-utils";
+
 import { emitter, EVENTS } from "../events";
 
 export const loader = ({ request }: DataFunctionArgs) => {

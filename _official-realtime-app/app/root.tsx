@@ -7,8 +7,8 @@ import {
   ScrollRestoration
 } from "@remix-run/react";
 import { useEffect } from "react";
-
 import { useEventSource } from "remix-utils";
+
 import { useRevalidator } from "~/use-revalidator";
 
 import icons from "./icons.svg";
