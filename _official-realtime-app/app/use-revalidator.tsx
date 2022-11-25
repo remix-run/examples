@@ -1,17 +1,9 @@
-import { useFetcher } from "@remix-run/react";
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
+import { useDataRefresh } from "remix-utils";
 
 // FIXME: This is unneeded after https://github.com/remix-run/remix/issues/4485
 export function useRevalidator() {
-  const fetcher = useFetcher();
+  const { refresh } = useDataRefresh();
 
-  const revalidate = useCallback(
-    () => {
-      fetcher.submit(null, { action: "/", method: "post" });
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
-
-  return useMemo(() => ({ revalidate }), [revalidate]);
+  return useMemo(() => ({ revalidate: refresh }), [refresh]);
 }
