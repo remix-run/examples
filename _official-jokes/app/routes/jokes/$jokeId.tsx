@@ -56,7 +56,7 @@ export const action: ActionFunction = async ({ request, params }) => {
   }
   if (joke.jokesterId !== userId) {
     throw new Response("Pssh, nice try. That's not your joke", {
-      status: 401,
+      status: 403,
     });
   }
   await db.joke.delete({ where: { id: params.jokeId } });
@@ -87,7 +87,7 @@ export function CatchBoundary() {
         </div>
       );
     }
-    case 401: {
+    case 403: {
       return (
         <div className="error-container">
           Sorry, but {params.jokeId} is not your joke.
