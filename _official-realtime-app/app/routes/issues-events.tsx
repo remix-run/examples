@@ -1,12 +1,12 @@
 import { type DataFunctionArgs } from "@remix-run/node";
+import { eventStream } from "remix-utils";
 
-import { eventStream } from "../event-stream";
 import { emitter, EVENTS } from "../events";
 
 export const loader = ({ request }: DataFunctionArgs) => {
-  return eventStream(request, (send) => {
+  return eventStream(request.signal, (send) => {
     const handler = (message: string) => {
-      send("message", message);
+      send({ data: message });
     };
 
     emitter.addListener(EVENTS.ISSUE_CHANGED, handler);

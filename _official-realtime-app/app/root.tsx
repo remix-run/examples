@@ -4,15 +4,15 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration,
+  ScrollRestoration
 } from "@remix-run/react";
 import { useEffect } from "react";
+import { useEventSource } from "remix-utils";
 
-import { useEventSource } from "~/use-event-source";
 import { useRevalidator } from "~/use-revalidator";
 
-import styles from "./styles.processed.css";
 import icons from "./icons.svg";
+import styles from "./styles.processed.css";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
