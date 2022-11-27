@@ -69,11 +69,11 @@ export default function NewNotePage() {
             }
           />
         </label>
-        {actionData?.errors?.title && (
+        {actionData?.errors?.title ? (
           <Alert className="pt-1 text-red-700" id="title-error">
             {actionData.errors.title}
           </Alert>
-        )}
+        ) : null}
       </div>
 
       <div>
@@ -90,11 +90,11 @@ export default function NewNotePage() {
             }
           />
         </label>
-        {actionData?.errors?.body && (
+        {actionData?.errors?.body ? (
           <Alert className="pt-1 text-red-700" id="body-error">
             {actionData.errors.body}
           </Alert>
-        )}
+        ) : null}
       </div>
 
       <div className="text-right">

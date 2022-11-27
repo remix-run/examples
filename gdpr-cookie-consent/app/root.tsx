@@ -45,7 +45,7 @@ export default function App() {
       </head>
       <body>
         <Outlet />
-        {!track && (
+        {track ? null : (
           <div
             style={{
               backgroundColor: "#ccc",

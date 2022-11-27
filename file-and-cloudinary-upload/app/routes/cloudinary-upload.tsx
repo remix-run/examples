@@ -52,13 +52,13 @@ export default function Index() {
         <input id="img-desc" type="text" name="desc" />
         <button type="submit">upload to cloudinary</button>
       </Form>
-      {data?.errorMsg && <h2>{data.errorMsg}</h2>}
-      {data?.imgSrc && (
+      {data?.errorMsg ? <h2>{data.errorMsg}</h2> : null}
+      {data?.imgSrc ? (
         <>
           <h2>uploaded image</h2>
           <img src={data.imgSrc} alt={data.imgDesc || "Upload result"} />
         </>
-      )}
+      ) : null}
     </>
   );
 }

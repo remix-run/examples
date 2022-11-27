@@ -87,7 +87,7 @@ export default function App() {
   return (
     <div>
       <NewUserForm />
-      {user && (
+      {user ? (
         <section>
           <h1>Success</h1>
           <div>
@@ -98,7 +98,7 @@ export default function App() {
             <span> created successfully</span>
           </div>
         </section>
-      )}
+      ) : null}
     </div>
   );
 }

@@ -190,9 +190,9 @@ export default function App() {
               <button>Submit</button>
             </div>
           </form>
-          {actionData?.message && (
+          {actionData?.message ? (
             <div className="result">{actionData.message}</div>
-          )}
+          ) : null}
         </div>
         <ScrollRestoration />
         <Scripts />

@@ -41,13 +41,13 @@ export default function Index() {
         <input type="file" name="img" accept="image/*" />
         <button type="submit">upload image</button>
       </Form>
-      {data?.errorMsg && <h2>{data.errorMsg}</h2>}
-      {data?.imgSrc && (
+      {data?.errorMsg ? <h2>{data.errorMsg}</h2> : null}
+      {data?.imgSrc ? (
         <>
           <h2>uploaded image</h2>
           <img alt="uploaded" src={data.imgSrc} />
         </>
-      )}
+      ) : null}
     </>
   );
 }
