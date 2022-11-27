@@ -24,7 +24,7 @@ export class Sanitizer {
       if (typeof arg === "number") {
         flo = parseFloat(flo.toFixed(arg));
       }
-    } catch (e) {
+    } catch {
       return null;
     }
     return flo;
@@ -33,7 +33,7 @@ export class Sanitizer {
   static int(value: any) {
     try {
       return parseInt(value);
-    } catch (e) {
+    } catch {
       return null;
     }
   }
@@ -114,7 +114,7 @@ export class Sanitizer {
         return JSON.parse(JSON.stringify(value));
       }
       return null;
-    } catch (e) {
+    } catch {
       return null;
     }
   }

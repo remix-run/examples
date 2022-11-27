@@ -27,7 +27,7 @@ export const action: ActionFunction = async ({ request, params }) => {
       });
       actionData = { todo };
       return json(actionData, 200);
-    } catch (e) {
+    } catch {
       actionData = { todo: null };
       return json(actionData, 400);
     }

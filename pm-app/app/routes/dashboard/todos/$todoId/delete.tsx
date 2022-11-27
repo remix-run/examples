@@ -22,7 +22,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     try {
       actionData = { todo: await deleteTodo(todoId) };
       return json(actionData);
-    } catch (e) {
+    } catch {
       actionData = { todo: null };
       return json(actionData, 400);
     }

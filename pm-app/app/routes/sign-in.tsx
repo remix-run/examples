@@ -60,11 +60,11 @@ export const action: ActionFunction = async ({ request }) => {
   } else {
     try {
       validateEmail(email);
-    } catch (e) {
-      if (e instanceof Error) {
-        fieldErrors.email = e.message;
-      } else if (typeof e === "string") {
-        fieldErrors.email = e;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        fieldErrors.email = error.message;
+      } else if (typeof error === "string") {
+        fieldErrors.email = error;
       } else {
         fieldErrors.email = "There was an error with this field";
       }
@@ -76,11 +76,11 @@ export const action: ActionFunction = async ({ request }) => {
   } else {
     try {
       validatePassword(password);
-    } catch (e) {
-      if (e instanceof Error) {
-        fieldErrors.password = e.message;
-      } else if (typeof e === "string") {
-        fieldErrors.password = e;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        fieldErrors.password = error.message;
+      } else if (typeof error === "string") {
+        fieldErrors.password = error;
       } else {
         fieldErrors.password = "There was an error with this field";
       }
@@ -95,12 +95,12 @@ export const action: ActionFunction = async ({ request }) => {
   let user: User | null;
   try {
     user = await login(email, password);
-  } catch (e) {
+  } catch (error: unknown) {
     let formError: string;
-    if (e instanceof Error) {
-      formError = e.message;
-    } else if (typeof e === "string") {
-      formError = e;
+    if (error instanceof Error) {
+      formError = error.message;
+    } else if (typeof error === "string") {
+      formError = error;
     } else {
       formError = "There was an error logging in. Please try again later.";
     }

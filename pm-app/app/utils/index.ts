@@ -35,11 +35,11 @@ export function getClientSafeEnvVariable<
         );
       }
       return ENV[key];
-    } catch (err) {
+    } catch (error) {
       console.error(
         "There was an error parsing window.ENV. See https://remix.run/guides/envvars#browser-environment-variables"
       );
-      throw err;
+      throw error;
     }
   } else {
     return process.env[key];
