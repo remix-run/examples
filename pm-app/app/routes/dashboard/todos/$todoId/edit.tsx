@@ -50,7 +50,7 @@ export const action: ActionFunction = async ({ request, context, params }) => {
       const todo = await updateTodo(todoId, todoUpdates);
       actionData = { todo };
       return json(actionData, 200);
-    } catch (e) {
+    } catch {
       actionData = { todo: null };
       return json(actionData, 400);
     }

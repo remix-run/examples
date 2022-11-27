@@ -12,8 +12,8 @@ export const action: ActionFunction = async ({ request, params }) => {
   if (projectId) {
     try {
       await deleteProject(projectId);
-    } catch (e) {
-      console.error(e);
+    } catch (error: unknown) {
+      console.error(error);
     }
   }
   return redirect("/dashboard");

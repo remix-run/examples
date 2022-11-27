@@ -83,8 +83,8 @@ export const action: ActionFunction = async ({ request }) => {
   } else {
     try {
       validateEmail(email);
-    } catch (e) {
-      fieldErrors.email = (e as Error).message;
+    } catch (error: unknown) {
+      fieldErrors.email = (error as Error).message;
     }
   }
 
@@ -93,8 +93,8 @@ export const action: ActionFunction = async ({ request }) => {
   } else {
     try {
       validatePassword(password);
-    } catch (e) {
-      fieldErrors.password = (e as Error).message;
+    } catch (error: unknown) {
+      fieldErrors.password = (error as Error).message;
     }
   }
 
