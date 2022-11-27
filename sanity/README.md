@@ -2,7 +2,7 @@
 
 You can follow the original guide from Simeon Griggs's [guide on sanity](https://www.sanity.io/guides/remix-run-live-preview). And do not forget to like the guide.
 
-- [Remix Docs](https://docs.remix.run)
+- [Remix Docs](https://remix.run/docs)
 
 ## Development
 

@@ -2,7 +2,7 @@
 
 A Project Management app built with [Remix](https://remix.run) 💿
 
-- [Remix Docs](https://docs.remix.run)
+- [Remix Docs](https://remix.run/docs)
 - [Customer Dashboard](https://remix.run/dashboard)
 
 ## Development
