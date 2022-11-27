@@ -35,7 +35,7 @@ export default function Index() {
 
         return (
           <Link key={character.id} style={{ display: "flex", gap: 16 }} to={to}>
-            {image && <img alt="" height={40} src={image} width={40} />}
+            {image ? <img alt="" height={40} src={image} width={40} /> : null}
             <h2>{character.name}</h2>
           </Link>
         );

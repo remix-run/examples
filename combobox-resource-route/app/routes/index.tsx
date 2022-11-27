@@ -41,11 +41,11 @@ export default function Index() {
           />
 
           {/* Add a nice spinner when the fetcher is loading */}
-          {langs.state === "loading" && <Spinner />}
+          {langs.state === "loading" ? <Spinner /> : null}
         </div>
 
         {/* Only show the popover if we have results */}
-        {langs.data && langs.data.length > 0 && (
+        {langs.data && langs.data.length > 0 ? (
           <ComboboxPopover>
             <ComboboxList>
               {langs.data.map((lang, index) => (
@@ -55,13 +55,13 @@ export default function Index() {
               ))}
             </ComboboxList>
           </ComboboxPopover>
-        )}
+        ) : null}
       </Combobox>
       <p>
         <button type="submit">Submit</button>{" "}
-        {searchParams.has("lang") && (
+        {searchParams.has("lang") ? (
           <span>You submitted: {searchParams.get("lang")}</span>
-        )}
+        ) : null}
       </p>
     </Form>
   );
