@@ -1,19 +1,20 @@
+import { json } from "@remix-run/node";
 import { Link, useFetcher, useNavigate } from "@remix-run/react";
 import { useLoaderData } from "@remix-run/react";
 import classNames from "classnames";
 import { useEffect, useRef } from "react";
 
-import { getIssues } from "../data";
-import type { Issue } from "../data";
-import * as AmalgoBox from "../amalgo-box.client";
-import icons from "../icons.svg";
+import * as AmalgoBox from "~/amalgo-box.client";
+import type { Issue } from "~/data";
+import { getIssues } from "~/data";
+import icons from "~/icons.svg";
 
-export function loader() {
-  return getIssues();
+export async function loader() {
+  return json(await getIssues());
 }
 
 export default function Index() {
-  const issues = useLoaderData() as Issue[];
+  const issues = useLoaderData<typeof loader>();
 
   useEffect(() => AmalgoBox.registerCustomElements(), []);
   return (

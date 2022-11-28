@@ -1,9 +1,9 @@
-import { type DataFunctionArgs } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { eventStream } from "remix-utils";
 
-import { emitter, EVENTS } from "../events";
+import { emitter, EVENTS } from "~/events";
 
-export const loader = ({ request }: DataFunctionArgs) => {
+export const loader = async ({ request }: LoaderArgs) => {
   return eventStream(request.signal, (send) => {
     const handler = (message: string) => {
       send({ data: message });
