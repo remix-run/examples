@@ -3,14 +3,14 @@ import { startTransition, StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
 
 const hydrate = () =>
-  startTransition(() =>
+  startTransition(() => {
     hydrateRoot(
       document,
       <StrictMode>
         <RemixBrowser />
       </StrictMode>
-    )
-  );
+    );
+  });
 
 if (window.requestIdleCallback) {
   window.requestIdleCallback(hydrate);
