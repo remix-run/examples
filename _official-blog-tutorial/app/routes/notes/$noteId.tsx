@@ -1,18 +1,12 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 
-import type { Note } from "~/models/note.server";
-import { deleteNote } from "~/models/note.server";
-import { getNote } from "~/models/note.server";
+import { deleteNote, getNote } from "~/models/note.server";
 import { requireUserId } from "~/session.server";
 
-type LoaderData = {
-  note: Note;
-};
-
-export const loader: LoaderFunction = async ({ request, params }) => {
+export const loader = async ({ params, request }: LoaderArgs) => {
   const userId = await requireUserId(request);
   invariant(params.noteId, "noteId not found");
 
@@ -20,10 +14,10 @@ export const loader: LoaderFunction = async ({ request, params }) => {
   if (!note) {
     throw new Response("Not Found", { status: 404 });
   }
-  return json<LoaderData>({ note });
+  return json({ note });
 };
 
-export const action: ActionFunction = async ({ request, params }) => {
+export const action = async ({ params, request }: ActionArgs) => {
   const userId = await requireUserId(request);
   invariant(params.noteId, "noteId not found");
 
@@ -33,7 +27,7 @@ export const action: ActionFunction = async ({ request, params }) => {
 };
 
 export default function NoteDetailsPage() {
-  const data = useLoaderData() as LoaderData;
+  const data = useLoaderData<typeof loader>();
 
   return (
     <div>
