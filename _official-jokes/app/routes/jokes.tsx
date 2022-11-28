@@ -1,4 +1,4 @@
-import type { LinksFunction, LoaderFunction } from "@remix-run/node";
+import type { LinksFunction, LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, Link, Outlet, useLoaderData } from "@remix-run/react";
 
@@ -7,12 +7,7 @@ import { getUser } from "~/utils/session.server";
 
 import stylesUrl from "../styles/jokes.css";
 
-type LoaderData = {
-  user: Awaited<ReturnType<typeof getUser>>;
-  jokeListItems: Array<{ id: string; name: string }>;
-};
-
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const user = await getUser(request);
 
   // in the official deployed version of the app, we don't want to deploy
@@ -26,20 +21,18 @@ export const loader: LoaderFunction = async ({ request }) => {
       })
     : [];
 
-  const data: LoaderData = {
+  return json({
     jokeListItems,
     user,
-  };
-
-  return json(data);
+  });
 };
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesUrl }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesUrl },
+];
 
 export default function JokesScreen() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<typeof loader>();
 
   return (
     <div className="jokes-layout">

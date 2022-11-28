@@ -1,26 +1,19 @@
-import type {
-  ActionFunction,
-  LinksFunction,
-  MetaFunction,
-} from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
+import type { ActionArgs, LinksFunction, MetaFunction } from "@remix-run/node";
+import { Link, useActionData, useSearchParams } from "@remix-run/react";
 
-import { login, createUserSession, register } from "~/utils/session.server";
+import stylesUrl from "~/styles/login.css";
 import { db } from "~/utils/db.server";
+import { badRequest } from "~/utils/request.server";
+import { createUserSession, login, register } from "~/utils/session.server";
 
-import stylesUrl from "../styles/login.css";
+export const meta: MetaFunction = () => ({
+  description: "Login to submit your own jokes to Remix Jokes!",
+  title: "Remix Jokes | Login",
+});
 
-export const meta: MetaFunction = () => {
-  return {
-    title: "Remix Jokes | Login",
-    description: "Login to submit your own jokes to Remix Jokes!",
-  };
-};
-
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesUrl }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesUrl },
+];
 
 function validateUsername(username: unknown) {
   if (typeof username !== "string" || username.length < 3) {
@@ -34,7 +27,7 @@ function validatePassword(password: unknown) {
   }
 }
 
-function validateUrl(url: any) {
+function validateUrl(url: string) {
   const urls = ["/jokes", "/", "https://remix.run"];
   if (urls.includes(url)) {
     return url;
@@ -42,20 +35,7 @@ function validateUrl(url: any) {
   return "/jokes";
 }
 
-type ActionData = {
-  formError?: string;
-  fieldErrors?: { username: string | undefined; password: string | undefined };
-  fields?: { loginType: string; username: string; password: string };
-};
-
-/**
- * This helper function gives us typechecking for our ActionData return
- * statements, while still returning the accurate HTTP status, 400 Bad Request,
- * to the client.
- */
-const badRequest = (data: ActionData) => json(data, { status: 400 });
-
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const form = await request.formData();
   const loginType = form.get("loginType");
   const username = form.get("username");
@@ -67,7 +47,11 @@ export const action: ActionFunction = async ({ request }) => {
     typeof password !== "string" ||
     typeof redirectTo !== "string"
   ) {
-    return badRequest({ formError: `Form not submitted correctly.` });
+    return badRequest({
+      fieldErrors: null,
+      fields: null,
+      formError: `Form not submitted correctly.`,
+    });
   }
 
   const fields = { loginType, username, password };
@@ -76,7 +60,7 @@ export const action: ActionFunction = async ({ request }) => {
     password: validatePassword(password),
   };
   if (Object.values(fieldErrors).some(Boolean)) {
-    return badRequest({ fieldErrors, fields });
+    return badRequest({ fieldErrors, fields, formError: null });
   }
 
   switch (loginType) {
@@ -84,6 +68,7 @@ export const action: ActionFunction = async ({ request }) => {
       const user = await login({ username, password });
       if (!user) {
         return badRequest({
+          fieldErrors: null,
           fields,
           formError: `Username/Password combination is incorrect`,
         });
@@ -94,6 +79,7 @@ export const action: ActionFunction = async ({ request }) => {
       const userExists = await db.user.findFirst({ where: { username } });
       if (userExists) {
         return badRequest({
+          fieldErrors: null,
           fields,
           formError: `User with username ${username} already exists`,
         });
@@ -101,6 +87,7 @@ export const action: ActionFunction = async ({ request }) => {
       const user = await register({ username, password });
       if (!user) {
         return badRequest({
+          fieldErrors: null,
           fields,
           formError: `Something went wrong trying to create a new user.`,
         });
@@ -108,19 +95,23 @@ export const action: ActionFunction = async ({ request }) => {
       return createUserSession(user.id, redirectTo);
     }
     default: {
-      return badRequest({ fields, formError: `Login type invalid` });
+      return badRequest({
+        fieldErrors: null,
+        fields,
+        formError: `Login type invalid`,
+      });
     }
   }
 };
 
 export default function Login() {
-  const actionData = useActionData<ActionData>();
+  const actionData = useActionData<typeof action>();
   const [searchParams] = useSearchParams();
   return (
     <div className="container">
       <div className="content" data-light="">
         <h1>Login</h1>
-        <Form method="post">
+        <form method="post">
           <input
             type="hidden"
             name="redirectTo"
@@ -204,7 +195,7 @@ export default function Login() {
           <button type="submit" className="button">
             Submit
           </button>
-        </Form>
+        </form>
       </div>
       <div className="links">
         <ul>
