@@ -2,7 +2,7 @@ const path = require("node:path");
 
 const glob = require("glob");
 
-let packages = glob
+const packages = glob
   .sync("packages/**/package.json", {
     cwd: path.join(__dirname, "..", ".."),
     ignore: ["**/node_modules/**"],
