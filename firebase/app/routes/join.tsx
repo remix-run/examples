@@ -50,7 +50,7 @@ export default function Login() {
   return (
     <div>
       <h1>Join</h1>
-      {action?.error && <p>{action.error}</p>}
+      {action?.error ? <p>{action.error}</p> : null}
       <Form method="post">
         <input
           style={{ display: "block" }}

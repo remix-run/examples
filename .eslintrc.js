@@ -22,5 +22,7 @@ module.exports = {
         "newlines-between": "always",
       },
     ],
+
+    "react/jsx-no-leaked-render": [WARN, { validStrategies: ["ternary"] }],
   },
 };

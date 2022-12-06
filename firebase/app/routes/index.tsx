@@ -83,7 +83,7 @@ export default function Index() {
       <p>
         Want to <Link to="/logout">log out</Link>?
       </p>
-      {action?.error && <p style={{ color: "red" }}>{action.error}</p>}
+      {action?.error ? <p style={{ color: "red" }}>{action.error}</p> : null}
       <Form method="post">
         <h2>Create new Todo:</h2>
         <input ref={ref} name="title" type="text" placeholder="Get Milk" />

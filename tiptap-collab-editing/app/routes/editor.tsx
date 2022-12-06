@@ -26,7 +26,7 @@ export default () => {
     <div>
       <h1>Open in two browsers and see the editing in sync</h1>
       <div style={{ border: "1px solid" }}>
-        {editor && <EditorContent editor={editor} />}
+        {editor ? <EditorContent editor={editor} /> : null}
       </div>
     </div>
   );
