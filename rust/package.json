@@ -5,7 +5,8 @@
     "build": "remix build",
     "predev": "wasm-pack build rust-functions --target nodejs --out-name rust-functions",
     "dev": "remix dev",
-    "start": "remix-serve build"
+    "start": "remix-serve build",
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "@remix-run/node": "*",

@@ -5,7 +5,8 @@
     "build": "remix build",
     "dev": "remix dev",
     "start": "remix-serve build",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "@remix-run/node": "*",

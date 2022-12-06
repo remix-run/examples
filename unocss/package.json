@@ -9,7 +9,8 @@
     "dev:css": "npm run generate:css -- --watch",
     "dev:remix": "remix dev",
     "generate:css": "unocss './app/**/*.{js,ts,jsx,tsx}' -o ./app/styles/uno.css",
-    "start": "remix-serve build"
+    "start": "remix-serve build",
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "@remix-run/node": "*",
