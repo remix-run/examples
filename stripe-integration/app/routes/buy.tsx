@@ -1,10 +1,10 @@
-import type { ActionFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { Form } from "@remix-run/react";
 
 import { getStripeSession, getDomainUrl } from "~/utils/stripe.server";
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const stripeRedirectUrl = await getStripeSession(
     process.env.PRICE_ID as string,
     getDomainUrl(request)

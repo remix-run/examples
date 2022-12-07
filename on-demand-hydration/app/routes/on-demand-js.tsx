@@ -1,23 +1,19 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
-type LoaderData = { withJS: boolean };
-
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const url = new URL(request.url);
   const withJS = url.searchParams.has("js");
-  return json<LoaderData>({ withJS });
+  return json({ withJS });
 };
 
 export const handle = {
-  hydrate(data: LoaderData) {
-    return data.withJS;
-  },
+  hydrate: (data: { withJS: boolean }) => data.withJS,
 };
 
 export default function Screen() {
-  const { withJS } = useLoaderData<LoaderData>();
+  const { withJS } = useLoaderData<typeof loader>();
 
   return (
     <>

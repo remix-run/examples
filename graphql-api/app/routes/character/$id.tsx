@@ -1,16 +1,13 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 
 import { Code } from "~/components/Code";
-import type { LoaderData } from "~/routes/api/character";
 
 /**
  * @description This loader fetches from the Resource route using fetch.
  */
-export const loader: LoaderFunction = async (args) => {
-  const { params } = args;
-
+export const loader = async ({ params }: LoaderArgs) => {
   const url = `http://localhost:3000/api/character?id=${params.id}`;
   const res = await fetch(url, {
     method: "GET",
@@ -24,7 +21,7 @@ export const loader: LoaderFunction = async (args) => {
  * the Remix loader & route params.
  */
 export default function Character() {
-  const loader = useLoaderData<LoaderData>();
+  const loader = useLoaderData<typeof loader>();
   const { data } = loader;
 
   const character = data.character;

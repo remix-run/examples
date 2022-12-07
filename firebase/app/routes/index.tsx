@@ -1,4 +1,4 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import {
   Form,
@@ -7,38 +7,29 @@ import {
   useFetcher,
   useLoaderData,
 } from "@remix-run/react";
+import type { FunctionComponent } from "react";
 import { useEffect, useRef } from "react";
 
 import { requireAuth } from "~/server/auth.server";
-import type { Todo } from "~/server/db.server";
 import { addTodo, getUserTodos, removeTodo } from "~/server/db.server";
 
-type LoaderData = {
-  message: string;
-  todos: Todo[];
-};
-
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const user = await requireAuth(request);
   const todos = await getUserTodos(user.uid);
-  return json<LoaderData>({
+  return json({
     message: `Hello ${user.displayName || "unknown"}!`,
     todos,
   });
 };
 
-export type ActionData = {
-  error: string;
-};
-
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const { uid } = await requireAuth(request);
   const form = await request.formData();
   const intent = form.get("intent");
   if (intent === "create") {
     const title = form.get("title");
     if (typeof title !== "string" || title.length === 0) {
-      return json<ActionData>({ error: "title is required" }, { status: 400 });
+      return json({ error: "title is required" }, { status: 400 });
     }
 
     await addTodo(uid, title);
@@ -47,21 +38,24 @@ export const action: ActionFunction = async ({ request }) => {
   if (intent === "delete") {
     const id = form.get("id");
     if (typeof id !== "string") {
-      return json<ActionData>({ error: "id is required" }, { status: 400 });
+      return json({ error: "id is required" }, { status: 400 });
     }
     await removeTodo(uid, id);
     return redirect("/");
   }
-  return json<ActionData>({ error: "unknown method" }, { status: 400 });
+  return json({ error: "unknown method" }, { status: 400 });
 };
 
-const TodoComponent: React.FC<{ id: string; title: string }> = (props) => {
+const TodoComponent: FunctionComponent<{ id: string; title: string }> = ({
+  id,
+  title,
+}) => {
   const fetcher = useFetcher();
   return (
     <li>
       <fetcher.Form method="post">
-        <input type="hidden" name="id" value={props.id} />
-        <span>{props.title}</span>
+        <input type="hidden" name="id" value={id} />
+        <span>{title}</span>
         <button type="submit" name="intent" value="delete">
           Delete
         </button>
@@ -71,8 +65,8 @@ const TodoComponent: React.FC<{ id: string; title: string }> = (props) => {
 };
 
 export default function Index() {
-  const action = useActionData<ActionData>();
-  const data = useLoaderData<LoaderData>();
+  const actionData = useActionData<typeof action>();
+  const data = useLoaderData<typeof loader>();
   const ref = useRef<HTMLInputElement>(null);
   useEffect(() => {
     ref.current?.focus();
@@ -83,7 +77,9 @@ export default function Index() {
       <p>
         Want to <Link to="/logout">log out</Link>?
       </p>
-      {action?.error && <p style={{ color: "red" }}>{action.error}</p>}
+      {actionData?.error ? (
+        <p style={{ color: "red" }}>{actionData.error}</p>
+      ) : null}
       <Form method="post">
         <h2>Create new Todo:</h2>
         <input ref={ref} name="title" type="text" placeholder="Get Milk" />

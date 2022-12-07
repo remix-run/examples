@@ -1,4 +1,4 @@
-import type { ActionFunction, MetaFunction } from "@remix-run/node";
+import type { ActionArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -10,7 +10,7 @@ import {
 
 import notion from "./notion.server";
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const form = await request.formData();
   const firstname = form.get("firstname");
   const lastname = form.get("lastname");

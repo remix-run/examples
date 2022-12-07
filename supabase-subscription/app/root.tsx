@@ -1,4 +1,4 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -12,14 +12,8 @@ import {
 import { createClient } from "@supabase/supabase-js";
 import { Provider } from "react-supabase";
 
-type LoaderData = {
-  ENV: {
-    SUPABASE_URL: string;
-    SUPABASE_ANON_KEY: string;
-  };
-};
-export const loader: LoaderFunction = async () => {
-  return json<LoaderData>({
+export const loader = async () => {
+  return json({
     ENV: {
       SUPABASE_URL: process.env.SUPABASE_URL as string,
       SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY as string,
@@ -34,7 +28,7 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function App() {
-  const data = useLoaderData();
+  const data = useLoaderData<typeof loader>();
   return (
     <html lang="en">
       <head>

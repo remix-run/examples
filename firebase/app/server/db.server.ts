@@ -12,7 +12,7 @@ const dataPoint = <T extends FirebaseFirestore.DocumentData>(
   collectionPath: string
 ) => getFirestore().collection(collectionPath).withConverter(converter<T>());
 
-export type Todo = {
+type Todo = {
   id: string;
   title: string;
 };

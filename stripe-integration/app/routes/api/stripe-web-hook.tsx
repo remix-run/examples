@@ -1,9 +1,9 @@
-import type { ActionFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import stripe from "stripe";
 
-//[credit @kiliman to get this webhook working](https://github.com/remix-run/remix/discussions/1978)
-export const action: ActionFunction = async ({ request }) => {
+// [credit @kiliman to get this webhook working](https://github.com/remix-run/remix/discussions/1978)
+export const action = async ({ request }: ActionArgs) => {
   const payload = await request.text();
   const sig = request.headers.get("stripe-signature");
   let event;

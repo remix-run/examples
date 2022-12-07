@@ -1,20 +1,14 @@
-import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 
-import type { Workshop } from "~/data.server";
 import { getWorkshops } from "~/data.server";
 
-type LoaderData = { workshops: Array<Workshop> };
-
-export const loader: LoaderFunction = async () => {
-  return json<LoaderData>({
-    workshops: await getWorkshops(),
-  });
+export const loader = async () => {
+  return json({ workshops: await getWorkshops() });
 };
 
 export default function Workshops() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<typeof loader>();
 
   return (
     <div>

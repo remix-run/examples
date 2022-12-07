@@ -1,8 +1,4 @@
-import type {
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-} from "@remix-run/node";
+import type { LinksFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useLoaderData, useTransition } from "@remix-run/react";
 
@@ -24,29 +20,22 @@ type ShowResult = {
   show: { name: string; url: string; image?: { medium: string } };
 };
 
-type LoaderData = {
-  status: "resultsFound" | "noResults" | "emptySearch";
-  searchTerm: string;
-  items: Array<{ id: string; name: string; image: string; url: string }>;
-};
-
 function typedBoolean<T>(
   value: T
 ): value is Exclude<T, "" | 0 | false | null | undefined> {
   return Boolean(value);
 }
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const url = new URL(request.url);
   const searchTerm = url.searchParams.get("search");
 
   if (!searchTerm) {
-    const data: LoaderData = {
+    return json({
       status: "emptySearch",
       searchTerm: searchTerm || "",
       items: [],
-    };
-    return json(data);
+    });
   }
 
   const result = await fetch(
@@ -55,15 +44,14 @@ export const loader: LoaderFunction = async ({ request }) => {
   const showResults = (await result.json()) as undefined | Array<ShowResult>;
 
   if (!showResults || !showResults.length) {
-    const data: LoaderData = {
+    return json({
       status: "noResults",
       searchTerm,
       items: [],
-    };
-    return json(data);
+    });
   }
 
-  const data: LoaderData = {
+  const data = {
     status: "resultsFound",
     searchTerm,
     items: showResults
@@ -81,14 +69,12 @@ export const loader: LoaderFunction = async ({ request }) => {
   };
 
   return json(data, {
-    headers: {
-      "Cache-Control": "max-age=60, stale-while-revalidate=60",
-    },
+    headers: { "Cache-Control": "max-age=60, stale-while-revalidate=60" },
   });
 };
 
 export default function Index() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<typeof loader>();
   const transition = useTransition();
 
   return (

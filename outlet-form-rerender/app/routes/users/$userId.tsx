@@ -1,22 +1,17 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useCatch, useLoaderData, useLocation } from "@remix-run/react";
 
-import type { User as UserType } from "~/data.server";
 import { users } from "~/data.server";
 
-interface LoaderData {
-  user: UserType;
-}
-
-export const meta: MetaFunction = ({ data }: { data: LoaderData | null }) => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data) {
     return { title: "User not found!" };
   }
   return { title: data.user.name };
 };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader = async ({ params }: LoaderArgs) => {
   const userId = params.userId;
 
   const user = users.find(({ id }) => id === userId);
@@ -25,11 +20,11 @@ export const loader: LoaderFunction = async ({ params }) => {
     throw json(null, { status: 404 });
   }
 
-  return json<LoaderData>({ user });
+  return json({ user });
 };
 
 export default function User() {
-  const { user } = useLoaderData<LoaderData>();
+  const { user } = useLoaderData<typeof loader>();
   const location = useLocation();
 
   return (

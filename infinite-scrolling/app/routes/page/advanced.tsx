@@ -1,4 +1,4 @@
-import type { LinksFunction, LoaderFunction } from "@remix-run/node";
+import type { LinksFunction, LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   useBeforeUnload,
@@ -31,22 +31,15 @@ const getPageLimit = (searchParams: URLSearchParams) => ({
   limit: Number(searchParams.get("limit") || LIMIT.toString()),
 });
 
-type LoaderData = {
-  items: Array<{ id: string; value: string }>;
-  totalItems: number;
-};
-
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const { page, limit } = getPageLimit(new URL(request.url).searchParams);
-  const data: LoaderData = {
-    items: await getItemsPaginated({ page, limit }),
-    totalItems: await countItems(),
-  };
-  return json(data, {
-    headers: {
-      "Cache-Control": "public, max-age=120",
+  return json(
+    {
+      items: await getItemsPaginated({ page, limit }),
+      totalItems: await countItems(),
     },
-  });
+    { headers: { "Cache-Control": "public, max-age=120" } }
+  );
 };
 
 const isServerRender = typeof document === "undefined";
@@ -60,7 +53,7 @@ function useIsHydrating(queryString: string) {
 }
 
 export default function Index() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<typeof loader>();
   const transition = useTransition();
   const [searchParams, setSearchParams] = useSearchParams();
   const hydrating = useIsHydrating("[data-hydrating-signal]");

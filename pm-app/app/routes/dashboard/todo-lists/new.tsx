@@ -1,8 +1,8 @@
 import * as React from "react";
 import type {
-  ActionFunction,
+  ActionArgs,
   LinksFunction,
-  LoaderFunction,
+  LoaderArgs,
   RouteComponent,
 } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
@@ -14,7 +14,7 @@ import {
   useSearchParams,
 } from "@remix-run/react";
 
-import type { UserSecure, TodoDataUnordered, Project } from "~/models";
+import type { TodoDataUnordered } from "~/models";
 import { Heading } from "~/ui/section-heading";
 import { MaxContainer } from "~/ui/max-container";
 import { requireUser } from "~/session.server";
@@ -34,26 +34,24 @@ import { TokenDismissButton } from "../../../ui/token";
 
 type TempTodo = TodoDataUnordered & { _tempId: number };
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesUrl }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesUrl },
+];
 
-export const loader: LoaderFunction = async ({ request, params }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const { passwordHash, ...secureUser } = await requireUser(request, {
     redirect: "/sign-in",
   });
 
   const projects = await getUserProjects(secureUser.id);
 
-  const loaderData: LoaderData = {
+  return json({
     user: secureUser,
     projects,
-  };
-
-  return json(loaderData);
+  });
 };
 
-export const action: ActionFunction = async ({ request, context, params }) => {
+export const action = async ({ request }: ActionArgs) => {
   await requireUser(request, {
     redirect: "/sign-in",
   });
@@ -90,11 +88,10 @@ export const action: ActionFunction = async ({ request, context, params }) => {
     ) {
       throw Error("blergh");
     }
-  } catch (_) {
-    const data: ActionData = {
+  } catch {
+    return json({
       formError: `Something went wrong. Please try again later.`,
-    };
-    return json(data);
+    });
   }
 
   const fields = { name, description, todos };
@@ -122,16 +119,15 @@ export const action: ActionFunction = async ({ request, context, params }) => {
       ? redirect(`dashboard/projects/${projectId}`)
       : redirect(`dashboard/todo-lists/${todoList.id}`);
   } catch (_) {
-    const data: ActionData = {
+    return json({
       formError: `Something went wrong. Please try again later.`,
-    };
-    return json(data);
+    });
   }
 };
 
 const NewTodoList: RouteComponent = () => {
-  const actionData = useActionData<ActionData>() || {};
-  const { projects } = useLoaderData<LoaderData>();
+  const actionData = useActionData<typeof action>() || {};
+  const { projects } = useLoaderData<typeof loader>();
   const [searchParams] = useSearchParams();
   const { fieldErrors, fields, formError } = actionData;
   const [todos, setTodos] = React.useState<TempTodo[]>([]);
@@ -441,17 +437,6 @@ function handleTodoListKeyDown(event: React.KeyboardEvent<HTMLUListElement>) {
       listButtons[listButtons.length - 1].focus();
       return;
   }
-}
-
-interface LoaderData {
-  user: UserSecure;
-  projects: Project[];
-}
-
-interface ActionData {
-  formError?: string;
-  fieldErrors?: FieldErrors;
-  fields?: Record<TextFields | SelectFields, string>;
 }
 
 type FieldErrors = Record<TextFields | SelectFields, string | undefined | null>;

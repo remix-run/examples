@@ -1,8 +1,4 @@
-import type {
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-} from "@remix-run/node";
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -23,18 +19,12 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: global }];
 };
 
-interface LoaderData {
-  ENV: Exclude<Window["ENV"], undefined>;
-}
-
-export const loader: LoaderFunction = async () => {
-  const data: LoaderData = {
+export const loader = async () => {
+  return json({
     ENV: {
       SITE_URL: process.env.SITE_URL,
     },
-  };
-
-  return json(data);
+  });
 };
 
 export const meta: MetaFunction = () => ({

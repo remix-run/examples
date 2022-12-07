@@ -1,26 +1,22 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import * as React from "react";
 
 import { getAllTodoLists } from "~/db.server";
-import type { TodoList } from "~/models";
 import { requireUser } from "~/session.server";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   await requireUser(request, {
     redirect: "/sign-in",
   });
 
   const lists = await getAllTodoLists();
-  return json({
-    lists,
-  });
+  return json({ lists });
 };
 
 export default function AllLists() {
-  const loaderData = useLoaderData();
-  const lists: TodoList[] = loaderData.lists;
+  const { lists } = useLoaderData<typeof loader>();
 
   return (
     <div>

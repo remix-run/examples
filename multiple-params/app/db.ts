@@ -1,10 +1,10 @@
-export type Invoice = {
+type Invoice = {
   id: string;
   title: string;
   amount: number;
   currency: "EUR" | "USD" | "GBP";
 };
-export type Client = {
+type Client = {
   id: string;
   name: string;
   email: string;

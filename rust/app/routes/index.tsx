@@ -1,4 +1,4 @@
-import type { ActionFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useActionData } from "@remix-run/react";
 
@@ -9,7 +9,7 @@ export function links() {
   return [{ rel: "stylesheet", href: indexStylesUrl }];
 }
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const formData = await request.formData();
   const { left_operand, operator, right_operand } =
     Object.fromEntries(formData);
@@ -30,7 +30,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function Index() {
-  const data = useActionData();
+  const data = useActionData<typeof action>();
 
   return (
     <Form className="form-container" method="post" replace>

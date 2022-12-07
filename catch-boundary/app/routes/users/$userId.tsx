@@ -1,15 +1,10 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useCatch, useLoaderData, useParams } from "@remix-run/react";
 
-import type { User as UserType } from "~/data.server";
 import { getUsers } from "~/data.server";
 
-interface LoaderData {
-  user: UserType;
-}
-
-export const meta: MetaFunction = ({ data }: { data: LoaderData | null }) => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
   // When the response is thrown for a missing user, the data will be the
   // thrown response.
   if (!data || !data.user) {
@@ -18,7 +13,7 @@ export const meta: MetaFunction = ({ data }: { data: LoaderData | null }) => {
   return { title: data.user.name };
 };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader = async ({ params }: LoaderArgs) => {
   const userId = params.userId;
 
   const users = getUsers();
@@ -29,11 +24,11 @@ export const loader: LoaderFunction = async ({ params }) => {
     throw new Response("Not Found", { status: 404 });
   }
 
-  return json<LoaderData>({ user });
+  return json({ user });
 };
 
 export default function User() {
-  const { user } = useLoaderData<LoaderData>();
+  const { user } = useLoaderData<typeof loader>();
   return <div>Hi there {user.name}!</div>;
 }
 

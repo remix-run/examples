@@ -1,24 +1,19 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 
-import type { User } from "~/data.server";
 import { users } from "~/data.server";
-
-interface LoaderData {
-  users: User[];
-}
 
 export const meta: MetaFunction = () => {
   return { title: "Users" };
 };
 
-export const loader: LoaderFunction = async () => {
-  return json<LoaderData>({ users });
+export const loader = async () => {
+  return json({ users });
 };
 
 export default function Users() {
-  const { users } = useLoaderData<LoaderData>();
+  const { users } = useLoaderData<typeof loader>();
 
   return (
     <div>

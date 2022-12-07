@@ -1,11 +1,11 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useCatch, useLoaderData } from "@remix-run/react";
 
 // The `$` in route filenames becomes a pattern that's parsed from the URL and
 // passed to your loaders so you can look up data.
 // - https://remix.run/api/conventions#loader-params
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader = async ({ params }: LoaderArgs) => {
   // pretend like we're using params.id to look something up in the db
 
   if (params.id === "this-record-does-not-exist") {
@@ -39,7 +39,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export default function ParamDemo() {
-  const data = useLoaderData();
+  const data = useLoaderData<typeof loader>();
   return (
     <h1>
       The param is <i style={{ color: "red" }}>{data.param}</i>

@@ -1,8 +1,7 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 
-import type { Invitation } from "~/data.server";
 import { sendInvitation } from "~/data.server";
 import {
   getInvitations,
@@ -10,15 +9,11 @@ import {
   deleteInvitiation,
 } from "~/data.server";
 
-type LoaderData = { invitations: Array<Invitation> };
-
-export const loader: LoaderFunction = async () => {
-  return json<LoaderData>({
-    invitations: await getInvitations(),
-  });
+export const loader = async () => {
+  return json({ invitations: await getInvitations() });
 };
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const formData = await request.formData();
   if (formData.get("intent") === "send") {
     const email = formData.get("email");
@@ -54,7 +49,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function Index() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<typeof loader>();
 
   return (
     <div>

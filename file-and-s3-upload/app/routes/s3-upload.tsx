@@ -1,4 +1,4 @@
-import type { ActionFunction, UploadHandler } from "@remix-run/node";
+import type { ActionArgs, UploadHandler } from "@remix-run/node";
 import {
   json,
   unstable_composeUploadHandlers as composeUploadHandlers,
@@ -15,7 +15,7 @@ type ActionData = {
   imgDesc?: string;
 };
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const uploadHandler: UploadHandler = composeUploadHandlers(
     s3UploadHandler,
     createMemoryUploadHandler()

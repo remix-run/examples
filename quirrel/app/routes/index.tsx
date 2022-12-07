@@ -1,9 +1,8 @@
-import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 
 import greetingsQueue from "~/queues/greetings.server";
 
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   await greetingsQueue.enqueue("Groot");
   return json({});
 };

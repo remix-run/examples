@@ -1,26 +1,17 @@
 import Dialog from "@reach/dialog";
 import styles from "@reach/dialog/styles.css";
-import type {
-  ActionFunction,
-  LinksFunction,
-  LoaderFunction,
-} from "@remix-run/node";
+import type { ActionArgs, LinksFunction, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useLoaderData, useNavigate } from "@remix-run/react";
 import * as React from "react";
 
-export const links: LinksFunction = () => {
-  return [
-    {
-      rel: "stylesheet",
-      href: styles,
-    },
-  ];
-};
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader = async ({ params }: LoaderArgs) => {
   const id = params.id;
-  if (!id) return null;
+  if (!id) {
+    return json({});
+  }
 
   const invoices = [
     {
@@ -43,7 +34,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   return json(invoice);
 };
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   // Here we can update our database with the updated invoice
 
   // Redirect back to invoice list
@@ -52,7 +43,7 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function Edit() {
   const navigate = useNavigate();
-  const data = useLoaderData();
+  const data = useLoaderData<typeof loader>();
 
   const [formData, setFormData] = React.useState({
     company: data.company,

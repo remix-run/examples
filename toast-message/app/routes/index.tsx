@@ -1,4 +1,4 @@
-import type { ActionFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { Form, useFetcher } from "@remix-run/react";
 
@@ -9,7 +9,7 @@ import {
   setSuccessMessage,
 } from "~/message.server";
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const session = await getSession(request.headers.get("cookie"));
   const formData = await request.formData();
 

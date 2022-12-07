@@ -1,13 +1,8 @@
-import type {
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-} from "@remix-run/node";
+import type { LinksFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import {
   Form,
   Outlet,
-  useActionData,
   useFetcher,
   useLoaderData,
   useTransition,
@@ -20,7 +15,7 @@ import stylesUrl from "~/dist/styles/routes/dashboard/projects/$projectId/index.
 import { Link } from "~/ui/link";
 import { requireUser } from "~/session.server";
 import { getProject, getUsers } from "~/db.server";
-import type { Project, UserSecure } from "~/models";
+import type { UserSecure } from "~/models";
 import {
   DropdownMenu,
   DropdownMenuOptionsButton,
@@ -54,7 +49,7 @@ export const meta: MetaFunction = ({ data }) => {
   };
 };
 
-export const loader: LoaderFunction = async ({ request, params }) => {
+export const loader = async ({ params, request }: LoaderArgs) => {
   const { passwordHash, ...user } = await requireUser(request, {
     redirect: "/sign-in",
   });
@@ -69,12 +64,12 @@ export const loader: LoaderFunction = async ({ request, params }) => {
     throw redirect("/dashboard");
   }
 
-  return json<LoaderData>({ project, user, allUsers });
+  return json({ project, user, allUsers });
 };
 
 export default function ProjectRoute() {
-  const { project, allUsers, user } = useLoaderData<LoaderData>();
-  const actionData = useActionData<ActionData>();
+  const { project, allUsers, user } = useLoaderData<typeof loader>();
+  const actionData: ActionData = {};
 
   const { fieldErrors } = actionData || {};
   const [showTeamDialog, setShowTeamDialog] = React.useState(false);
@@ -487,17 +482,11 @@ function Layout({
   );
 }
 
-interface LoaderData {
-  project: Project;
-  user: UserSecure;
-  allUsers: UserSecure[];
-}
-
-interface ActionData {
+type ActionData = {
   formError?: string;
   fieldErrors?: FieldErrors;
   fields?: Fields;
-}
+};
 
 type FieldErrors = Record<TextFields, string | undefined | null>;
 

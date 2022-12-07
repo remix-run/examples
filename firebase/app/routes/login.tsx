@@ -1,4 +1,4 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import {
   Link,
@@ -17,11 +17,7 @@ import {
 import { commitSession, getSession } from "~/sessions";
 import { getRestConfig } from "~/server/firebase.server";
 
-interface LoaderData {
-  apiKey: string;
-  domain: string;
-}
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const session = await getSession(request.headers.get("cookie"));
   const { uid } = await checkSessionCookie(session);
   const headers = {
@@ -31,13 +27,13 @@ export const loader: LoaderFunction = async ({ request }) => {
     return redirect("/", { headers });
   }
   const { apiKey, domain } = getRestConfig();
-  return json<LoaderData>({ apiKey, domain }, { headers });
+  return json({ apiKey, domain }, { headers });
 };
 
-interface ActionData {
+type ActionData = {
   error?: string;
-}
-export const action: ActionFunction = async ({ request }) => {
+};
+export const action = async ({ request }: ActionArgs) => {
   const form = await request.formData();
   const idToken = form.get("idToken");
   let sessionCookie;
@@ -64,14 +60,14 @@ export const action: ActionFunction = async ({ request }) => {
     });
   } catch (error) {
     console.error(error);
-    return json<ActionData>({ error: String(error) }, { status: 401 });
+    return json({ error: String(error) }, { status: 401 });
   }
 };
 
 export default function Login() {
   const [clientAction, setClientAction] = useState<ActionData>();
-  const action = useActionData<ActionData>();
-  const restConfig = useLoaderData<LoaderData>();
+  const actionData = useActionData<typeof action>();
+  const restConfig = useLoaderData<typeof loader>();
   const submit = useSubmit();
 
   const handleSubmit = useCallback(
@@ -97,8 +93,8 @@ export default function Login() {
   return (
     <div>
       <h1>Login</h1>
-      {(clientAction?.error || action?.error) && (
-        <p>{clientAction?.error || action?.error}</p>
+      {(clientAction?.error || actionData?.error) && (
+        <p>{clientAction?.error || actionData?.error}</p>
       )}
       <form method="post" onSubmit={handleSubmit}>
         <input

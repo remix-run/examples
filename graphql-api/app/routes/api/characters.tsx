@@ -1,17 +1,9 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import type { ApolloError } from "apollo-server-errors";
 
 import { fetchFromGraphQL, gql } from "~/utils";
-import type { Characters } from "~/generated/types";
 
-export type LoaderData = {
-  data: { characters: Characters };
-  errors?: ApolloError[];
-};
-
-export const loader: LoaderFunction = async (args): Promise<LoaderData> => {
-  const { params } = args;
+export const loader = async ({ params }: LoaderArgs) => {
   const { page = 1 } = params;
 
   const getCharactersQuery = gql`

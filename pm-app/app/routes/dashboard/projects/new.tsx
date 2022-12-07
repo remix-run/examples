@@ -1,13 +1,8 @@
 import * as React from "react";
-import type {
-  ActionFunction,
-  LinksFunction,
-  LoaderFunction,
-} from "@remix-run/node";
+import type { ActionArgs, LinksFunction, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useActionData, useCatch, useLoaderData } from "@remix-run/react";
 
-import type { UserSecure } from "~/models";
 import { Heading } from "~/ui/section-heading";
 import { MaxContainer } from "~/ui/max-container";
 import { requireUser } from "~/session.server";
@@ -26,22 +21,20 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesUrl }];
 };
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const { passwordHash, ...secureUser } = await requireUser(request, {
     redirect: "/sign-in",
   });
 
   const allUsers = await getUsers();
 
-  const loaderData: LoaderData = {
+  return json({
     user: secureUser,
     allUsers: allUsers,
-  };
-
-  return json(loaderData);
+  });
 };
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const currentUser = await requireUser(request, {
     redirect: "/sign-in",
   });
@@ -69,11 +62,10 @@ export const action: ActionFunction = async ({ request }) => {
     ) {
       throw Error("blergh");
     }
-  } catch (_) {
-    const data: ActionData = {
+  } catch {
+    return json({
       formError: `Something went wrong. Please try again later.`,
-    };
-    return json(data);
+    });
   }
 
   const fields = { name, description, members };
@@ -97,19 +89,16 @@ export const action: ActionFunction = async ({ request }) => {
       members,
     });
     return redirect(`dashboard/projects/${project.id}`);
-  } catch (_) {
-    const data: ActionData = {
+  } catch {
+    return json({
       formError: `Something went wrong. Please try again later.`,
-    };
-    return json(data);
+    });
   }
 };
 
 function NewProject() {
-  const loaderData = useLoaderData<LoaderData>();
-  const actionData = useActionData<ActionData>() || {};
-  const { fieldErrors, fields, formError } = actionData;
-  const { allUsers, user } = loaderData;
+  const { allUsers, user } = useLoaderData<typeof loader>();
+  const { fieldErrors, fields, formError } = useActionData<typeof action>();
 
   const selectableUsers = React.useMemo(() => {
     return allUsers.filter((u) => u.id !== user.id);
@@ -244,17 +233,6 @@ export function ErrorBoundary({ error }: { error: Error }) {
       </div>
     </div>
   );
-}
-
-interface LoaderData {
-  user: UserSecure;
-  allUsers: UserSecure[];
-}
-
-interface ActionData {
-  formError?: string;
-  fieldErrors?: FieldErrors;
-  fields?: Record<TextFields, string>;
 }
 
 type FieldErrors = Record<TextFields, string | undefined | null>;

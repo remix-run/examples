@@ -1,4 +1,4 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -9,9 +9,7 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 
-type LoaderData = { message: string };
-
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   const data = await fetch("https://my-mock-api.com").then((response) =>
     response.json()
   );
@@ -20,7 +18,7 @@ export const loader: LoaderFunction = async () => {
     throw json({ message: "Server error" }, { status: 500 });
   }
 
-  return json<LoaderData>(data);
+  return json(data);
 };
 
 export const meta: MetaFunction = () => ({
@@ -30,7 +28,7 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function App() {
-  const loaderData = useLoaderData<LoaderData>();
+  const data = useLoaderData<typeof loader>();
 
   return (
     <html lang="en">
@@ -39,7 +37,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <h1>{loaderData.message}</h1>
+        <h1>{data.message}</h1>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

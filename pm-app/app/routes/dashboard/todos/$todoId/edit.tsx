@@ -1,23 +1,20 @@
-import type { ActionFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 
 import { requireUser } from "~/session.server";
 import { updateTodo } from "~/db.server";
-import type { Todo } from "~/models";
 import { Sanitizer } from "~/utils/sanitizer";
 
-export const action: ActionFunction = async ({ request, context, params }) => {
+export const action = async ({ context, params, request }: ActionArgs) => {
   await requireUser(request, {
     redirect: "/sign-in",
   });
 
-  let actionData: ActionData;
   if (request.method.toLowerCase() === "post") {
     const todoId = params.todoId as string;
 
     if (!todoId || typeof todoId !== "string") {
-      actionData = { todo: null };
-      throw json(actionData, 400);
+      throw json({ todo: null }, 400);
     }
 
     try {
@@ -48,16 +45,10 @@ export const action: ActionFunction = async ({ request, context, params }) => {
       }
 
       const todo = await updateTodo(todoId, todoUpdates);
-      actionData = { todo };
-      return json(actionData, 200);
+      return json({ todo }, 200);
     } catch {
-      actionData = { todo: null };
-      return json(actionData, 400);
+      return json({ todo: null }, 400);
     }
   }
   return json({ todo: null }, 400);
 };
-
-interface ActionData {
-  todo: Todo | null;
-}

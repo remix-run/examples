@@ -1,10 +1,10 @@
-import type { ActionFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 
 import { getTodo, updateTodo } from "~/db.server";
 import { requireUser } from "~/session.server";
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   await requireUser(request, {
     redirect: "/sign-in",
   });

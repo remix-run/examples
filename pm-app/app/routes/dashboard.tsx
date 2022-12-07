@@ -1,8 +1,4 @@
-import type {
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-} from "@remix-run/node";
+import type { LinksFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Outlet, useCatch } from "@remix-run/react";
 import * as React from "react";
@@ -13,7 +9,7 @@ import { MaxContainer } from "~/ui/max-container";
 import { Heading, Section } from "~/ui/section-heading";
 import { requireUser } from "~/session.server";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const { passwordHash, ...secureUser } = await requireUser(request, {
     redirect: "/sign-in",
   });
@@ -22,11 +18,11 @@ export const loader: LoaderFunction = async ({ request }) => {
   });
 };
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesUrl }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesUrl },
+];
 
-export const meta: MetaFunction = ({ params, data, location, parentsData }) => {
+export const meta: MetaFunction = ({ parentsData }) => {
   let userName: string | null = parentsData?.root?.user?.name ?? null;
   userName = "Chance";
   return {
@@ -88,7 +84,7 @@ function Layout({
 }
 
 export default function DashboardLayout() {
-  // let { currentYear } = useLoaderData();
+  // let { currentYear } = useLoaderData<typeof loader>();
   return (
     <Layout currentYear="2022">
       <Outlet />

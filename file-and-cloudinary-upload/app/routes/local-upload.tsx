@@ -1,4 +1,4 @@
-import type { ActionFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import {
   json,
   unstable_composeUploadHandlers as composeUploadHandlers,
@@ -8,12 +8,7 @@ import {
 } from "@remix-run/node";
 import { Form, useActionData } from "@remix-run/react";
 
-type ActionData = {
-  errorMsg?: string;
-  imgSrc?: string;
-};
-
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const uploadHandler = composeUploadHandlers(
     createFileUploadHandler({
       directory: "public/uploads",
@@ -24,30 +19,29 @@ export const action: ActionFunction = async ({ request }) => {
   const formData = await parseMultipartFormData(request, uploadHandler);
   const image = formData.get("img");
   if (!image || typeof image === "string") {
-    return json({
-      error: "something wrong",
-    });
+    return json({ error: "something wrong" });
   }
-  return json({
-    imgSrc: image.name,
-  });
+
+  return json({ imgSrc: image.name });
 };
 
 export default function Index() {
-  const data = useActionData<ActionData>();
+  const data = useActionData<typeof action>();
+
   return (
     <>
       <Form method="post" encType="multipart/form-data">
         <input type="file" name="img" accept="image/*" />
         <button type="submit">upload image</button>
       </Form>
-      {data?.errorMsg && <h2>{data.errorMsg}</h2>}
-      {data?.imgSrc && (
+      {data?.error ? <h2>{data.error}</h2> : null}
+
+      {data?.imgSrc ? (
         <>
           <h2>uploaded image</h2>
           <img alt="uploaded" src={data.imgSrc} />
         </>
-      )}
+      ) : null}
     </>
   );
 }

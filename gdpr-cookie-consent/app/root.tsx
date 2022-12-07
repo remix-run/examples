@@ -1,4 +1,4 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -14,7 +14,7 @@ import * as React from "react";
 
 import { gdprConsent } from "./cookies";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
   return json({ track: cookie.gdprConsent });
@@ -27,7 +27,7 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function App() {
-  const { track } = useLoaderData();
+  const { track } = useLoaderData<typeof loader>();
   const analyticsFetcher = useFetcher();
   React.useEffect(() => {
     if (track) {

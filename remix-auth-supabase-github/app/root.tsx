@@ -1,4 +1,4 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -10,7 +10,7 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 
-export const loader: LoaderFunction = () => {
+export const loader = async () => {
   return json({
     env: {
       SUPABASE_URL: process.env.SUPABASE_URL,
@@ -26,7 +26,7 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function App() {
-  const { env } = useLoaderData<Window>();
+  const { env } = useLoaderData<typeof loader>();
 
   return (
     <html lang="en">

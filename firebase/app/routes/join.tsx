@@ -1,11 +1,11 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, Link, useActionData } from "@remix-run/react";
 
 import { checkSessionCookie, signUp } from "~/server/auth.server";
 import { commitSession, getSession } from "~/sessions";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const session = await getSession(request.headers.get("cookie"));
   const { uid } = await checkSessionCookie(session);
   const headers = {
@@ -17,11 +17,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   return json(null, { headers });
 };
 
-type ActionData = {
-  error?: string;
-};
-
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const form = await request.formData();
   const name = form.get("name");
   const email = form.get("email");
@@ -41,16 +37,16 @@ export const action: ActionFunction = async ({ request }) => {
     });
   } catch (error) {
     console.error(error);
-    return json<ActionData>({ error: String(error) }, { status: 401 });
+    return json({ error: String(error) }, { status: 401 });
   }
 };
 
 export default function Login() {
-  const action = useActionData<ActionData>();
+  const actionData = useActionData<typeof action>();
   return (
     <div>
       <h1>Join</h1>
-      {action?.error && <p>{action.error}</p>}
+      {actionData?.error && <p>{actionData.error}</p>}
       <Form method="post">
         <input
           style={{ display: "block" }}

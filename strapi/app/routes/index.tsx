@@ -1,4 +1,3 @@
-import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { marked } from "marked";
@@ -26,7 +25,7 @@ type PostResponse = {
   };
 };
 
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   // This is where Remix integrates with Strapi
   const response = await fetch("http://localhost:1337/api/posts");
   const postResponse = (await response.json()) as PostResponse;
@@ -43,7 +42,7 @@ export const loader: LoaderFunction = async () => {
 };
 
 const Posts: React.FC = () => {
-  const posts = useLoaderData<PostData>();
+  const posts = useLoaderData<typeof loader>();
 
   return (
     <>

@@ -1,11 +1,11 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useCatch, useMatches, useParams } from "@remix-run/react";
 
 import type { Workshop } from "~/data.server";
 import { getWorkshops } from "~/data.server";
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader = async ({ params }: LoaderArgs) => {
   const { workshopId } = params;
   const workshops = await getWorkshops();
   const workshop = workshops.find((w) => w.id === workshopId);

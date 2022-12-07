@@ -1,4 +1,4 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 
 import { searchLangs } from "~/models/langs";
@@ -8,7 +8,7 @@ import { searchLangs } from "~/models/langs";
  * set of languages as the user types. It's called a Resource Route because it
  * doesn't export a component.  You might think of it as an "API Route".
  */
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   // First get what the user is searching for by creating a URL:
   // https://developer.mozilla.org/en-US/docs/Web/API/URL
   // https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams

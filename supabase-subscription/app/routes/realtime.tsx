@@ -1,18 +1,18 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useFetcher, useLoaderData } from "@remix-run/react";
 import { useSubscription } from "react-supabase";
 
 import { client } from "~/utils/supabaseClient.server";
 
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   const { count } = await client
     .from("clicks")
     .select("id", { count: "exact", head: true });
   return json<number>(count);
 };
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const formData = await request.formData();
   if (formData.get("like")) {
     await client.from("clicks").insert([{}]);
@@ -21,7 +21,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 const Buttons = () => {
-  const count = useLoaderData();
+  const count = useLoaderData<typeof loader>();
   const fetcher = useFetcher();
   useSubscription(
     () => {

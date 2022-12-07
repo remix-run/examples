@@ -1,13 +1,10 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useCatch, useLoaderData, useParams } from "@remix-run/react";
 
-import type { Invoice } from "~/db";
 import { getClient } from "~/db";
 
-type LoaderData = { invoice: Invoice };
-
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader = async ({ params }: LoaderArgs) => {
   if (!params.clientId) {
     throw new Response(`No client ID provided`, {
       status: 404,
@@ -31,12 +28,11 @@ export const loader: LoaderFunction = async ({ params }) => {
     });
   }
 
-  const data: LoaderData = { invoice };
-  return json(data);
+  return json({ invoice });
 };
 
 export default function ClientRoute() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<typeof loader>();
   return (
     <div>
       <h3>Invoice</h3>

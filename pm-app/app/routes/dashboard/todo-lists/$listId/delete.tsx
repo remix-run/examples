@@ -1,10 +1,10 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 
 import { deleteTodoList } from "~/db.server";
 import { requireUser } from "~/session.server";
 
-export const action: ActionFunction = async ({ request, params }) => {
+export const action = async ({ params, request }: ActionArgs) => {
   await requireUser(request, {
     redirect: "/sign-in",
   });
@@ -15,7 +15,7 @@ export const action: ActionFunction = async ({ request, params }) => {
   return redirect("/dashboard");
 };
 
-export const loader: LoaderFunction = async ({ request, params }) => {
+export const loader = async ({ params, request }: LoaderArgs) => {
   await requireUser(request, {
     redirect: "/sign-in",
   });

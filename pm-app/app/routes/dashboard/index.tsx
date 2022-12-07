@@ -1,9 +1,9 @@
-import type { LinksFunction, LoaderFunction } from "@remix-run/node";
+import type { LinksFunction, LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useCatch, useFetcher, useLoaderData } from "@remix-run/react";
 import * as React from "react";
 
-import type { UserSecure, Project } from "~/models";
+import type { Project } from "~/models";
 import { Heading, Section } from "~/ui/section-heading";
 import { MaxContainer } from "~/ui/max-container";
 import stylesUrl from "~/dist/styles/routes/dashboard/index.css";
@@ -24,24 +24,21 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesUrl }];
 };
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const { passwordHash, ...secureUser } = await requireUser(request, {
     redirect: "/sign-in",
   });
 
   const projects = await getUserProjects(secureUser.id);
 
-  const data: LoaderData = {
+  return json({
     user: secureUser,
     projects,
-  };
-
-  return json(data);
+  });
 };
 
 export default function DashboardIndex() {
-  const loaderData = useLoaderData<LoaderData>();
-  const { user, projects } = loaderData;
+  const { user, projects } = useLoaderData<typeof loader>();
   const { nameFirst } = user;
   const deleteFetcher = useFetcher();
   const deleteFormRef = React.useRef<HTMLFormElement | null>(null);
@@ -187,9 +184,4 @@ export function ErrorBoundary({ error }: { error: Error }) {
       </div>
     </div>
   );
-}
-
-interface LoaderData {
-  user: UserSecure | null;
-  projects: Project[];
 }

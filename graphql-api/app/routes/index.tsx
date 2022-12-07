@@ -1,7 +1,7 @@
 import { Link, useLoaderData } from "@remix-run/react";
 
 import { Code } from "~/components/Code";
-import type { LoaderData } from "~/routes/api/characters";
+import type { loader } from "~/routes/api/characters";
 
 /**
  * @description Here we simply re-export the loader used in our resource route
@@ -14,8 +14,7 @@ export { loader } from "~/routes/api/characters";
  * a GraphQL API.
  */
 export default function Index() {
-  const loader = useLoaderData<LoaderData>();
-  const { data } = loader;
+  const { data } = useLoaderData<typeof loader>();
 
   const characters = data.characters.results ?? [];
 
