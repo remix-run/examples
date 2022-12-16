@@ -125,8 +125,15 @@ export const action = async ({ request }: ActionArgs) => {
 };
 
 export default function Register() {
-  const actionData = useActionData<typeof action>() || {};
-  const { fieldErrors, fields, formError } = actionData;
+  const actionData = useActionData<typeof action>();
+  let fieldErrors =
+    actionData && "fieldErrors" in actionData
+      ? actionData.fieldErrors
+      : undefined;
+  let formError =
+    actionData && "formError" in actionData ? actionData.formError : undefined;
+  let fields =
+    actionData && "fields" in actionData ? actionData.fields : undefined;
   const [searchParams] = useSearchParams();
 
   React.useEffect(() => {
@@ -169,7 +176,7 @@ export default function Register() {
               id="form-error-text"
               role="alert"
             >
-              {actionData.formError}
+              {formError}
             </span>
           </div>
         ) : null}
@@ -194,7 +201,7 @@ export default function Register() {
               error={fieldErrors?.nameFirst}
             >
               <Label>First Name</Label>
-              <Field defaultValue={fields?.nameFirst} />
+              <Field defaultValue={fields?.nameFirst || undefined} />
               <FieldError />
             </FieldProvider>
             <FieldProvider
@@ -203,7 +210,7 @@ export default function Register() {
               error={fieldErrors?.nameLast}
             >
               <Label>Last Name</Label>
-              <Field defaultValue={fields?.nameLast} />
+              <Field defaultValue={fields?.nameLast || undefined} />
               <FieldError />
             </FieldProvider>
             <FieldProvider
@@ -216,7 +223,7 @@ export default function Register() {
               <Field
                 type="email"
                 placeholder="hello@remix.run"
-                defaultValue={fields?.email}
+                defaultValue={fields?.email || undefined}
               />
               <FieldError />
             </FieldProvider>
@@ -227,7 +234,10 @@ export default function Register() {
               error={fieldErrors?.password}
             >
               <Label>Password</Label>
-              <Field type="password" defaultValue={fields?.password} />
+              <Field
+                type="password"
+                defaultValue={fields?.password || undefined}
+              />
               <FieldError />
             </FieldProvider>
             <Button className="register__email-submit-button">Sign Up</Button>

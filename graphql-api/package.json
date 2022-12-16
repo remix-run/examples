@@ -7,7 +7,8 @@
     "predev": "npm run generate:types",
     "dev": "remix dev",
     "generate:types": "graphql-codegen",
-    "start": "remix-serve build"
+    "start": "remix-serve build",
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "@remix-run/node": "*",

@@ -1,11 +1,11 @@
-const path = require("path");
+import path from "path";
 
-const express = require("express");
-const compression = require("compression");
-const morgan = require("morgan");
-const { createRequestHandler } = require("@remix-run/express");
+import express from "express";
+import compression from "compression";
+import morgan from "morgan";
+import { createRequestHandler } from "@remix-run/express";
 
-const { createUsersByIdLoader } = require("../app/loaders/userLoader");
+import { createUsersByIdLoader } from "../app/loaders/userLoader";
 
 const MODE = process.env.NODE_ENV;
 const BUILD_DIR = path.join(process.cwd(), "server/build");

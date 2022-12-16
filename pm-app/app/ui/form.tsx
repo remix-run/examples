@@ -9,7 +9,7 @@ export function useFieldContext() {
   return React.useContext(FieldContext);
 }
 
-const FieldProvider = React.forwardRef<
+export const FieldProvider = React.forwardRef<
   HTMLDivElement,
   React.PropsWithChildren<FieldContextValue & { className?: string }>
 >(({ children, className, ...ctx }, ref) => {

@@ -1,0 +1,31 @@
+name: Typecheck changed examples
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  typecheck:
+    if: github.repository == 'remix-run/examples'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+          cache: "yarn"
+
+      - name: 📥 Install deps
+        run: yarn --frozen-lockfile
+
+      - name: install, build, typecheck
+        run: node ./scripts/test.mjs

@@ -6,7 +6,8 @@
     "dev": "run-p \"dev:*\"",
     "dev:remix": "remix dev",
     "dev:strapi": "cd strapi && npm run develop",
-    "start": "remix-serve build"
+    "start": "remix-serve build",
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "@remix-run/node": "*",

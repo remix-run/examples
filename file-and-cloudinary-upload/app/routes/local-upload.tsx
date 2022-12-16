@@ -26,7 +26,7 @@ export const action = async ({ request }: ActionArgs) => {
 };
 
 export default function Index() {
-  const data = useActionData<typeof action>();
+  const actionData = useActionData<typeof action>();
 
   return (
     <>
@@ -34,12 +34,12 @@ export default function Index() {
         <input type="file" name="img" accept="image/*" />
         <button type="submit">upload image</button>
       </Form>
-      {data?.error ? <h2>{data.error}</h2> : null}
+      {actionData && "error" in actionData ? <h2>{actionData.error}</h2> : null}
 
-      {data?.imgSrc ? (
+      {actionData && "imgSrc" in actionData ? (
         <>
           <h2>uploaded image</h2>
-          <img alt="uploaded" src={data.imgSrc} />
+          <img alt="uploaded" src={actionData.imgSrc} />
         </>
       ) : null}
     </>

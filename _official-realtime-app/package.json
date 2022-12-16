@@ -9,7 +9,9 @@
     "dev:css": "npm run generate:css -- --watch",
     "dev:remix": "remix watch",
     "dev:server": "node --watch server.js",
-    "generate:css": "npx tailwindcss -i app/styles.css -o ./app/styles.processed.css"
+    "generate:css": "npx tailwindcss -i app/styles.css -o ./app/styles.processed.css",
+    "start": "remix-serve build",
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "@remix-run/express": "*",

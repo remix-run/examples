@@ -5,6 +5,7 @@
     "build": "remix build",
     "dev": "remix dev",
     "start": "remix-serve build",
+    "typecheck": "tsc -b",
     "xata:init": "xata init --schema=schema.template.json",
     "xata:codegen": "xata codegen -o=app/lib/xata.codegen.server.ts"
   },
