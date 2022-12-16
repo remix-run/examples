@@ -33,7 +33,7 @@ export const action = async ({ request }: ActionArgs) => {
 };
 
 export default function Index() {
-  const data = useActionData<typeof action>();
+  const actionData = useActionData<typeof action>();
 
   return (
     <>
@@ -44,12 +44,15 @@ export default function Index() {
         <input id="img-desc" type="text" name="desc" />
         <button type="submit">upload to cloudinary</button>
       </Form>
-      {data?.error ? <h2>{data.error}</h2> : null}
+      {actionData && "error" in actionData ? <h2>{actionData.error}</h2> : null}
 
-      {data?.imgSrc ? (
+      {actionData && "imgSrc" in actionData ? (
         <>
           <h2>uploaded image</h2>
-          <img src={data.imgSrc} alt={data.imgDesc || "Upload result"} />
+          <img
+            src={actionData.imgSrc}
+            alt={actionData.imgDesc || "Upload result"}
+          />
         </>
       ) : null}
     </>
