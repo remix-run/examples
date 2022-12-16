@@ -13,11 +13,11 @@ export type Issue = {
 const users: Record<string, User> = {
   chance: {
     name: "Chance Strickland",
-    avatarUrl: "http://github.com/chaance.png",
+    avatarUrl: "https://github.com/chaance.png",
   },
   ryan: {
     name: "Ryan Florence",
-    avatarUrl: "http://github.com/ryanflorence.png",
+    avatarUrl: "https://github.com/ryanflorence.png",
   },
 };
 
