@@ -1,5 +1,6 @@
-import { LoaderArgs } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { eventStream } from "remix-utils";
+
 import { emitter } from "~/services/emitter";
 
 export function loader({ request }: LoaderArgs) {

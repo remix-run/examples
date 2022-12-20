@@ -1,19 +1,21 @@
-import { json, LoaderArgs } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { Form, useLocation } from "@remix-run/react";
 import { useEffect, useRef, useState } from "react";
 import { useEventSource } from "remix-utils";
+
 import { emitter } from "~/services/emitter";
 
 export async function action({ request }: LoaderArgs) {
-  let formData = await request.formData();
-  let message = formData.get("message");
+  const formData = await request.formData();
+  const message = formData.get("message");
   emitter.emit("message", message);
   return json({ message });
 }
 
 export default function Component() {
-  let $form = useRef<HTMLFormElement>(null);
-  let { key } = useLocation();
+  const $form = useRef<HTMLFormElement>(null);
+  const { key } = useLocation();
   useEffect(
     function clearFormOnSubmit() {
       $form.current?.reset();
@@ -21,8 +23,8 @@ export default function Component() {
     [key]
   );
 
-  let [messages, setMessages] = useState<string[]>([]);
-  let lastMessage = useEventSource("/sse/chat");
+  const [messages, setMessages] = useState<string[]>([]);
+  const lastMessage = useEventSource("/sse/chat");
   useEffect(
     function saveMessage() {
       setMessages((current) => {
