@@ -20,6 +20,6 @@ The `Outlet` component from Remix will always render the currently active route.
 
 ## Related Links
 
-- [useOutlet](https://reactrouter.com/docs/en/v6/hooks/use-outlet)
-- [useLocation](https://reactrouter.com/docs/en/v6/hooks/use-location)
+- [useOutlet](https://reactrouter.com/hooks/use-outlet)
+- [useLocation](https://reactrouter.com/hooks/use-location)
 - [Framer Motion](https://www.framer.com/docs/introduction/)
