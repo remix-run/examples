@@ -1,19 +1,27 @@
-# TODO: Title of Example
+# Server-Sent Events - Simple chat app
 
-TODO: Describe the use case here
+This example demonstrates how to use Server-Sent Events to create a simple chat app without persistant storage.
 
 ## Preview
 
 Open this example on [CodeSandbox](https://codesandbox.com):
 
-<!-- TODO: update this link to the path for your example: -->
-
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/__template)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/sse-chat)
 
 ## Example
 
-Describe the example and how it demonstrates solving the problem. Reference any relevant files/dependencies if needed.
+The example uses the `eventStream` response helper from Remix Utils to implement a SSE endpoint.
+
+In that endpoint the server subscribe to an EventEmitter to get new messages and broadcast them to subscribers.
+
+Client-side, the `useEventSource` hook from Remix Utils is used to subscribe to the SSE endpoint and display new messages as they arrive.
+
+All paired with a Remix form to send new messages to an action which are then emitted to the EventEmitter.
 
 ## Related Links
 
-Link to documentation or other related examples.
+- [Server-Sent Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
+- [Remix Utils](https://github.com/sergiodxa/remix-utils#server-sent-events)
+- [Event Emitter](https://nodejs.org/api/events.html#events_class_eventemitter)
+- [Remix Form](https://remix.run/docs/en/v1/components/form)
+- [Remix action](https://remix.run/docs/en/v1/route/action)
