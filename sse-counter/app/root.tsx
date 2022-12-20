@@ -1,4 +1,5 @@
-import { json, MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -27,8 +28,8 @@ export function loader() {
 }
 
 export default function App() {
-  let { initialCount } = useLoaderData<typeof loader>();
-  let count = useEventSource("/sse/counter") ?? initialCount;
+  const { initialCount } = useLoaderData<typeof loader>();
+  const count = useEventSource("/sse/counter") ?? initialCount;
   return (
     <html lang="en">
       <head>
