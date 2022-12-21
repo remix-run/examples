@@ -1,6 +1,6 @@
 # Infinite scrolling
 
-This example shows a minimal implementation of infinite scrolling that uses [useFetcher](https://remix.run/docs/en/v1/api/remix#usefetcher) and [URL Search Params](https://remix.run/docs/en/v1/guides/data-loading#url-search-params).
+This example shows a minimal implementation of infinite scrolling that uses [useFetcher](https://remix.run/hooks/use-fetcher) and [URL Search Params](https://remix.run/guides/data-loading#url-search-params).
 
 ## Preview
 
@@ -15,5 +15,5 @@ tba
 ## Related Links
 
 - Remix docs:
-  - [useFetcher](https://remix.run/docs/en/v1/api/remix#usefetcher)
-  - [URL Search Params](https://remix.run/docs/en/v1/guides/data-loading#url-search-params)
+  - [useFetcher](https://remix.run/hooks/use-fetcher)
+  - [URL Search Params](https://remix.run/guides/data-loading#url-search-params)

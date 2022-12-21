@@ -5,7 +5,7 @@ This example demonstrates using the [Fetch API][link-fetch] to query a [GraphQL]
 ## Setup
 
 - Setup the `GRAPHQL_API` environment variable
-  - See the [Remix docs](https://remix.run/docs/guides/envvars) for some suggested patterns
+  - See the [Remix docs](https://remix.run/guides/envvars) for some suggested patterns
 - Run `npm install`
 - And start the example with `npm run dev`
 - Visit [http://localhost:3000](http://localhost:3000) in your browser.
@@ -47,5 +47,5 @@ This example makes use of [Remix Resource Routes][link-resource-routes] to fetch
 [link-codegen]: https://www.graphql-code-generator.com/ "GraphQL Code Generator"
 [link-fetch]: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API "Fetch API"
 [link-graphql]: https://graphql.org/ "GraphQL"
-[link-resource-routes]: https://remix.run/docs/en/v1/guides/resource-routes "Resource Routes"
+[link-resource-routes]: https://remix.run/guides/resource-routes "Resource Routes"
 [link-sample-api]: https://rickandmortyapi.com/graphql "Rick & Morty API"

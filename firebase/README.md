@@ -49,4 +49,4 @@ Requests to the Firestore are made using the `firebase-admin`-SDK. You need to c
 
 - [Firestore Data Converters](https://firebase.google.com/docs/reference/node/firebase.firestore.FirestoreDataConverter) for typing
 - [Firebase Session Cookies](https://firebase.google.com/docs/auth/admin/manage-cookies)
-- [Remix `cookieSessionStorage`](https://remix.run/docs/en/v1/api/remix#createcookiesessionstorage)
+- [Remix `cookieSessionStorage`](https://remix.run/utils/sessions#createcookiesessionstorage)

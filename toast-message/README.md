@@ -24,8 +24,8 @@ We use the `flash` method in the session object to set the message. Once we read
 
 ## Related Links
 
-- [Remix Sessions](https://remix.run/docs/en/v1/api/remix#sessions)
-- [Remix Cookie Sessions](https://remix.run/docs/en/v1/api/remix#createcookiesessionstorage)
-- [Remix Session API](https://remix.run/docs/en/v1/api/remix#session-api)
-- [Remix API route](https://remix.run/docs/en/v1/guides/api-routes)
-- [react-hot-toast](https://react-hot-toast.com/)
+- [Remix Sessions](https://remix.run/utils/sessions)
+- [Remix Cookie Sessions](https://remix.run/utils/sessions#createcookiesessionstorage)
+- [Remix Session API](https://remix.run/utils/sessions#session-api)
+- [Remix API route](https://remix.run/guides/api-routes)
+- [react-hot-toast](https://react-hot-toast.com)

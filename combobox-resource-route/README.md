@@ -20,6 +20,6 @@ The relevant files are:
 
 ## Related Links
 
-- [useFetcher](https://remix.run/api/remix#usefetcher)
+- [useFetcher](https://remix.run/hooks/use-fetcher)
 - [Resource Routes](https://remix.run/guides/resource-routes)
 - [Reach UI Combobox](https://reach.tech/combobox)

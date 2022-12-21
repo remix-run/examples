@@ -20,7 +20,7 @@ import * as gtag from "~/utils/gtags.client";
  * @description
  * If you would like to include the development env values in your browser bundle AKA
  * set some global values on the window object, take a look at these docs here:
- * https://remix.run/docs/en/v1/guides/envvars#server-environment-variables
+ * https://remix.run/guides/envvars#server-environment-variables
  */
 // export async function loader() {
 //   return json({

@@ -29,7 +29,7 @@ if (!process.env.SUPABASE_SERVICE_KEY)
 // };
 
 // ⚠️ cloudflare needs you define fetch option : https://github.com/supabase/supabase-js#custom-fetch-implementation
-// Use Remix fetch polyfill for node (See https://remix.run/docs/en/v1/other-api/node)
+// Use Remix fetch polyfill for node (See https://remix.run/other-api/node)
 export const supabaseAdmin = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_KEY

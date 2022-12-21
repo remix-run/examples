@@ -12,7 +12,7 @@ import type { Lang } from "~/models/langs";
 
 export function links() {
   // Add them to the page when this route is active:
-  // https://remix.run/api/conventions#links
+  // https://remix.run/route/links
   return [{ rel: "stylesheet", href: comboboxStyles }];
 }
 

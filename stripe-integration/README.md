@@ -34,7 +34,7 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 ## Related Links
 
 - [How to get the raw request body in action or loader ( for stripe integration) ? · Discussion #1978 · remix-run/remix](https://github.com/remix-run/remix/discussions/1978)
-- [Remix | Environment Variables](https://remix.run/docs/en/v1/guides/envvars)
+- [Remix | Environment Variables](https://remix.run/guides/envvars)
 - [Stripe API reference – Node](https://stripe.com/docs/api/authentication?lang=node)
 - [Take webhooks live | Stripe Documentation](https://stripe.com/docs/webhooks/go-live)
 - [Server side redirect to Stripe Checkout - YouTube](https://www.youtube.com/watch?v=WSki6n502mk)

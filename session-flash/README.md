@@ -1,6 +1,6 @@
 # Session Flash Example
 
-You want to display a message after a request made from any component. [`session.flash()`](https://remix.run/docs/en/v1/api/remix#sessionflashkey-value) from the [Remix Session API](https://remix.run/docs/en/v1/api/remix#session-api) allows you to share ephemeral data with other components without relaying on Javascript or your database. Session data stored with `session.flash()` is only kept for a single request.
+You want to display a message after a request made from any component. [`session.flash()`](https://remix.run/utils/sessions#sessionflashkey-value) from the [Remix Session API](https://remix.run/utils/sessions#session-api) allows you to share ephemeral data with other components without relaying on Javascript or your database. Session data stored with `session.flash()` is only kept for a single request.
 
 ## Preview
 
@@ -34,6 +34,6 @@ Setting the message with a form is used here for demonstration purpose. In an ac
 
 ## Related Links
 
-- [`<Form>` in the Remix Docs](https://remix.run/docs/en/v1/api/remix#form)
-- [session.flash() in the Remix Docs](https://remix.run/docs/en/v1/api/remix#sessionflashkey-value)
+- [`<Form>` in the Remix Docs](https://remix.run/components/form)
+- [session.flash() in the Remix Docs](https://remix.run/utils/sessions#sessionflashkey-value)
 - ["`<dialog>`: The Dialog element" in the MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)
