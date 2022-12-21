@@ -4,7 +4,7 @@ import { useCatch, useLoaderData } from "@remix-run/react";
 
 // The `$` in route filenames becomes a pattern that's parsed from the URL and
 // passed to your loaders so you can look up data.
-// - https://remix.run/api/conventions#loader-params
+// - https://remix.run/route/loader#params
 export const loader = async ({ params }: LoaderArgs) => {
   // pretend like we're using params.id to look something up in the db
 
@@ -47,9 +47,9 @@ export default function ParamDemo() {
   );
 }
 
-// https://remix.run/api/conventions#catchboundary
-// https://remix.run/api/remix#usecatch
-// https://remix.run/api/guides/not-found
+// https://remix.run/route/catch-boundary
+// https://remix.run/hooks/use-catch
+// https://remix.run/guides/not-found
 export function CatchBoundary() {
   const caught = useCatch();
 
@@ -91,8 +91,8 @@ export function CatchBoundary() {
   );
 }
 
-// https://remix.run/api/conventions#errorboundary
-// https://remix.run/api/guides/not-found
+// https://remix.run/route/error-boundary
+// https://remix.run/guides/not-found
 export function ErrorBoundary({ error }: { error: Error }) {
   console.error(error);
   return (

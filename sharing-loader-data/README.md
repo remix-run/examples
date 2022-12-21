@@ -19,7 +19,7 @@ This is a simple "workshop" app which has a "user" and a list of workshops. The 
 
 ## Related Links
 
-- [`useMatches`](https://remix.run/api/remix#usematches)
+- [`useMatches`](https://remix.run/hooks/use-matches)
 
 ## Notes:
 

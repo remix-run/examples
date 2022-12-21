@@ -1,6 +1,6 @@
 # Upload images to S3
 
-This is a simple example of using the remix built-in [uploadHandler](https://remix.run/docs/en/v1/api/remix#uploadhandler) and Form with multipart data to upload a file with the built-in local uploader and upload an image file to S3 with a custom uploader and display it. You can test it locally by running the dev server and opening the path `/s3-upload` in your browser.
+This is a simple example of using the remix built-in [uploadHandler](https://remix.run/utils/parse-multipart-form-data#uploadhandler) and Form with multipart data to upload a file with the built-in local uploader and upload an image file to S3 with a custom uploader and display it. You can test it locally by running the dev server and opening the path `/s3-upload` in your browser.
 
 The relevent files are:
 
@@ -30,6 +30,6 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 ## Related Links
 
-- [Handle Multiple Part Forms (File Uploads)](https://remix.run/docs/en/v1/api/remix#unstable_parsemultipartformdata-node)
-- [Upload Handler](https://remix.run/docs/en/v1/api/remix#uploadhandler)
-- [Custom Uploader](https://remix.run/docs/en/v1/api/remix#custom-uploadhandler)
+- [Handle Multiple Part Forms (File Uploads)](https://remix.run/utils/parse-multipart-form-data-node)
+- [Upload Handler](https://remix.run/utils/parse-multipart-form-data#uploadhandler)
+- [Custom Uploader](https://remix.run/guides/file-uploads)

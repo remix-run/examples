@@ -19,7 +19,7 @@ const expiresToSeconds = (expires) => {
   return secondsDelta < 0 ? 0 : secondsDelta;
 };
 
-// For more info check https://remix.run/api/remix#createsessionstorage
+// For more info check https://remix.run/utils/sessions#createsessionstorage
 export function createUpstashSessionStorage({ cookie }: any) {
   return createSessionStorage({
     cookie,

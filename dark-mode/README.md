@@ -22,6 +22,6 @@ The Themed component is used to conditionally render two components depending on
 
 ## Related Links
 
-- [Creating cookie sessions in the Remix docs](https://remix.run/docs/en/v1/api/remix#createcookiesessionstorage)
-- [useFetcher in the Remix docs](https://remix.run/docs/en/v1/api/remix#usefetcher) (used to tell the server to update the cookie value when the theme changes)
-- [Blog post with complete explanation of each part of the code](https://www.mattstobbs.com/remix-dark-mode/)
+- [Creating cookie sessions in the Remix docs](https://remix.run/utils/sessions#createcookiesessionstorage)
+- [useFetcher in the Remix docs](https://remix.run/hooks/use-fetcher) (used to tell the server to update the cookie value when the theme changes)
+- [Blog post with complete explanation of each part of the code](https://www.mattstobbs.com/remix-dark-mode)

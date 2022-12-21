@@ -42,6 +42,6 @@ Here `app/routes/articles/__layout.tsx` will add a pathless route, and acts as a
 
 ## Related Links
 
-- [Pathless Routes](https://remix.run/api/conventions#pathless-layout-routes)
-- [Layout Routes](https://remix.run/api/conventions#layout-routes)
+- [Pathless Routes](https://remix.run/file-conventions/routes-files#pathless-layout-routes)
+- [Layout Routes](https://remix.run/file-conventions/routes-files#layout-routes)
 - [Remix MD/MDX](https://remix.run/guides/mdx)

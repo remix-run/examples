@@ -8,7 +8,7 @@ export const meta: MetaFunction = () => ({
 });
 
 // When your form sends a POST, the action is called on the server.
-// - https://remix.run/api/conventions#action
+// - https://remix.run/route/action
 // - https://remix.run/guides/data-updates
 export const action = async ({ request }: ActionArgs) => {
   const formData = await request.formData();
@@ -34,7 +34,7 @@ export const action = async ({ request }: ActionArgs) => {
 };
 
 export default function ActionsDemo() {
-  // https://remix.run/api/remix#useactiondata
+  // https://remix.run/hooks/use-action-data
   const actionMessage = useActionData<typeof action>();
   const answerRef = useRef<HTMLInputElement>(null);
 
@@ -85,13 +85,11 @@ export default function ActionsDemo() {
           </li>
           <li>
             API:{" "}
-            <a href="https://remix.run/api/conventions#action">
-              Route Action Export
-            </a>
+            <a href="https://remix.run/route/action">Route Action Export</a>
           </li>
           <li>
             API:{" "}
-            <a href="https://remix.run/api/remix#useactiondata">
+            <a href="https://remix.run/hooks/use-action-data">
               <code>useActionData</code>
             </a>
           </li>

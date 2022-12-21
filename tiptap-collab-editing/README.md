@@ -21,4 +21,4 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 ## Related Links
 
 - [Collaborative editing – Tiptap Editor](https://tiptap.dev/guide/collaborative-editing#show-other-cursors)
-- [Remix | Module Constraints](https://remix.run/docs/en/v1/guides/constraints#document-guard)
+- [Remix | Module Constraints](https://remix.run/guides/constraints#document-guard)

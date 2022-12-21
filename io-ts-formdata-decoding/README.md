@@ -51,7 +51,7 @@ those assertions are not guaranteed to be safe:
 
 io-ts describes itself as a _"runtime type system for IO decoding/encoding"_. It can do what TypeScript by itself is not designed for: validate types at runtime. `app/formData.ts` implements a function `decodeFormData` that takes a `Request` and a [runtime representation of a type](https://gcanti.github.io/io-ts/modules/index.ts.html#type) and returns a correctly typed record with the form's data. In case the data is malformed, it will throw a [422 Uprocessable Entity](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422).
 
-The route `app/routes/index.tsx` implements an action that calls `decodeFormData`. It also implements a [CatchBoundary](https://remix.run/docs/en/v1/api/conventions#catchboundary), which will render iff you provide anything other than a number to the `<input name="age" />`.
+The route `app/routes/index.tsx` implements an action that calls `decodeFormData`. It also implements a [CatchBoundary](https://remix.run/route/catch-boundary), which will render iff you provide anything other than a number to the `<input name="age" />`.
 
 ## Related Links
 

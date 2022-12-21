@@ -1,6 +1,6 @@
 # Upload images to cloudinary
 
-This is a simple example of using the remix buildin [uploadHandler](https://remix.run/docs/en/v1/api/remix#uploadhandler) and Form with multipart data to upload a file with the built-in local uploader and upload an image file to cloudinary with a custom uploader and display it.
+This is a simple example of using the remix buildin [uploadHandler](https://remix.run/utils/parse-multipart-form-data#uploadhandler) and Form with multipart data to upload a file with the built-in local uploader and upload an image file to cloudinary with a custom uploader and display it.
 
 The relevent files are:
 
@@ -8,7 +8,7 @@ The relevent files are:
 ├── app
 │   ├── routes
 │   │   ├── cloudinary-upload.tsx // upload to cloudinary
-│   │   └── local-upload.tsx // local upload using build in [createfileuploadhandler](https://remix.run/docs/en/v1/api/remix#unstable_createfileuploadhandler)
+│   │   └── local-upload.tsx // local upload using build in [createFileUploadHandler](https://remix.run/utils/unstable-create-file-upload-handler)
 │   └── utils
 │       └── utils.server.ts  // init cloudinary nodejs client on server side
 |── .env // holds cloudinary credentails
@@ -26,6 +26,6 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 ## Related Links
 
-- [Handle Multiple Part Forms (File Uploads)](https://remix.run/docs/en/v1/api/remix#unstable_parsemultipartformdata-node)
-- [Upload Handler](https://remix.run/docs/en/v1/api/remix#uploadhandler)
-- [Custom Uploader](https://remix.run/docs/en/v1/api/remix#custom-uploadhandler)
+- [Handle Multiple Part Forms (File Uploads)](https://remix.run/utils/parse-multipart-form-data-node)
+- [Upload Handler](https://remix.run/utils/parse-multipart-form-data#uploadhandler)
+- [Custom Uploader](https://remix.run/guides/file-uploads)
