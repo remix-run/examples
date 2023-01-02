@@ -8,11 +8,11 @@ export default function Screen() {
   return (
     <>
       <ClientOnly fallback={<p>Loading...</p>}>
-        <BrokenOnTheServer />
+        {() => <BrokenOnTheServer />}
       </ClientOnly>
 
       <ClientOnly fallback={<p>Loading...</p>}>
-        <ComplexComponent />
+        {() => <ComplexComponent />}
       </ClientOnly>
 
       <button
