@@ -2,9 +2,12 @@ import { useState } from "react";
 import { Form } from "@remix-run/react";
 import { json } from "@remix-run/node";
 import type { ActionArgs, LinksFunction } from '@remix-run/node';
-import stylesheetQuill from "react-quill/dist/quill.snow.css";
-import { ClientOnly } from "~/components/client-only";
+import { ClientOnly } from "remix-utils";
 import { TextEditor } from "~/components/textEditor.client";
+import { FallbackComponent } from "~/components/fallback-component"
+
+import stylesheetQuill from "react-quill/dist/quill.snow.css";
+import { FallbackComponent } from '../components/fallback-component';
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesheetQuill }];
@@ -21,7 +24,7 @@ export default function Index() {
   const [textEditor, setTextEditor] = useState("");
   return (
     <Form method="post">
-      <ClientOnly>
+      <ClientOnly fallback={<FallbackComponent />}>
         {() => (
           <TextEditor
             theme="snow"
