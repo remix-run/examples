@@ -5,11 +5,10 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRevalidator,
 } from "@remix-run/react";
 import { useEffect } from "react";
 import { useEventSource } from "remix-utils";
-
-import { useRevalidator } from "~/use-revalidator";
 
 import icons from "./icons.svg";
 import styles from "./styles.processed.css";
@@ -44,8 +43,8 @@ export default function App() {
 
 function useRealtimeIssuesRevalidation() {
   const data = useEventSource("/issues-events");
-  const revalidator = useRevalidator();
+  const { revalidate } = useRevalidator();
   useEffect(() => {
-    revalidator.revalidate();
-  }, [data, revalidator]);
+    revalidate();
+  }, [data, revalidate]);
 }
