@@ -22,8 +22,6 @@ const toolBarOptions = {
 
 export function TextEditor(props: Props) {
   return (
-      <ReactQuill
-      {...props} modules={toolBarOptions}
-      />
+      <ReactQuill {...props} modules={toolBarOptions} />
   );
 }
