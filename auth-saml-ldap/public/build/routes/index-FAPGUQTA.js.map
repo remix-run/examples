@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/routes/index.tsx"],
+  "sourcesContent": ["import { Link } from \"@remix-run/react\";\nimport { useLoaderData } from \"@remix-run/react\";\nimport { authorize } from \"~/session.server\";\nimport type { LoaderArgs } from \"@remix-run/server-runtime\";\n\n// import greetingsQueue from \"~/queues/greetings.server\";\n\nexport async function loader({ request }: LoaderArgs) {\n  return authorize(request, undefined, async ({ user, session }) => {\n    // here we can get the data for this route and return it\n\n    return user;\n  });\n}\n\nexport default function Index() {\n  const user = useLoaderData();\n  return (\n    <div> hi {user.email}</div>\n  );\n}\n"],
+  "mappings": ";;;;;;;;;;;;AAEA,qBAA0B;AAgBtB;AAHW,SAAR,QAAyB;AAC9B,QAAM,OAAO,cAAc;AAC3B,SACE,mDAAC,SAAI;AAAA;AAAA,IAAK,KAAK;AAAA,OAAf;AAAA;AAAA;AAAA;AAAA,SAAqB;AAEzB;",
+  "names": []
+}

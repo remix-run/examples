@@ -1,0 +1,1 @@
+import{a as u}from"/build/_shared/chunk-FPOB764B.js";import{i as e,n as o}from"/build/_shared/chunk-KARVYQZN.js";import{c as r}from"/build/_shared/chunk-Q3IECNXJ.js";var a=r(u()),n=r(o());function t(){let i=e();return(0,n.jsxs)("div",{children:[" hi ",i.email]})}export{t as default};
