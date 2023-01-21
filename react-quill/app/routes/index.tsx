@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { Form } from "@remix-run/react";
 import { json } from "@remix-run/node";
 import type { ActionArgs, LinksFunction } from '@remix-run/node';
-
-import { ClientOnly } from "remix-utils";
+import { Form } from "@remix-run/react";
+import { useState } from "react";
 import stylesheetQuill from "react-quill/dist/quill.snow.css";
-import { TextEditor } from "~/components/textEditor.client";
+import { ClientOnly } from "remix-utils";
+
 import { FallbackComponent } from "~/components/fallback-component";
+import { TextEditor } from "~/components/textEditor.client";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesheetQuill }];
