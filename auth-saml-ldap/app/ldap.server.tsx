@@ -1,15 +1,14 @@
-import type { Password, User } from "@prisma/client";
+import type { User } from "@prisma/client";
+import { authenticate } from "ldap-authentication";
 
-import { prisma } from "~/db.server";
+import { updateUserProps } from "~/models/user.server";
 
 export type { User } from "@prisma/client";
-import { authenticate } from "ldap-authentication";
-import { getOrCreateUser, updateUserProps } from "~/models/user.server";
 
 export async function verifyLogin(email: User["email"], password: string) {
   // first login with ldap
 
-  let options = {
+  const options = {
     ldapOpts: {
       url: process.env.LDAP_HOST, //'ldap://ldap.forumsys.com',
       // tlsOptions: { rejectUnauthorized: false }
@@ -26,7 +25,7 @@ export async function verifyLogin(email: User["email"], password: string) {
     // starttls: process.env.LDAP_START_TLS,
   };
 
-  let ldapUser = await authenticate(options);
+  const ldapUser = await authenticate(options);
   if (!ldapUser) {
     return null;
   }

@@ -1,7 +1,7 @@
-import { Link } from "@remix-run/react";
 import { useLoaderData } from "@remix-run/react";
-import { authorize } from "~/session.server";
 import type { LoaderArgs } from "@remix-run/server-runtime";
+
+import { authorize } from "~/session.server";
 
 export async function loader({ request }: LoaderArgs) {
   return authorize(request, undefined, async ({ user, session }) => {
@@ -13,7 +13,5 @@ export async function loader({ request }: LoaderArgs) {
 
 export default function Index() {
   const user = useLoaderData();
-  return (
-    <div> hi {user.email}</div>
-  );
+  return <div> hi {user.email}</div>;
 }

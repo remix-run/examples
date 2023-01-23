@@ -1,9 +1,11 @@
 import type { ActionArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Link, useSearchParams } from "@remix-run/react";
+import { Link } from "@remix-run/react";
 import * as React from "react";
 import type { LoaderArgs } from "@remix-run/server-runtime";
+import { useLoaderData } from "@remix-run/react";
+import { Form, useActionData } from "@remix-run/react";
 
 import { verifyLogin } from "~/ldap.server";
 import {
@@ -12,9 +14,6 @@ import {
   getUserId,
   createUserSession,
 } from "~/session.server";
-import { useLoaderData } from "@remix-run/react";
-
-import { Form, useActionData } from "@remix-run/react";
 import { safeRedirect, validateEmail } from "~/utils";
 
 export async function loader({ request }: LoaderArgs) {
@@ -41,7 +40,7 @@ export async function action({ request }: ActionArgs) {
   const password = formData.get("password");
   const redirectTo = safeRedirect(formData.get("redirectTo"), "/");
 
-  let errors = {};
+  const errors = {};
 
   if (!validateEmail(email)) {
     errors.email = "Email is invalid";
@@ -77,9 +76,6 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Login() {
-  const [searchParams] = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo") || "/notes";
-
   const { loginError } = useLoaderData();
 
   const actionData = useActionData<typeof action>();
@@ -105,7 +101,6 @@ export default function Login() {
               {loginError ? (
                 <article className="message is-danger ">
                   <div className="message-body p-2 is-flex">
-                    
                     <span>{loginError}</span>
                   </div>
                 </article>
@@ -119,7 +114,6 @@ export default function Login() {
                     name="email"
                     autoComplete="off"
                   />
-                 
                 </div>
                 {actionData?.errors?.email && (
                   <p className="help is-danger">{actionData.errors.email}</p>
@@ -134,7 +128,6 @@ export default function Login() {
                     type="password"
                     name="password"
                   />
-                  
                 </div>
                 {actionData?.errors?.password && (
                   <p className="help is-danger">{actionData.errors.password}</p>
@@ -148,7 +141,7 @@ export default function Login() {
                 Log In
               </button>
             </Form>
-            
+
             <Link className="button is-fullwidth" to="/">
               Login with SAML
             </Link>

@@ -1,5 +1,4 @@
-import type { Password, User } from "@prisma/client";
-import bcrypt from "bcryptjs";
+import type { User } from "@prisma/client";
 
 import { prisma } from "~/db.server";
 
@@ -33,7 +32,7 @@ export async function getGroupByName(name: Group["name"]) {
 }
 
 export async function getOrCreateGroup(name: Group["name"]) {
-  let group = await getGroupByName(name);
+  const group = await getGroupByName(name);
 
   if (group) return group;
 
@@ -41,7 +40,7 @@ export async function getOrCreateGroup(name: Group["name"]) {
 }
 
 export async function getOrCreateUser(email: User["email"]) {
-  let user = await getUserByEmail(email);
+  const user = await getUserByEmail(email);
   if (user) return user;
 
   return await createUser(email);
@@ -53,7 +52,6 @@ export async function updateUserProps(
   lastName: User["lastName"],
   groups: Groups["name"][]
 ) {
-
   await getOrCreateUser(email);
 
   groups = await Promise.all(
@@ -71,6 +69,7 @@ export async function updateUserProps(
       if (!new_group_ids.includes(group.id)) {
         return true;
       }
+      return false;
     })
     .map((group) => {
       return { id: group.id };

@@ -1,7 +1,8 @@
 // saml server
+import fs from "fs";
+
 import * as samlify from "samlify";
 import * as validator from "@authenio/samlify-xsd-schema-validator";
-import fs from "fs";
 
 samlify.setSchemaValidator(validator);
 

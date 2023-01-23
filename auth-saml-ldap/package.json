@@ -3,12 +3,12 @@
   "sideEffects": false,
   "scripts": {
     "build": "remix build",
-    "dev": "npm run saml:setup; npm run saml:cert; run-p dev:*",
+    "dev": "npm run saml:cert; run-p dev:*",
     "dev:server": "remix dev",
     "dev:ldap": "docker run  -p 389:1389 -v \"$(pwd)/test/ldap/config\":/ldifs bitnami/openldap:latest",
     "dev:saml": "node ./test/saml-idp/bin/run.js --acsUrl http://localhost:3000/auth/asc --audience http://localhost:3000/login",
     "saml:cert": "openssl req -x509 -new -newkey rsa:2048 -nodes -subj '/C=US/ST=California/L=San Francisco/O=JankyCo/CN=Test Identity Provider' -keyout test/saml-idp/idp-private-key.pem -out test/saml-idp/idp-public-cert.pem -days 7300",
-    "saml:setup": "git submodule update --rebase --remote; cd test/saml-idp/; npm install",
+    "saml:setup": "rm -rf test/saml-idp; mkdir test/saml-idp; git clone https://github.com/mcguinness/saml-idp.git test/saml-idp; cd test/saml-idp/; npm install",
     "start": "remix-serve build",
     "setup": "prisma generate && prisma migrate dev --name \"initial\""
   },

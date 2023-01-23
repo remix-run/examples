@@ -1,11 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-
 import { json } from "@remix-run/node";
-
-
-import { getUser, getSession, sessionStorage } from "./session.server";
-
 import {
   Links,
   LiveReload,
@@ -14,6 +9,8 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+
+import { getUser, getSession, sessionStorage } from "./session.server";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -34,7 +31,8 @@ export async function loader({ request }: LoaderArgs) {
 }
 
 export default function App() {
-  const { user } = useLoaderData();
+  // example of accessing user in root.tsx.
+  const { user } = useLoaderData(); // eslint-disable-line
 
   return (
     <html lang="en">

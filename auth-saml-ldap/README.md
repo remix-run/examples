@@ -45,7 +45,7 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 <!-- TODO: update this link to the path for your example: -->
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/remix-auth-saml-ldap)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/auth-saml-ldap)
 
 ## Example
 
@@ -54,4 +54,3 @@ When you access the website you will be redirected to SAML for authentication. A
 If for some reason SAML fails (server offline, cert busted, etc) you will be directed the the `/login` route which is using LDAP.
 
 Sessions can be destroyed by calling the `/logout` or `/auth/slo` routes.
-

@@ -44,13 +44,13 @@ export async function getUser(request: Request) {
   throw await logout(request);
 }
 
-export let authorize: Policy<{
+export const authorize: Policy<{
   user: User;
   session: Session;
 }> = async (request, groups = undefined, callback) => {
-  let session = await getSession(request);
+  const session = await getSession(request);
   const redirectTo: string = new URL(request.url).pathname;
-  let user = await getUser(request);
+  const user = await getUser(request);
   try {
     // send back to login page if the user doesn't exist.
     if (!user) {
@@ -65,7 +65,7 @@ export let authorize: Policy<{
     // redirect to /login to use ldap auth as a fallback.
     try {
       const idp = await getIdp();
-      const { id, context } = sp.createLoginRequest(idp, "redirect");
+      const { context } = sp.createLoginRequest(idp, "redirect");
       const url = new URL(request.url);
       const pathname = url.searchParams.get("redirectTo") || "/";
       return redirect(context + "&RelayState=" + pathname, {

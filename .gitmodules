@@ -1,3 +1,0 @@
-[submodule "auth-saml-ldap/test/saml-idp"]
-	path = auth-saml-ldap/test/saml-idp
-	url = https://github.com/mcguinness/saml-idp.git
