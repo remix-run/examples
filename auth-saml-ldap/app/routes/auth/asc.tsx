@@ -16,7 +16,10 @@ export const action: ActionFunction = async ({ request }) => {
   const { extract } = await sp.parseLoginResponse(idp, "post", {
     body: body,
   });
-  if (extract.nameID) {
+  if (!extract.nameID) {
+    // return to next url
+    return redirect("/access_denied");
+  }
     const next = body.RelayState ? body.RelayState : "/";
     const email = extract.nameID;
 
