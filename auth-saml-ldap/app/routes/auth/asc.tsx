@@ -5,7 +5,7 @@ import { createUserSession } from "~/session.server";
 import { sp, getIdp } from "~/saml.server";
 import { updateUserProps } from "~/models/user.server";
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const formData = await request.formData();
 
   if (request.method !== "POST") {
