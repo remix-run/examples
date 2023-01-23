@@ -40,10 +40,6 @@ export const action: ActionFunction = async ({ request }) => {
       expiration: expiration,
       redirectTo: next,
     });
-  }
-
-  // return to next url
-  return redirect("/access_denied");
 };
 
 export async function loader({ request }: LoaderArgs) {
