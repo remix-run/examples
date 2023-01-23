@@ -3,8 +3,6 @@ import { authenticate } from "ldap-authentication";
 
 import { updateUserProps } from "~/models/user.server";
 
-export type { User } from "@prisma/client";
-
 export async function verifyLogin(email: User["email"], password: string) {
   // first login with ldap
 
