@@ -4,8 +4,6 @@ import { json } from "@remix-run/node";
 import { Form, Link, useActionData, useLoaderData } from "@remix-run/react";
 import * as React from "react";
 import type { LoaderArgs } from "@remix-run/server-runtime";
-import { useLoaderData } from "@remix-run/react";
-import { Form, useActionData } from "@remix-run/react";
 
 import { verifyLogin } from "~/ldap.server";
 import {
