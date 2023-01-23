@@ -72,7 +72,7 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Login() {
-  const { loginError } = useLoaderData();
+  const { loginError } = useLoaderData<typeof loader>();
 
   const actionData = useActionData<typeof action>();
 
