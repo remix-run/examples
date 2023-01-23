@@ -69,14 +69,12 @@ export async function updateUserProps(
     .map(({ id }) => ({ id }));
 
   return await prisma.user.update({
-    where: { email: email },
+    where: { email },
     data: {
-      firstName: firstName,
-      lastName: lastName,
+      firstName,
+      lastName,
       groups: {
-        connect: groups.map((group) => {
-          return { id: group.id };
-        }),
+        connect: groups.map(({ id }) => ({ id })),
         disconnect: removed_groups,
       },
     },
