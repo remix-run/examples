@@ -12,6 +12,6 @@ export async function loader({ request }: LoaderArgs) {
 }
 
 export default function Index() {
-  const user = useLoaderData();
+  const user = useLoaderData<typeof loader>();
   return <div> hi {user.email}</div>;
 }
