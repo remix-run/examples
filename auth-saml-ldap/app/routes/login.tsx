@@ -1,6 +1,5 @@
 import type { ActionArgs } from "@remix-run/node";
-import { redirect } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
 import { Form, Link, useActionData, useLoaderData } from "@remix-run/react";
 import * as React from "react";
 import type { LoaderArgs } from "@remix-run/server-runtime";
