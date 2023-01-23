@@ -65,12 +65,7 @@ export async function updateUserProps(
 
   const new_group_ids = groups.map((group) => Number(group.id));
   const removed_groups = existing_groups.groups
-    .filter((group) => {
-      if (!new_group_ids.includes(group.id)) {
-        return true;
-      }
-      return false;
-    })
+    .filter((group) => !new_group_ids.includes(group.id))
     .map((group) => {
       return { id: group.id };
     });
