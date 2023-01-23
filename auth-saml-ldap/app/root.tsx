@@ -17,17 +17,6 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-export async function loader({ request }: LoaderArgs) {
-  const session = await getSession(request);
-
-  return json({
-    headers: {
-      // only necessary with cookieSessionStorage
-      "Set-Cookie": await sessionStorage.commitSession(session),
-    },
-  });
-}
-
 export default function App() {
   return (
     <html lang="en">
