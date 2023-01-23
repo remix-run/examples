@@ -1,4 +1,4 @@
-import type { LoaderArgs } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 
 import { createUserSession } from "~/session.server";
