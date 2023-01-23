@@ -14,7 +14,7 @@ export const action: ActionFunction = async ({ request }) => {
   const body = Object.fromEntries(formData);
   const idp = await getIdp();
   const { extract } = await sp.parseLoginResponse(idp, "post", {
-    body: body,
+    body,
   });
   if (!extract.nameID) {
     // return to next url
