@@ -1,6 +1,6 @@
 # Using react-quill (WYSIWYG) in Remix application
 
-In this example we are implementing a WYSIWYG editor with Quill. 
+In this example we are implementing a WYSIWYG editor with Quill.
 
 We have used react-quill as our library of choice to implement it.
 
@@ -14,7 +14,7 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 WYSIWYG editor with react-quill
 
-Because `react-quill` uses `window` features under the hood, you should create a wrapper with [`remix-utils`](https://github.com/sergiodxa/remix-utils)' [`ClientOnly` component](https://github.com/sergiodxa/remix-utils#clientonly). 
+Because `react-quill` uses `window` features under the hood, you should create a wrapper with [`remix-utils`](https://github.com/sergiodxa/remix-utils)' [`ClientOnly` component](https://github.com/sergiodxa/remix-utils#clientonly).
 
 ## Related Links
 

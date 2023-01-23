@@ -1,5 +1,5 @@
 import { json } from "@remix-run/node";
-import type { ActionArgs, LinksFunction } from '@remix-run/node';
+import type { ActionArgs, LinksFunction } from "@remix-run/node";
 import { Form } from "@remix-run/react";
 import { useState } from "react";
 import stylesheetQuill from "react-quill/dist/quill.snow.css";
@@ -10,12 +10,12 @@ import { TextEditor } from "~/components/textEditor.client";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesheetQuill }];
-}
+};
 
-export const action = async ({ request }: ActionArgs)  => {
+export const action = async ({ request }: ActionArgs) => {
   const form = await request.formData();
   const textEditorValue = form.get("textEditor");
-  return json({textEditorValue});
+  return json({ textEditorValue });
 };
 
 export default function Index() {
@@ -32,11 +32,7 @@ export default function Index() {
           />
         )}
       </ClientOnly>
-      <input
-        type="hidden"
-        name="textEditor"
-        value={textEditor}
-      />
+      <input type="hidden" name="textEditor" value={textEditor} />
       <br />
       <button type="submit">Submit</button>
     </Form>

@@ -2,7 +2,10 @@ import type { ComponentProps } from "react";
 import ReactQuill from "react-quill";
 
 type ReactQuillProps = ComponentProps<typeof ReactQuill>;
-type Props = Pick<ReactQuillProps, 'name' | 'onChange' | 'placeholder' | 'theme' | 'value'>;
+type Props = Pick<
+  ReactQuillProps,
+  "name" | "onChange" | "placeholder" | "theme" | "value"
+>;
 
 const toolBarOptions = {
   toolbar: [
@@ -21,7 +24,5 @@ const toolBarOptions = {
 };
 
 export function TextEditor(props: Props) {
-  return (
-      <ReactQuill {...props} modules={toolBarOptions} />
-  );
+  return <ReactQuill {...props} modules={toolBarOptions} />;
 }
