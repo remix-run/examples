@@ -1,5 +1,4 @@
 import type { MetaFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -8,8 +7,6 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-
-import { getSession, sessionStorage } from "./session.server";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

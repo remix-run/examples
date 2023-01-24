@@ -12,9 +12,11 @@ import {
 } from "~/session.server";
 import { safeRedirect, validateEmail } from "~/utils";
 
-export async function loader({ request }: LoaderArgs) {
+export const loader = async ({ request }: LoaderArgs) => {
   const userId = await getUserId(request);
-  if (userId) return redirect("/");
+  if (userId) {
+    return redirect("/");
+  }
 
   const session = await getSession(request);
   const loginError = session.get("loginError") || null;
@@ -28,9 +30,9 @@ export async function loader({ request }: LoaderArgs) {
       },
     }
   );
-}
+};
 
-export async function action({ request }: ActionArgs) {
+export const action = async ({ request }: ActionArgs) => {
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");
@@ -63,7 +65,7 @@ export async function action({ request }: ActionArgs) {
     expiration: undefined,
     redirectTo,
   });
-}
+};
 
 export const meta: MetaFunction = () => {
   return {

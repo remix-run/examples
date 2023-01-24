@@ -1,6 +1,6 @@
 import { metadata } from "~/saml.server";
 
-export async function loader({ params }: LoaderArgs) {
+export const loader = async () => {
   const meta = metadata();
   return new Response(meta, {
     status: 200,
@@ -8,4 +8,4 @@ export async function loader({ params }: LoaderArgs) {
       "Content-Type": "text/xml",
     },
   });
-}
+};

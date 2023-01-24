@@ -2,17 +2,17 @@ import type { User } from "@prisma/client";
 
 import { prisma } from "~/db.server";
 
-export type { User } from "@prisma/client";
+export type { Group, User } from "@prisma/client";
 
 export async function getUserById(id: User["id"]) {
   return prisma.user.findUnique({ where: { id }, include: { groups: true } });
 }
 
-export async function getUserByEmail(email: User["email"]) {
+async function getUserByEmail(email: User["email"]) {
   return prisma.user.findUnique({ where: { email } });
 }
 
-export async function createUser(email: User["email"]) {
+async function createUser(email: User["email"]) {
   return prisma.user.create({
     data: {
       email,
@@ -20,18 +20,18 @@ export async function createUser(email: User["email"]) {
   });
 }
 
-export async function createGroup(name: Group["name"]) {
+async function createGroup(name: Group["name"]) {
   return await prisma.group.create({
     data: {
       name,
     },
   });
 }
-export async function getGroupByName(name: Group["name"]) {
+async function getGroupByName(name: Group["name"]) {
   return await prisma.group.findUnique({ where: { name } });
 }
 
-export async function getOrCreateGroup(name: Group["name"]) {
+async function getOrCreateGroup(name: Group["name"]) {
   const group = await getGroupByName(name);
 
   if (group) return group;
@@ -39,7 +39,7 @@ export async function getOrCreateGroup(name: Group["name"]) {
   return await createGroup(name);
 }
 
-export async function getOrCreateUser(email: User["email"]) {
+async function getOrCreateUser(email: User["email"]) {
   const user = await getUserByEmail(email);
   if (user) return user;
 
@@ -79,8 +79,4 @@ export async function updateUserProps(
       },
     },
   });
-}
-
-export async function deleteUserByEmail(email: User["email"]) {
-  return prisma.user.delete({ where: { email } });
 }

@@ -1,5 +1,6 @@
 import { createCookieSessionStorage, redirect } from "@remix-run/node";
 import invariant from "tiny-invariant";
+import type { Session } from "@remix-run/node";
 
 import type { User } from "~/models/user.server";
 import { getUserById } from "~/models/user.server";
@@ -43,6 +44,11 @@ export async function getUser(request: Request) {
 
   throw await logout(request);
 }
+
+type Policy<PolicyResult> = (
+  request: Request,
+  callback: (input: PolicyResult) => Promise<LoaderReturn>
+) => Promise<LoaderReturn>;
 
 export const authorize: Policy<{
   user: User;

@@ -1,4 +1,4 @@
-import type { ActionArgs, LoaderArgs } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 
 import { createUserSession } from "~/session.server";
@@ -20,29 +20,29 @@ export const action = async ({ request }: ActionArgs) => {
     // return to next url
     return redirect("/access_denied");
   }
-    const next = body.RelayState ? body.RelayState : "/";
-    const email = extract.nameID;
+  const next = body.RelayState ? body.RelayState : "/";
+  const email = extract.nameID;
 
-    const expiration = extract.conditions?.notOnOrAfter;
+  const expiration = extract.conditions?.notOnOrAfter;
 
-    // update user info
-    const user = await updateUserProps(
-      email,
-      extract.attributes?.firstName,
-      extract.attributes?.lastName,
-      extract.attributes?.groups
-    );
+  // update user info
+  const user = await updateUserProps(
+    email,
+    extract.attributes?.firstName,
+    extract.attributes?.lastName,
+    extract.attributes?.groups
+  );
 
-    // create a session
-    return createUserSession({
-      request: request,
-      userId: user.id,
-      expiration: expiration,
-      redirectTo: next,
-    });
+  // create a session
+  return createUserSession({
+    request: request,
+    userId: user.id,
+    expiration: expiration,
+    redirectTo: next,
+  });
 };
 
-export async function loader({ request }: LoaderArgs) {
+export const loader = async () => {
   // get request... send back to home page, we are here by accident.
   return redirect("/");
-}
+};
