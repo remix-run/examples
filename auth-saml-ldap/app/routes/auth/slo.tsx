@@ -4,5 +4,5 @@ import { logout } from "~/session.server";
    this point to logout if we wanna
 */
 export const action = async (request: Request) => {
-  return await logout(request);
+  return logout(request);
 };

@@ -89,7 +89,7 @@ export const authorize: Policy<{
       });
     }
   }
-  return await callback({ user, session });
+  return callback({ user, session });
 };
 
 export async function requireUserId(

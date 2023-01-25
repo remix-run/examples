@@ -21,14 +21,14 @@ async function createUser(email: User["email"]) {
 }
 
 async function createGroup(name: Group["name"]) {
-  return await prisma.group.create({
+  return prisma.group.create({
     data: {
       name,
     },
   });
 }
 async function getGroupByName(name: Group["name"]) {
-  return await prisma.group.findUnique({ where: { name } });
+  return prisma.group.findUnique({ where: { name } });
 }
 
 async function getOrCreateGroup(name: Group["name"]) {
@@ -36,14 +36,14 @@ async function getOrCreateGroup(name: Group["name"]) {
 
   if (group) return group;
 
-  return await createGroup(name);
+  return createGroup(name);
 }
 
 async function getOrCreateUser(email: User["email"]) {
   const user = await getUserByEmail(email);
   if (user) return user;
 
-  return await createUser(email);
+  return createUser(email);
 }
 
 export async function updateUserProps(
@@ -68,7 +68,7 @@ export async function updateUserProps(
     .filter((group) => !new_group_ids.includes(group.id))
     .map(({ id }) => ({ id }));
 
-  return await prisma.user.update({
+  return prisma.user.update({
     where: { email },
     data: {
       firstName,

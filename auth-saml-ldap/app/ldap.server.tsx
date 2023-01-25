@@ -28,11 +28,8 @@ export async function verifyLogin(email: User["email"], password: string) {
     return null;
   }
 
-  // create user
-  // await getOrCreateUser(email);
-
   // update user info
-  return await updateUserProps(
+  return updateUserProps(
     email,
     ldapUser[process.env.LDAP_FIRSTNAME],
     ldapUser[process.env.LDAP_LASTNAME],
