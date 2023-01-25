@@ -1,10 +1,10 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 
 import { signInWithIdp } from "~/server/auth.server";
 import { commitSession, getSession } from "~/sessions";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   // https://developers.google.com/identity/protocols/oauth2/openid-connect
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
