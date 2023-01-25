@@ -6,6 +6,7 @@
     "build": "remix build",
     "dev": "remix dev",
     "emulators": "firebase emulators:start --project remix-emulator --import=firebase-fixtures",
+    "firebase": "firebase",
     "start": "remix-serve build",
     "typecheck": "tsc"
   },

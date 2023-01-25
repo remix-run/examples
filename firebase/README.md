@@ -12,15 +12,18 @@ See the screen recording at `./screen_recording.gif` or Open this example on [Co
 
 ## Running locally
 
-To run it, you need to either:
+To run this example, you either need to create a firebase proejct or use the emulators:
 
 ### 1. Run against a Firebase Project
 
-1. [Create a Firebase Project](https://console.firebase.google.com)
-2. Enable Auth (with email) and Firestore
-3. Add a Web App
-4. Get the [admin-sdk](https://firebase.google.com/docs/admin/setup#initialize-sdk) and [Web API Key](https://firebase.google.com/docs/reference/rest/auth)
-5. Save them to SERVICE_ACCOUNT and API_KEY in the `.env`-file
+1. [Create a Firebase Project](https://console.firebase.google.com).
+2. Enable Auth (with email) and Firestore.
+3. Add a Web App with hosting.
+4. Copy `.env.example` to `.env`.
+5. Set the API_KEY value to the [Web API Key](https://firebase.google.com/docs/reference/rest/auth), which can be obtained on the project settings page in your Firebase admin console.
+6. Set SERVICE_ACCOUNT to the contents of your service account's private key JSON file:
+   - Go to: Project > Project Settings > Service Accounts.
+   - Click "Create Service Account" or "Generate New Private Key" to download the JSON file.
 
 ### 2. Use the Firebase emulators
 
@@ -34,15 +37,18 @@ When you run `npm run emulators`, an initial user is created with credentials `u
 ## Deploying
 
 1. Follow the "Run against a Firebase Project" steps above if not done already
-2. Install the Firebase CLI with `npm i -g firebase-tools`
-3. Log in to the CLI with `firebase login`
-4. Run `firebase use --add` and choose the Firebase project you want to deploy to
-5. Deploy with `firebase deploy`
+2. Log in to the CLI with `npm run firebase -- login`
+3. Run `npm run firebase -- use --add` and choose the Firebase project you want to deploy to
+4. Deploy with `npm run firebase -- deploy`
 
 ## Integration with Google Sign-in Provider
 
-- In the [Firebase Console](https://console.firebase.google.com), navigate to Authentication > Sign-in method > Add new provider > Google. Make a note of the client ID and secret and add them to the .env file.
-- In the [Google Cloud Credentials Console](https://console.cloud.google.com/apis/credentials), select the Web client (under OAuth 2.0 Client IDs) and add `http://localhost:3000/auth/google` and `https://<projectid>.firebaseapp.com/auth/google` as authorised redirects.
+The "Login with Google" link will only work when running against a Firebase Project.
+
+After the steps in "Run against a Firebase Project" have been completed:
+
+- In the [Firebase Console](https://console.firebase.google.com), navigate to Authentication > Sign-in method > Add new provider > Google. Make a note of the client ID and secret and add them to the .env file as GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET.
+- In the [Google Cloud Credentials Console](https://console.cloud.google.com/apis/credentials), select the Web client (under OAuth 2.0 Client IDs) and add `http://localhost:5002/auth/google`, `http://localhost:3000/auth/google` and `https://<projectid>.firebaseapp.com/auth/google` as authorised redirects.
 
 ## Details
 
