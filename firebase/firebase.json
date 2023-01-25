@@ -5,14 +5,13 @@
   },
   "hosting": {
     "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*"
-    ],
-    "rewrites": [{
-      "source": "**",
-      "function": "remix"
-    }]
+    "ignore": ["firebase.json", "**/.*"],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "remix"
+      }
+    ]
   },
   "emulators": {
     "functions": {
