@@ -1,6 +1,7 @@
 {
   "private": true,
   "sideEffects": false,
+  "main": "./functions/index.js",
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
@@ -13,9 +14,11 @@
     "@remix-run/react": "*",
     "@remix-run/serve": "*",
     "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.21.2",
     "isbot": "^3.6.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "remix-google-cloud-functions": "0.0.1"
   },
   "devDependencies": {
     "@remix-run/dev": "*",
@@ -27,6 +30,6 @@
     "typescript": "^4.8.4"
   },
   "engines": {
-    "node": ">=14"
+    "node": "14"
   }
 }
