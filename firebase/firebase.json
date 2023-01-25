@@ -18,7 +18,7 @@
       "port": 5001
     },
     "hosting": {
-      "port": 5000
+      "port": 5002
     },
     "auth": {
       "port": 9099
