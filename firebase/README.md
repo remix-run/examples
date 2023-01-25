@@ -12,16 +12,16 @@ See the screen recording at `./screen_recording.gif` or Open this example on [Co
 
 ## Running locally
 
-To run this example, you either need to create a Firebase project or use the emulators:
+To run this example, you either need to create a Firebase project or use [the emulators](https://firebase.google.com/docs/emulator-suite):
 
-### 1. Run against a Firebase Project
+### 1. Run against a Firebase project
 
-1. [Create a Firebase Project](https://console.firebase.google.com).
-2. Enable Auth (with email) and Firestore.
+1. [Create a Firebase project](https://console.firebase.google.com).
+2. Enable [Auth](https://firebase.google.com/docs/auth) (with email) and [Cloud Firestore](https://firebase.google.com/docs/firestore).
 3. Add a Web App with hosting.
 4. Copy `.env.example` to `.env`.
-5. Set the API_KEY value to the [Web API Key](https://firebase.google.com/docs/reference/rest/auth), which can be obtained on the project settings page in your Firebase admin console.
-6. Set SERVICE_ACCOUNT to the contents of your service account's private key JSON file:
+5. Set the `API_KEY` value to the [Web API Key](https://firebase.google.com/docs/reference/rest/auth), which can be obtained on the project settings page in your Firebase admin console.
+6. Set `SERVICE_ACCOUNT` to the contents of your service account's private key JSON file:
    - Go to: Project > Project Settings > Service Accounts.
    - Click "Create Service Account" or "Generate New Private Key" to download the JSON file.
 
