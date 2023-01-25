@@ -12,7 +12,7 @@ See the screen recording at `./screen_recording.gif` or Open this example on [Co
 
 ## Running locally
 
-To run this example, you either need to create a firebase proejct or use the emulators:
+To run this example, you either need to create a Firebase project or use the emulators:
 
 ### 1. Run against a Firebase Project
 
