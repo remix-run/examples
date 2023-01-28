@@ -41,6 +41,9 @@ const settled = await Promise.allSettled(
 
     const install = await getCommand(detected, "install", ["--silent"]);
     const installArgs = install.split(" ").slice(1, -1);
+    console.log(
+      `Installing ${example} with ${detected} ${installArgs.join(" ")}`
+    );
     const installResult = await execa(detected, installArgs, options);
 
     if (installResult.exitCode) {
@@ -54,6 +57,7 @@ const settled = await Promise.allSettled(
     );
 
     if (hasPrisma) {
+      console.log("Generating prisma types for", example);
       const prismaGenerate = await execa(
         "npx",
         ["prisma", "generate"],
@@ -69,6 +73,7 @@ const settled = await Promise.allSettled(
 
     const build = await getCommand(detected, "run", ["build"]);
     const buildArgs = build.split(" ").slice(1);
+    console.log(`Building ${example} with ${detected} ${buildArgs.join(" ")}`);
     const buildResult = await execa(detected, buildArgs, options);
 
     if (buildResult.exitCode) {
@@ -90,6 +95,9 @@ const settled = await Promise.allSettled(
 
     const typecheck = await getCommand(detected, "run", ["typecheck"]);
     const typecheckArgs = typecheck.split(" ").slice(1);
+    console.log(
+      `Typechecking ${example} with ${detected} ${typecheckArgs.join(" ")}`
+    );
     const typecheckResult = await execa(detected, typecheckArgs, options);
 
     if (typecheckResult.exitCode) {
