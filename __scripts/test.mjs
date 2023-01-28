@@ -29,8 +29,10 @@ if (process.env.CI) {
 
   examples = [...new Set(dirs)].filter((d) => !TO_IGNORE.includes(d));
 } else {
-  examples = await fse.readdir(process.cwd());
-  examples = examples.filter((d) => !TO_IGNORE.includes(d));
+  const entries = await fse.readdir(process.cwd(), { withFileTypes: true });
+  examples = entries
+    .filter((entry) => entry.isDirectory())
+    .filter((d) => !TO_IGNORE.includes(d));
 }
 
 const list = new Intl.ListFormat("en", { style: "long", type: "conjunction" });
@@ -40,6 +42,29 @@ console.log(`Testing changed examples: ${list.format(examples)}`);
 const settled = await Promise.allSettled(
   examples.map(async (example) => {
     const pkgJson = await PackageJson.load(example);
+
+    const remixDeps = Object.keys(pkgJson.content.dependencies).filter((d) => {
+      return d.startsWith("@remix-run/");
+    });
+
+    const remixDevDeps = Object.keys(pkgJson.content.devDependencies).filter(
+      (d) => {
+        return d.startsWith("@remix-run/");
+      }
+    );
+
+    pkgJson.update({
+      dependencies: {
+        ...pkgJson.content.dependencies,
+        ...Object.fromEntries(remixDeps.map((d) => [d, `latest`])),
+      },
+      devDependencies: {
+        ...pkgJson.content.devDependencies,
+        ...Object.fromEntries(remixDevDeps.map((d) => [d, `latest`])),
+      },
+    });
+
+    await pkgJson.save();
 
     /** @type {import('execa').Options} */
     const options = { cwd: example };
@@ -89,17 +114,6 @@ const settled = await Promise.allSettled(
       return;
     }
 
-    if (!("typecheck" in pkgJson.content.scripts)) {
-      pkgJson.update({
-        scripts: {
-          ...pkgJson.content.scripts,
-          typecheck: "tsc --skipLibCheck",
-        },
-      });
-
-      await pkgJson.save();
-    }
-
     const typecheck = await getCommand(detected, "run", ["typecheck"]);
     const typecheckArgs = typecheck.split(" ").slice(1);
     console.log(
@@ -112,6 +126,19 @@ const settled = await Promise.allSettled(
       console.error(typecheckResult.stderr);
       return;
     }
+
+    pkgJson.update({
+      dependencies: {
+        ...pkgJson.content.dependencies,
+        ...Object.fromEntries(remixDeps.map((d) => [d, `*`])),
+      },
+      devDependencies: {
+        ...pkgJson.content.devDependencies,
+        ...Object.fromEntries(remixDevDeps.map((d) => [d, `*`])),
+      },
+    });
+
+    await pkgJson.save();
   })
 );
 
