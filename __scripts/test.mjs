@@ -26,6 +26,10 @@ const dirs = files.map((f) => f.split("/").at(0));
 
 const examples = [...new Set(dirs)].filter((d) => !TO_IGNORE.includes(d));
 
+const list = new Intl.ListFormat("en", { style: "long", type: "conjunction" });
+
+console.log(`Testing changed examples: ${list.format(examples)}`);
+
 const settled = await Promise.allSettled(
   examples.map(async (example) => {
     const pkgJson = await PackageJson.load(example);

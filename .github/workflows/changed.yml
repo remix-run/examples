@@ -28,4 +28,4 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: install, build, typecheck
-        run: node ./scripts/test.mjs
+        run: node ./__scripts/test.mjs
