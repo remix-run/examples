@@ -7,24 +7,31 @@ import { detect, getCommand } from "@antfu/ni";
 import PackageJson from "@npmcli/package-json";
 import fse from "fs-extra";
 
-const TO_IGNORE = [".github", "scripts", "yarn.lock", "package.json"];
+const TO_IGNORE = [".github", "__scripts", "yarn.lock", "package.json"];
 
-const { stderr, stdout, exitCode } = await execa(
-  "git",
-  ["--no-pager", "diff", "--name-only", "HEAD~1"],
-  { cwd: process.cwd() }
-);
+let examples = [];
 
-if (exitCode !== 0) {
-  console.error(stderr);
-  process.exit(exitCode);
+if (process.env.CI) {
+  const { stderr, stdout, exitCode } = await execa(
+    "git",
+    ["--no-pager", "diff", "--name-only", "HEAD~1"],
+    { cwd: process.cwd() }
+  );
+
+  if (exitCode !== 0) {
+    console.error(stderr);
+    process.exit(exitCode);
+  }
+
+  const files = stdout.split("\n");
+
+  const dirs = files.map((f) => f.split("/").at(0));
+
+  examples = [...new Set(dirs)].filter((d) => !TO_IGNORE.includes(d));
+} else {
+  examples = await fse.readdir(process.cwd());
+  examples = examples.filter((d) => !TO_IGNORE.includes(d));
 }
-
-const files = stdout.split("\n");
-
-const dirs = files.map((f) => f.split("/").at(0));
-
-const examples = [...new Set(dirs)].filter((d) => !TO_IGNORE.includes(d));
 
 const list = new Intl.ListFormat("en", { style: "long", type: "conjunction" });
 
