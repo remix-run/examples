@@ -83,9 +83,7 @@ for (const example of examples) {
 
     const install = await getCommand(detected, "install", ["--silent"]);
     const installArgs = install.split(" ").slice(1, -1);
-    console.log(
-      `Installing ${example} with ${detected} ${installArgs.join(" ")}`
-    );
+    console.log(`📥 Installing ${example} with ${install}`);
     const installResult = await execa(detected, installArgs, options);
 
     if (installResult.exitCode) {
@@ -115,7 +113,7 @@ for (const example of examples) {
 
     const build = await getCommand(detected, "run", ["build"]);
     const buildArgs = build.split(" ").slice(1);
-    console.log(`Building ${example} with ${detected} ${buildArgs.join(" ")}`);
+    console.log(`📦 Building ${example} with ${build}`);
     const buildResult = await execa(detected, buildArgs, options);
 
     if (buildResult.exitCode) {
@@ -126,9 +124,7 @@ for (const example of examples) {
 
     const typecheck = await getCommand(detected, "run", ["typecheck"]);
     const typecheckArgs = typecheck.split(" ").slice(1);
-    console.log(
-      `Typechecking ${example} with ${detected} ${typecheckArgs.join(" ")}`
-    );
+    console.log(`🕵️ Typechecking ${example} with ${typecheck}`);
     const typecheckResult = await execa(detected, typecheckArgs, options);
 
     if (typecheckResult.exitCode) {
