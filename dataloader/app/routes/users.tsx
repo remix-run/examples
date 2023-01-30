@@ -1,7 +1,8 @@
 import { json } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
-import { User } from "~/data.server";
-import { DataLoaderArgs } from "~/loaders/userLoader";
+
+import type { User } from "~/data.server";
+import type { DataLoaderArgs } from "~/loaders/userLoader";
 
 export const loader = async ({ context }: DataLoaderArgs) => {
   const users = await context.loaders.usersById.loadMany([

@@ -1,6 +1,7 @@
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { DataLoaderArgs } from "~/loaders/userLoader";
+
+import type { DataLoaderArgs } from "~/loaders/userLoader";
 
 export const loader = async ({ context }: DataLoaderArgs) => {
   /*

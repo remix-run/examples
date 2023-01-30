@@ -126,13 +126,13 @@ export const action = async ({ request }: ActionArgs) => {
 
 export default function Register() {
   const actionData = useActionData<typeof action>();
-  let fieldErrors =
+  const fieldErrors =
     actionData && "fieldErrors" in actionData
       ? actionData.fieldErrors
       : undefined;
-  let formError =
+  const formError =
     actionData && "formError" in actionData ? actionData.formError : undefined;
-  let fields =
+  const fields =
     actionData && "fields" in actionData ? actionData.fields : undefined;
   const [searchParams] = useSearchParams();
 
