@@ -27,6 +27,7 @@
     "@antfu/ni": "^0.18.8",
     "@npmcli/package-json": "^3.0.0",
     "execa": "^6.1.0",
-    "fs-extra": "11.1.0"
+    "fs-extra": "11.1.0",
+    "p-queue": "^7.3.0"
   }
 }

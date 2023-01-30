@@ -1,13 +1,19 @@
 #!/usr/bin/env node
 
 import path from "node:path";
+import os from "node:os";
 
 import { execa } from "execa";
 import { detect, getCommand } from "@antfu/ni";
 import PackageJson from "@npmcli/package-json";
 import fse from "fs-extra";
+import PQueue from "p-queue";
 
-const TO_IGNORE = [".github", "__scripts", "yarn.lock", "package.json"];
+console.log({ concurrency: os.cpus().length });
+
+const queue = new PQueue({ concurrency: os.cpus().length });
+
+const TO_IGNORE = [".git", ".github", "__scripts", "yarn.lock", "package.json"];
 
 let examples = [];
 
@@ -32,15 +38,19 @@ if (process.env.CI) {
   const entries = await fse.readdir(process.cwd(), { withFileTypes: true });
   examples = entries
     .filter((entry) => entry.isDirectory())
-    .filter((d) => !TO_IGNORE.includes(d));
+    .filter((entry) => !TO_IGNORE.includes(entry.name))
+    .map((entry) => entry.name)
+    .filter((entry) => {
+      return fse.existsSync(path.join(entry, "package.json"));
+    });
 }
 
 const list = new Intl.ListFormat("en", { style: "long", type: "conjunction" });
 
 console.log(`Testing changed examples: ${list.format(examples)}`);
 
-const settled = await Promise.allSettled(
-  examples.map(async (example) => {
+for (const example of examples) {
+  queue.add(async () => {
     const pkgJson = await PackageJson.load(example);
 
     const remixDeps = Object.keys(pkgJson.content.dependencies).filter((d) => {
@@ -139,9 +149,16 @@ const settled = await Promise.allSettled(
     });
 
     await pkgJson.save();
-  })
-);
+  });
+}
 
-const rejected = settled.filter((s) => s.status === "rejected");
-rejected.forEach((s) => console.error(s.reason));
-process.exit(rejected.length > 0 ? 1 : 0);
+try {
+  queue.start();
+} catch (error) {
+  console.error(error);
+  process.exit(1);
+}
+
+// const rejected = promises.filter((s) => s.status === "rejected");
+// rejected.forEach((s) => console.error(s.reason));
+// process.exit(rejected.length > 0 ? 1 : 0);
