@@ -8,7 +8,7 @@ export interface ImageProps extends React.ComponentPropsWithRef<"img"> {
   fit?: keyof FitEnum; // contain is default
   alt: string;
 }
-const Image = forwardRef<HTMLImageElement, ImageProps>(
+export const Image = forwardRef<HTMLImageElement, ImageProps>(
   ({ children, width, height, fit, src, alt = "", ...other }, forwardedRef) => {
     const query = new URLSearchParams();
     if (width) {
