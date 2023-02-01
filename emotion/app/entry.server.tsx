@@ -11,7 +11,7 @@ export default function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext
+  remixContext: any
 ) {
   const cache = createEmotionCache();
   const { extractCriticalToChunks } = createEmotionServer(cache);

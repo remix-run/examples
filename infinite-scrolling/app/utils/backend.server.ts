@@ -1,3 +1,12 @@
+interface Item {
+  id: string;
+  value: string;
+}
+
+declare global {
+  var __items: Item[];
+}
+
 const items = (global.__items =
   global.__items ??
   Array.from({ length: 50_000 }, (_, i) => ({

@@ -125,6 +125,7 @@ export const loader = async ({ request }: LoaderArgs) => {
 };
 
 export default function SignIn() {
+  // @ts-expect-error
   const { fieldErrors, fields, formError } = useActionData<typeof action>();
   const [searchParams] = useSearchParams();
   const formRef = React.useRef<HTMLFormElement>(null);

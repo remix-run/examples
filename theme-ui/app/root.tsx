@@ -8,7 +8,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import { ThemeProvider } from "@theme-ui/core";
+import { ThemeProvider } from "theme-ui";
 import type { ReactNode } from "react";
 import { useContext, useEffect } from "react";
 
@@ -31,7 +31,7 @@ const Document = withEmotionCache(
 
     // Only executed on client
     useEffect(() => {
-      resetClientStyleData();
+      resetClientStyleData?.();
     }, [resetClientStyleData]);
 
     return (

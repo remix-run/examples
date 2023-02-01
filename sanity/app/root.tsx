@@ -20,10 +20,10 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-const Document: FunctionComponent<{ title?: string }> = ({
-  children,
-  title,
-}) => (
+const Document: FunctionComponent<{
+  children: React.ReactNode;
+  title?: string;
+}> = ({ children, title }) => (
   <html lang="en">
     <head>
       {title ? <title>{title}</title> : null}

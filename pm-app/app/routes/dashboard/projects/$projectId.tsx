@@ -296,12 +296,15 @@ export default function ProjectRoute() {
               <Label>Members</Label>
 
               <MemberSearch
+                // @ts-expect-error
                 users={selectableUsers}
+                // @ts-expect-error
                 selection={
                   membersFetcher.submission
                     ? optimisticMembersExcludingSelf
                     : membersExcludingSelf
                 }
+                // @ts-expect-error
                 onSelectionChange={setOptimisticSelectedMembers}
               >
                 <MemberSearchCombobox />
@@ -387,7 +390,9 @@ export default function ProjectRoute() {
                 <Label>Members</Label>
 
                 <MemberSearch
+                  // @ts-expect-error
                   users={selectableUsers}
+                  // @ts-expect-error
                   initialSelection={membersExcludingSelf}
                 >
                   <MemberSearchCombobox />

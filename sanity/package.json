@@ -14,8 +14,8 @@
     "@remix-run/serve": "~1.14.2",
     "@sanity/groq-store": "^0.4.0",
     "@sanity/image-url": "^1.0.1",
-    "picosanity": "^4.0.0",
     "isbot": "^3.6.5",
+    "picosanity": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

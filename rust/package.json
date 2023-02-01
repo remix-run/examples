@@ -6,7 +6,8 @@
     "predev": "wasm-pack build rust-functions --target nodejs --out-name rust-functions",
     "dev": "remix dev",
     "start": "remix-serve build",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "__setup": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && cargo install wasm-pack && cd rust-functions && wasm-pack build --target nodejs && cd -"
   },
   "dependencies": {
     "@remix-run/node": "~1.14.2",

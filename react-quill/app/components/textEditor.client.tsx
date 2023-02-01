@@ -4,7 +4,7 @@ import ReactQuill from "react-quill";
 type ReactQuillProps = ComponentProps<typeof ReactQuill>;
 type Props = Pick<
   ReactQuillProps,
-  "name" | "onChange" | "placeholder" | "theme" | "value"
+  "onChange" | "placeholder" | "theme" | "value"
 >;
 
 const toolBarOptions = {

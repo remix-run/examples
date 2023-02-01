@@ -24,7 +24,6 @@ export const action = async ({ request }: ActionArgs) => {
 
 export default function Add() {
   const navigate = useNavigate();
-  const actionData = useActionData<typeof action>();
   const transition = useTransition();
 
   function onDismiss() {
@@ -44,35 +43,15 @@ export default function Add() {
         style={{ display: "flex", flexDirection: "column" }}
       >
         <label htmlFor="company">Company</label>
-        <input
-          defaultValue={actionData?.fields?.company}
-          type="text"
-          name="company"
-          id="company"
-        />
+        <input type="text" name="company" id="company" />
 
         <label htmlFor="description">Description</label>
-        <textarea
-          defaultValue={actionData?.fields?.description}
-          name="description"
-          id="description"
-          rows={10}
-        />
+        <textarea name="description" id="description" rows={10} />
 
         <label htmlFor="amount">Amount</label>
-        <input
-          defaultValue={actionData?.fields?.amount}
-          type="number"
-          name="amount"
-          id="amount"
-        />
+        <input type="number" name="amount" id="amount" />
         <label htmlFor="date">Date</label>
-        <input
-          defaultValue={actionData?.fields?.date}
-          type="date"
-          name="date"
-          id="date"
-        />
+        <input type="date" name="date" id="date" />
         <div>
           <button type="submit" disabled={disabled}>
             Add

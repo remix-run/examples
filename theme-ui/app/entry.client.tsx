@@ -7,7 +7,9 @@ import { hydrate } from "react-dom";
 import { ClientStyleContext } from "./styles/context";
 import { createEmotionCache } from "./styles/createEmotionCache";
 
-const ClientCacheProvider: FunctionComponent = ({ children }) => {
+const ClientCacheProvider: FunctionComponent<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [cache, setCache] = useState(createEmotionCache());
 
   const reset = useCallback(() => setCache(createEmotionCache()), []);

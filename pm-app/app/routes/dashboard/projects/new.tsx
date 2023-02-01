@@ -98,7 +98,7 @@ export const action = async ({ request }: ActionArgs) => {
 
 function NewProject() {
   const { allUsers, user } = useLoaderData<typeof loader>();
-  const { fieldErrors, fields, formError } = useActionData<typeof action>();
+  const actionData = useActionData<typeof action>();
 
   const selectableUsers = React.useMemo(() => {
     return allUsers.filter((u) => u.id !== user.id);
@@ -130,10 +130,14 @@ function NewProject() {
       <div className="new-project__section new-project__create-section">
         <Form
           method="post"
-          aria-describedby={formError ? "form-error-message" : undefined}
+          aria-describedby={
+            actionData && "formError" in actionData && actionData.formError
+              ? "form-error-message"
+              : undefined
+          }
         >
           <div className="new-project__form">
-            {formError ? (
+            {actionData && "formError" in actionData && actionData.formError ? (
               <div className="new-project__form-error">
                 <span
                   className="new-project__form-error-text"
@@ -148,12 +152,20 @@ function NewProject() {
             <FieldProvider
               name="name"
               id="new-project-name"
-              error={fieldErrors?.name}
+              error={
+                actionData && "fieldErrors" in actionData
+                  ? actionData.fieldErrors?.name
+                  : undefined
+              }
             >
               <Label>Project Name</Label>
               <Field
                 required
-                defaultValue={fields?.name}
+                defaultValue={
+                  actionData && "fields" in actionData
+                    ? actionData.fields.name
+                    : undefined
+                }
                 onChange={handleNameChange}
                 onBlur={handleNameBlur}
               />
@@ -162,10 +174,20 @@ function NewProject() {
             <FieldProvider
               name="description"
               id="new-project-description"
-              error={fieldErrors?.description}
+              error={
+                actionData && "fieldErrors" in actionData
+                  ? actionData.fieldErrors.description
+                  : undefined
+              }
             >
               <Label>Description</Label>
-              <Textarea defaultValue={fields?.description} />
+              <Textarea
+                defaultValue={
+                  actionData && "fields" in actionData
+                    ? actionData.fields.description
+                    : undefined
+                }
+              />
               <FieldError />
             </FieldProvider>
 
@@ -173,10 +195,15 @@ function NewProject() {
               <FieldProvider
                 name="members-combobox"
                 id="new-project-members"
-                error={fieldErrors?.members}
+                error={
+                  actionData && "fieldErrors" in actionData
+                    ? actionData.fieldErrors.members
+                    : undefined
+                }
               >
                 <Label>Members</Label>
 
+                {/* @ts-expect-error */}
                 <MemberSearch users={selectableUsers}>
                   <MemberSearchCombobox />
                   <MemberSearchHiddenField name="members" />

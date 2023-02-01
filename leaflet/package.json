@@ -11,11 +11,11 @@
     "@remix-run/node": "~1.14.2",
     "@remix-run/react": "~1.14.2",
     "@remix-run/serve": "~1.14.2",
-    "leaflet": "^1.8.0",
-    "react-leaflet": "^4.0.2",
     "isbot": "^3.6.5",
+    "leaflet": "^1.8.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-leaflet": "^4.0.2"
   },
   "devDependencies": {
     "@remix-run/dev": "~1.14.2",

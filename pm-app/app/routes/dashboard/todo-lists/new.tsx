@@ -129,6 +129,7 @@ const NewTodoList: RouteComponent = () => {
   const actionData = useActionData<typeof action>() || {};
   const { projects } = useLoaderData<typeof loader>();
   const [searchParams] = useSearchParams();
+  // @ts-expect-error
   const { fieldErrors, fields, formError } = actionData;
   const [todos, setTodos] = React.useState<TempTodo[]>([]);
   const [hydrated, setHyrdrated] = React.useState(false);
@@ -159,6 +160,7 @@ const NewTodoList: RouteComponent = () => {
                   id="form-error-text"
                   role="alert"
                 >
+                  {/* @ts-expect-error */}
                   {actionData.formError}
                 </span>
               </div>

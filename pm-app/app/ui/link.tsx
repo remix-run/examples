@@ -20,12 +20,15 @@ const CustomNavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
         ...domProps
       } = props;
       return (
+        // @ts-expect-error
         <a
           {...domProps}
           href={to}
           className={
+            // @ts-expect-error
             isFunction(className) ? className({ isActive: false }) : className
           }
+          // @ts-expect-error
           style={isFunction(style) ? style({ isActive: false }) : style}
           ref={ref}
         />

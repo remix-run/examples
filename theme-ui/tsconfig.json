@@ -11,6 +11,7 @@
     "strict": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
+    "jsxImportSource": "theme-ui",
     "baseUrl": ".",
     "paths": {
       "~/*": ["./app/*"]

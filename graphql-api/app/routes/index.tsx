@@ -27,7 +27,7 @@ export default function Index() {
         above to see what the Remix loader returned.
       </p>
       <hr style={{ margin: "40px auto" }} />
-      {characters.map((character) => {
+      {characters.map((character: any) => {
         if (!character) return null;
 
         const { image } = character;

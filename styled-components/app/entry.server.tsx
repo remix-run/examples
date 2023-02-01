@@ -13,6 +13,7 @@ export default function handleRequest(
 
   let markup = renderToString(
     sheet.collectStyles(
+      // @ts-expect-error
       <RemixServer context={remixContext} url={request.url} />
     )
   );

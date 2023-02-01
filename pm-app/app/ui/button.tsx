@@ -44,9 +44,11 @@ const ButtonNavLink = React.forwardRef<HTMLAnchorElement, ButtonNavLinkProps>(
         tabIndex={disabled ? -1 : undefined}
         {...domProps}
         className={({ isActive }) =>
+          // @ts-expect-error
           getButtonClassNames({ ...props, isActive })
         }
       >
+        {/* @ts-expect-error */}
         <span className="ui--button__inner">{children}</span>
       </NavLink>
     );

@@ -8,6 +8,7 @@ export const action = async ({ request }: ActionArgs) => {
   const sig = request.headers.get("stripe-signature");
   let event;
   try {
+    // @ts-expect-error
     event = stripe.webhooks.constructEvent(
       payload,
       sig,

@@ -11,10 +11,10 @@
     "@remix-run/node": "~1.14.2",
     "@remix-run/react": "~1.14.2",
     "@remix-run/serve": "~1.14.2",
+    "~": "link:./app",
     "isbot": "^3.6.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "~": "link:./app"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@remix-run/dev": "~1.14.2",
@@ -25,5 +25,5 @@
   "engines": {
     "node": ">=14"
   },
-  "packageManager": "yarn@3.2.1"
+  "packageManager": "yarn@3.4.1"
 }

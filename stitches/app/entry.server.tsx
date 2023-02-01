@@ -11,6 +11,7 @@ export default function handleRequest(
   remixContext: EntryContext
 ) {
   let markup = renderToString(
+    // @ts-expect-error
     <RemixServer context={remixContext} url={request.url} />
   );
 

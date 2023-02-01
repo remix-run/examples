@@ -40,6 +40,7 @@ const handleBotRequest = (
     let didError = false;
 
     const { pipe, abort } = renderToPipeableStream(
+      // @ts-expect-error
       inline(<RemixServer context={remixContext} url={request.url} />),
       {
         onAllReady: () => {
@@ -80,6 +81,7 @@ const handleBrowserRequest = (
     let didError = false;
 
     const { pipe, abort } = renderToPipeableStream(
+      // @ts-expect-error
       inline(<RemixServer context={remixContext} url={request.url} />),
       {
         onShellReady: () => {
