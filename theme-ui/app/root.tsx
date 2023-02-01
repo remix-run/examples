@@ -8,10 +8,9 @@ import {
 } from "@remix-run/react";
 import type { MetaFunction } from "@remix-run/node";
 import type { ReactNode } from "react";
-
 import { withEmotionCache } from "@emotion/react";
 import { ThemeProvider } from "theme-ui";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useMemo } from "react";
 
 import { ServerStyleContext, ClientStyleContext } from "./styles/context";
 import { theme } from "./styles/theme";
@@ -29,9 +28,9 @@ type DocumentProps = {
 const Document = withEmotionCache(({ children }: DocumentProps) => {
   const serverStyleData = useContext(ServerStyleContext);
   const clientStyleData = useContext(ClientStyleContext);
-  const resetClientStyleData = clientStyleData?.reset
-    ? clientStyleData.reset
-    : () => void 0;
+  const resetClientStyleData = useMemo(() => {
+    return clientStyleData?.reset ? clientStyleData.reset : () => void 0;
+  }, [clientStyleData]);
 
   // Reset style only on client
   useEffect(() => {
