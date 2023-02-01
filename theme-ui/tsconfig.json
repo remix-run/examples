@@ -5,7 +5,6 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "@theme-ui/core",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "target": "ES2019",
