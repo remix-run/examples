@@ -8,11 +8,6 @@ import { json, redirect } from "@remix-run/node";
 import { useFetcher, useFetchers, useLoaderData } from "@remix-run/react";
 import * as React from "react";
 
-import { Heading, Section } from "~/ui/section-heading";
-import { MaxContainer } from "~/ui/max-container";
-import stylesUrl from "~/dist/styles/routes/dashboard/todo-lists/$listId/index.css";
-import { Link } from "~/ui/link";
-import { requireUser } from "~/session.server";
 import {
   getProjects,
   getTodo,
@@ -20,11 +15,16 @@ import {
   updateTodo,
   updateTodoList,
 } from "~/db.server";
+import stylesUrl from "~/dist/styles/routes/dashboard/todo-lists/$listId/index.css";
 import type { TodoList as TTodoList, Todo } from "~/models";
-import { Field, FieldProvider, Label } from "~/ui/form";
+import { requireUser } from "~/session.server";
 import { Button } from "~/ui/button";
-import { TodoItem, TodoList } from "~/ui/todo-list";
+import { Field, FieldProvider, Label } from "~/ui/form";
+import { Link } from "~/ui/link";
+import { MaxContainer } from "~/ui/max-container";
+import { Heading, Section } from "~/ui/section-heading";
 import { Stack } from "~/ui/stack";
+import { TodoItem, TodoList } from "~/ui/todo-list";
 
 // TODO: Add feature: Allow reassigning list to a different project
 

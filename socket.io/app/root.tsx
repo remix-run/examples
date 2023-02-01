@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import type { MetaFunction } from "@remix-run/node";
 import {
   Links,
@@ -8,6 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { useEffect, useState } from "react";
 import type { Socket } from "socket.io-client";
 import io from "socket.io-client";
 

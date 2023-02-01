@@ -12,9 +12,9 @@ import {
 } from "@remix-run/react";
 import * as React from "react";
 
+import darkStylesUrl from "~/styles/dark.css";
 import deleteMeRemixStyles from "~/styles/demos/remix.css";
 import globalStylesUrl from "~/styles/global.css";
-import darkStylesUrl from "~/styles/dark.css";
 
 /**
  * The `links` export is a function that returns an array of objects that map to

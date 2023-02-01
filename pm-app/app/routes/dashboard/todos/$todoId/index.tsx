@@ -1,8 +1,8 @@
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 
-import { requireUser } from "~/session.server";
 import { getTodo, updateTodo } from "~/db.server";
+import { requireUser } from "~/session.server";
 
 export const loader = async ({ params, request }: LoaderArgs) => {
   const todoId = params.todoId as string;

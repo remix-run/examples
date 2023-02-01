@@ -1,7 +1,7 @@
 import type { GroqStore } from "@sanity/groq-store";
 import { groqStore } from "@sanity/groq-store";
-import { useEffect, useState } from "react";
 import type { Subscription } from "@sanity/groq-store/dist/typings/types";
+import { useEffect, useState } from "react";
 
 import { config } from "./config";
 

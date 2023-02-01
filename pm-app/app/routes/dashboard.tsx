@@ -4,10 +4,10 @@ import { Outlet, useCatch } from "@remix-run/react";
 import * as React from "react";
 
 import stylesUrl from "~/dist/styles/routes/dashboard.css";
+import { requireUser } from "~/session.server";
 import { NavLink } from "~/ui/link";
 import { MaxContainer } from "~/ui/max-container";
 import { Heading, Section } from "~/ui/section-heading";
-import { requireUser } from "~/session.server";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const { passwordHash, ...secureUser } = await requireUser(request, {

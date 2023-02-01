@@ -1,5 +1,5 @@
-import * as React from "react";
 import cx from "clsx";
+import * as React from "react";
 
 const MaxContainer = React.forwardRef<HTMLDivElement, MaxContainerProps>(
   ({ children, className, ...props }, forwardedRef) => {

@@ -1,6 +1,6 @@
-import type { TypeC } from "io-ts";
-import { pipe } from "fp-ts/function";
 import { fold } from "fp-ts/Either";
+import { pipe } from "fp-ts/function";
+import type { TypeC } from "io-ts";
 
 /**
  * A type guard that ensures that `value` is numeric, even if passed as

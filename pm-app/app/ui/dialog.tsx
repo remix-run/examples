@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   DialogOverlay as ReachDialogOverlay,
   DialogContent as ReachDialogContent,
@@ -9,6 +8,7 @@ import type {
   DialogContentProps as ReachDialogContentProps,
 } from "@reach/dialog";
 import cx from "clsx";
+import * as React from "react";
 
 import { composeEventHandlers } from "~/utils";
 

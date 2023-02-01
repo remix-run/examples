@@ -5,8 +5,8 @@ import {
   ComboboxOption,
   ComboboxPopover,
 } from "@reach/combobox";
-import { Form, useFetcher, useSearchParams } from "@remix-run/react";
 import comboboxStyles from "@reach/combobox/styles.css";
+import { Form, useFetcher, useSearchParams } from "@remix-run/react";
 
 import type { Lang } from "~/models/langs";
 

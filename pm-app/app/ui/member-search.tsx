@@ -1,10 +1,8 @@
-import * as React from "react";
-import { matchSorter } from "match-sorter";
 import cx from "clsx";
+import { matchSorter } from "match-sorter";
+import * as React from "react";
 
 import type { UserSecure } from "~/models";
-import { useThrottle } from "~/utils/react";
-import { getUserDisplayName, getUserFromDisplayName } from "~/utils";
 import {
   Combobox,
   ComboboxInput,
@@ -14,8 +12,10 @@ import {
 } from "~/ui/combobox";
 import type { ComboboxProps } from "~/ui/combobox";
 import { Token, TokenDismissButton } from "~/ui/token";
-import { useLayoutEffect } from "~/utils/react";
+import { getUserDisplayName, getUserFromDisplayName } from "~/utils";
 import { isFunction } from "~/utils";
+import { useLayoutEffect } from "~/utils/react";
+import { useThrottle } from "~/utils/react";
 
 interface MemberSearchContextValue {
   selectableUsers: UserSecure[];

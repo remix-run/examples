@@ -14,8 +14,8 @@ import {
   signIn,
   signInWithToken,
 } from "~/server/auth.server";
-import { commitSession, getSession } from "~/sessions";
 import { getRestConfig } from "~/server/firebase.server";
+import { commitSession, getSession } from "~/sessions";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const session = await getSession(request.headers.get("cookie"));

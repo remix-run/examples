@@ -8,13 +8,13 @@ import { json } from "@remix-run/node";
 import { Form, useActionData, useSearchParams } from "@remix-run/react";
 import * as React from "react";
 
-import { Button } from "~/ui/button";
-import { Link } from "~/ui/link";
-import { ShadowBox } from "~/ui/shadow-box";
-import { Field, FieldError, FieldProvider, Label } from "~/ui/form";
-import { Heading } from "~/ui/section-heading";
-import { createUserSession, register } from "~/session.server";
 import { getUser } from "~/db.server";
+import { createUserSession, register } from "~/session.server";
+import { Button } from "~/ui/button";
+import { Field, FieldError, FieldProvider, Label } from "~/ui/form";
+import { Link } from "~/ui/link";
+import { Heading } from "~/ui/section-heading";
+import { ShadowBox } from "~/ui/shadow-box";
 import { validateEmail, validatePassword } from "~/utils/validation";
 
 import routeStyles from "../styles/routes/register.css";
