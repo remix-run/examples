@@ -6,7 +6,7 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 <!-- TODO: update this link to the path for your example: -->
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/theme-ui-react18)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/theme-ui)
 
 ## Example
 
