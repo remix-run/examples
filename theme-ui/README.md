@@ -1,4 +1,4 @@
-# Example of Remix (React 18) with Theme UI
+# Example with Theme UI
 
 ## Preview
 
