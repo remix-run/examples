@@ -2,13 +2,8 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "run-s \"build:*\"",
-    "build:css": "npm run generate:css -- --minify",
-    "build:remix": "remix build",
-    "dev": "run-p \"dev:*\"",
-    "dev:css": "npm run generate:css -- --watch",
-    "dev:remix": "remix dev",
-    "generate:css": "npx tailwindcss -o ./app/tailwind.css",
+    "build": "remix build",
+    "dev": "remix dev",
     "start": "remix-serve build",
     "typecheck": "tsc"
   },
@@ -27,8 +22,8 @@
     "@types/react-dom": "^18.0.8",
     "eslint": "^8.27.0",
     "npm-run-all": "^4.1.5",
-    "prettier-plugin-tailwindcss": "^0.1.8",
-    "tailwindcss": "^3.1.0",
+    "prettier-plugin-tailwindcss": "^0.2.3",
+    "tailwindcss": "^3.2.6",
     "typescript": "^4.8.4"
   },
   "engines": {
