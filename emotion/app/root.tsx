@@ -10,7 +10,7 @@ import {
   ScrollRestoration,
   useCatch,
 } from "@remix-run/react";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 
 import ServerStyleContext from "./styles/server.context";
 import ClientStyleContext from "./styles/client.context";
@@ -35,11 +35,15 @@ const Document = withEmotionCache(
   ({ children, title }: DocumentProps, emotionCache) => {
     const serverStyleData = useContext(ServerStyleContext);
     const clientStyleData = useContext(ClientStyleContext);
+    const reinjectStylesRef = useRef(true);
 
     // Only executed on client
     // When a top level ErrorBoundary or CatchBoundary are rendered,
     // the document head gets removed, so we have to create the style tags
     useEffect(() => {
+      if (!reinjectStylesRef.current) {
+        return;
+      }
       // re-link sheet container
       emotionCache.sheet.container = document.head;
 
@@ -52,9 +56,9 @@ const Document = withEmotionCache(
 
       // reset cache to re-apply global styles
       clientStyleData.reset();
-      // We only want to do this on mount, not when styles change
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+      // ensure we only do this once per mount
+      reinjectStylesRef.current = false;
+    }, [clientStyleData, emotionCache.sheet]);
 
     return (
       <html lang="en">
