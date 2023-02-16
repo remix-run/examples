@@ -12,7 +12,7 @@ import { getContact, updateContact } from "~/data";
 
 export async function loader({ params }: DataFunctionArgs) {
   invariant(params.contactId, "missing contactId param");
-  let contact = await getContact(params.contactId);
+  const contact = await getContact(params.contactId);
   if (!contact) {
     // Throwing a response will stop all code execution and send Remix down the
     // "catch boundary" path. The closes `CatchBoundary` will be rendered.

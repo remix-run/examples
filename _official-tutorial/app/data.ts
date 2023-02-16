@@ -38,17 +38,17 @@ const fakeContacts = {
   },
 
   async create(values: ContactMutation): Promise<ContactRecord> {
-    let id = Math.random().toString(36).substring(2, 9);
-    let createdAt = new Date().toISOString();
-    let newContact = { id, createdAt, ...values };
+    const id = Math.random().toString(36).substring(2, 9);
+    const createdAt = new Date().toISOString();
+    const newContact = { id, createdAt, ...values };
     fakeContacts.records[id] = newContact;
     return newContact;
   },
 
   async set(id: string, values: ContactMutation): Promise<ContactRecord> {
-    let contact = await fakeContacts.get(id);
+    const contact = await fakeContacts.get(id);
     invariant(contact, `No contact found for ${id}`);
-    let updatedContact = { ...contact, ...values };
+    const updatedContact = { ...contact, ...values };
     fakeContacts.records[id] = updatedContact;
     return updatedContact;
   },
@@ -72,8 +72,8 @@ export async function getContacts(query?: string) {
 }
 
 export async function createEmptyContact() {
-  let id = Math.random().toString(36).substring(2, 9);
-  let contact = await fakeContacts.set(id, {});
+  const id = Math.random().toString(36).substring(2, 9);
+  const contact = await fakeContacts.set(id, {});
   return contact;
 }
 
@@ -82,7 +82,7 @@ export async function getContact(id: string) {
 }
 
 export async function updateContact(id: string, updates: ContactMutation) {
-  let contact = await fakeContacts.get(id);
+  const contact = await fakeContacts.get(id);
   if (!contact) {
     throw new Error(`No contact found for ${id}`);
   }

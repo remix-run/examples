@@ -1,7 +1,8 @@
 import type { DataFunctionArgs } from "@remix-run/node";
 import { Form, useFetcher, useLoaderData } from "@remix-run/react";
-import { updateContact, getContact, type ContactRecord } from "~/data";
 import invariant from "tiny-invariant";
+
+import { updateContact, getContact, type ContactRecord } from "~/data";
 
 export async function loader({ params }: DataFunctionArgs) {
   // `invariant` is a little library that throws an error if the first argument
@@ -11,7 +12,7 @@ export async function loader({ params }: DataFunctionArgs) {
   // and the closest `ErrorBoundary` will be rendered instead of the component.
   invariant(params.contactId, "missing contactId param");
 
-  let contact = await getContact(params.contactId);
+  const contact = await getContact(params.contactId);
 
   if (!contact) {
     // Throwing a Response is special (instead of errors). It will also stop
@@ -25,8 +26,8 @@ export async function loader({ params }: DataFunctionArgs) {
 
 export async function action({ params, request }: DataFunctionArgs) {
   invariant(params.contactId, "missing contactId param");
-  let formData = await request.formData();
-  let favorite = formData.get("favorite") === "true";
+  const formData = await request.formData();
+  const favorite = formData.get("favorite") === "true";
   return updateContact(params.contactId, { favorite });
 }
 

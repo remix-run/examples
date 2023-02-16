@@ -17,6 +17,7 @@ import {
   useFetchers,
 } from "@remix-run/react";
 import type { DataFunctionArgs } from "@remix-run/node";
+
 import { createEmptyContact, getContacts, type ContactRecord } from "./data";
 import ErrorPage from "./error-page";
 import appStylesHref from "./app.css";
@@ -56,7 +57,7 @@ export default function Root() {
   // to the input manually. It's okay, Andrew won't arrest you. He's not even a
   // cop.
   React.useEffect(() => {
-    let input = document.getElementById("q");
+    const input = document.getElementById("q");
     if (input && input instanceof HTMLInputElement && q) {
       input.value = q;
     }
@@ -162,19 +163,19 @@ export function ErrorBoundary({ error }: { error: Error }) {
 }
 
 export function CatchBoundary() {
-  let caught = useCatch();
-  let error = new Error(caught.statusText);
+  const caught = useCatch();
+  const error = new Error(caught.statusText);
   return <ErrorPage error={error} />;
 }
 
 function OptimisticFavorite({ contact }: { contact: ContactRecord }) {
-  let fetchers = useFetchers();
+  const fetchers = useFetchers();
 
   // start with the default case, read the actual data.
   let isFavorite = contact.favorite;
 
   // Now check if there are any pending fetchers that are changing this contact
-  for (let fetcher of fetchers) {
+  for (const fetcher of fetchers) {
     // @ts-expect-error https://github.com/remix-run/remix/pull/5476
     if (fetcher.formAction === `/contacts/${contact.id}`) {
       // Ask for the optimistic version of the data
