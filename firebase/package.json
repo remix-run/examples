@@ -10,9 +10,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@remix-run/node": "*",
-    "@remix-run/react": "*",
-    "@remix-run/serve": "*",
+    "@remix-run/node": "~1.14.2",
+    "@remix-run/react": "~1.14.2",
+    "@remix-run/serve": "~1.14.2",
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.21.2",
     "isbot": "^3.6.5",
@@ -21,8 +21,8 @@
     "remix-google-cloud-functions": "0.0.3"
   },
   "devDependencies": {
-    "@remix-run/dev": "*",
-    "@remix-run/eslint-config": "*",
+    "@remix-run/dev": "~1.14.2",
+    "@remix-run/eslint-config": "~1.14.2",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "eslint": "^8.27.0",
