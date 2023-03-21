@@ -1,4 +1,4 @@
-import * as React from "react";
+import type { LoaderArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import {
   Form,
@@ -15,13 +15,14 @@ import {
   useNavigation,
   useFetchers,
 } from "@remix-run/react";
-import type { DataFunctionArgs } from "@remix-run/node";
+import * as React from "react";
 
-import { createEmptyContact, getContacts, type ContactRecord } from "./data";
-import ErrorPage from "./error-page";
-import appStylesHref from "./app.css";
+import appStylesHref from "~/app.css";
+import type { ContactRecord } from "~/data";
+import { createEmptyContact, getContacts } from "~/data";
+import ErrorPage from "~/error-page";
 
-export async function loader({ request }: DataFunctionArgs) {
+export async function loader({ request }: LoaderArgs) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q") || undefined;
   const contacts = await getContacts(q);

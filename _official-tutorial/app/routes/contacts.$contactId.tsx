@@ -1,10 +1,10 @@
-import type { DataFunctionArgs } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { Form, useFetcher, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 
 import { updateContact, getContact, type ContactRecord } from "~/data";
 
-export async function loader({ params }: DataFunctionArgs) {
+export async function loader({ params }: LoaderArgs) {
   // `invariant` is a little library that throws an error if the first argument
   // is falsy. It's useful in a TypeScript environment especially with Remix
   // because of `ErrorBoundary`. When errors are thrown from loaders (by
@@ -24,7 +24,7 @@ export async function loader({ params }: DataFunctionArgs) {
   return contact;
 }
 
-export async function action({ params, request }: DataFunctionArgs) {
+export async function action({ params, request }: ActionArgs) {
   invariant(params.contactId, "missing contactId param");
   const formData = await request.formData();
   const favorite = formData.get("favorite") === "true";
