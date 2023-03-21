@@ -1,0 +1,11 @@
+@import url("@picocss/pico");
+
+article > footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+article > footer > * {
+  max-width: 200px;
+}
