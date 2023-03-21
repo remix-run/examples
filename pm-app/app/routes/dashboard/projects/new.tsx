@@ -17,9 +17,9 @@ import {
 } from "~/ui/member-search";
 import { Heading } from "~/ui/section-heading";
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesUrl }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesUrl },
+];
 
 export const loader = async ({ request }: LoaderArgs) => {
   const { passwordHash, ...secureUser } = await requireUser(request, {

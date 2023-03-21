@@ -20,9 +20,9 @@ import { MaxContainer } from "~/ui/max-container";
 import { Heading, Section } from "~/ui/section-heading";
 import { ShadowBox } from "~/ui/shadow-box";
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesUrl }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesUrl },
+];
 
 export const loader = async ({ request }: LoaderArgs) => {
   const { passwordHash, ...secureUser } = await requireUser(request, {

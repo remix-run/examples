@@ -10,9 +10,9 @@ import {
 
 import globalStyles from "./styles/global.css";
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: globalStyles }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: globalStyles },
+];
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

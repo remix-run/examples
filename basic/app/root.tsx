@@ -24,17 +24,15 @@ import globalStylesUrl from "~/styles/global.css";
  *
  * https://remix.run/route/links
  */
-export const links: LinksFunction = () => {
-  return [
-    { rel: "stylesheet", href: globalStylesUrl },
-    {
-      rel: "stylesheet",
-      href: darkStylesUrl,
-      media: "(prefers-color-scheme: dark)",
-    },
-    { rel: "stylesheet", href: deleteMeRemixStyles },
-  ];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: globalStylesUrl },
+  {
+    rel: "stylesheet",
+    href: darkStylesUrl,
+    media: "(prefers-color-scheme: dark)",
+  },
+  { rel: "stylesheet", href: deleteMeRemixStyles },
+];
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

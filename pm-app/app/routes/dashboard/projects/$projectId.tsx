@@ -37,9 +37,9 @@ import { Note } from "~/ui/note";
 import { Heading, Section } from "~/ui/section-heading";
 import { ShadowBox } from "~/ui/shadow-box";
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesUrl }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesUrl },
+];
 
 export const meta: MetaFunction = ({ data }) => {
   return {
