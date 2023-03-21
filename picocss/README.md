@@ -20,7 +20,7 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 ## Related Links
 
-- [Remix Docs](https://remix.run/docs/en/main)
+- [Remix Docs](https://remix.run/docs)
 - [PicoCSS Docs](https://picocss.com/docs/)
 
 
