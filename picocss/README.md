@@ -16,13 +16,10 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/picocss/tree/main/picocss)
 
-
-
 ## Related Links
 
 - [Remix Docs](https://remix.run/docs)
 - [PicoCSS Docs](https://picocss.com/docs/)
-
 
 ## Wanna install PicoCSS in your existing project?
 
@@ -30,7 +27,7 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 $ npm install picocss@latest
 ```
 
-Create a `app/style.css` file with: 
+Create a `app/style.css` file with:
 
 ```css
 @import url("@picocss/pico");
@@ -50,5 +47,3 @@ export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 // ...code...
 ```
-
-

@@ -712,10 +712,10 @@
     tiny-glob "^0.2.9"
     tslib "^2.4.0"
 
-"@remix-run/eslint-config@^1.14.3":
-  version "1.14.3"
-  resolved "https://registry.npmjs.org/@remix-run/eslint-config/-/eslint-config-1.14.3.tgz#9746f9e12e744f23b143f3fa5ff2b1698ad83669"
-  integrity sha512-Yy4PYSvAehj31LmkDA+lS5yCPL1lR9O04gMIo0xwHT2o59pF4QU54lEAvJJH+9MI0byZUI/v9DoGz1oGIb44IA==
+"@remix-run/eslint-config@^1.14.2":
+  version "1.14.2"
+  resolved "https://registry.npmjs.org/@remix-run/eslint-config/-/eslint-config-1.14.2.tgz#768d3ab4b25832bca21ed156091b4fe6bff88d2a"
+  integrity sha512-8ZqZYF3q6Xvuj56AY7Z33W4osmNI8fD5Kk/Xm3expke7ZDPeBVZ8k3oqTbiFBTlKwOyZ2ZbRWJFQLKPPB6LMJw==
   dependencies:
     "@babel/core" "^7.19.1"
     "@babel/eslint-parser" "^7.19.1"
@@ -3238,10 +3238,10 @@ prelude-ls@^1.2.1:
   resolved "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.2.1.tgz"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prettier@^2.8.6:
-  version "2.8.6"
-  resolved "https://registry.npmjs.org/prettier/-/prettier-2.8.6.tgz#5c174b29befd507f14b83e3c19f83fdc0e974b71"
-  integrity sha512-mtuzdiBbHwPEgl7NxWlqOkithPyp4VN93V7VeHVWBF+ad3I5avc0RVDT4oImXQy9H/AqxA2NSQH8pSxHW6FYbQ==
+prettier@^2.8.4:
+  version "2.8.4"
+  resolved "https://registry.npmjs.org/prettier/-/prettier-2.8.4.tgz#34dd2595629bfbb79d344ac4a91ff948694463c3"
+  integrity sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==
 
 pretty-format@^27.0.2:
   version "27.5.1"
@@ -3698,10 +3698,10 @@ type-fest@^0.21.3:
   resolved "https://registry.npmjs.org/type-fest/-/type-fest-0.21.3.tgz"
   integrity sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==
 
-typescript@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-5.0.2.tgz#891e1a90c5189d8506af64b9ef929fca99ba1ee5"
-  integrity sha512-wVORMBGO/FAs/++blGNeAVdbNKtIh1rbBL2EyQ1+J9lClJ93KiiKe8PmFIVdXhHcyv44SL9oglmfeSsndo0jRw==
+typescript@^4.9.5:
+  version "4.9.5"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
+  integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"
