@@ -38,7 +38,7 @@ Create a `app/style.css` file with:
 # more css here...
 ```
 
-Import  style.css into your `app/root.tsx` file:
+Import `app/style.css` into your `app/root.tsx` file:
 
 ```ts
 //imports
