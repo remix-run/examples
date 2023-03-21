@@ -46,14 +46,7 @@ import styles from "./styles.css";
 
 // ...code...
 
-export function links() {
-  return [
-    {
-      rel: "stylesheet",
-      href: styles,
-    },
-  ];
-}
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 // ...code...
 ```
