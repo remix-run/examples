@@ -1,8 +1,7 @@
-import Alert from "@reach/alert";
 import type { ActionArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useActionData } from "@remix-run/react";
-import * as React from "react";
+import { useEffect, useRef } from "react";
 
 import { createNote } from "~/models/note.server";
 import { requireUserId } from "~/session.server";
@@ -28,17 +27,17 @@ export const action = async ({ request }: ActionArgs) => {
     );
   }
 
-  const note = await createNote({ title, body, userId });
+  const note = await createNote({ body, title, userId });
 
   return redirect(`/notes/${note.id}`);
 };
 
 export default function NewNotePage() {
   const actionData = useActionData<typeof action>();
-  const titleRef = React.useRef<HTMLInputElement>(null);
-  const bodyRef = React.useRef<HTMLTextAreaElement>(null);
+  const titleRef = useRef<HTMLInputElement>(null);
+  const bodyRef = useRef<HTMLTextAreaElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (actionData?.errors?.title) {
       titleRef.current?.focus();
     } else if (actionData?.errors?.body) {
@@ -70,9 +69,9 @@ export default function NewNotePage() {
           />
         </label>
         {actionData?.errors?.title ? (
-          <Alert className="pt-1 text-red-700" id="title-error">
+          <div className="pt-1 text-red-700" id="title-error">
             {actionData.errors.title}
-          </Alert>
+          </div>
         ) : null}
       </div>
 
@@ -91,9 +90,9 @@ export default function NewNotePage() {
           />
         </label>
         {actionData?.errors?.body ? (
-          <Alert className="pt-1 text-red-700" id="body-error">
+          <div className="pt-1 text-red-700" id="body-error">
             {actionData.errors.body}
-          </Alert>
+          </div>
         ) : null}
       </div>
 
