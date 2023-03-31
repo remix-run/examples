@@ -26,7 +26,7 @@ export default function App() {
       <body>
         <Outlet />
         <ScrollRestoration />
-        {shouldHydrate && <Scripts />}
+        {shouldHydrate ? <Scripts /> : null}
         <LiveReload />
       </body>
     </html>
