@@ -1,6 +1,6 @@
+import cx from "clsx";
 import * as React from "react";
 import type { LinkProps, NavLinkProps } from "react-router-dom";
-import cx from "clsx";
 
 import { Link, NavLink } from "~/ui/link";
 

@@ -15,8 +15,8 @@ import {
 } from "react";
 import { useVirtual } from "react-virtual";
 
-import { countItems, getItems } from "~/utils/backend.server";
 import stylesUrl from "~/styles/index.css";
+import { countItems, getItems } from "~/utils/backend.server";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesUrl }];

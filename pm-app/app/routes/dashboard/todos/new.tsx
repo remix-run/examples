@@ -1,8 +1,8 @@
 import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 
-import { requireUser } from "~/session.server";
 import { createTodo, getTodosFromList } from "~/db.server";
+import { requireUser } from "~/session.server";
 import { Sanitizer } from "~/utils/sanitizer";
 
 export const action = async ({ params, request }: ActionArgs) => {

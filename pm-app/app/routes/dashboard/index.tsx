@@ -3,12 +3,10 @@ import { json } from "@remix-run/node";
 import { useCatch, useFetcher, useLoaderData } from "@remix-run/react";
 import * as React from "react";
 
-import type { Project } from "~/models";
-import { Heading, Section } from "~/ui/section-heading";
-import { MaxContainer } from "~/ui/max-container";
+import { getUserProjects } from "~/db.server";
 import stylesUrl from "~/dist/styles/routes/dashboard/index.css";
-import { ShadowBox } from "~/ui/shadow-box";
-import { Link } from "~/ui/link";
+import type { Project } from "~/models";
+import { requireUser } from "~/session.server";
 import { Avatar } from "~/ui/avatar";
 import {
   DropdownMenuPopover,
@@ -17,8 +15,10 @@ import {
   DropdownMenuList,
   DropdownMenuOptionsButton,
 } from "~/ui/dropdown-menu";
-import { requireUser } from "~/session.server";
-import { getUserProjects } from "~/db.server";
+import { Link } from "~/ui/link";
+import { MaxContainer } from "~/ui/max-container";
+import { Heading, Section } from "~/ui/section-heading";
+import { ShadowBox } from "~/ui/shadow-box";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesUrl }];
