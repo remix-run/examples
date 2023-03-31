@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "format": "prettier --write . && yarn lint:fix",
-    "lint": "eslint --ext .tsx,.ts,.js,.jsx,.md .",
+    "lint": "eslint .",
     "lint:fix": "yarn lint --fix"
   },
   "devDependencies": {
