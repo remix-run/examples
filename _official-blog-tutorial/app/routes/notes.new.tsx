@@ -1,4 +1,4 @@
-import Alert from "@reach/alert";
+import { Alert } from "@reach/alert";
 import type { ActionArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useActionData } from "@remix-run/react";

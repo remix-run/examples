@@ -29,8 +29,7 @@ import {
 } from "~/ui/form";
 import { MaxContainer } from "~/ui/max-container";
 import { Heading } from "~/ui/section-heading";
-
-import { TokenDismissButton } from "../../../ui/token";
+import { TokenDismissButton } from "~/ui/token";
 
 type TempTodo = TodoDataUnordered & { _tempId: number };
 

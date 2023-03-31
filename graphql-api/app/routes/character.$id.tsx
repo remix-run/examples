@@ -9,9 +9,7 @@ import { Code } from "~/components/Code";
  */
 export const loader = async ({ params }: LoaderArgs) => {
   const url = `http://localhost:3000/api/character?id=${params.id}`;
-  const res = await fetch(url, {
-    method: "GET",
-  });
+  const res = await fetch(url, { method: "GET" });
 
   return json(await res.json());
 };
@@ -21,8 +19,7 @@ export const loader = async ({ params }: LoaderArgs) => {
  * the Remix loader & route params.
  */
 export default function Character() {
-  const loader = useLoaderData<typeof loader>();
-  const { data } = loader;
+  const { data } = useLoaderData<typeof loader>();
 
   const character = data.character;
 

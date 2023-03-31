@@ -10,7 +10,7 @@ export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 export const loader = async ({ params }: LoaderArgs) => {
   const id = params.id;
   if (!id) {
-    return json({});
+    throw new Response("Not found", { status: 404 });
   }
 
   const invoices = [

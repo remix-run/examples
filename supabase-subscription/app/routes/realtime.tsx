@@ -9,7 +9,7 @@ export const loader = async () => {
   const { count } = await client
     .from("clicks")
     .select("id", { count: "exact", head: true });
-  return json<number>(count);
+  return json<number>(count ?? 0);
 };
 
 export const action = async ({ request }: ActionArgs) => {

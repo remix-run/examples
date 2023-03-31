@@ -29,10 +29,7 @@ export const action = async ({ request }: ActionArgs) => {
       errorMsg: "Something went wrong while uploading",
     });
   }
-  return json({
-    imgSrc,
-    imgDesc,
-  });
+  return json({ imgSrc, imgDesc });
 };
 
 export default function Index() {

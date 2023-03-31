@@ -4,4 +4,5 @@ module.exports = {
   browserBuildDirectory: "public/build",
   publicPath: "/build/",
   serverBuildDirectory: "build",
+  future: { v2_routeConvention: true },
 };

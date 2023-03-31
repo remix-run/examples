@@ -2,6 +2,7 @@
 module.exports = {
   ignoredRouteFiles: ["**/.*"],
   serverBuildDirectory: "server/build",
+  future: { v2_routeConvention: true },
   // appDirectory: "app",
   // assetsBuildDirectory: "public/build",
   // serverBuildPath: "build/index.js",

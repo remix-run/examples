@@ -2,10 +2,12 @@
   "exclude": ["./cypress"],
   "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
   "compilerOptions": {
+    "allowJs": true,
     "lib": ["DOM", "DOM.Iterable", "ES2019"],
     "types": ["vitest/globals"],
     "isolatedModules": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
     "module": "ES2020",
     "moduleResolution": "node",

@@ -22,4 +22,5 @@ module.exports = {
   serverBuildPath: "api/index.js",
   serverDependenciesToBundle: "all",
   watchPaths: packages,
+  future: { v2_routeConvention: true },
 };

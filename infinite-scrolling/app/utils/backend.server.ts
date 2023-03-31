@@ -1,3 +1,7 @@
+declare global {
+  var __items: { id: string; value: string }[];
+}
+
 const items = (global.__items =
   global.__items ??
   Array.from({ length: 50_000 }, (_, i) => ({
