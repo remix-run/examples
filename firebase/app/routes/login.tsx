@@ -93,7 +93,9 @@ export default function Login() {
   return (
     <div>
       <h1>Login</h1>
-      {(clientAction?.error || actionData?.error) ? <p>{clientAction?.error || actionData?.error}</p> : null}
+      {clientAction?.error || actionData?.error ? (
+        <p>{clientAction?.error || actionData?.error}</p>
+      ) : null}
       <form method="post" onSubmit={handleSubmit}>
         <input
           style={{ display: "block" }}
