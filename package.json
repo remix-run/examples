@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@remix-run/eslint-config": "^1.15.0",
-    "@types/react": "^18.0.32",
+    "@types/react": "^18.0.33",
     "eslint": "^8.37.0",
     "eslint-plugin-markdown": "^3.0.0",
     "eslint-plugin-prefer-let": "^3.0.1",
