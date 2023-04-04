@@ -1,3 +1,4 @@
+# Yarn 3 PnP
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -5,7 +6,9 @@
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+!yarn.lock
 
+# Remix
 /.cache
 /build
 /public/build
