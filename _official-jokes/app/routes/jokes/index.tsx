@@ -7,20 +7,22 @@ import { getUserId } from "~/utils/session.server";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const userId = await getUserId(request);
-  const count = await db.joke.count();
+  if (!userId) {
+    throw new Response("No jokes to be found!", { status: 404 });
+  }
+
+  const count = await db.joke.count({ where: { jokesterId: userId } });
   const randomRowNumber = Math.floor(Math.random() * count);
 
   // in the official deployed version of the app, we don't want to deploy
   // a site with unmoderated content, so we only show users their own jokes
-  const [randomJoke] = userId
-    ? await db.joke.findMany({
-        take: 1,
-        skip: randomRowNumber,
-        where: {
-          jokesterId: userId,
-        },
-      })
-    : [];
+  const [randomJoke] = await db.joke.findMany({
+    take: 1,
+    skip: randomRowNumber,
+    where: {
+      jokesterId: userId,
+    },
+  });
   if (!randomJoke) {
     throw new Response("No jokes to be found!", { status: 404 });
   }
