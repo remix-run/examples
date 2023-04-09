@@ -5,11 +5,11 @@
  * utility classes, e.g. `<Box padding="small">` rather than
  * `<Box className={sprinkles({ padding: 'small' })}>`.
  */
+import type { ClassValue } from "clsx";
+import clsx from "clsx";
 import type { AllHTMLAttributes, ElementType } from "react";
 import { createElement } from "react";
 import { forwardRef } from "react";
-import type { ClassValue } from "clsx";
-import clsx from "clsx";
 
 import type { Sprinkles } from "~/styles";
 import { sprinkles } from "~/styles";

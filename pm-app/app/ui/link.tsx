@@ -4,8 +4,8 @@ import { Link, NavLink } from "@remix-run/react";
 import cx from "clsx";
 import * as React from "react";
 
-import { isFunction, isExternalUrl } from "~/utils";
 import { IconArrowRight } from "~/ui/icons";
+import { isFunction, isExternalUrl } from "~/utils";
 
 const CustomNavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
   ({ to, ...props }, ref) => {

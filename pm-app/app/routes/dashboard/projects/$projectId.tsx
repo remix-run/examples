@@ -9,13 +9,13 @@ import {
 } from "@remix-run/react";
 import * as React from "react";
 
-import { Heading, Section } from "~/ui/section-heading";
-import { MaxContainer } from "~/ui/max-container";
-import stylesUrl from "~/dist/styles/routes/dashboard/projects/$projectId/index.css";
-import { Link } from "~/ui/link";
-import { requireUser } from "~/session.server";
 import { getProject, getUsers } from "~/db.server";
+import stylesUrl from "~/dist/styles/routes/dashboard/projects/$projectId/index.css";
 import type { UserSecure } from "~/models";
+import { requireUser } from "~/session.server";
+import { Avatar } from "~/ui/avatar";
+import { Button } from "~/ui/button";
+import { Dialog, DialogCloseButton } from "~/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuOptionsButton,
@@ -23,18 +23,18 @@ import {
   DropdownMenuItem,
   DropdownMenuPopover,
 } from "~/ui/dropdown-menu";
-import { Avatar } from "~/ui/avatar";
-import { Dialog, DialogCloseButton } from "~/ui/dialog";
 import { Field, FieldError, FieldProvider, Label, Textarea } from "~/ui/form";
+import { IconAdd } from "~/ui/icons";
+import { Link } from "~/ui/link";
+import { MaxContainer } from "~/ui/max-container";
 import {
   MemberSearch,
   MemberSearchCombobox,
   MemberSearchHiddenField,
   MemberSearchSelections,
 } from "~/ui/member-search";
-import { Button } from "~/ui/button";
 import { Note } from "~/ui/note";
-import { IconAdd } from "~/ui/icons";
+import { Heading, Section } from "~/ui/section-heading";
 import { ShadowBox } from "~/ui/shadow-box";
 
 export const links: LinksFunction = () => {

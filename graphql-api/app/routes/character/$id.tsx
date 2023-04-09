@@ -33,9 +33,9 @@ export default function Character() {
 
     return (
       <div style={{ display: "flex", gap: 16 }}>
-        {character.image && (
+        {character.image ? (
           <img alt={character.name ?? ""} src={character.image} />
-        )}
+        ) : null}
         <div className="list">
           <b>Gender:</b> {character.gender}
           <br />

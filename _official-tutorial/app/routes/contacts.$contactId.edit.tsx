@@ -1,5 +1,4 @@
-import invariant from "tiny-invariant";
-import type { DataFunctionArgs } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import {
   Form,
@@ -7,10 +6,11 @@ import {
   useNavigate,
   useNavigation,
 } from "@remix-run/react";
+import invariant from "tiny-invariant";
 
 import { getContact, updateContact } from "~/data";
 
-export async function loader({ params }: DataFunctionArgs) {
+export async function loader({ params }: LoaderArgs) {
   invariant(params.contactId, "missing contactId param");
   const contact = await getContact(params.contactId);
   if (!contact) {
@@ -21,7 +21,7 @@ export async function loader({ params }: DataFunctionArgs) {
   return contact;
 }
 
-export async function action({ params, request }: DataFunctionArgs) {
+export async function action({ params, request }: ActionArgs) {
   invariant(params.contactId, "missing contactId param");
   const formData = await request.formData();
   await updateContact(params.contactId, {

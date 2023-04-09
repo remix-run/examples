@@ -1,10 +1,10 @@
-import type { DataFunctionArgs } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { Form, useFetcher, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 
 import { updateContact, getContact, type ContactRecord } from "~/data";
 
-export async function loader({ params }: DataFunctionArgs) {
+export async function loader({ params }: LoaderArgs) {
   // `invariant` is a little library that throws an error if the first argument
   // is falsy. It's useful in a TypeScript environment especially with Remix
   // because of `ErrorBoundary`. When errors are thrown from loaders (by
@@ -24,7 +24,7 @@ export async function loader({ params }: DataFunctionArgs) {
   return contact;
 }
 
-export async function action({ params, request }: DataFunctionArgs) {
+export async function action({ params, request }: ActionArgs) {
   invariant(params.contactId, "missing contactId param");
   const formData = await request.formData();
   const favorite = formData.get("favorite") === "true";
@@ -37,7 +37,11 @@ export default function Contact() {
   return (
     <div id="contact">
       <div>
-        <img key={contact.avatar} src={contact.avatar} />
+        <img
+          alt={`${contact.firstName} ${contact.lastName}`}
+          key={contact.avatar}
+          src={contact.avatar}
+        />
       </div>
 
       <div>
@@ -52,7 +56,7 @@ export default function Contact() {
           <Favorite contact={contact} />
         </h1>
 
-        {contact.twitter && (
+        {contact.twitter ? (
           <p>
             <a
               target="_blank"
@@ -62,9 +66,9 @@ export default function Contact() {
               {contact.twitter}
             </a>
           </p>
-        )}
+        ) : null}
 
-        {contact.notes && <p>{contact.notes}</p>}
+        {contact.notes ? <p>{contact.notes}</p> : null}
 
         <div>
           <Form action="edit">

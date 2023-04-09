@@ -15,7 +15,7 @@ This example shows how to use Tailwind CSS (v3.0) with Remix. It follows the ste
 Relevant files:
 
 - [package.json](./package.json) where the tailwind CLI is used.
-- [tailwind.config.js](./tailwind.config.js) where tailwind is configured.
+- [tailwind.config.ts](./tailwind.config.ts) where tailwind is configured.
 - [app/root.tsx](./app/root.tsx) where tailwind is imported.
 - [.gitignore](.gitignore) where the generated tailwind.css is added to the ignore list.
 

@@ -1,5 +1,4 @@
 import type { MetaFunction } from "@remix-run/node";
-import { Provider as StyletronProvider } from "styletron-react";
 import {
   Links,
   LiveReload,
@@ -8,6 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { Provider as StyletronProvider } from "styletron-react";
 
 import { styletron } from "./styletron";
 

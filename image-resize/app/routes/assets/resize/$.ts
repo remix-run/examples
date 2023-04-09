@@ -18,9 +18,9 @@ import path from "path";
 import { PassThrough } from "stream";
 
 import type { LoaderArgs } from "@remix-run/node";
+import type { Params } from "@remix-run/react";
 import type { FitEnum } from "sharp";
 import sharp from "sharp";
-import type { Params } from "@remix-run/react";
 
 const ASSETS_ROOT = "assets";
 

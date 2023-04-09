@@ -1,4 +1,3 @@
-import * as React from "react";
 import type {
   ActionArgs,
   LinksFunction,
@@ -13,11 +12,13 @@ import {
   useLoaderData,
   useSearchParams,
 } from "@remix-run/react";
+import * as React from "react";
 
+import { createTodoList, getUserProjects } from "~/db.server";
+import stylesUrl from "~/dist/styles/routes/dashboard/todo-lists/new.css";
 import type { TodoDataUnordered } from "~/models";
-import { Heading } from "~/ui/section-heading";
-import { MaxContainer } from "~/ui/max-container";
 import { requireUser } from "~/session.server";
+import { Button } from "~/ui/button";
 import {
   Field,
   FieldError,
@@ -26,9 +27,8 @@ import {
   Textarea,
   Select,
 } from "~/ui/form";
-import { Button } from "~/ui/button";
-import { createTodoList, getUserProjects } from "~/db.server";
-import stylesUrl from "~/dist/styles/routes/dashboard/todo-lists/new.css";
+import { MaxContainer } from "~/ui/max-container";
+import { Heading } from "~/ui/section-heading";
 
 import { TokenDismissButton } from "../../../ui/token";
 
