@@ -1,13 +1,20 @@
 import type { LoaderArgs } from "@remix-run/node";
 
 import { db } from "~/utils/db.server";
+import { getUserId } from "~/utils/session.server";
 
 export const loader = async ({ request }: LoaderArgs) => {
-  const jokes = await db.joke.findMany({
-    take: 100,
-    orderBy: { createdAt: "desc" },
-    include: { jokester: { select: { username: true } } },
-  });
+  const userId = await getUserId(request);
+  const jokes = userId
+    ? await db.joke.findMany({
+        take: 100,
+        where: {
+          jokesterId: userId,
+        },
+        orderBy: { createdAt: "desc" },
+        include: { jokester: { select: { username: true } } },
+      })
+    : [];
 
   const host =
     request.headers.get("X-Forwarded-Host") ?? request.headers.get("host");
