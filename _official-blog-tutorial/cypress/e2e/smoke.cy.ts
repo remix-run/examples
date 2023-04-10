@@ -1,4 +1,4 @@
-import faker from "@faker-js/faker";
+import { faker } from "@faker-js/faker";
 
 describe("smoke tests", () => {
   afterEach(() => {
@@ -10,9 +10,11 @@ describe("smoke tests", () => {
       email: `${faker.internet.userName()}@example.com`,
       password: faker.internet.password(),
     };
+
     cy.then(() => ({ email: loginForm.email })).as("user");
 
-    cy.visit("/");
+    cy.visitAndCheck("/");
+
     cy.findByRole("link", { name: /sign up/i }).click();
 
     cy.findByRole("textbox", { name: /email/i }).type(loginForm.email);
@@ -30,7 +32,8 @@ describe("smoke tests", () => {
       body: faker.lorem.sentences(1),
     };
     cy.login();
-    cy.visit("/");
+
+    cy.visitAndCheck("/");
 
     cy.findByRole("link", { name: /notes/i }).click();
     cy.findByText("No notes yet");

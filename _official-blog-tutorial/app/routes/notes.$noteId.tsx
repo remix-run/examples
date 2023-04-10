@@ -1,6 +1,11 @@
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { Form, useCatch, useLoaderData } from "@remix-run/react";
+import {
+  Form,
+  isRouteErrorResponse,
+  useLoaderData,
+  useRouteError,
+} from "@remix-run/react";
 import invariant from "tiny-invariant";
 
 import { deleteNote, getNote } from "~/models/note.server";
@@ -10,7 +15,7 @@ export const loader = async ({ params, request }: LoaderArgs) => {
   const userId = await requireUserId(request);
   invariant(params.noteId, "noteId not found");
 
-  const note = await getNote({ userId, id: params.noteId });
+  const note = await getNote({ id: params.noteId, userId });
   if (!note) {
     throw new Response("Not Found", { status: 404 });
   }
@@ -21,7 +26,7 @@ export const action = async ({ params, request }: ActionArgs) => {
   const userId = await requireUserId(request);
   invariant(params.noteId, "noteId not found");
 
-  await deleteNote({ userId, id: params.noteId });
+  await deleteNote({ id: params.noteId, userId });
 
   return redirect("/notes");
 };
@@ -46,18 +51,20 @@ export default function NoteDetailsPage() {
   );
 }
 
-export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
+export function ErrorBoundary() {
+  const error = useRouteError();
 
-  return <div>An unexpected error occurred: {error.message}</div>;
-}
+  if (error instanceof Error) {
+    return <div>An unexpected error occurred: {error.message}</div>;
+  }
 
-export function CatchBoundary() {
-  const caught = useCatch();
+  if (!isRouteErrorResponse(error)) {
+    return <h1>Unknown Error</h1>;
+  }
 
-  if (caught.status === 404) {
+  if (error.status === 404) {
     return <div>Note not found</div>;
   }
 
-  throw new Error(`Unexpected caught response with status: ${caught.status}`);
+  return <div>An unexpected error occurred: {error.statusText}</div>;
 }
