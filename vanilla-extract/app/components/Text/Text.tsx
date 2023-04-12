@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+
 import { Box } from "../Box/Box";
 
 import * as styles from "./Text.css";
