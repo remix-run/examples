@@ -12,9 +12,7 @@ import {
 } from "@remix-run/react";
 
 export const links: LinksFunction = () => {
-  return [
-    ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-  ];
+  return cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : [];
 };
 
 export const meta: MetaFunction = () => ({
