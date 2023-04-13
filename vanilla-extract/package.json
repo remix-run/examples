@@ -1,5 +1,4 @@
 {
-  "name": "remix-vanilla-extract-example",
   "private": true,
   "sideEffects": [
     "*.css.ts"
