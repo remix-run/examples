@@ -8,11 +8,10 @@
 import type { ClassValue } from "clsx";
 import clsx from "clsx";
 import type { AllHTMLAttributes, ElementType } from "react";
-import { createElement } from "react";
-import { forwardRef } from "react";
+import { createElement, forwardRef } from "react";
 
-import type { Sprinkles } from "~/styles";
-import { sprinkles } from "~/styles";
+import type { Sprinkles } from "./sprinkles.css";
+import { sprinkles } from "./sprinkles.css";
 
 interface ExtendedBoxProps extends Sprinkles {
   as?: ElementType;
