@@ -1,7 +1,6 @@
 # fly.toml file generated for remix-jokes on 2021-11-21T03:55:55-07:00
 
 app = "remix-jokes"
-
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
@@ -9,9 +8,9 @@ processes = []
 [env]
   DATABASE_URL = "file:/data/sqlite.db"
   PORT = "8080"
-  NODE_ENV = "production"
 
 [experimental]
+  auto_rollback = true
   cmd = "start_with_migrations.sh"
   entrypoint = "sh"
 
@@ -25,13 +24,13 @@ processes = []
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
-
   [services.concurrency]
     hard_limit = 25
     soft_limit = 20
     type = "connections"
 
   [[services.ports]]
+    force_https = true
     handlers = ["http"]
     port = 80
 

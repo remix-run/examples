@@ -1,20 +1,13 @@
-import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import type { LinksFunction } from "@remix-run/node";
 import { Link } from "@remix-run/react";
 
-import stylesUrl from "../styles/index.css";
-
-export const meta: MetaFunction = () => {
-  return {
-    title: "Remix: It's funny!",
-    description: "Remix jokes app. Learn Remix and laugh at the same time!",
-  };
-};
+import stylesUrl from "~/styles/index.css";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesUrl },
 ];
 
-export default function Index() {
+export default function IndexRoute() {
   return (
     <div className="container">
       <div className="content">
