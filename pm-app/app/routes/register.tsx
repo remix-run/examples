@@ -23,9 +23,9 @@ export const meta: MetaFunction = () => ({
   title: "Register | PM Camp",
 });
 
-export const links: LinksFunction = () => {
-  return [{ href: routeStyles, rel: "stylesheet" }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: routeStyles },
+];
 
 export const loader = async ({ request }: LoaderArgs) => {
   //   let session = await sessionStorage.getSession(request.headers.get("Cookie"));

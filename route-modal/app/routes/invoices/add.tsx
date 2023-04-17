@@ -9,14 +9,7 @@ import {
   useTransition,
 } from "@remix-run/react";
 
-export const links: LinksFunction = () => {
-  return [
-    {
-      rel: "stylesheet",
-      href: styles,
-    },
-  ];
-};
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 export const action = async ({ request }: ActionArgs) => {
   // Here we can update our database with the new invoice

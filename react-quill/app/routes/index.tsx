@@ -8,9 +8,9 @@ import { ClientOnly } from "remix-utils";
 import { FallbackComponent } from "~/components/fallback-component";
 import { TextEditor } from "~/components/textEditor.client";
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesheetQuill }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesheetQuill },
+];
 
 export const action = async ({ request }: ActionArgs) => {
   const form = await request.formData();

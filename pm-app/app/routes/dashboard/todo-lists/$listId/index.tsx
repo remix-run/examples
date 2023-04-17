@@ -28,9 +28,9 @@ import { TodoItem, TodoList } from "~/ui/todo-list";
 
 // TODO: Add feature: Allow reassigning list to a different project
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesUrl }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesUrl },
+];
 
 export const meta: MetaFunction = ({ data }) => {
   return {

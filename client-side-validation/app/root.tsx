@@ -12,9 +12,9 @@ import {
 
 import stylesUrl from "./index.css";
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesUrl }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesUrl },
+];
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

@@ -25,9 +25,9 @@ import { Heading, Section } from "~/ui/section-heading";
 import { Stack } from "~/ui/stack";
 import { TodoItem, TodoList } from "~/ui/todo-list";
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesUrl }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesUrl },
+];
 
 export const meta: MetaFunction = ({ data }) => {
   return {
