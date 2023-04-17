@@ -36,6 +36,7 @@ if (process.env.CI) {
   const dirs = files.map((f) => f.split("/").at(0));
 
   examples = [...new Set(dirs)].filter((d) => !TO_IGNORE.includes(d));
+  console.log({ examples });
 } else {
   const entries = await fse.readdir(process.cwd(), { withFileTypes: true });
   examples = entries
@@ -51,7 +52,6 @@ console.log(`Testing changed examples: ${list.format(examples)}`);
 
 for (const example of examples) {
   queue.add(async () => {
-    console.log({ example });
     const pkgJson = await PackageJson.load(example);
 
     /** @type {import('execa').Options} */
