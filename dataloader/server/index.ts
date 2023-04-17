@@ -1,9 +1,9 @@
-import path from "path";
+import path from "node:path";
 
-import express from "express";
-import compression from "compression";
-import morgan from "morgan";
 import { createRequestHandler } from "@remix-run/express";
+import compression from "compression";
+import express from "express";
+import morgan from "morgan";
 
 import { createUsersByIdLoader } from "../app/loaders/userLoader";
 
