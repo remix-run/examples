@@ -1,4 +1,4 @@
-name: Typecheck changed examples
+name: 📦 Validate examples
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 
 jobs:
   typecheck:
+    name: 📦 Validate examples
     if: github.repository == 'remix-run/examples'
     runs-on: ubuntu-latest
 
@@ -26,8 +27,8 @@ jobs:
           node-version-file: ".nvmrc"
           cache: "yarn"
 
-      - name: 📥 Install deps
+      - name: 📥 Install dependencies
         run: yarn --frozen-lockfile
 
-      - name: install, build, typecheck
+      - name: 📦 Validate examples
         run: node ./__scripts/test.mjs
