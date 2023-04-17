@@ -51,6 +51,7 @@ console.log(`Testing changed examples: ${list.format(examples)}`);
 
 for (const example of examples) {
   queue.add(async () => {
+    console.log({ example });
     const pkgJson = await PackageJson.load(example);
 
     /** @type {import('execa').Options} */
