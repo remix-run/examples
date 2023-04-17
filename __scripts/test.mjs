@@ -15,7 +15,14 @@ console.log({ concurrency });
 
 const queue = new PQueue({ concurrency, autoStart: false });
 
-const TO_IGNORE = [".git", ".github", "__scripts", "yarn.lock", "package.json"];
+const TO_IGNORE = [
+  "__scripts",
+  ".git",
+  ".github",
+  ".gitignore",
+  "package.json",
+  "yarn.lock",
+];
 
 let examples = [];
 
@@ -36,7 +43,6 @@ if (process.env.CI) {
   const dirs = files.map((f) => f.split("/").at(0));
 
   examples = [...new Set(dirs)].filter((d) => !TO_IGNORE.includes(d));
-  console.log({ examples });
 } else {
   const entries = await fse.readdir(process.cwd(), { withFileTypes: true });
   examples = entries
