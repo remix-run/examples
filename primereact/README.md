@@ -3,6 +3,7 @@
 This is a very basic example of remix app with PrimeReact.
 
 - [Remix Docs](https://remix.run/docs)
+- [PrimeReact Docs](https://primereact.org/)
 
 ## Development
 
@@ -33,4 +34,4 @@ npm start
 
 Open this example on [CodeSandbox](https://codesandbox.com):
 
-[![Open in codesandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/goofy-pascal-9othnc)
+[![Open in codesandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/frosty-christian-7yu236?file=%2FREADME.md)
