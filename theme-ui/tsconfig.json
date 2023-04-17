@@ -11,12 +11,12 @@
     "strict": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
     "jsxImportSource": "theme-ui",
     "baseUrl": ".",
     "paths": {
       "~/*": ["./app/*"]
     },
-    "skipLibCheck": true,
 
     // Remix takes care of building everything in `remix build`.
     "noEmit": true

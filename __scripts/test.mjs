@@ -1,17 +1,19 @@
 #!/usr/bin/env node
 
-import path from "node:path";
 import os from "node:os";
+import path from "node:path";
 
-import { execa } from "execa";
 import { detect, getCommand } from "@antfu/ni";
+import PackageJson from "@npmcli/package-json";
+import { execa } from "execa";
 import fse from "fs-extra";
 import PQueue from "p-queue";
-import PackageJson from "@npmcli/package-json";
 
-console.log({ concurrency: os.cpus().length });
+const concurrency = os.cpus().length;
 
-const queue = new PQueue({ concurrency: os.cpus().length, autoStart: false });
+console.log({ concurrency });
+
+const queue = new PQueue({ concurrency, autoStart: false });
 
 const TO_IGNORE = [".git", ".github", "__scripts", "yarn.lock", "package.json"];
 
@@ -51,16 +53,6 @@ for (const example of examples) {
   queue.add(async () => {
     const pkgJson = await PackageJson.load(example);
 
-    // TODO: figure out why this is blowing up
-    pkgJson.update({
-      dependencies: {
-        ...pkgJson.content.dependencies,
-        "@vanilla-extract/css": "1.9.2",
-      },
-    });
-
-    await pkgJson.save();
-
     /** @type {import('execa').Options} */
     const options = { cwd: example, reject: false };
 
@@ -72,7 +64,7 @@ for (const example of examples) {
     if (hasSetup) {
       const setup = await getCommand(detected, "run", ["__setup"]);
       const setupArgs = setup.split(" ").slice(1);
-      console.log("🔧 Running setup script for", example);
+      console.log("🔧\u00A0Running setup script for", example);
       const setupResult = await execa(detected, setupArgs, options);
       if (setupResult.exitCode) {
         console.error(setupResult.stderr);
@@ -80,13 +72,13 @@ for (const example of examples) {
       }
     }
 
-    const install = await getCommand(detected, "install", [
+    const installCommand = await getCommand(detected, "install", [
       "--silent",
       "--legacy-peer-deps",
     ]);
     // this is silly, but is needed in order for execa to work
-    const installArgs = install.split(" ").slice(1, -1);
-    console.log(`📥 Installing ${example} with "${install}"`);
+    const installArgs = installCommand.split(" ").slice(1, -1);
+    console.log(`📥\u00A0Installing ${example} with "${installCommand}"`);
     const installResult = await execa(detected, installArgs, options);
 
     if (installResult.exitCode) {
@@ -100,21 +92,21 @@ for (const example of examples) {
 
     if (hasPrisma) {
       console.log("Generating prisma types for", example);
-      const prismaGenerate = await execa(
+      const prismaGenerateCommand = await execa(
         "npx",
         ["prisma", "generate"],
         options
       );
 
-      if (prismaGenerate.exitCode) {
-        console.error(prismaGenerate.stderr);
+      if (prismaGenerateCommand.exitCode) {
+        console.error(prismaGenerateCommand.stderr);
         throw new Error(`Error generating prisma types for ${example}`);
       }
     }
 
-    const build = await getCommand(detected, "run", ["build"]);
-    const buildArgs = build.split(" ").slice(1);
-    console.log(`📦 Building ${example} with "${build}"`);
+    const buildCommand = await getCommand(detected, "run", ["build"]);
+    const buildArgs = buildCommand.split(" ").slice(1);
+    console.log(`📦\u00A0Building ${example} with "${buildCommand}"`);
     const buildResult = await execa(detected, buildArgs, options);
 
     if (buildResult.exitCode) {
@@ -122,9 +114,11 @@ for (const example of examples) {
       throw new Error(`Error building ${example}`);
     }
 
-    const typecheck = await getCommand(detected, "run", ["typecheck"]);
-    const typecheckArgs = typecheck.split(" ").slice(1);
-    console.log(`🕵️ Typechecking ${example} with "${typecheck}"`);
+    const typecheckCommand = await getCommand(detected, "run", ["typecheck"]);
+    const typecheckArgs = typecheckCommand.split(" ").slice(1);
+    console.log(
+      `🕵️\u00A0\u00A0Typechecking ${example} with "${typecheckCommand}"`
+    );
     const typecheckResult = await execa(detected, typecheckArgs, options);
 
     if (typecheckResult.exitCode) {

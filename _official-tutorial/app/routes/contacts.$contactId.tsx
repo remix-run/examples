@@ -94,9 +94,7 @@ export default function Contact() {
 function Favorite({ contact }: { contact: ContactRecord }) {
   const fetcher = useFetcher<typeof action>();
   let favorite = contact.favorite;
-  // @ts-expect-error
   if (fetcher.formData) {
-    // @ts-expect-error
     favorite = fetcher.formData.get("favorite") === "true";
   }
   return (

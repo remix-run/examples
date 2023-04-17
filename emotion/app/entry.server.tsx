@@ -19,6 +19,7 @@ export default function handleRequest(
   const html = renderToString(
     <ServerStyleContext.Provider value={null}>
       <CacheProvider value={cache}>
+        {/* @ts-expect-error */}
         <RemixServer context={remixContext} url={request.url} />
       </CacheProvider>
     </ServerStyleContext.Provider>
@@ -29,6 +30,7 @@ export default function handleRequest(
   const markup = renderToString(
     <ServerStyleContext.Provider value={chunks.styles}>
       <CacheProvider value={cache}>
+        {/* @ts-expect-error */}
         <RemixServer context={remixContext} url={request.url} />
       </CacheProvider>
     </ServerStyleContext.Provider>
