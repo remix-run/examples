@@ -6,7 +6,7 @@ Production deploy here: https://remix-jokes.lol
 
 Tutorial here: https://rmx.as/jokes
 
-This example demonstrates some of the basic features of Remix, including:
+This example demonstrates some basic features of Remix, including:
 
 - Generating a new Remix project
 - Conventional files

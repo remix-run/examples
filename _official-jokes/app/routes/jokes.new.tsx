@@ -2,10 +2,11 @@ import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import {
   Form,
+  isRouteErrorResponse,
   Link,
   useActionData,
-  useCatch,
-  useTransition,
+  useNavigation,
+  useRouteError,
 } from "@remix-run/react";
 
 import { JokeDisplay } from "~/components/joke";
@@ -23,63 +24,66 @@ export const loader = async ({ request }: LoaderArgs) => {
 
 function validateJokeContent(content: string) {
   if (content.length < 10) {
-    return `That joke is too short`;
+    return "That joke is too short";
   }
 }
 
 function validateJokeName(name: string) {
-  if (name.length < 2) {
-    return `That joke's name is too short`;
+  if (name.length < 3) {
+    return "That joke's name is too short";
   }
 }
 
 export const action = async ({ request }: ActionArgs) => {
   const userId = await requireUserId(request);
-
   const form = await request.formData();
-  const name = form.get("name");
   const content = form.get("content");
-  if (typeof name !== "string" || typeof content !== "string") {
+  const name = form.get("name");
+  if (typeof content !== "string" || typeof name !== "string") {
     return badRequest({
       fieldErrors: null,
       fields: null,
-      formError: `Form not submitted correctly.`,
+      formError: "Form not submitted correctly.",
     });
   }
 
   const fieldErrors = {
-    name: validateJokeName(name),
     content: validateJokeContent(content),
+    name: validateJokeName(name),
   };
-  const fields = { name, content };
+  const fields = { content, name };
   if (Object.values(fieldErrors).some(Boolean)) {
-    return badRequest({ fieldErrors, fields, formError: null });
+    return badRequest({
+      fieldErrors,
+      fields,
+      formError: null,
+    });
   }
 
   const joke = await db.joke.create({
     data: { ...fields, jokesterId: userId },
   });
-  return redirect(`/jokes/${joke.id}?redirectTo=/jokes/new`);
+  return redirect(`/jokes/${joke.id}`);
 };
 
 export default function NewJokeRoute() {
   const actionData = useActionData<typeof action>();
-  const transition = useTransition();
+  const navigation = useNavigation();
 
-  if (transition.submission) {
-    const name = transition.submission.formData.get("name");
-    const content = transition.submission.formData.get("content");
+  if (navigation.formData) {
+    const content = navigation.formData.get("content");
+    const name = navigation.formData.get("name");
     if (
-      typeof name === "string" &&
       typeof content === "string" &&
+      typeof name === "string" &&
       !validateJokeContent(content) &&
       !validateJokeName(name)
     ) {
       return (
         <JokeDisplay
-          joke={{ name, content }}
-          isOwner={true}
           canDelete={false}
+          isOwner={true}
+          joke={{ name, content }}
         />
       );
     }
@@ -93,9 +97,9 @@ export default function NewJokeRoute() {
           <label>
             Name:{" "}
             <input
-              type="text"
               defaultValue={actionData?.fields?.name}
               name="name"
+              type="text"
               aria-invalid={Boolean(actionData?.fieldErrors?.name)}
               aria-errormessage={
                 actionData?.fieldErrors?.name ? "name-error" : undefined
@@ -103,7 +107,7 @@ export default function NewJokeRoute() {
             />
           </label>
           {actionData?.fieldErrors?.name ? (
-            <p className="form-validation-error" role="alert" id="name-error">
+            <p className="form-validation-error" id="name-error" role="alert">
               {actionData.fieldErrors.name}
             </p>
           ) : null}
@@ -123,8 +127,8 @@ export default function NewJokeRoute() {
           {actionData?.fieldErrors?.content ? (
             <p
               className="form-validation-error"
-              role="alert"
               id="content-error"
+              role="alert"
             >
               {actionData.fieldErrors.content}
             </p>
@@ -145,22 +149,22 @@ export default function NewJokeRoute() {
   );
 }
 
-export function CatchBoundary() {
-  const caught = useCatch();
+export function ErrorBoundary() {
+  const error = useRouteError();
+  console.error(error);
 
-  if (caught.status === 401) {
+  if (isRouteErrorResponse(error) && error.status === 401) {
     return (
       <div className="error-container">
         <p>You must be logged in to create a joke.</p>
-        <Link to="/login?redirectTo=/jokes/new">Login</Link>
+        <Link to="/login">Login</Link>
       </div>
     );
   }
 
-  throw new Error(`Unexpected caught response with status: ${caught.status}`);
-}
-
-export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
-  return <div>Something unexpected went wrong. Sorry about that.</div>;
+  return (
+    <div className="error-container">
+      Something unexpected went wrong. Sorry about that.
+    </div>
+  );
 }
