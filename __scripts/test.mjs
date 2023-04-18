@@ -3,7 +3,6 @@
 import os from "node:os";
 import path from "node:path";
 
-import { detect, getCommand } from "@antfu/ni";
 import PackageJson from "@npmcli/package-json";
 import { execa } from "execa";
 import fse from "fs-extra";
@@ -15,14 +14,17 @@ console.log({ concurrency });
 
 const queue = new PQueue({ concurrency, autoStart: false });
 
-const TO_IGNORE = [
+const TO_IGNORE = new Set([
   "__scripts",
   ".git",
   ".github",
   ".gitignore",
   "package.json",
   "yarn.lock",
-];
+]);
+
+const yarnExamples = new Set(["yarn-pnp"]);
+const pnpmExamples = new Set([]);
 
 let examples = [];
 
@@ -42,12 +44,12 @@ if (process.env.CI) {
 
   const dirs = files.map((f) => f.split("/").at(0));
 
-  examples = [...new Set(dirs)].filter((d) => !TO_IGNORE.includes(d));
+  examples = [...new Set(dirs)].filter((d) => !TO_IGNORE.has(d));
 } else {
   const entries = await fse.readdir(process.cwd(), { withFileTypes: true });
   examples = entries
     .filter((entry) => entry.isDirectory())
-    .filter((entry) => !TO_IGNORE.includes(entry.name))
+    .filter((entry) => !TO_IGNORE.has(entry.name))
     .map((entry) => entry.name)
     .filter((entry) => fse.existsSync(path.join(entry, "package.json")));
 }
@@ -63,34 +65,33 @@ for (const example of examples) {
     /** @type {import('execa').Options} */
     const options = { cwd: example, reject: false };
 
-    // detect package manager
-    const detected = await detect({ cwd: example });
+    const pm = pnpmExamples.has(example)
+      ? "pnpm"
+      : yarnExamples.has(example)
+      ? "yarn"
+      : "npm";
 
     const hasSetup = !!pkgJson.content.scripts?.__setup;
 
     if (hasSetup) {
-      const setup = await getCommand(detected, "run", ["__setup"]);
-      const setupArgs = setup.split(" ").slice(1);
       console.log("🔧\u00A0Running setup script for", example);
-      const setupResult = await execa(detected, setupArgs, options);
+      const setupResult = await execa(pm, ["run", "__setup"], options);
       if (setupResult.exitCode) {
         console.error(setupResult.stderr);
-        throw new Error(`Error running setup script for ${example}`);
+        throw new Error(`🚨\u00A0Error running setup script for ${example}`);
       }
     }
 
-    const installCommand = await getCommand(detected, "install", [
-      "--silent",
-      "--legacy-peer-deps",
-    ]);
-    // this is silly, but is needed in order for execa to work
-    const installArgs = installCommand.split(" ").slice(1, -1);
-    console.log(`📥\u00A0Installing ${example} with "${installCommand}"`);
-    const installResult = await execa(detected, installArgs, options);
+    console.log(`📥\u00A0Installing ${example} with "${pm}"`);
+    const installResult = await execa(
+      pm,
+      ["install", "--silent", "--legacy-peer-deps"],
+      options
+    );
 
     if (installResult.exitCode) {
       console.error(installResult.stderr);
-      throw new Error(`Error installing ${example}`);
+      throw new Error(`🚨\u00A0Error installing ${example}`);
     }
 
     const hasPrisma = fse.existsSync(
@@ -107,30 +108,24 @@ for (const example of examples) {
 
       if (prismaGenerateCommand.exitCode) {
         console.error(prismaGenerateCommand.stderr);
-        throw new Error(`Error generating prisma types for ${example}`);
+        throw new Error(`🚨\u00A0Error generating prisma types for ${example}`);
       }
     }
 
-    const buildCommand = await getCommand(detected, "run", ["build"]);
-    const buildArgs = buildCommand.split(" ").slice(1);
-    console.log(`📦\u00A0Building ${example} with "${buildCommand}"`);
-    const buildResult = await execa(detected, buildArgs, options);
+    console.log(`📦\u00A0Building ${example}`);
+    const buildResult = await execa(pm, ["run", "build"], options);
 
     if (buildResult.exitCode) {
       console.error(buildResult.stderr);
-      throw new Error(`Error building ${example}`);
+      throw new Error(`🚨\u00A0Error building ${example}`);
     }
 
-    const typecheckCommand = await getCommand(detected, "run", ["typecheck"]);
-    const typecheckArgs = typecheckCommand.split(" ").slice(1);
-    console.log(
-      `🕵️\u00A0\u00A0Typechecking ${example} with "${typecheckCommand}"`
-    );
-    const typecheckResult = await execa(detected, typecheckArgs, options);
+    console.log(`🕵️\u00A0\u00A0Typechecking ${example}`);
+    const typecheckResult = await execa(pm, ["run", "typecheck"], options);
 
     if (typecheckResult.exitCode) {
       console.error(typecheckResult.stderr);
-      throw new Error(`Error typechecking ${example}`);
+      throw new Error(`🚨\u00A0Error typechecking ${example}`);
     }
   });
 }

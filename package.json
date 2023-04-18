@@ -24,7 +24,6 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@antfu/ni": "^0.21.3",
     "@npmcli/package-json": "^3.0.0",
     "execa": "^7.1.1",
     "fs-extra": "11.1.1",
