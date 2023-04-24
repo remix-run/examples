@@ -4,8 +4,7 @@ FROM node:16-bullseye-slim as base
 # Install openssl for Prisma
 RUN apt-get update && apt-get install -y openssl
 
-# set for base and all that inherit from it
-ENV NODE_ENV=production
+ENV NODE_ENV production
 
 # Install all node_modules, including dev dependencies
 FROM base as deps
@@ -43,7 +42,7 @@ RUN npm run build
 # Finally, build the production image with minimal footprint
 FROM base
 
-ENV NODE_ENV=production
+ENV NODE_ENV production
 
 RUN mkdir /app
 WORKDIR /app
@@ -54,4 +53,5 @@ COPY --from=build /app/build /app/build
 COPY --from=build /app/public /app/public
 ADD . .
 
-CMD ["node", "node_modules/.bin/remix-serve", "build"]
+ENV PORT 8080
+CMD ["npm", "run", "start"]

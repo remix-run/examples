@@ -5,7 +5,7 @@
 Learn more about [Remix Stacks](https://remix.run/stacks).
 
 ```sh
-npx create-remix --template remix-run/indie-stack
+npx create-remix@latest --template remix-run/indie-stack
 ```
 
 ## What's in the stack
@@ -30,20 +30,20 @@ Not a fan of bits of the stack? Fork it, change it, and use `npx create-remix --
 
 Click this button to create a [Gitpod](https://gitpod.io) workspace with the project set up and Fly pre-installed
 
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/from-referrer/)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/remix-run/indie-stack/tree/main)
 
 ## Development
+
+- This step only applies if you've opted out of having the CLI install dependencies for you:
+
+  ```sh
+  npx remix init
+  ```
 
 - Initial setup: _If you just generated this project, this step has been done for you._
 
   ```sh
   npm run setup
-  ```
-
-- Validate the app has been set up properly (optional):
-
-  ```sh
-  npm run validate
   ```
 
 - Start dev server:
@@ -57,7 +57,7 @@ This starts your app in development mode, rebuilding assets on file changes.
 The database seed script creates a new user with some data you can use to get started:
 
 - Email: `rachel@remix.run`
-- Password: `rachelrox`
+- Password: `racheliscool`
 
 ### Relevant code:
 
@@ -81,14 +81,28 @@ Prior to your first deployment, you'll need to do a few things:
   fly auth signup
   ```
 
+  > **Note:** If you have more than one Fly account, ensure that you are signed into the same account in the Fly CLI as you are in the browser. In your terminal, run `fly auth whoami` and ensure the email matches the Fly account signed into the browser.
+
 - Create two apps on Fly, one for staging and one for production:
 
   ```sh
-  fly create blog-tutorial-ffb5
-  fly create blog-tutorial-ffb5-staging
+  fly apps create blog-tutorial-ffb5
+  fly apps create blog-tutorial-ffb5-staging
   ```
 
-- Create a new [GitHub Repository](https://repo.new)
+  > **Note:** Make sure this name matches the `app` set in your `fly.toml` file. Otherwise, you will not be able to deploy.
+
+  - Initialize Git.
+
+  ```sh
+  git init
+  ```
+
+- Create a new [GitHub Repository](https://repo.new), and then add it as the remote for your project. **Do not push your app yet!**
+
+  ```sh
+  git remote add origin <ORIGIN_URL>
+  ```
 
 - Add a `FLY_API_TOKEN` to your GitHub repo. To do this, go to your user settings on Fly and create a new [token](https://web.fly.io/user/personal_access_tokens/new), then add it to [your repo secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) with the name `FLY_API_TOKEN`.
 
@@ -99,7 +113,7 @@ Prior to your first deployment, you'll need to do a few things:
   fly secrets set SESSION_SECRET=$(openssl rand -hex 32) --app blog-tutorial-ffb5-staging
   ```
 
-  If you don't have openssl installed, you can also use [1password](https://1password.com/password-generator) to generate a random secret, just replace `$(openssl rand -hex 32)` with the generated secret.
+  If you don't have openssl installed, you can also use [1Password](https://1password.com/password-generator) to generate a random secret, just replace `$(openssl rand -hex 32)` with the generated secret.
 
 - Create a persistent volume for the sqlite database for both your staging and production environments. Run the following:
 
@@ -108,7 +122,15 @@ Prior to your first deployment, you'll need to do a few things:
   fly volumes create data --size 1 --app blog-tutorial-ffb5-staging
   ```
 
-Now that everything is set up, you can commit and push your changes to your repo. Every commit to your `main` branch will trigger a deployment to your production environment, and every commit to your `dev` branch will trigger a deployment to your staging environment.
+Now that everything is set up you can commit and push your changes to your repo. Every commit to your `main` branch will trigger a deployment to your production environment, and every commit to your `dev` branch will trigger a deployment to your staging environment.
+
+### Connecting to your database
+
+The sqlite database lives at `/data/sqlite.db` in your deployed application. You can connect to the live database by running `fly ssh console -C database-cli`.
+
+### Getting Help with Deployment
+
+If you run into any issues deploying to Fly, make sure you've followed all of the steps above and if you have, then post as many details about your deployment (including your app name) to [the Fly support community](https://community.fly.io). They're normally pretty responsive over there and hopefully can help resolve any of your deployment issues and questions.
 
 ## GitHub Actions
 

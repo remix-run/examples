@@ -1,5 +1,5 @@
-import bcrypt from "@node-rs/bcrypt";
 import type { Password, User } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
 import { prisma } from "~/db.server";
 
@@ -47,7 +47,10 @@ export async function verifyLogin(
     return null;
   }
 
-  const isValid = await bcrypt.verify(password, userWithPassword.password.hash);
+  const isValid = await bcrypt.compare(
+    password,
+    userWithPassword.password.hash
+  );
 
   if (!isValid) {
     return null;

@@ -12,9 +12,9 @@ import {
 
 import stylesUrl from "./index.css";
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesUrl }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesUrl },
+];
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -180,9 +180,9 @@ export default function App() {
               <button>Submit</button>
             </div>
           </form>
-          {actionData?.message && (
+          {actionData?.message ? (
             <div className="result">{actionData.message}</div>
-          )}
+          ) : null}
         </div>
         <ScrollRestoration />
         <Scripts />

@@ -1,8 +1,8 @@
 import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 
-import { requireUser } from "~/session.server";
 import { deleteTodo } from "~/db.server";
+import { requireUser } from "~/session.server";
 
 export const action = async ({ params, request }: ActionArgs) => {
   await requireUser(request, {

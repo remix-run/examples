@@ -1,9 +1,9 @@
 const path = require("path");
 
-const express = require("express");
-const compression = require("compression");
-const morgan = require("morgan");
 const { createRequestHandler } = require("@remix-run/express");
+const compression = require("compression");
+const express = require("express");
+const morgan = require("morgan");
 
 const { createUsersByIdLoader } = require("../app/loaders/userLoader");
 

@@ -1,7 +1,7 @@
-import type { FC } from "react";
 import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useFetcher, useLoaderData } from "@remix-run/react";
+import type { FC } from "react";
 
 import type { RemixWithXataExampleRecord } from "~/lib/xata.codegen.server";
 import { getXataClient } from "~/lib/xata.codegen.server";

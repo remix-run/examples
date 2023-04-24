@@ -1,6 +1,9 @@
+import type { V2_MetaFunction } from "@remix-run/node";
 import { Link } from "@remix-run/react";
 
 import { useOptionalUser } from "~/utils";
+
+export const meta: V2_MetaFunction = () => [{ title: "Remix Notes" }];
 
 export default function Index() {
   const user = useOptionalUser();
@@ -17,7 +20,7 @@ export default function Index() {
               />
               <div className="absolute inset-0 bg-[color:rgba(254,204,27,0.5)] mix-blend-multiply" />
             </div>
-            <div className="lg:pb-18 relative px-4 pt-16 pb-8 sm:px-6 sm:pt-24 sm:pb-14 lg:px-8 lg:pt-32">
+            <div className="relative px-4 pt-16 pb-8 sm:px-6 sm:pt-24 sm:pb-14 lg:px-8 lg:pb-20 lg:pt-32">
               <h1 className="text-center text-6xl font-extrabold tracking-tight sm:text-8xl lg:text-9xl">
                 <span className="block uppercase text-yellow-500 drop-shadow-md">
                   Indie Stack
@@ -45,7 +48,7 @@ export default function Index() {
                     </Link>
                     <Link
                       to="/login"
-                      className="flex items-center justify-center rounded-md bg-yellow-500 px-4 py-3 font-medium text-white hover:bg-yellow-600  "
+                      className="flex items-center justify-center rounded-md bg-yellow-500 px-4 py-3 font-medium text-white hover:bg-yellow-600"
                     >
                       Log In
                     </Link>
@@ -61,12 +64,6 @@ export default function Index() {
               </a>
             </div>
           </div>
-        </div>
-
-        <div className="mx-auto mt-16 max-w-7xl text-center">
-          <Link to="/posts" className="text-xl text-blue-600 underline">
-            Blog Posts
-          </Link>
         </div>
 
         <div className="mx-auto max-w-7xl py-2 px-4 sm:px-6 lg:px-8">
@@ -133,7 +130,7 @@ export default function Index() {
                 href={img.href}
                 className="flex h-16 w-32 justify-center p-1 grayscale transition hover:grayscale-0 focus:grayscale-0"
               >
-                <img alt={img.alt} src={img.src} />
+                <img alt={img.alt} src={img.src} className="object-contain" />
               </a>
             ))}
           </div>

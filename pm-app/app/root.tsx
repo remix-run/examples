@@ -15,9 +15,7 @@ import global from "~/dist/styles/global.css";
 
 import type { User } from "./models";
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: global }];
-};
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: global }];
 
 export const loader = async () => {
   return json({

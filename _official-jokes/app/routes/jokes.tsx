@@ -2,36 +2,32 @@ import type { LinksFunction, LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, Link, Outlet, useLoaderData } from "@remix-run/react";
 
+import stylesUrl from "~/styles/jokes.css";
 import { db } from "~/utils/db.server";
 import { getUser } from "~/utils/session.server";
-
-import stylesUrl from "../styles/jokes.css";
-
-export const loader = async ({ request }: LoaderArgs) => {
-  const user = await getUser(request);
-
-  // in the official deployed version of the app, we don't want to deploy
-  // a site with unmoderated content, so we only show users their own jokes
-  const jokeListItems = user
-    ? await db.joke.findMany({
-        take: 5,
-        select: { id: true, name: true },
-        where: { jokesterId: user.id },
-        orderBy: { createdAt: "desc" },
-      })
-    : [];
-
-  return json({
-    jokeListItems,
-    user,
-  });
-};
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesUrl },
 ];
 
-export default function JokesScreen() {
+export const loader = async ({ request }: LoaderArgs) => {
+  const user = await getUser(request);
+
+  // In the official deployed version of the app, we don't want to deploy
+  // a site with none-moderated content, so we only show users their own jokes
+  const jokeListItems = user
+    ? await db.joke.findMany({
+        orderBy: { createdAt: "desc" },
+        select: { id: true, name: true },
+        take: 5,
+        where: { jokesterId: user.id },
+      })
+    : [];
+
+  return json({ jokeListItems, user });
+};
+
+export default function JokesRoute() {
   const data = useLoaderData<typeof loader>();
 
   return (
@@ -61,24 +57,24 @@ export default function JokesScreen() {
       <main className="jokes-main">
         <div className="container">
           <div className="jokes-list">
-            {data.jokeListItems.length ? (
-              <>
-                <Link to=".">Get a random joke</Link>
-                <p>Here are a few more jokes to check out:</p>
-                <ul>
-                  {data.jokeListItems.map(({ id, name }) => (
-                    <li key={id}>
-                      <Link to={id} prefetch="intent">
-                        {name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <Link to="new" className="button">
-                  Add your own
-                </Link>
-              </>
-            ) : null}
+            <Link to=".">Get a random joke</Link>
+            <p>Here are a few more jokes to check out:</p>
+            <ul>
+              {data.jokeListItems.length > 0 ? (
+                data.jokeListItems.map(({ id, name }) => (
+                  <li key={id}>
+                    <Link prefetch="intent" to={id}>
+                      {name}
+                    </Link>
+                  </li>
+                ))
+              ) : (
+                <li>No jokes found</li>
+              )}
+            </ul>
+            <Link to="new" className="button">
+              Add your own
+            </Link>
           </div>
           <div className="jokes-outlet">
             <Outlet />

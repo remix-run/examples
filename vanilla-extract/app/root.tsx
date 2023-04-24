@@ -1,4 +1,7 @@
-import type { MetaFunction } from "@remix-run/node";
+import "./global.css";
+
+import { cssBundleHref } from "@remix-run/css-bundle";
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -8,16 +11,8 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import vanillaExtractStyles from "~/styles/index.css";
-
-export function links() {
-  return [
-    {
-      rel: "stylesheet",
-      href: vanillaExtractStyles,
-    },
-  ];
-}
+export const links: LinksFunction = () =>
+  cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : [];
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

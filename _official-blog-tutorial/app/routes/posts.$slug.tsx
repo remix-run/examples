@@ -13,11 +13,11 @@ export const loader = async ({ params }: LoaderArgs) => {
   invariant(post, `Post not found: ${params.slug}`);
 
   const html = marked(post.markdown);
-  return json({ post, html });
+  return json({ html, post });
 };
 
 export default function PostSlug() {
-  const { post, html } = useLoaderData<typeof loader>();
+  const { html, post } = useLoaderData<typeof loader>();
   return (
     <main className="mx-auto max-w-4xl">
       <h1 className="my-6 border-b-2 text-center text-3xl">{post.title}</h1>

@@ -3,16 +3,14 @@
   "sideEffects": false,
   "scripts": {
     "build": "remix build",
-    "dev": "concurrently \"NODE_ENV=development remix dev\" \"NODE_ENV=development nodemon --watch server.js\"",
-    "start": "npm run build && node server.js",
+    "dev": "remix dev",
+    "start": "remix-serve build",
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@remix-run/express": "^1.13.0",
     "@remix-run/node": "~1.14.2",
     "@remix-run/react": "~1.14.2",
     "@remix-run/serve": "~1.14.2",
-    "express": "^4.18.2",
     "isbot": "^3.6.5",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
@@ -25,14 +23,10 @@
     "@remix-run/eslint-config": "~1.14.2",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
-    "concurrently": "^7.6.0",
     "eslint": "^8.27.0",
-    "nodemon": "^2.0.20",
-    "prettier": "^2.8.4",
     "typescript": "^4.8.4"
   },
   "engines": {
     "node": ">=14"
-  },
-  "prettier": {}
+  }
 }

@@ -1,18 +1,8 @@
-/**
- * Note that styles are imported from "~/styles" rather than
- * "./Text.css.ts". This is because we need to import the
- * compiled output from the vanilla-extract build step,
- * otherwise our `.css.ts` files would go through the Remix
- * compiler and wouldn't generate any static CSS.
- */
 import type { ReactNode } from "react";
-
-import { componentStyles } from "~/styles";
 
 import { Box } from "../Box/Box";
 
-// Select the styles that we scoped to this component
-const styles = componentStyles.Text;
+import * as styles from "./Text.css";
 
 export function Text({
   children,
