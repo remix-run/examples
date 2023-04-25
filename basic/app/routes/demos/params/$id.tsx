@@ -29,7 +29,7 @@ export const loader = async ({ params }: LoaderArgs) => {
   // Sometimes your code just blows up and you never anticipated it. Remix will
   // automatically catch it and send the UI to the error boundary.
   if (params.id === "kaboom") {
-    // @ts-expect-error
+    // @ts-expect-error - this is a deliberate error to test the error boundary
     lol();
   }
 

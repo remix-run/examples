@@ -83,11 +83,17 @@ for (const example of examples) {
     }
 
     console.log(`📥\u00A0Installing ${example} with "${pm}"`);
-    const installResult = await execa(
-      pm,
-      ["install", "--silent", "--legacy-peer-deps"],
-      options
-    );
+    /** @type {import('execa').ExecaChildProcess<string>} */
+    let installResult;
+    if (pm === "npm") {
+      installResult = await execa(
+        pm,
+        ["--silent", "--legacy-peer-deps"],
+        options
+      );
+    } else {
+      installResult = await execa(pm, ["--silent"], options);
+    }
 
     if (installResult.exitCode) {
       console.error(installResult.stderr);
@@ -120,7 +126,7 @@ for (const example of examples) {
       throw new Error(`🚨\u00A0Error building ${example}`);
     }
 
-    console.log(`🕵️\u00A0\u00A0Typechecking ${example}`);
+    console.log(`🕵️\u00A0Typechecking ${example}`);
     const typecheckResult = await execa(pm, ["run", "typecheck"], options);
 
     if (typecheckResult.exitCode) {
