@@ -43,9 +43,7 @@ if (process.env.CI) {
   }
 
   const files = stdout.split("\n");
-
   const dirs = files.map((f) => f.split("/").at(0));
-
   examples = [...new Set(dirs)].filter((d) => !TO_IGNORE.has(d));
 } else {
   const entries = await fse.readdir(process.cwd(), { withFileTypes: true });
@@ -59,10 +57,6 @@ if (process.env.CI) {
 const list = new Intl.ListFormat("en", { style: "long", type: "conjunction" });
 
 console.log(`Testing changed examples: ${list.format(examples)}`);
-
-if (examples.length === 0) {
-  return;
-}
 
 for (const example of examples) {
   const pkgJson = await PackageJson.load(example);
@@ -143,7 +137,6 @@ for (const example of examples) {
 }
 
 installQueue.start();
-installQueue.on("error", (error) => console.error("🚨", error));
 
 installQueue.on("empty", () => {
   console.log(`installQueue is complete, moving on to buildQueue`);
@@ -155,6 +148,6 @@ buildQueue.on("empty", () => {
   return typecheckQueue.start();
 });
 
+installQueue.on("error", (error) => console.error("🚨", error));
 buildQueue.on("error", (error) => console.error("🚨", error));
-
 typecheckQueue.on("error", (error) => console.error("🚨", error));
