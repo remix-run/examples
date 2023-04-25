@@ -36,12 +36,10 @@ function validatePassword(password: string) {
   }
 }
 
-function validateUrl(url: FormDataEntryValue) {
-  if (typeof url !== "string") return;
+function validateUrl(url: FormDataEntryValue | null) {
+  if (typeof url !== "string") return "/jokes";
   const urls = ["/jokes", "/", "https://remix.run"];
-  if (urls.includes(url)) {
-    return url;
-  }
+  if (urls.includes(url)) return url;
   return "/jokes";
 }
 
@@ -50,9 +48,7 @@ export const action = async ({ request }: ActionArgs) => {
   const loginType = form.get("loginType");
   const password = form.get("password");
   const username = form.get("username");
-  const redirectTo = validateUrl(
-    (form.get("redirectTo") as string) || "/jokes"
-  );
+  const redirectTo = validateUrl(form.get("redirectTo"));
   if (
     typeof loginType !== "string" ||
     typeof password !== "string" ||
