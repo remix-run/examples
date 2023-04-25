@@ -60,6 +60,10 @@ const list = new Intl.ListFormat("en", { style: "long", type: "conjunction" });
 
 console.log(`Testing changed examples: ${list.format(examples)}`);
 
+if (examples.length === 0) {
+  return;
+}
+
 for (const example of examples) {
   const pkgJson = await PackageJson.load(example);
 
