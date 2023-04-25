@@ -12,7 +12,9 @@ const concurrency = os.cpus().length;
 
 console.log({ concurrency });
 
-const queue = new PQueue({ concurrency, autoStart: false });
+let installQueue = new PQueue({ concurrency, autoStart: false });
+let buildQueue = new PQueue({ concurrency, autoStart: false });
+let typecheckQueue = new PQueue({ concurrency, autoStart: false });
 
 const TO_IGNORE = new Set([
   "__scripts",
@@ -59,18 +61,18 @@ const list = new Intl.ListFormat("en", { style: "long", type: "conjunction" });
 console.log(`Testing changed examples: ${list.format(examples)}`);
 
 for (const example of examples) {
-  queue.add(async () => {
-    const pkgJson = await PackageJson.load(example);
+  const pkgJson = await PackageJson.load(example);
 
-    /** @type {import('execa').Options} */
-    const options = { cwd: example, reject: false };
+  /** @type {import('execa').Options} */
+  const options = { cwd: example, reject: false };
 
-    const pm = pnpmExamples.has(example)
-      ? "pnpm"
-      : yarnExamples.has(example)
-      ? "yarn"
-      : "npm";
+  const pm = pnpmExamples.has(example)
+    ? "pnpm"
+    : yarnExamples.has(example)
+    ? "yarn"
+    : "npm";
 
+  installQueue.add(async () => {
     const hasSetup = !!pkgJson.content.scripts?.__setup;
 
     if (hasSetup) {
@@ -78,26 +80,22 @@ for (const example of examples) {
       const setupResult = await execa(pm, ["run", "__setup"], options);
       if (setupResult.exitCode) {
         console.error(setupResult.stderr);
-        throw new Error(`🚨\u00A0Error running setup script for ${example}`);
+        throw new Error(`Error running setup script for ${example}`);
       }
     }
 
     console.log(`📥\u00A0Installing ${example} with "${pm}"`);
-    /** @type {import('execa').ExecaChildProcess<string>} */
-    let installResult;
-    if (pm === "npm") {
-      installResult = await execa(
-        pm,
-        ["--silent", "--legacy-peer-deps"],
-        options
-      );
-    } else {
-      installResult = await execa(pm, ["--silent"], options);
-    }
+    let installResult = await execa(
+      pm,
+      pm === "npm"
+        ? ["install", "--silent", "--legacy-peer-deps"]
+        : ["install", "--silent"],
+      options
+    );
 
     if (installResult.exitCode) {
       console.error(installResult.stderr);
-      throw new Error(`🚨\u00A0Error installing ${example}`);
+      throw new Error(`Error installing ${example}`);
     }
 
     const hasPrisma = fse.existsSync(
@@ -114,29 +112,45 @@ for (const example of examples) {
 
       if (prismaGenerateCommand.exitCode) {
         console.error(prismaGenerateCommand.stderr);
-        throw new Error(`🚨\u00A0Error generating prisma types for ${example}`);
+        throw new Error(`Error generating prisma types for ${example}`);
       }
     }
+  });
 
+  buildQueue.add(async () => {
     console.log(`📦\u00A0Building ${example}`);
     const buildResult = await execa(pm, ["run", "build"], options);
 
     if (buildResult.exitCode) {
       console.error(buildResult.stderr);
-      throw new Error(`🚨\u00A0Error building ${example}`);
+      throw new Error(`Error building ${example}`);
     }
+  });
 
+  typecheckQueue.add(async () => {
     console.log(`🕵️\u00A0Typechecking ${example}`);
     const typecheckResult = await execa(pm, ["run", "typecheck"], options);
 
     if (typecheckResult.exitCode) {
       console.error(typecheckResult.stderr);
-      throw new Error(`🚨\u00A0Error typechecking ${example}`);
+      throw new Error(`Error typechecking ${example}`);
     }
   });
 }
 
-queue.start();
-queue.on("error", (error) => {
-  console.error("🚨", error);
+installQueue.start();
+installQueue.on("error", (error) => console.error("🚨", error));
+
+installQueue.on("empty", () => {
+  console.log(`installQueue is complete, moving on to buildQueue`);
+  return buildQueue.start();
 });
+
+buildQueue.on("empty", () => {
+  console.log(`buildQueue is complete, moving on to typecheckQueue`);
+  return typecheckQueue.start();
+});
+
+buildQueue.on("error", (error) => console.error("🚨", error));
+
+typecheckQueue.on("error", (error) => console.error("🚨", error));
