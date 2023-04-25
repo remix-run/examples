@@ -22,6 +22,7 @@ const TO_IGNORE = new Set([
   ".github",
   ".gitignore",
   "package.json",
+  "prettier.config.js",
   "yarn.lock",
 ]);
 
