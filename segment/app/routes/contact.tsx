@@ -1,6 +1,6 @@
 import { json } from "@remix-run/node";
 import { Form } from "@remix-run/react";
-import { type SyntheticEvent } from "react";
+import type { SyntheticEvent } from "react";
 
 import * as segment from "~/utils/segment.client";
 
