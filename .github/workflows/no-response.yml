@@ -18,6 +18,8 @@ jobs:
         uses: actions/stale@v8
         with:
           days-before-close: 21
+          # don't automatically mark issues/PRs as stale
+          days-before-stale: -1
           close-issue-message: >
             This issue has been automatically closed because we haven't received a
             response from the original author 🙈. This automation helps keep the issue
