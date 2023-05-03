@@ -19,7 +19,8 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          #  we only need to compare the current commit with the previous one
+          fetch-depth: 2
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v3

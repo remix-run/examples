@@ -12,9 +12,9 @@ const concurrency = os.cpus().length;
 
 console.log({ concurrency });
 
-let installQueue = new PQueue({ concurrency, autoStart: false });
-let buildQueue = new PQueue({ concurrency, autoStart: false });
-let typecheckQueue = new PQueue({ concurrency, autoStart: false });
+const installQueue = new PQueue({ concurrency, autoStart: false });
+const buildQueue = new PQueue({ concurrency, autoStart: false });
+const typecheckQueue = new PQueue({ concurrency, autoStart: false });
 
 const TO_IGNORE = new Set([
   "__scripts",
@@ -84,7 +84,7 @@ for (const example of examples) {
     }
 
     console.log(`📥\u00A0Installing ${example} with "${pm}"`);
-    let installResult = await execa(
+    const installResult = await execa(
       pm,
       pm === "npm"
         ? ["install", "--silent", "--legacy-peer-deps"]
