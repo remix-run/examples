@@ -1,5 +1,5 @@
-import * as React from "react";
 import cx from "clsx";
+import * as React from "react";
 
 const ShadowBox = React.forwardRef<HTMLDivElement, ShadowBoxProps>(
   (props, ref) => {

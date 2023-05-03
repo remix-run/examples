@@ -15,8 +15,8 @@ import {
   signIn,
   signInWithToken,
 } from "~/server/auth.server";
-import { commitSession, getSession } from "~/sessions";
 import { getRestConfig } from "~/server/firebase.server";
+import { commitSession, getSession } from "~/sessions";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const session = await getSession(request.headers.get("cookie"));
@@ -112,9 +112,9 @@ export default function Login() {
   return (
     <div>
       <h1>Login</h1>
-      {(clientAction?.error || actionData?.error) && (
+      {clientAction?.error || actionData?.error ? (
         <p>{clientAction?.error || actionData?.error}</p>
-      )}
+      ) : null}
       <form method="post" onSubmit={handleSubmit}>
         <input
           style={{ display: "block" }}

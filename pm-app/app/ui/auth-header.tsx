@@ -1,5 +1,5 @@
-import * as React from "react";
 import cx from "clsx";
+import * as React from "react";
 
 import type { User } from "~/models";
 

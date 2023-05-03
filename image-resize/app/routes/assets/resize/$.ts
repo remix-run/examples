@@ -17,7 +17,8 @@ import { createReadStream, statSync } from "fs";
 import path from "path";
 import { PassThrough } from "stream";
 
-import type { LoaderArgs, Params } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
+import type { Params } from "@remix-run/react";
 import type { FitEnum } from "sharp";
 import sharp from "sharp";
 

@@ -9,9 +9,9 @@ export const meta: MetaFunction = () => {
   };
 };
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesUrl }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesUrl },
+];
 
 export default function Index() {
   return (

@@ -1,5 +1,5 @@
-import * as React from "react";
 import cx from "clsx";
+import * as React from "react";
 
 const LevelContext: React.Context<HeadingLevel> = React.createContext(
   1 as HeadingLevel

@@ -1,13 +1,13 @@
-import type { ActionArgs } from "@remix-run/node";
+import type { ActionArgs, LinksFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useActionData } from "@remix-run/react";
 
 import { add } from "~/rust.server";
 import indexStylesUrl from "~/styles/index.css";
 
-export function links() {
-  return [{ rel: "stylesheet", href: indexStylesUrl }];
-}
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: indexStylesUrl },
+];
 
 export const action = async ({ request }: ActionArgs) => {
   const formData = await request.formData();

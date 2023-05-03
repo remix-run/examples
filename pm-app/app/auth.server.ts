@@ -1,8 +1,8 @@
 import type { Session } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 
-import { sessionStorage, sessionKey, getUserSession } from "~/session.server";
 import type { User } from "~/models";
+import { sessionStorage, sessionKey, getUserSession } from "~/session.server";
 
 const ERROR_KEY = "auth:error";
 

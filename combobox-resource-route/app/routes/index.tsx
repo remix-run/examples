@@ -5,16 +5,17 @@ import {
   ComboboxOption,
   ComboboxPopover,
 } from "@reach/combobox";
-import { Form, useFetcher, useSearchParams } from "@remix-run/react";
 import comboboxStyles from "@reach/combobox/styles.css";
+import type { LinksFunction } from "@remix-run/react";
+import { Form, useFetcher, useSearchParams } from "@remix-run/react";
 
 import type { Lang } from "~/models/langs";
 
-export function links() {
+export const links: LinksFunction = () => [
   // Add them to the page when this route is active:
   // https://remix.run/route/links
-  return [{ rel: "stylesheet", href: comboboxStyles }];
-}
+  { rel: "stylesheet", href: comboboxStyles },
+];
 
 export default function Index() {
   // Set up a fetcher to fetch languages as the user types
@@ -41,11 +42,11 @@ export default function Index() {
           />
 
           {/* Add a nice spinner when the fetcher is loading */}
-          {langs.state === "loading" && <Spinner />}
+          {langs.state === "loading" ? <Spinner /> : null}
         </div>
 
         {/* Only show the popover if we have results */}
-        {langs.data && langs.data.length > 0 && (
+        {langs.data && langs.data.length > 0 ? (
           <ComboboxPopover>
             <ComboboxList>
               {langs.data.map((lang, index) => (
@@ -55,13 +56,13 @@ export default function Index() {
               ))}
             </ComboboxList>
           </ComboboxPopover>
-        )}
+        ) : null}
       </Combobox>
       <p>
         <button type="submit">Submit</button>{" "}
-        {searchParams.has("lang") && (
+        {searchParams.has("lang") ? (
           <span>You submitted: {searchParams.get("lang")}</span>
-        )}
+        ) : null}
       </p>
     </Form>
   );

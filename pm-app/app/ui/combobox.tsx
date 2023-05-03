@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   Combobox as ReachCombobox,
   ComboboxInput as ReachComboboxInput,
@@ -17,6 +16,7 @@ import type {
   ComboboxButtonProps as ReachComboboxButtonProps,
 } from "@reach/combobox";
 import cx from "clsx";
+import * as React from "react";
 
 import { useFieldContext, Field } from "~/ui/form";
 

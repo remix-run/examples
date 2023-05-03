@@ -1,12 +1,12 @@
-const path = require("path");
-const { createServer } = require("http");
 const fs = require("fs");
+const { createServer } = require("http");
+const path = require("path");
 
-const express = require("express");
-const { Server } = require("socket.io");
-const compression = require("compression");
-const morgan = require("morgan");
 const { createRequestHandler } = require("@remix-run/express");
+const compression = require("compression");
+const express = require("express");
+const morgan = require("morgan");
+const { Server } = require("socket.io");
 
 const MODE = process.env.NODE_ENV;
 const BUILD_DIR = path.join(process.cwd(), "server/build");

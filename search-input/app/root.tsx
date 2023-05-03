@@ -20,9 +20,9 @@ import globalStylesUrl from "~/styles/global.css";
  *
  * https://remix.run/route/links
  */
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: globalStylesUrl }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: globalStylesUrl },
+];
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

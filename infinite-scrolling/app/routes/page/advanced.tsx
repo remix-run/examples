@@ -15,12 +15,12 @@ import {
 } from "react";
 import { useVirtual } from "react-virtual";
 
-import { countItems, getItemsPaginated } from "~/utils/backend.server";
 import stylesUrl from "~/styles/index.css";
+import { countItems, getItemsPaginated } from "~/utils/backend.server";
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesUrl }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesUrl },
+];
 
 const LIMIT = 200;
 const DATA_OVERSCAN = 40;
