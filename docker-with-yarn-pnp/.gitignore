@@ -1,0 +1,15 @@
+# Yarn 3 PnP
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+!yarn.lock
+
+# Remix
+/.cache
+/build
+/public/build
+.env
