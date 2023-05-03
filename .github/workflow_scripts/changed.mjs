@@ -17,7 +17,6 @@ const buildQueue = new PQueue({ concurrency, autoStart: false });
 const typecheckQueue = new PQueue({ concurrency, autoStart: false });
 
 const TO_IGNORE = new Set([
-  "__scripts",
   ".git",
   ".github",
   ".gitignore",

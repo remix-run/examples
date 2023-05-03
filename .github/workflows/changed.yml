@@ -33,4 +33,4 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: 📦 Validate examples
-        run: node ./__scripts/test.mjs
+        run: node ./.github/workflow_scripts/changed.mjs
