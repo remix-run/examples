@@ -4,6 +4,7 @@ import {
   Link,
   useActionData,
   useLoaderData,
+  useLocation,
   useSubmit,
 } from "@remix-run/react";
 import { useCallback, useState } from "react";
@@ -27,8 +28,21 @@ export const loader = async ({ request }: LoaderArgs) => {
     return redirect("/", { headers });
   }
   const { apiKey, domain } = getRestConfig();
+  const host =
+    request.headers.get("X-Forwarded-Host") ?? request.headers.get("host");
+  if (!host) {
+    throw new Error("Could not determine domain URL.");
+  }
+  const protocol =
+    host.includes("localhost") || host.includes("127.0.0.1") ? "http" : "https";
+  const redirectUri = `${protocol}://${host}/auth/google`;
   return json(
-    { apiKey, domain, GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID },
+    {
+      apiKey,
+      domain,
+      GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+      redirectUri,
+    },
     { headers }
   );
 };
@@ -73,7 +87,7 @@ export default function Login() {
   const restConfig = useLoaderData<typeof loader>();
   const submit = useSubmit();
 
-  const { GOOGLE_CLIENT_ID } = restConfig;
+  const { GOOGLE_CLIENT_ID, redirectUri } = restConfig;
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -123,7 +137,7 @@ export default function Login() {
           href={`https://accounts.google.com/o/oauth2/v2/auth\
 ?response_type=code\
 &client_id=${GOOGLE_CLIENT_ID}\
-&redirect_uri=http://localhost:3000/auth/google\
+&redirect_uri=${redirectUri}\
 &scope=openid%20email%20profile`}
         >
           Login with Google

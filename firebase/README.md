@@ -48,7 +48,12 @@ The "Login with Google" link will only work when running against a Firebase Proj
 After the steps in "Run against a Firebase Project" have been completed:
 
 - In the [Firebase Console](https://console.firebase.google.com), navigate to Authentication > Sign-in method > Add new provider > Google. Make a note of the client ID and secret and add them to the .env file as GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET.
-- In the [Google Cloud Credentials Console](https://console.cloud.google.com/apis/credentials), select the Web client (under OAuth 2.0 Client IDs) and add `http://localhost:5002/auth/google`, `http://localhost:3000/auth/google` and `https://<projectid>.firebaseapp.com/auth/google` as authorised redirects.
+- In the [Google Cloud Credentials Console](https://console.cloud.google.com/apis/credentials), select the Web client (under OAuth 2.0 Client IDs) and the following as authorised redirects:
+  - `http://localhost:3000/auth/google`
+  - `http://localhost:5002/auth/google`
+  - `http://127.0.0.1:3000/auth/google`
+  - `http://127.0.0.1:5002/auth/google`
+  - `https://<projectid>.firebaseapp.com/auth/google`
 
 ## Details
 
