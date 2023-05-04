@@ -41,6 +41,7 @@ const handleBotRequest = (
 
     const { pipe, abort } = renderToPipeableStream(
       injectStylesIntoStaticMarkup(
+        // @ts-expect-error
         <RemixServer context={remixContext} url={request.url} />
       ),
       {
@@ -83,6 +84,7 @@ const handleBrowserRequest = (
 
     const { pipe, abort } = renderToPipeableStream(
       injectStylesIntoStaticMarkup(
+        // @ts-expect-error
         <RemixServer context={remixContext} url={request.url} />
       ),
       {

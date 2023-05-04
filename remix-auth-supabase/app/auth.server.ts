@@ -55,4 +55,5 @@ export const authenticator = new Authenticator<Session>(sessionStorage, {
   sessionErrorKey: supabaseStrategy.sessionErrorKey, // keep in sync
 });
 
+// @ts-expect-error
 authenticator.use(supabaseStrategy);

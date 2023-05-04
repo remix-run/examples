@@ -10,8 +10,9 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-const expiresToSeconds = (expires) => {
+const expiresToSeconds = (expires: Date | undefined) => {
   const now = new Date();
+  if (!expires) return 0;
   const expiresDate = new Date(expires);
   const secondsDelta = Math.ceil(
     (expiresDate.getTime() - now.getTime()) / 1000

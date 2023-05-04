@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export function ComplexComponent() {
-  const [count, setCount] = useState(() => {
+  const [count, setCount] = useState<number>(() => {
     const stored = localStorage.getItem("count");
     if (!stored) return 0;
     return JSON.parse(stored);

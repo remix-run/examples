@@ -41,7 +41,7 @@ cd <library-name>
 wasm-pack build --target nodejs
 ```
 
-After succesfully bulding the library you can add this to your dependencies by running inside your remix project:
+After successfully building the library you can add this to your dependencies by running inside your remix project:
 
 ```sh
 npm install ./<library-name>/pkg

@@ -1,0 +1,36 @@
+name: 📦 Validate examples
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  typecheck:
+    name: 📦 Validate examples
+    if: github.repository == 'remix-run/examples'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+        with:
+          #  we only need to compare the current commit with the previous one
+          fetch-depth: 2
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+          cache: "yarn"
+
+      - name: 📥 Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: 📦 Validate examples
+        run: node ./.github/workflow_scripts/changed.mjs

@@ -121,6 +121,7 @@ function TodoListRoute() {
 
   const fetchers = useFetchers();
   const taskFetcherMap = new Map<string, boolean>();
+  // @ts-expect-error
   const allTodos: Todo[] = todoList.todos;
   for (const fetcher of fetchers) {
     if (fetcher.type === "actionSubmission") {

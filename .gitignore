@@ -8,4 +8,5 @@ yarn.lock
 pnpm-lock.yaml
 pnpm-lock.yml
 
-!./yarn.lock
+!/yarn.lock
+!yarn-pnp/yarn.lock

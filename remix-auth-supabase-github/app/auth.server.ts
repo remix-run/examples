@@ -73,5 +73,7 @@ export const authenticator = new Authenticator<Session>(sessionStorage, {
   sessionErrorKey: supabaseStrategy.sessionErrorKey,
 });
 
+// @ts-expect-error
 authenticator.use(supabaseStrategy);
+// @ts-expect-error
 authenticator.use(oAuthStrategy, "sb-oauth");

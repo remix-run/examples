@@ -176,10 +176,8 @@ function OptimisticFavorite({ contact }: { contact: ContactRecord }) {
 
   // Now check if there are any pending fetchers that are changing this contact
   for (const fetcher of fetchers) {
-    // @ts-expect-error https://github.com/remix-run/remix/pull/5476
     if (fetcher.formAction === `/contacts/${contact.id}`) {
       // Ask for the optimistic version of the data
-      // @ts-expect-error https://github.com/remix-run/remix/pull/5476
       isFavorite = fetcher.formData.get("favorite") === "true";
     }
   }

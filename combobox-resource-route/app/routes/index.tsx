@@ -6,7 +6,7 @@ import {
   ComboboxPopover,
 } from "@reach/combobox";
 import comboboxStyles from "@reach/combobox/styles.css";
-import type { LinksFunction } from "@remix-run/react";
+import type { LinksFunction } from "@remix-run/node";
 import { Form, useFetcher, useSearchParams } from "@remix-run/react";
 
 import type { Lang } from "~/models/langs";

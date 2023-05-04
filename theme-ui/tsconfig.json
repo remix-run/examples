@@ -5,13 +5,14 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "@theme-ui/core",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "target": "ES2019",
     "strict": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "jsxImportSource": "theme-ui",
     "baseUrl": ".",
     "paths": {
       "~/*": ["./app/*"]

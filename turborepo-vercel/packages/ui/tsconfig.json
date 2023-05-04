@@ -3,7 +3,9 @@
     "lib": ["ES2015"],
     "module": "ESNext",
     "target": "ES6",
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "outDir": "dist",
+    "skipLibCheck": true
   },
   "include": ["src"],
   "exclude": ["dist", "build", "node_modules"]

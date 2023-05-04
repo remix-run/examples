@@ -10,7 +10,7 @@ export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 export const loader = async ({ params }: LoaderArgs) => {
   const id = params.id;
   if (!id) {
-    return json({});
+    return json(null);
   }
 
   const invoices = [
@@ -45,18 +45,22 @@ export default function Edit() {
   const navigate = useNavigate();
   const data = useLoaderData<typeof loader>();
 
-  const [formData, setFormData] = React.useState({
-    company: data.company,
-    description: data.description,
-    amount: data.amount,
-    date: data.date,
-  });
+  const [formData, setFormData] = React.useState(
+    data
+      ? {
+          company: data.company,
+          description: data.description,
+          amount: data.amount,
+          date: data.date,
+        }
+      : {}
+  );
 
   function handleChange(
     event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     const { name, value } = event.currentTarget;
-    setFormData({ ...formData, [name]: value });
+    setFormData((fd) => ({ ...fd, [name]: value }));
   }
 
   function onDismiss() {

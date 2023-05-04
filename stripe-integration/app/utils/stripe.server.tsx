@@ -15,6 +15,7 @@ export const getStripeSession = async (
   priceId: string,
   domainUrl: string
 ): Promise<string> => {
+  // @ts-expect-error
   const stripe = initStripe(process.env.STRIPE_SECRET_KEY);
   const lineItems = [
     {

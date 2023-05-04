@@ -1,8 +1,9 @@
-import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
-export const loader = async ({ context }: LoaderArgs) => {
+import type { DataLoaderArgs } from "~/loaders/userLoader";
+
+export const loader = async ({ context }: DataLoaderArgs) => {
   /*
    * For demo purposes:
    * Batching & caching also works with multiple calls to `DataLoader#load`
