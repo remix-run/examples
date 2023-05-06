@@ -12,8 +12,8 @@ import {
 import * as React from "react";
 import { Toaster, toast } from "react-hot-toast";
 
-import type { ToastMessage } from "./message.server";
-import { commitSession, getSession } from "./message.server";
+import type { ToastMessage } from "~/message.server";
+import { commitSession, getSession } from "~/message.server";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

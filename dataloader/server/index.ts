@@ -5,7 +5,7 @@ const compression = require("compression");
 const express = require("express");
 const morgan = require("morgan");
 
-const { createUsersByIdLoader } = require("../app/loaders/userLoader");
+const { createUsersByIdLoader } = require("~/loaders/userLoader");
 
 const MODE = process.env.NODE_ENV;
 const BUILD_DIR = path.join(process.cwd(), "server/build");

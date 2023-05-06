@@ -9,7 +9,7 @@ import {
 } from "@remix-run/react";
 import install from "@twind/with-remix";
 
-import config from "../twind.config";
+import config from ".~/twind.config";
 
 install(config);
 

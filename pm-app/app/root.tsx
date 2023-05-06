@@ -12,8 +12,7 @@ import {
 } from "@remix-run/react";
 
 import global from "~/dist/styles/global.css";
-
-import type { User } from "./models";
+import type { User } from "~/models";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: global }];
 
