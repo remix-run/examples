@@ -26,10 +26,10 @@ export const action = async ({ request }: ActionArgs) => {
   const imgSrc = formData.get("img");
   const imgDesc = formData.get("desc");
   if (!imgSrc) {
-    return json({ error: "something wrong" });
+    return json({ error: "something wrong", imgDesc: null, imgSrc: null });
   }
 
-  return json({ imgDesc, imgSrc });
+  return json({ error: null, imgDesc, imgSrc });
 };
 
 export default function Index() {
