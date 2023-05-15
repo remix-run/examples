@@ -10,8 +10,8 @@ import {
 import { useEffect } from "react";
 import { useEventSource } from "remix-utils";
 
-import icons from "./icons.svg";
-import styles from "./styles.processed.css";
+import icons from "~/icons.svg";
+import styles from "~/styles.processed.css";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

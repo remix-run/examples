@@ -2,7 +2,7 @@ import type { LinksFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useLoaderData, useTransition } from "@remix-run/react";
 
-import stylesUrl from "../styles/index.css";
+import stylesUrl from "~/styles/index.css";
 
 export const meta: MetaFunction = () => {
   return {

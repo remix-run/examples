@@ -1,4 +1,4 @@
-import "./global.css";
+import "~/global.css";
 
 import { cssBundleHref } from "@remix-run/css-bundle";
 import type { LinksFunction, MetaFunction } from "@remix-run/node";

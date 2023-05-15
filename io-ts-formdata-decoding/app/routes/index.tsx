@@ -3,7 +3,7 @@ import { json } from "@remix-run/node";
 import { Form, useActionData, useCatch } from "@remix-run/react";
 import * as t from "io-ts";
 
-import { decodeFormData } from "../formData";
+import { decodeFormData } from "~/formData";
 
 /**
  * A runtime representation of the `User`-type
