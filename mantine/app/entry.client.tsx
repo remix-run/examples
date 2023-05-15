@@ -12,3 +12,4 @@ startTransition(() => {
       </ClientProvider>
     </StrictMode>
   );
+});
