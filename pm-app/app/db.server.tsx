@@ -64,41 +64,11 @@ export async function getUser(
   });
 }
 
-export async function getUserSecure(
-  key: "id" | "email",
-  value: string
-): Promise<User | null>;
-export async function getUserSecure(
-  id: string,
-  value: never
-): Promise<User | null>;
-
-export async function getUserSecure(
-  id: string,
-  value?: string
-): Promise<UserSecure | null> {
-  // @ts-ignore
-  const user = await getUser(id, value);
-  if (user) {
-    const { passwordHash, ...secureUser } = user;
-    return secureUser;
-  }
-  return null;
-}
-
 export async function getUsers(): Promise<Array<UserSecure>> {
   const users = await prisma.user.findMany();
   return users.map((user) => {
     const { passwordHash, ...secureUser } = user;
     return secureUser;
-  });
-}
-
-export async function deleteUser(userId: User["id"]) {
-  await prisma.user.delete({
-    where: {
-      id: userId,
-    },
   });
 }
 
@@ -326,63 +296,6 @@ export async function getUserProjects(userId: User["id"]): Promise<Project[]> {
     })) || [];
 
   return projects.map(modelProject);
-}
-
-export async function updateProject(
-  id: string,
-  {
-    members,
-    ...data
-  }: Partial<Pick<Project, "name" | "description" | "ownerId">> & {
-    members?: { add?: string[]; remove?: string[] };
-  }
-): Promise<Project | null> {
-  try {
-    const project = await prisma.project.update({
-      where: { id },
-      data: {
-        name: data.name || undefined,
-        description: data.description || undefined,
-        ownerId: data.ownerId || undefined,
-        members: {
-          create: (members?.add || []).map((userId) => {
-            return {
-              userId,
-            };
-          }),
-
-          delete: (members?.remove || []).map((userId) => {
-            return {
-              userId_projectId: {
-                projectId: id,
-                userId,
-              },
-            };
-          }),
-        },
-      },
-      include: {
-        members: {
-          include: {
-            user: true,
-          },
-        },
-        todoLists: {
-          include: {
-            todos: {
-              orderBy: {
-                createdAt: "asc",
-              },
-            },
-          },
-        },
-      },
-    });
-    return modelProject(project);
-  } catch (error) {
-    if (__DEV__) console.error(error);
-    throw error;
-  }
 }
 
 export async function deleteProject(id: string) {
