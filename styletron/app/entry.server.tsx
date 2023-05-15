@@ -2,7 +2,7 @@ import type { EntryContext } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import { renderToString } from "react-dom/server";
 
-import { collectStyles } from "./styletron";
+import { collectStyles } from "~/styletron";
 
 export default function handleRequest(
   request: Request,

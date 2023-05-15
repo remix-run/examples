@@ -4,8 +4,8 @@ import type { FunctionComponent } from "react";
 import { useCallback, useState } from "react";
 import { hydrate } from "react-dom";
 
-import { ClientStyleContext } from "./styles/context";
-import { createEmotionCache } from "./styles/createEmotionCache";
+import { ClientStyleContext } from "~/styles/context";
+import { createEmotionCache } from "~/styles/createEmotionCache";
 
 const ClientCacheProvider: FunctionComponent = ({ children }) => {
   const [cache, setCache] = useState(createEmotionCache());

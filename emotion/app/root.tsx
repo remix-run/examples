@@ -12,8 +12,8 @@ import {
 } from "@remix-run/react";
 import { useContext, useEffect, useRef } from "react";
 
-import ClientStyleContext from "./styles/client.context";
-import ServerStyleContext from "./styles/server.context";
+import ClientStyleContext from "~/styles/client.context";
+import ServerStyleContext from "~/styles/server.context";
 
 const Container = styled("div")`
   background-color: #ff0000;

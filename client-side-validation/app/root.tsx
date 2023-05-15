@@ -10,7 +10,7 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 
-import stylesUrl from "./index.css";
+import stylesUrl from "~/index.css";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesUrl },

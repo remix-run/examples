@@ -9,7 +9,7 @@ import {
 } from "@remix-run/react";
 import { Provider as StyletronProvider } from "styletron-react";
 
-import { styletron } from "./styletron";
+import { styletron } from "~/styletron";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

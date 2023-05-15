@@ -12,7 +12,7 @@ import { ThemeProvider } from "@theme-ui/core";
 import type { ReactNode } from "react";
 import { useContext, useEffect } from "react";
 
-import { ServerStyleContext, ClientStyleContext } from "./styles/context";
+import { ServerStyleContext, ClientStyleContext } from "~/styles/context";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
