@@ -1,5 +1,5 @@
 import type { ColorScheme } from "@mantine/core";
-import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
+import { MantineProvider, ColorSchemeProvider, createEmotionCache } from "@mantine/core";
 import type { MetaFunction } from "@remix-run/node";
 import {
   Links,
@@ -16,6 +16,8 @@ export const meta: MetaFunction = () => ({
   title: "New Remix App",
   viewport: "width=device-width,initial-scale=1",
 });
+
+createEmotionCache({ key: 'mantine' });
 
 export default function App() {
   return (

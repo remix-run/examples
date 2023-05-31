@@ -8,9 +8,11 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@mantine/core": "^3.6.14",
-    "@mantine/hooks": "^3.6.14",
-    "@mantine/ssr": "^3.6.14",
+    "@emotion/react": "^11.10.5",
+    "@emotion/server": "^11.10.0",
+    "@mantine/core": "^5.10.3",
+    "@mantine/hooks": "^5.10.3",
+    "@mantine/remix": "^5.10.3",
     "@remix-run/node": "~1.14.2",
     "@remix-run/react": "~1.14.2",
     "@remix-run/serve": "~1.14.2",
