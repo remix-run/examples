@@ -1,6 +1,6 @@
 import { PassThrough } from "stream";
 
-import type { EntryContext } from "@remix-run/node";
+import type { AppLoadContext, EntryContext } from "@remix-run/node";
 import { Response } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import inline from "@twind/with-remix/server";
@@ -13,7 +13,8 @@ const handleRequest = (
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext
+  remixContext: EntryContext,
+  loadContext: AppLoadContext
 ) =>
   isbot(request.headers.get("user-agent"))
     ? handleBotRequest(
