@@ -1,0 +1,34 @@
+{
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix dev",
+    "start": "remix-serve build",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@remix-run/node": "~1.14.2",
+    "@remix-run/react": "~1.14.2",
+    "@remix-run/serve": "~1.14.2",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.1",
+    "isbot": "^3.6.5",
+    "mongoose": "^7.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "~1.14.2",
+    "@remix-run/eslint-config": "~1.14.2",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/mongoose": "^5.11.97",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.8",
+    "eslint": "^8.27.0",
+    "typescript": "^4.8.4"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
