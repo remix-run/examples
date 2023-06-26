@@ -2,8 +2,6 @@
 
 Connection and user login with a MongoDB database.
 
-This project uses the future [route v2 convention](https://remix.run/docs/en/main/pages/v2#file-system-route-convention).
-
 ## Installation guide
 
 ### Requirements
@@ -35,4 +33,4 @@ email: string
 password: string 
 ```
 
-The password is hashed with the help of the bcryptjs library
+The password is hashed with the help of the `bcryptjs` library

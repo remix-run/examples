@@ -27,7 +27,7 @@ async function connect() {
 }
 
 // Users
-const UserSchema: Schema = new Schema<UserModel>({
+const UserSchema = new Schema<UserModel>({
     email: { type: String, required: true },
     password: { type: String }
 });

@@ -1,4 +1,4 @@
-export interface UserModel extends Document {
+export type UserModel = Document & {
   email: string;
   password: string;
 }
