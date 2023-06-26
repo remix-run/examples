@@ -62,7 +62,6 @@ export async function requireUserId(request: Request) {
 
 export async function login({ username, password }: LoginForm) {
     const user = await userService.getUserByEmail(username);
-    console.log('Usuario', user);
     if (!user) return null;
     const isCorrectPassword = await bcrypt.compare(password, user.password!);
     if (!isCorrectPassword) return null;

@@ -21,7 +21,7 @@ export async function action({ request }: ActionArgs) {
     const user = await login(fields);
     if (!user) throw new Error("Username not found");
     return createUserSession(user.id, user.email, "/");
-  } catch (error: any) {
+  } catch (error: unknown) {
     return badRequest({
       formData,
       formError: `Username/Password combination is incorrect`,
