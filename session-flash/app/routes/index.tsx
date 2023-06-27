@@ -4,8 +4,7 @@ import { useLoaderData, Form, useActionData } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 
 import type { FlashMessage as FlashMessageType } from "~/utils/session.server";
-import { getSession, storage } from "~/utils/session.server";
-import { getSessionFlash } from "~/utils/session.server";
+import { getSession, getSessionFlash, storage } from "~/utils/session.server";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const flash = await getSessionFlash(request);
