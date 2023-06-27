@@ -13,7 +13,7 @@ export default function Screen() {
         </li>
         <li>
           <Link to="on-demand-js">
-            A route that loads JS basde on the loader data
+            A route that loads JS based on the loader data
           </Link>
         </li>
       </ul>
