@@ -12,7 +12,11 @@ import {
 } from "~/ui/combobox";
 import type { ComboboxProps } from "~/ui/combobox";
 import { Token, TokenDismissButton } from "~/ui/token";
-import { getUserDisplayName, getUserFromDisplayName, isFunction } from "~/utils";
+import {
+  getUserDisplayName,
+  getUserFromDisplayName,
+  isFunction,
+} from "~/utils";
 import { useLayoutEffect, useThrottle } from "~/utils/react";
 
 interface MemberSearchContextValue {
