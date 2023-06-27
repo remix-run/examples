@@ -1,6 +1,5 @@
 import { json } from "@remix-run/node";
-import { Link, useFetcher, useNavigate } from "@remix-run/react";
-import { useLoaderData } from "@remix-run/react";
+import { Link, useFetcher, useLoaderData, useNavigate } from "@remix-run/react";
 import classNames from "classnames";
 import { useEffect, useRef } from "react";
 

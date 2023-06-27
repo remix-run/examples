@@ -2,11 +2,10 @@ import type { ActionArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 
-import { sendInvitation } from "~/data.server";
 import {
   getInvitations,
   resendInvitation,
-  deleteInvitiation,
+  sendInvitation,
 } from "~/data.server";
 
 export const loader = async () => {
