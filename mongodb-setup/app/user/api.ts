@@ -1,5 +1,6 @@
-import { User } from "~/server/db.server";
 import bcrypt from "bcryptjs";
+
+import { User } from "~/server/db.server";
 
 export class UserApi {
   insertDemo = async (email: string) =>

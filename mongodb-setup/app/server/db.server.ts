@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv';
 import mongoose, { Schema } from 'mongoose';
-import { UserModel } from '~/types';
+
+import type { UserModel } from '~/types';
 
 dotenv.config();
 

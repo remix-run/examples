@@ -1,5 +1,7 @@
-import { LoaderArgs, json } from "@remix-run/node";
+import type { LoaderArgs} from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { Form, Link, useLoaderData } from "@remix-run/react";
+
 import { getUserEmail } from "~/server/session.server";
 
 export const loader = async ({ request }: LoaderArgs) => {

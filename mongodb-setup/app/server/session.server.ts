@@ -1,9 +1,10 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
-import bcrypt from 'bcryptjs';
 import { createCookieSessionStorage, redirect } from '@remix-run/node';
+import bcrypt from 'bcryptjs';
+import * as dotenv from 'dotenv';
+
 import type { LoginForm } from '~/types';
 import { UserApi } from '~/user/api';
+dotenv.config();
 
 const sessionSecret = process.env.COOKIE_SECRET;
 const userService = new UserApi();

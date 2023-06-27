@@ -1,5 +1,6 @@
-import { ActionArgs } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { Form } from "@remix-run/react";
+
 import { createUserSession, login } from "~/server/session.server";
 import { badRequest } from "~/utils";
 
