@@ -14,7 +14,7 @@ const expiresToSeconds = (expires) => {
   const now = new Date();
   const expiresDate = new Date(expires);
   const secondsDelta = Math.ceil(
-    (expiresDate.getTime() - now.getTime()) / 1000
+    (expiresDate.getTime() - now.getTime()) / 1000,
   );
   return secondsDelta < 0 ? 0 : secondsDelta;
 };
@@ -35,7 +35,7 @@ export function createUpstashSessionStorage({ cookie }: any) {
           method: "post",
           body: JSON.stringify({ data }),
           headers,
-        }
+        },
       );
       return id;
     },
@@ -58,7 +58,7 @@ export function createUpstashSessionStorage({ cookie }: any) {
           method: "post",
           body: JSON.stringify({ data }),
           headers,
-        }
+        },
       );
     },
     async deleteData(id) {

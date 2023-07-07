@@ -11,7 +11,7 @@ import {
 
 export const loader = async () => {
   const data = await fetch("https://my-mock-api.com").then((response) =>
-    response.json()
+    response.json(),
   );
 
   if (!data || typeof data.message !== "string") {

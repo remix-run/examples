@@ -34,7 +34,7 @@ export default function Issue() {
               {
                 action: `/issues/${issue.id}/update`,
                 method: "post",
-              }
+              },
             );
           }
         }}

@@ -27,5 +27,5 @@ hydrate(
   <ClientCacheProvider>
     <RemixBrowser />
   </ClientCacheProvider>,
-  document
+  document,
 );

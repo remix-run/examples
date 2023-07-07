@@ -25,7 +25,7 @@ type ResolvedFieldProps = FieldProps | SelectProps | TextareaProps;
 
 export function getResolvedFieldProps<T extends ResolvedFieldProps>(
   context: FieldContextValue | null,
-  props: T
+  props: T,
 ): T | Spread<[Omit<FieldContextValue, "error" | "invalid">, T]> {
   if (!context) {
     return props;
@@ -63,7 +63,7 @@ export const Field = React.forwardRef<HTMLInputElement, FieldProps>(
         className={cx(props.className, "ui--form-field")}
       />
     );
-  }
+  },
 );
 Field.displayName = "Field";
 
@@ -78,11 +78,11 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         className={cx(
           props.className,
           "ui--form-field",
-          "ui--form-field--select"
+          "ui--form-field--select",
         )}
       />
     );
-  }
+  },
 );
 Select.displayName = "Select";
 
@@ -91,7 +91,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const context = useFieldContext();
     const { resize = "y", ...resolvedProps } = getResolvedFieldProps(
       context,
-      props
+      props,
     );
 
     return (
@@ -106,11 +106,11 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             "resize-xy": resize === true,
             "resize-x": resize === "x",
             "resize-y": resize === "y",
-          }
+          },
         )}
       />
     );
-  }
+  },
 );
 Textarea.displayName = "Textarea";
 
@@ -130,7 +130,7 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
         {ctx?.required ? <span className="sr-only"> (Required)</span> : null}
       </label>
     );
-  }
+  },
 );
 Label.displayName = "Label";
 
@@ -156,7 +156,7 @@ export const FieldError = React.forwardRef<HTMLDivElement, FieldErrorProps>(
         {error}
       </div>
     );
-  }
+  },
 );
 FieldError.displayName = "FieldError";
 

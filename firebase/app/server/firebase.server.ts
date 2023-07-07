@@ -32,7 +32,7 @@ if (getServerApps().length === 0) {
   let config;
   if (process.env.NODE_ENV === "development" && !process.env.SERVICE_ACCOUNT) {
     console.warn(
-      "Missing SERVICE_ACCOUNT environment variable, using local emulator"
+      "Missing SERVICE_ACCOUNT environment variable, using local emulator",
     );
     // https://github.com/firebase/firebase-admin-node/issues/776
     process.env.FIRESTORE_EMULATOR_HOST = "localhost:8080";
@@ -62,7 +62,7 @@ const signInWithPassword = async (email: string, password: string) => {
       password,
       returnSecureToken: true,
     },
-    restConfig
+    restConfig,
   );
 
   if (firebaseRest.isError(signInResponse)) {

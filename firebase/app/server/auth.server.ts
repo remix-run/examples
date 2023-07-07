@@ -9,7 +9,7 @@ import { auth } from "./firebase.server";
 export const checkSessionCookie = async (session: Session) => {
   try {
     const decodedIdToken = await auth.server.verifySessionCookie(
-      session.get("session") || ""
+      session.get("session") || "",
     );
     return decodedIdToken;
   } catch {

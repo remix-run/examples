@@ -37,7 +37,7 @@ export const loader = async () => {
         ...post.attributes,
         article: marked(post.attributes.article),
       },
-    }))
+    })),
   );
 };
 

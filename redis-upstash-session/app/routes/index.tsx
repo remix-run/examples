@@ -13,7 +13,7 @@ export const loader = async ({ request }: LoaderArgs) => {
     session.set("myStoredData", "Some data");
     return json(
       { message: "Created new session" },
-      { headers: { "Set-Cookie": await commitSession(session) } }
+      { headers: { "Set-Cookie": await commitSession(session) } },
     );
   }
   // If session was found, present the session info.

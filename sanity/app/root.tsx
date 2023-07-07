@@ -62,7 +62,7 @@ export const CatchBoundary: FunctionComponent = () => {
 
     default:
       throw new Error(
-        `Unexpected caught response with status: ${caught.status}`
+        `Unexpected caught response with status: ${caught.status}`,
       );
   }
 };

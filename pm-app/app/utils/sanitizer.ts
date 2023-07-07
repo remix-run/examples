@@ -87,7 +87,7 @@ export class Sanitizer {
 
   static func<F extends (...args: any[]) => any = (...args: any[]) => unknown>(
     value: any,
-    func: any
+    func: any,
   ): ReturnType<F> | null {
     if (func && isFunction(func)) {
       return func(value);

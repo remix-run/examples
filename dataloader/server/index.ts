@@ -43,7 +43,7 @@ app.all(
             },
           }),
         })(req, res, next);
-      }
+      },
 );
 
 const port = process.env.PORT || 3000;

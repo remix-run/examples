@@ -20,7 +20,7 @@ export default function Component() {
     function clearFormOnSubmit() {
       $form.current?.reset();
     },
-    [key]
+    [key],
   );
 
   const [messages, setMessages] = useState<string[]>([]);
@@ -32,7 +32,7 @@ export default function Component() {
         return current;
       });
     },
-    [lastMessage]
+    [lastMessage],
   );
 
   return (

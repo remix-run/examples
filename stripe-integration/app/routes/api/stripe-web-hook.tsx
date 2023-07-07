@@ -11,7 +11,7 @@ export const action = async ({ request }: ActionArgs) => {
     event = stripe.webhooks.constructEvent(
       payload,
       sig,
-      process.env.STRIPE_WEBHOOK_ENDPOINT_SECRET
+      process.env.STRIPE_WEBHOOK_ENDPOINT_SECRET,
     );
   } catch (err: any) {
     console.log(err);

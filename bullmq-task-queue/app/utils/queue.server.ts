@@ -17,7 +17,7 @@ const registeredQueues =
 
 export function Queue<Payload>(
   name: string,
-  handler: Processor<Payload>
+  handler: Processor<Payload>,
 ): BullQueue<Payload> {
   if (registeredQueues[name]) {
     return registeredQueues[name].queue;

@@ -83,7 +83,7 @@ const Document = withEmotionCache(
         </body>
       </html>
     );
-  }
+  },
 );
 
 export default function App() {

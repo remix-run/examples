@@ -20,7 +20,7 @@ export const action = async ({ request }: ActionArgs) => {
       { ok: false },
       {
         headers: { "Set-Cookie": await commitSession(session) },
-      }
+      },
     );
   }
 
@@ -30,7 +30,7 @@ export const action = async ({ request }: ActionArgs) => {
       { ok: true },
       {
         headers: { "Set-Cookie": await commitSession(session) },
-      }
+      },
     );
   } else {
     setErrorMessage(session, "Wrong! Guess again");
@@ -38,7 +38,7 @@ export const action = async ({ request }: ActionArgs) => {
       { ok: false },
       {
         headers: { "Set-Cookie": await commitSession(session) },
-      }
+      },
     );
   }
 };

@@ -20,7 +20,7 @@ const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
       placeItems,
       ...props
     },
-    forwardedRef
+    forwardedRef,
   ) => {
     return (
       <div
@@ -53,14 +53,14 @@ const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
         {children}
       </div>
     );
-  }
+  },
 );
 Flex.displayName = "Flex";
 
 const FlexItem = React.forwardRef<HTMLDivElement, FlexItemProps>(
   (
     { children, className, grow, shrink, justify, align, place, ...props },
-    forwardedRef
+    forwardedRef,
   ) => {
     return (
       <div
@@ -77,7 +77,7 @@ const FlexItem = React.forwardRef<HTMLDivElement, FlexItemProps>(
         {children}
       </div>
     );
-  }
+  },
 );
 FlexItem.displayName = "FlexItem";
 

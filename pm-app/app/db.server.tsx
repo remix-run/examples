@@ -41,18 +41,18 @@ if (process.env.NODE_ENV === "production") {
 
 export async function getUser(
   key: "id" | "email",
-  value: string
+  value: string,
 ): Promise<User | null>;
 export async function getUser(id: User["id"]): Promise<User | null>;
 
 export async function getUser(
   id: string,
-  value?: string
+  value?: string,
 ): Promise<User | null> {
   if (value != null) {
     if (!["id", "email"].includes(id)) {
       throw Error(
-        "Invalid key provided to getUser. Must be either `id` or `email`."
+        "Invalid key provided to getUser. Must be either `id` or `email`.",
       );
     }
     return await prisma.user.findUnique({
@@ -132,7 +132,7 @@ export async function createUser({
 
 export async function verifyLogin(
   email: string,
-  password: string
+  password: string,
 ): Promise<User> {
   const user = await prisma.user.findUnique({ where: { email } });
   if (!user) {
@@ -207,7 +207,7 @@ export async function createProject({
           },
         },
       },
-    })
+    }),
   );
 }
 
@@ -371,7 +371,7 @@ export async function getTodoList(id: string): Promise<TodoList | null> {
 
 export async function updateTodoList(
   id: string,
-  data: Partial<Omit<TodoList, "id" | "todos">>
+  data: Partial<Omit<TodoList, "id" | "todos">>,
 ): Promise<TodoList | null> {
   return await prisma.todoList.update({
     where: { id },
@@ -432,7 +432,7 @@ export async function getAllTodos(): Promise<Todo[]> {
 }
 
 export async function getTodosFromList(
-  listId: TodoList["id"]
+  listId: TodoList["id"],
 ): Promise<Todo[]> {
   return await prisma.todo.findMany({
     where: {
@@ -458,7 +458,7 @@ export async function getAllTodoLists(): Promise<TodoList[]> {
 
 export async function updateTodo(
   id: string,
-  data: Partial<Omit<Todo, "id">>
+  data: Partial<Omit<Todo, "id">>,
 ): Promise<Todo | null> {
   return await prisma.todo.update({
     where: { id },
@@ -478,7 +478,7 @@ function getProjectMembers(
     members: (MembersOnProjects & {
       user: User;
     })[];
-  }
+  },
 ): UserSecure[] {
   const members = project.members.map((member) => {
     const { passwordHash, ...secureUser } = member.user;
@@ -493,7 +493,7 @@ function modelProject(
     members: (MembersOnProjects & {
       user: User;
     })[];
-  }
+  },
 ): Project {
   return {
     ...project,

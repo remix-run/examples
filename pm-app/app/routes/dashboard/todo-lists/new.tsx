@@ -77,7 +77,7 @@ export const action = async ({ request }: ActionArgs) => {
   let todos: Array<TodoDataUnordered> = [];
   try {
     todos = (JSON.parse(todosRaw as string) as TempTodo[]).map(
-      ({ _tempId, ...todo }) => todo
+      ({ _tempId, ...todo }) => todo,
     );
     if (
       typeof name !== "string" ||
@@ -234,16 +234,16 @@ const NewTodoList: RouteComponent = () => {
                                   ?.parentElement;
                               const currentValue =
                                 parent?.querySelector<HTMLInputElement>(
-                                  'input[type="text"]'
+                                  'input[type="text"]',
                                 )?.value;
                               setTodos((todos) =>
-                                todos.filter((t) => t._tempId !== todo._tempId)
+                                todos.filter((t) => t._tempId !== todo._tempId),
                               );
                               if (state === "WRITING_TODO") {
                                 window.requestAnimationFrame(() => {
                                   const nextInput =
                                     parent?.querySelector<HTMLInputElement>(
-                                      'input[type="text"]'
+                                      'input[type="text"]',
                                     );
                                   if (nextInput) {
                                     nextInput.value = currentValue || "";
@@ -277,13 +277,13 @@ const NewTodoList: RouteComponent = () => {
                             todos.concat({
                               name: value,
                               _tempId: Date.now(),
-                            })
+                            }),
                           );
                           const parent = target.parentElement;
                           window.requestAnimationFrame(() => {
                             parent
                               ?.querySelector<HTMLInputElement>(
-                                'input[type="text"]'
+                                'input[type="text"]',
                               )
                               ?.focus({ preventScroll: true });
                           });
@@ -311,7 +311,7 @@ const NewTodoList: RouteComponent = () => {
                       window.requestAnimationFrame(() => {
                         parent
                           ?.querySelector<HTMLInputElement>(
-                            'input[type="text"]'
+                            'input[type="text"]',
                           )
                           ?.focus({ preventScroll: true });
                       });
@@ -350,7 +350,7 @@ export function CatchBoundary() {
 
     default:
       throw new Error(
-        `Unexpected caught response with status: ${caught.status}`
+        `Unexpected caught response with status: ${caught.status}`,
       );
   }
 }
@@ -379,7 +379,7 @@ function handleTodoListFocus(event: React.FocusEvent<HTMLUListElement>) {
   for (const button of list.querySelectorAll("li button")) {
     button.setAttribute(
       "tabIndex",
-      button.parentElement === listItem ? "0" : "-1"
+      button.parentElement === listItem ? "0" : "-1",
     );
   }
 }
@@ -410,7 +410,7 @@ function handleTodoListKeyDown(event: React.KeyboardEvent<HTMLUListElement>) {
   const list = event.currentTarget!;
   const activeElement = document.activeElement as HTMLElement | null;
   const listButtons = Array.from(
-    list.querySelectorAll<HTMLButtonElement>("li button")
+    list.querySelectorAll<HTMLButtonElement>("li button"),
   );
   const currentIndex = listButtons.findIndex((el) => el === activeElement);
 

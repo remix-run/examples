@@ -9,15 +9,15 @@ export default function handleRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-  loadContext: AppLoadContext
+  loadContext: AppLoadContext,
 ) {
   let markup = renderToString(
-    <RemixServer context={remixContext} url={request.url} />
+    <RemixServer context={remixContext} url={request.url} />,
   );
 
   markup = markup.replace(
     /<style id="stitches">.*<\/style>/g,
-    `<style id="stitches">${getCssText()}</style>`
+    `<style id="stitches">${getCssText()}</style>`,
   );
 
   responseHeaders.set("Content-Type", "text/html");

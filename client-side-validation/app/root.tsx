@@ -30,7 +30,7 @@ export const action = async ({ request }: ActionArgs) => {
       - Text with regex: ${form.get("text-with-regex")} 
       - Number with min max: ${form.get("number-with-min-max")}
       - Text with minlength maxlength: ${form.get(
-        "text-with-minlength-maxlength"
+        "text-with-minlength-maxlength",
       )}
       - Date with min max: ${form.get("date-with-min-max")}
   `;

@@ -165,7 +165,9 @@ h6 {
   box-shadow: 0 var(--shadow-size) 0 0 var(--shadow-color);
   outline-offset: 2px;
   transform: translateY(0);
-  transition: background-color 50ms ease-out, box-shadow 50ms ease-out,
+  transition:
+    background-color 50ms ease-out,
+    box-shadow 50ms ease-out,
     transform 100ms cubic-bezier(0.3, 0.6, 0.8, 1.25);
 }
 
@@ -253,8 +255,11 @@ textarea {
   font-weight: normal;
   line-height: 1.5;
   color: var(--color-foreground);
-  transition: box-shadow 200ms, border-color 50ms ease-out,
-    background-color 50ms ease-out, color 50ms ease-out;
+  transition:
+    box-shadow 200ms,
+    border-color 50ms ease-out,
+    background-color 50ms ease-out,
+    color 50ms ease-out;
 }
 
 [data-light] [type="text"],

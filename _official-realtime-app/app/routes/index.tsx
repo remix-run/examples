@@ -82,7 +82,7 @@ function IssueLine({ issue }: { issue: Issue }) {
             if (parseInt(priority) !== issue.priority) {
               fetcher.submit(
                 { issueId: issue.id, priority },
-                { method: "post", action: `/issues/${issue.id}/update` }
+                { method: "post", action: `/issues/${issue.id}/update` },
               );
             }
           }}
@@ -124,7 +124,7 @@ function StatusMenu({ issue }: { issue: Issue }) {
             ? "text-green-600"
             : issue.status === 4
             ? "text-indigo-600"
-            : "text-gray-300"
+            : "text-gray-300",
         )}
       >
         <use
@@ -175,7 +175,7 @@ function PriorityMenu({
             id={iconList[highlight]}
             className={classNames(
               "h-4 w-4",
-              highlight == 4 ? "text-orange-500" : "text-gray-400"
+              highlight == 4 ? "text-orange-500" : "text-gray-400",
             )}
           />
         </button>
@@ -229,7 +229,7 @@ function Icon({ id, className }: { id: string; className?: string }) {
 function useCustomElementEvent<T>(
   ref: React.MutableRefObject<HTMLElement | undefined>,
   eventName: string,
-  eventHandler: (event: T) => void
+  eventHandler: (event: T) => void,
 ) {
   useEffect(() => {
     const node = ref.current;

@@ -59,7 +59,7 @@ export default function Index() {
             <Form method="post">
               <input type="hidden" name="invitationId" value={invitation.id} />
               {`${invitation.email} last sent ${new Date(
-                invitation.sentTime
+                invitation.sentTime,
               ).toLocaleTimeString()}: `}
               <button type="submit" name="intent" value="resend">
                 Resend

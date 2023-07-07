@@ -32,7 +32,7 @@ const CustomNavLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
       );
     }
     return <NavLink to={to} {...props} ref={ref} />;
-  }
+  },
 );
 CustomNavLink.displayName = "NavLink";
 
@@ -43,7 +43,7 @@ const CustomLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
       return <a {...domProps} ref={ref} href={to} />;
     }
     return <Link to={to} {...props} ref={ref} />;
-  }
+  },
 );
 CustomLink.displayName = "Link";
 
@@ -66,7 +66,7 @@ const ArrowLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
         />
       </CustomLink>
     );
-  }
+  },
 );
 ArrowLink.displayName = "ArrowLink";
 

@@ -12,7 +12,7 @@ type Movie = {
 };
 export const loader = async () => {
   const movies = await getClient().fetch(
-    `*[_type == "movie"]{ _id, title, slug }`
+    `*[_type == "movie"]{ _id, title, slug }`,
   );
 
   return json<{ movies: Movie[] }>({ movies });

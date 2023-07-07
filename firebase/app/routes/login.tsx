@@ -45,7 +45,7 @@ export const action = async ({ request }: ActionArgs) => {
       const password = form.get("password");
       const formError = json(
         { error: "Please fill all fields!" },
-        { status: 400 }
+        { status: 400 },
       );
       if (typeof email !== "string") return formError;
       if (typeof password !== "string") return formError;
@@ -80,7 +80,7 @@ export default function Login() {
           password: event.currentTarget.password.value,
           returnSecureToken: true,
         },
-        restConfig
+        restConfig,
       );
       if (firebaseRest.isError(login)) {
         setClientAction({ error: login.error.message });
@@ -88,7 +88,7 @@ export default function Login() {
       }
       submit({ idToken: login.idToken }, { method: "post" });
     },
-    [submit, restConfig]
+    [submit, restConfig],
   );
   return (
     <div>

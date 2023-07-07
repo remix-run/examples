@@ -51,7 +51,7 @@ export const signInWithPassword = async (
   restConfig: {
     apiKey: string;
     domain: string;
-  }
+  },
 ) => {
   const response: SignInWithPasswordResponse = await fetch(
     `${restConfig!.domain}/v1/accounts:signInWithPassword?key=${
@@ -63,7 +63,7 @@ export const signInWithPassword = async (
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
-    }
+    },
   );
   return response.json();
 };

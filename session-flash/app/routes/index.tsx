@@ -123,21 +123,21 @@ interface HTMLDialogElement extends HTMLElement {
   addEventListener<K extends keyof HTMLElementEventMap>(
     type: K,
     listener: (this: HTMLDialogElement, ev: HTMLElementEventMap[K]) => any,
-    options?: boolean | AddEventListenerOptions
+    options?: boolean | AddEventListenerOptions,
   ): void;
   addEventListener(
     type: string,
     listener: EventListenerOrEventListenerObject,
-    options?: boolean | AddEventListenerOptions
+    options?: boolean | AddEventListenerOptions,
   ): void;
   removeEventListener<K extends keyof HTMLElementEventMap>(
     type: K,
     listener: (this: HTMLDialogElement, ev: HTMLElementEventMap[K]) => any,
-    options?: boolean | EventListenerOptions
+    options?: boolean | EventListenerOptions,
   ): void;
   removeEventListener(
     type: string,
     listener: EventListenerOrEventListenerObject,
-    options?: boolean | EventListenerOptions
+    options?: boolean | EventListenerOptions,
   ): void;
 }

@@ -12,14 +12,14 @@ export const loader = async ({ context }: LoaderArgs) => {
    * `../users.tsx` did not request already.
    */
   const user1 = context.loaders.usersById.load(
-    "ef3fcb93-0623-4d10-adbf-4dd865d6688c"
+    "ef3fcb93-0623-4d10-adbf-4dd865d6688c",
   );
   const user2 = context.loaders.usersById.load(
-    "2cbad877-2da6-422d-baa6-c6a96a9e085f"
+    "2cbad877-2da6-422d-baa6-c6a96a9e085f",
   );
   const user3 = context.loaders.usersById.load("does_not_exist");
   const user4 = context.loaders.usersById.load(
-    "1dd9e502-343d-4acb-9391-2bc52d5ea904"
+    "1dd9e502-343d-4acb-9391-2bc52d5ea904",
   );
   const users = await Promise.all([user1, user2, user3, user4]);
 

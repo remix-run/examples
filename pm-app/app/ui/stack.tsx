@@ -4,7 +4,7 @@ import * as React from "react";
 const Stack = React.forwardRef<HTMLDivElement, StackProps>(
   (
     { children, className, align = "start", gap = 0, ...props },
-    forwardedRef
+    forwardedRef,
   ) => {
     const alignments: Partial<Record<AlignClass, boolean>> =
       typeof align === "object"
@@ -35,7 +35,7 @@ const Stack = React.forwardRef<HTMLDivElement, StackProps>(
         {children}
       </div>
     );
-  }
+  },
 );
 
 Stack.displayName = "Stack";

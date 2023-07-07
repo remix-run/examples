@@ -53,7 +53,7 @@ export default function Edit() {
   });
 
   function handleChange(
-    event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     const { name, value } = event.currentTarget;
     setFormData({ ...formData, [name]: value });

@@ -50,7 +50,7 @@ export const action = async ({ request }: ActionArgs) => {
   const password = form.get("password");
   const username = form.get("username");
   const redirectTo = validateUrl(
-    (form.get("redirectTo") as string) || "/jokes"
+    (form.get("redirectTo") as string) || "/jokes",
   );
   if (
     typeof loginType !== "string" ||

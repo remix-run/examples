@@ -9,10 +9,10 @@ export default function handleRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-  loadContext: AppLoadContext
+  loadContext: AppLoadContext,
 ) {
   let markup = renderToString(
-    <RemixServer context={remixContext} url={request.url} />
+    <RemixServer context={remixContext} url={request.url} />,
   );
 
   // Add server-rendered styles

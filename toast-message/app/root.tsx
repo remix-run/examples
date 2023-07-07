@@ -36,7 +36,7 @@ export const loader = async ({ request }: LoaderArgs) => {
 
   return json(
     { toastMessage },
-    { headers: { "Set-Cookie": await commitSession(session) } }
+    { headers: { "Set-Cookie": await commitSession(session) } },
   );
 };
 

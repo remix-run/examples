@@ -34,7 +34,7 @@ const Combobox = React.forwardRef<HTMLDivElement, ComboboxProps>(
         })}
       />
     );
-  }
+  },
 );
 
 const ComboboxInput = React.forwardRef<HTMLInputElement, ComboboxInputProps>(
@@ -47,11 +47,11 @@ const ComboboxInput = React.forwardRef<HTMLInputElement, ComboboxInputProps>(
         className={cx(
           props.className,
           "ui--combobox__input",
-          "ui--form-field--combobox"
+          "ui--form-field--combobox",
         )}
       />
     );
-  }
+  },
 );
 
 const ComboboxPopover = React.forwardRef<HTMLDivElement, ComboboxPopoverProps>(
@@ -65,7 +65,7 @@ const ComboboxPopover = React.forwardRef<HTMLDivElement, ComboboxPopoverProps>(
         className={cx(props.className, "ui--combobox__popover")}
       />
     );
-  }
+  },
 );
 
 const ComboboxList = React.forwardRef<HTMLUListElement, ComboboxListProps>(
@@ -78,7 +78,7 @@ const ComboboxList = React.forwardRef<HTMLUListElement, ComboboxListProps>(
         className={cx(props.className, "ui--combobox__list")}
       />
     );
-  }
+  },
 );
 
 const ComboboxOption = React.forwardRef<HTMLLIElement, ComboboxOptionProps>(
@@ -95,7 +95,7 @@ const ComboboxOption = React.forwardRef<HTMLLIElement, ComboboxOptionProps>(
         </span>
       </ReachComboboxOption>
     );
-  }
+  },
 );
 
 const ComboboxButton = React.forwardRef<HTMLButtonElement, ComboboxButtonProps>(
@@ -110,7 +110,7 @@ const ComboboxButton = React.forwardRef<HTMLButtonElement, ComboboxButtonProps>(
         disabled={context?.disabled || props.disabled}
       />
     );
-  }
+  },
 );
 
 Combobox.displayName = "Combobox";

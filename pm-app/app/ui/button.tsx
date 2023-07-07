@@ -14,7 +14,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <span className="ui--button__inner">{children}</span>
       </button>
     );
-  }
+  },
 );
 
 const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
@@ -31,7 +31,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
         <span className="ui--button__inner">{children}</span>
       </Link>
     );
-  }
+  },
 );
 
 const ButtonNavLink = React.forwardRef<HTMLAnchorElement, ButtonNavLinkProps>(
@@ -50,7 +50,7 @@ const ButtonNavLink = React.forwardRef<HTMLAnchorElement, ButtonNavLinkProps>(
         <span className="ui--button__inner">{children}</span>
       </NavLink>
     );
-  }
+  },
 );
 
 /**
@@ -67,13 +67,13 @@ const ButtonDiv = React.forwardRef<HTMLDivElement, ButtonDivProps>(
         className={cx(
           props.className,
           getButtonClassNames(props),
-          "ui--button--div"
+          "ui--button--div",
         )}
       >
         <span className="ui--button__inner">{children}</span>
       </div>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";
@@ -105,7 +105,7 @@ function getButtonClassNames({
       // all disabled buttons
       "ui--button--disabled": disabled,
       "ui--button--rounded": rounded,
-    }
+    },
   )
     .replace(/\s+/g, " ")
     .trim();
