@@ -90,7 +90,7 @@ export async function getUser(request: Request) {
   });
 
   if (!user) {
-    throw logout(request);
+    throw await logout(request);
   }
 
   return user;
