@@ -20,7 +20,7 @@ export const action = async ({ request }: ActionArgs) => {
   themeSession.setTheme(theme);
   return json(
     { success: true },
-    { headers: { "Set-Cookie": await themeSession.commit() } }
+    { headers: { "Set-Cookie": await themeSession.commit() } },
   );
 };
 

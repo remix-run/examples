@@ -107,7 +107,7 @@ export default function DashboardIndex() {
                         onSelect={() => {
                           setProjectToDelete(id);
                           const confirmed = window.confirm(
-                            "Are you sure? This will also delete all todo lists associated with this project."
+                            "Are you sure? This will also delete all todo lists associated with this project.",
                           );
                           if (confirmed) {
                             deleteFetcher.submit(deleteFormRef.current, {
@@ -166,7 +166,7 @@ export function CatchBoundary() {
 
     default:
       throw new Error(
-        `Unexpected caught response with status: ${caught.status}`
+        `Unexpected caught response with status: ${caught.status}`,
       );
   }
 }

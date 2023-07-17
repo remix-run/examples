@@ -4,8 +4,7 @@ import { useLoaderData, Form, useActionData } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 
 import type { FlashMessage as FlashMessageType } from "~/utils/session.server";
-import { getSession, storage } from "~/utils/session.server";
-import { getSessionFlash } from "~/utils/session.server";
+import { getSession, getSessionFlash, storage } from "~/utils/session.server";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const flash = await getSessionFlash(request);
@@ -124,21 +123,21 @@ interface HTMLDialogElement extends HTMLElement {
   addEventListener<K extends keyof HTMLElementEventMap>(
     type: K,
     listener: (this: HTMLDialogElement, ev: HTMLElementEventMap[K]) => any,
-    options?: boolean | AddEventListenerOptions
+    options?: boolean | AddEventListenerOptions,
   ): void;
   addEventListener(
     type: string,
     listener: EventListenerOrEventListenerObject,
-    options?: boolean | AddEventListenerOptions
+    options?: boolean | AddEventListenerOptions,
   ): void;
   removeEventListener<K extends keyof HTMLElementEventMap>(
     type: K,
     listener: (this: HTMLDialogElement, ev: HTMLElementEventMap[K]) => any,
-    options?: boolean | EventListenerOptions
+    options?: boolean | EventListenerOptions,
   ): void;
   removeEventListener(
     type: string,
     listener: EventListenerOrEventListenerObject,
-    options?: boolean | EventListenerOptions
+    options?: boolean | EventListenerOptions,
   ): void;
 }

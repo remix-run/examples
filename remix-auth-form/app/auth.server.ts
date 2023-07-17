@@ -28,5 +28,5 @@ auth.use(
     if (!email) throw new AuthorizationError("Email is required");
 
     return email as string;
-  })
+  }),
 );

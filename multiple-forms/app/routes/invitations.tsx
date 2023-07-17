@@ -2,11 +2,10 @@ import type { ActionArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 
-import { sendInvitation } from "~/data.server";
 import {
   getInvitations,
   resendInvitation,
-  deleteInvitiation,
+  sendInvitation,
 } from "~/data.server";
 
 export const loader = async () => {
@@ -60,7 +59,7 @@ export default function Index() {
             <Form method="post">
               <input type="hidden" name="invitationId" value={invitation.id} />
               {`${invitation.email} last sent ${new Date(
-                invitation.sentTime
+                invitation.sentTime,
               ).toLocaleTimeString()}: `}
               <button type="submit" name="intent" value="resend">
                 Resend

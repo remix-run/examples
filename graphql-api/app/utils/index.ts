@@ -6,7 +6,7 @@
  */
 export const fetchFromGraphQL = async (
   query: string,
-  variables?: Record<string, any>
+  variables?: Record<string, any>,
 ) => {
   if (!process.env.GRAPHQL_API) {
     throw new Error("GRAPHQL_API is required");

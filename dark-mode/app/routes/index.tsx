@@ -10,7 +10,7 @@ export default function IndexRoute() {
 
   const toggleTheme = () => {
     setTheme((prevTheme) =>
-      prevTheme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT
+      prevTheme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT,
     );
   };
 

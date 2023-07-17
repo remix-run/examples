@@ -2,7 +2,7 @@ import cx from "clsx";
 import * as React from "react";
 
 const LevelContext: React.Context<HeadingLevel> = React.createContext(
-  1 as HeadingLevel
+  1 as HeadingLevel,
 );
 
 function useHeadingLevelContext() {
@@ -15,7 +15,7 @@ const Section = React.forwardRef<HTMLElement, SectionProps>(
     const level = useHeadingLevelContext();
     const ctx = React.useMemo(
       () => Math.min(level + 1, 6) as HeadingLevel,
-      [level]
+      [level],
     );
 
     return (
@@ -23,7 +23,7 @@ const Section = React.forwardRef<HTMLElement, SectionProps>(
         <LevelContext.Provider value={ctx}>{children}</LevelContext.Provider>
       </Wrapper>
     );
-  }
+  },
 );
 Section.displayName = "Section";
 
@@ -45,7 +45,7 @@ const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
         })}
       />
     );
-  }
+  },
 );
 Heading.displayName = "Heading";
 

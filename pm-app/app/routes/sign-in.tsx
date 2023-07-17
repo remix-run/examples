@@ -49,7 +49,7 @@ export const action = async ({ request }: ActionArgs) => {
         formError: `Something went wrong. Please try again later.`,
         fieldErrors,
       },
-      400
+      400,
     );
   }
 

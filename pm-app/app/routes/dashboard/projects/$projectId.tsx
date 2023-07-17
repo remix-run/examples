@@ -106,7 +106,7 @@ export default function ProjectRoute() {
   const membersFormRef = React.useRef<HTMLFormElement>(null);
 
   const [optimisticMembers, setOptimisticSelectedMembers] = React.useState(
-    project.members
+    project.members,
   );
 
   // Submit the membersFetcher form any time the optimistic member state
@@ -210,7 +210,7 @@ export default function ProjectRoute() {
                 className="project-index__options-menu-item project-index__options-menu-item--delete"
                 onSelect={() => {
                   const confirmed = window.confirm(
-                    "Are you sure? This will also delete all todo lists associated with this project."
+                    "Are you sure? This will also delete all todo lists associated with this project.",
                   );
                   if (confirmed) {
                     deleteFetcher.submit(deleteFormRef.current);

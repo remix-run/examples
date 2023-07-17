@@ -28,6 +28,6 @@ export function collectStyles(): string {
 
 function getHydrateClass(): HTMLCollectionOf<HTMLStyleElement> {
   return document.getElementsByClassName(
-    "_styletron_hydrate_"
+    "_styletron_hydrate_",
   ) as HTMLCollectionOf<HTMLStyleElement>;
 }

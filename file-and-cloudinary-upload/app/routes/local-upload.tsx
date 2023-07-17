@@ -14,7 +14,7 @@ export const action = async ({ request }: ActionArgs) => {
       directory: "public/uploads",
       maxPartSize: 30000,
     }),
-    createMemoryUploadHandler()
+    createMemoryUploadHandler(),
   );
   const formData = await parseMultipartFormData(request, uploadHandler);
   const image = formData.get("img");

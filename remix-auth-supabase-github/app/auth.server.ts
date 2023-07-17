@@ -41,13 +41,13 @@ export const supabaseStrategy = new SupabaseStrategy(
       .then(({ data, error }): Session => {
         if (error || !data) {
           throw new AuthorizationError(
-            error?.message ?? "No user session found"
+            error?.message ?? "No user session found",
           );
         }
 
         return data;
       });
-  }
+  },
 );
 
 export const oAuthStrategy = new SupabaseStrategy(
@@ -65,7 +65,7 @@ export const oAuthStrategy = new SupabaseStrategy(
       throw new AuthorizationError("session not found");
 
     return JSON.parse(session);
-  }
+  },
 );
 
 export const authenticator = new Authenticator<Session>(sessionStorage, {

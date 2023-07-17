@@ -12,7 +12,7 @@ const MaxContainer = React.forwardRef<HTMLDivElement, MaxContainerProps>(
         {children}
       </div>
     );
-  }
+  },
 );
 MaxContainer.displayName = "MaxContainer";
 

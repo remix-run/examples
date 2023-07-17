@@ -11,7 +11,7 @@ function main() {
   app.use(express.static("public", { immutable: true, maxAge: "1y" }));
   app.all(
     "*",
-    process.env.NODE_ENV === "production" ? prodHandler() : devHandler()
+    process.env.NODE_ENV === "production" ? prodHandler() : devHandler(),
   );
 
   app.listen(port, () => {

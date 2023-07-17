@@ -23,7 +23,7 @@ export const loader = async ({ request }: LoaderArgs) => {
   const { start, limit } = getStartLimit(new URL(request.url).searchParams);
   return json(
     { items: await getItems({ start, limit }) },
-    { headers: { "Cache-Control": "public, max-age=120" } }
+    { headers: { "Cache-Control": "public, max-age=120" } },
   );
 };
 

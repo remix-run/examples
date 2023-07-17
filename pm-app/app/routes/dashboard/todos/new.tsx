@@ -23,7 +23,7 @@ export const action = async ({ params, request }: ActionArgs) => {
     try {
       const name = Sanitizer.cleanHtmlString(formData.get("name"));
       const description = Sanitizer.cleanHtmlString(
-        formData.get("description")
+        formData.get("description"),
       );
       const order = existingTodos.length - 1;
 

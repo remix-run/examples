@@ -18,6 +18,6 @@ export const action = async ({ request }: ActionArgs) => {
       headers: {
         "Set-Cookie": await gdprConsent.serialize(cookie),
       },
-    }
+    },
   );
 };

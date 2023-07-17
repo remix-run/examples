@@ -7,7 +7,9 @@
   min-height: 20em;
   background: rgba(18, 18, 18);
   border-radius: 3px;
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow:
+    0 19px 38px rgba(0, 0, 0, 0.3),
+    0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
 .grid-container {

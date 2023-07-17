@@ -10,6 +10,6 @@ startTransition(() => {
       <ClientProvider>
         <RemixBrowser />
       </ClientProvider>
-    </StrictMode>
+    </StrictMode>,
   );
 });

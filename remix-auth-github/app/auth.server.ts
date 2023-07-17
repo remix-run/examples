@@ -43,6 +43,6 @@ auth.use(
     },
     async ({ profile, accessToken, extraParams }) => {
       return { profile, accessToken, extraParams };
-    }
-  )
+    },
+  ),
 );

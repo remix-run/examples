@@ -24,7 +24,7 @@ export const loader = async ({ request }: LoaderArgs) => {
       items: await getItemsPaginated({ page, limit: LIMIT }),
       totalItems: await countItems(),
     },
-    { headers: { "Cache-Control": "public, max-age=120" } }
+    { headers: { "Cache-Control": "public, max-age=120" } },
   );
 };
 

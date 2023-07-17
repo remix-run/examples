@@ -8,14 +8,14 @@ export default function handleRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-  loadContext: AppLoadContext
+  loadContext: AppLoadContext,
 ) {
   const sheet = new ServerStyleSheet();
 
   let markup = renderToString(
     sheet.collectStyles(
-      <RemixServer context={remixContext} url={request.url} />
-    )
+      <RemixServer context={remixContext} url={request.url} />,
+    ),
   );
   const styles = sheet.getStyleTags();
 

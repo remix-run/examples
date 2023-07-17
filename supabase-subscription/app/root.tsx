@@ -40,7 +40,7 @@ export default function App() {
           <Provider
             value={createClient(
               data.ENV.SUPABASE_URL,
-              data.ENV.SUPABASE_ANON_KEY
+              data.ENV.SUPABASE_ANON_KEY,
             )}
           >
             <Outlet />

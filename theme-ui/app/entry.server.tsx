@@ -12,7 +12,7 @@ export default function handleRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-  loadContext: AppLoadContext
+  loadContext: AppLoadContext,
 ) {
   const cache = createEmotionCache();
   const { extractCriticalToChunks } = createEmotionServer(cache);
@@ -22,7 +22,7 @@ export default function handleRequest(
       <CacheProvider value={cache}>
         <RemixServer context={remixContext} url={request.url} />
       </CacheProvider>
-    </ServerStyleContext.Provider>
+    </ServerStyleContext.Provider>,
   );
 
   const chunks = extractCriticalToChunks(html);
@@ -32,7 +32,7 @@ export default function handleRequest(
       <CacheProvider value={cache}>
         <RemixServer context={remixContext} url={request.url} />
       </CacheProvider>
-    </ServerStyleContext.Provider>
+    </ServerStyleContext.Provider>,
   );
 
   responseHeaders.set("Content-Type", "text/html");

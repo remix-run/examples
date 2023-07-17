@@ -42,12 +42,12 @@ export const supabaseStrategy = new SupabaseStrategy(
       .then(({ data, error }): Session => {
         if (error || !data)
           throw new AuthorizationError(
-            error?.message ?? "No user session found"
+            error?.message ?? "No user session found",
           );
 
         return data;
       });
-  }
+  },
 );
 
 export const authenticator = new Authenticator<Session>(sessionStorage, {

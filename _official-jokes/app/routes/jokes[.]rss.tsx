@@ -54,16 +54,16 @@ export const loader = async ({ request }: LoaderArgs) => {
             <item>
               <title><![CDATA[${escapeCdata(joke.name)}]]></title>
               <description><![CDATA[A funny joke called ${escapeHtml(
-                joke.name
+                joke.name,
               )}]]></description>
               <author><![CDATA[${escapeCdata(
-                joke.jokester.username
+                joke.jokester.username,
               )}]]></author>
               <pubDate>${joke.createdAt.toUTCString()}</pubDate>
               <link>${jokesUrl}/${joke.id}</link>
               <guid>${jokesUrl}/${joke.id}</guid>
             </item>
-          `.trim()
+          `.trim(),
           )
           .join("\n")}
       </channel>

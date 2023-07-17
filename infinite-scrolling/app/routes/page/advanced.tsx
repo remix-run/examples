@@ -38,7 +38,7 @@ export const loader = async ({ request }: LoaderArgs) => {
       items: await getItemsPaginated({ page, limit }),
       totalItems: await countItems(),
     },
-    { headers: { "Cache-Control": "public, max-age=120" } }
+    { headers: { "Cache-Control": "public, max-age=120" } },
   );
 };
 
@@ -47,7 +47,7 @@ const useSSRLayoutEffect = isServerRender ? () => {} : useLayoutEffect;
 
 function useIsHydrating(queryString: string) {
   const [isHydrating] = useState(
-    () => !isServerRender && Boolean(document.querySelector(queryString))
+    () => !isServerRender && Boolean(document.querySelector(queryString)),
   );
   return isHydrating;
 }
@@ -76,9 +76,9 @@ export default function Index() {
       if (!parentRef.current) return;
       sessionStorage.setItem(
         "infiniteScrollTop-page",
-        parentRef.current.scrollTop.toString()
+        parentRef.current.scrollTop.toString(),
       );
-    }, [])
+    }, []),
   );
 
   useSSRLayoutEffect(() => {
@@ -141,7 +141,7 @@ export default function Index() {
           page: String(newPage),
           limit: LIMIT.toString(),
         },
-        { replace: true }
+        { replace: true },
       );
     }
   }, [limit, neededStart, page, setSearchParams]);

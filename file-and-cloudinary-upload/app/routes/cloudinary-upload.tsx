@@ -19,7 +19,7 @@ export const action = async ({ request }: ActionArgs) => {
       const uploadedImage = await uploadImage(data);
       return uploadedImage.secure_url;
     },
-    createMemoryUploadHandler()
+    createMemoryUploadHandler(),
   );
 
   const formData = await parseMultipartFormData(request, uploadHandler);

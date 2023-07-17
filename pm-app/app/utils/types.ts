@@ -20,7 +20,7 @@ type SpreadTwo<L, R> = Id<
 
 export type Spread<A extends readonly [...any]> = A extends [
   infer L,
-  ...infer R
+  ...infer R,
 ]
   ? SpreadTwo<L, Spread<R>>
   : unknown;

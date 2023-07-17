@@ -37,7 +37,9 @@ h1 span {
   font-size: 4.5rem;
   line-height: 1;
   text-transform: uppercase;
-  text-shadow: 0 0.2em 0.5em rgba(0, 0, 0, 0.5), 0 5px 0 rgba(0, 0, 0, 0.75);
+  text-shadow:
+    0 0.2em 0.5em rgba(0, 0, 0, 0.5),
+    0 5px 0 rgba(0, 0, 0, 0.75);
 }
 
 nav ul {

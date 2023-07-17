@@ -21,7 +21,7 @@ type ShowResult = {
 };
 
 function typedBoolean<T>(
-  value: T
+  value: T,
 ): value is Exclude<T, "" | 0 | false | null | undefined> {
   return Boolean(value);
 }
@@ -39,7 +39,7 @@ export const loader = async ({ request }: LoaderArgs) => {
   }
 
   const result = await fetch(
-    `https://api.tvmaze.com/search/shows?q=${searchTerm}`
+    `https://api.tvmaze.com/search/shows?q=${searchTerm}`,
   );
   const showResults = (await result.json()) as undefined | Array<ShowResult>;
 
@@ -63,7 +63,7 @@ export const loader = async ({ request }: LoaderArgs) => {
               image: item.show.image.medium,
               url: item.show.url,
             }
-          : null
+          : null,
       )
       .filter(typedBoolean),
   };

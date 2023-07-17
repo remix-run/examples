@@ -72,7 +72,7 @@ function streamingResize(
   imageStream: ReadStream,
   width: number | undefined,
   height: number | undefined,
-  fit: keyof FitEnum
+  fit: keyof FitEnum,
 ) {
   // create the sharp transform pipeline
   // https://sharp.pixelplumbing.com/api-resize

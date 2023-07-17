@@ -130,7 +130,7 @@ function TodoListRoute() {
       ) {
         taskFetcherMap.set(
           todoId,
-          fetcher.submission.formData.get("complete") === "on"
+          fetcher.submission.formData.get("complete") === "on",
         );
       }
       if (fetcher.submission.action.startsWith("/dashboard/todos/new")) {
@@ -144,7 +144,7 @@ function TodoListRoute() {
       }
       if (
         fetcher.submission.action.startsWith(
-          `/dashboard/todos/${todoId}/delete`
+          `/dashboard/todos/${todoId}/delete`,
         )
       ) {
         const todoId = fetcher.submission.formData.get("todoId");
@@ -162,7 +162,7 @@ function TodoListRoute() {
     const imcompleteTodos: Todo[] = [];
     for (const todo of allTodos) {
       (getTodoCompletionState(todo) ? completeTodos : imcompleteTodos).push(
-        todo
+        todo,
       );
     }
     return [completeTodos, imcompleteTodos] as const;

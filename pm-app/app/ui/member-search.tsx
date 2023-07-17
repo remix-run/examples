@@ -12,10 +12,12 @@ import {
 } from "~/ui/combobox";
 import type { ComboboxProps } from "~/ui/combobox";
 import { Token, TokenDismissButton } from "~/ui/token";
-import { getUserDisplayName, getUserFromDisplayName } from "~/utils";
-import { isFunction } from "~/utils";
-import { useLayoutEffect } from "~/utils/react";
-import { useThrottle } from "~/utils/react";
+import {
+  getUserDisplayName,
+  getUserFromDisplayName,
+  isFunction,
+} from "~/utils";
+import { useLayoutEffect, useThrottle } from "~/utils/react";
 
 interface MemberSearchContextValue {
   selectableUsers: UserSecure[];
@@ -24,7 +26,7 @@ interface MemberSearchContextValue {
 }
 
 const MemberSearchContext = React.createContext<MemberSearchContextValue>(
-  null!
+  null!,
 );
 
 export function MemberSearch({
@@ -155,7 +157,7 @@ export function MemberSearchSelections({ className }: { className?: string }) {
             className={"ui--member-search__selection-token"}
             remove={(val) => {
               setSelectedUsers((s) =>
-                s.filter((u) => getUserDisplayName(u) !== val)
+                s.filter((u) => getUserDisplayName(u) !== val),
               );
             }}
           />
@@ -185,7 +187,7 @@ function useUserMatch(users: UserSecure[], term: string) {
         : matchSorter(users, throttledTerm, {
             keys: [(user) => getUserDisplayName(user)],
           }),
-    [throttledTerm, users]
+    [throttledTerm, users],
   );
 }
 
@@ -217,7 +219,7 @@ function handleMemberListFocus(event: React.FocusEvent<HTMLElement>) {
   for (const button of list.querySelectorAll("button")) {
     button.setAttribute(
       "tabIndex",
-      button.parentElement === listItem ? "0" : "-1"
+      button.parentElement === listItem ? "0" : "-1",
     );
   }
 }
@@ -248,7 +250,7 @@ function handleMemberListKeyDown(event: React.KeyboardEvent<HTMLElement>) {
   const list = event.currentTarget!;
   const activeElement = document.activeElement as HTMLElement | null;
   const listButtons = Array.from(
-    list.querySelectorAll<HTMLButtonElement>("button")
+    list.querySelectorAll<HTMLButtonElement>("button"),
   );
   const currentIndex = listButtons.findIndex((el) => el === activeElement);
 

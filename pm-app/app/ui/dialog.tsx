@@ -30,7 +30,7 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
         </DialogContext.Provider>
       </ReachDialogOverlay>
     );
-  }
+  },
 );
 
 const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
@@ -44,7 +44,7 @@ const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
         {children}
       </ReachDialogContent>
     );
-  }
+  },
 );
 
 const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
@@ -57,7 +57,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <DialogOverlay
@@ -71,7 +71,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
         </DialogContent>
       </DialogOverlay>
     );
-  }
+  },
 );
 
 const DialogCloseButton = React.forwardRef<

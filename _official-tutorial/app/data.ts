@@ -28,7 +28,7 @@ const fakeContacts = {
 
   async getAll(): Promise<ContactRecord[]> {
     return Object.keys(fakeContacts.records).map(
-      (key) => fakeContacts.records[key]
+      (key) => fakeContacts.records[key],
     );
   },
 

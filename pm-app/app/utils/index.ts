@@ -8,7 +8,7 @@ export function getUserDisplayName(user: {
 }
 
 export function getUserFromDisplayName<
-  U extends { nameFirst: string; nameLast?: string | null }
+  U extends { nameFirst: string; nameLast?: string | null },
 >(users: Array<U>, displayName: string) {
   return users.find((u) => getUserDisplayName(u) === displayName);
 }
@@ -19,25 +19,25 @@ export const canUseDOM: boolean = !!(
 );
 
 export function getClientSafeEnvVariable<
-  K extends keyof RemoveIndex<Exclude<Window["ENV"], undefined>>
+  K extends keyof RemoveIndex<Exclude<Window["ENV"], undefined>>,
 >(key: K): Exclude<Window["ENV"], undefined>[K] {
   if (typeof document !== "undefined") {
     try {
       const ENV = window.ENV;
       if (!ENV) {
         throw Error(
-          `ENV is not available in the browser in this context. Check \`root.tsx\` and make sure you're setting \`window.ENV\` before rendering \`<Scripts />\`.`
+          `ENV is not available in the browser in this context. Check \`root.tsx\` and make sure you're setting \`window.ENV\` before rendering \`<Scripts />\`.`,
         );
       }
       if (ENV[key] === undefined) {
         throw Error(
-          `The environment variable \`${key}\` is not available in the browser in this context.`
+          `The environment variable \`${key}\` is not available in the browser in this context.`,
         );
       }
       return ENV[key];
     } catch (error) {
       console.error(
-        "There was an error parsing window.ENV. See https://remix.run/guides/envvars#browser-environment-variables"
+        "There was an error parsing window.ENV. See https://remix.run/guides/envvars#browser-environment-variables",
       );
       throw error;
     }
@@ -47,7 +47,7 @@ export function getClientSafeEnvVariable<
 }
 
 export function getServerSafeEnvVariable<
-  K extends keyof RemoveIndex<NodeJS.ProcessEnv>
+  K extends keyof RemoveIndex<NodeJS.ProcessEnv>,
 >(key: K): Exclude<NodeJS.ProcessEnv[K], undefined> {
   try {
     const val: any = process.env[key];
@@ -57,16 +57,16 @@ export function getServerSafeEnvVariable<
     return val;
   } catch (_) {
     throw Error(
-      "You tried to access a server-side environment variable on the client!"
+      "You tried to access a server-side environment variable on the client!",
     );
   }
 }
 
 export function composeEventHandlers<
-  EventType extends React.SyntheticEvent | Event
+  EventType extends React.SyntheticEvent | Event,
 >(
   theirHandler: ((event: EventType) => any) | undefined,
-  ourHandler: (event: EventType) => any
+  ourHandler: (event: EventType) => any,
 ): (event: EventType) => any {
   return (event) => {
     theirHandler && theirHandler(event);
@@ -78,7 +78,7 @@ export function composeEventHandlers<
 
 export function isExternalUrl(str: string) {
   return /^((https?:|s?ftp:|file:\/|chrome:)?\/\/|mailto:|tel:)/.test(
-    str.toLowerCase()
+    str.toLowerCase(),
   );
 }
 

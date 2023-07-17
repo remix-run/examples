@@ -18,7 +18,7 @@ export const action = async ({ request }: ActionArgs) => {
   return new Promise((resolve) =>
     setTimeout(() => {
       resolve(redirect(`/invoices/`));
-    }, 2000)
+    }, 2000),
   );
 };
 

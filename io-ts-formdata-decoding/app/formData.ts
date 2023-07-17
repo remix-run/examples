@@ -22,7 +22,7 @@ type Form = Record<string, any>;
  */
 export const decodeFormData = async <DecodedForm extends Form>(
   request: Request,
-  codec: TypeC<DecodedForm>
+  codec: TypeC<DecodedForm>,
 ) => {
   const formData = await request.formData();
 
@@ -41,7 +41,7 @@ export const decodeFormData = async <DecodedForm extends Form>(
         throw new Response(JSON.stringify(errors), { status: 422 });
       },
       // right: successful computation of `codec.decode(form)`
-      (decodedFormData) => decodedFormData
-    )
+      (decodedFormData) => decodedFormData,
+    ),
   );
 };
