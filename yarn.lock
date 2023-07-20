@@ -724,10 +724,10 @@
     tiny-glob "^0.2.9"
     tslib "^2.4.0"
 
-"@remix-run/eslint-config@^1.18.1":
-  version "1.18.1"
-  resolved "https://registry.npmjs.org/@remix-run/eslint-config/-/eslint-config-1.18.1.tgz#ac91fb9b1b7f1ac4ac6590ede841045119bd6143"
-  integrity sha512-r0vjv+//isRseRShZ6RbX2bJSjQzfE7R2KOf4v1v+EVQZ59Vk0cR6UPwlxHN4Wc3jtTa2yBlLCm1H24ImKLQ4Q==
+"@remix-run/eslint-config@^1.19.0":
+  version "1.19.0"
+  resolved "https://registry.npmjs.org/@remix-run/eslint-config/-/eslint-config-1.19.0.tgz#e3bba1c25958d4bbbe694ae9cf13e0771a309aac"
+  integrity sha512-pfGJnZ+Fv5+e/kF67K00dj1AA7okcsiUf/PqPwRr66mgGEe9CeLJQ5IZcczQx6TmIi574yy1G5sblz5L9EGlUg==
   dependencies:
     "@babel/core" "^7.21.8"
     "@babel/eslint-parser" "^7.21.8"
