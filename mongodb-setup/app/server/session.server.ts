@@ -1,10 +1,9 @@
 import { createCookieSessionStorage, redirect } from '@remix-run/node';
 import bcrypt from 'bcryptjs';
-import * as dotenv from 'dotenv';
+import 'dotenv/config';
 
 import type { LoginForm } from '~/types';
 import { UserApi } from '~/user/api';
-dotenv.config();
 
 const sessionSecret = process.env.COOKIE_SECRET;
 const userService = new UserApi();
@@ -34,7 +33,7 @@ export async function createUserSession(id: string, email: string, redirectTo: s
         }
     });
 }
-function getUserSession(request: Request) {
+async function getUserSession(request: Request) {
     return storage.getSession(request.headers.get('Cookie'));
 }
 

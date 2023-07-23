@@ -1,9 +1,7 @@
-import * as dotenv from 'dotenv';
+import 'dotenv/config';
 import mongoose, { Schema } from 'mongoose';
 
 import type { UserModel } from '~/types';
-
-dotenv.config();
 
 let db: any;
 
