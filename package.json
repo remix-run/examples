@@ -11,7 +11,7 @@
     "@remix-run/eslint-config": "^1.19.1",
     "@types/react": "^18.2.18",
     "eslint": "^8.46.0",
-    "eslint-config-prettier": "^8.10.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-markdown": "^3.0.1",
     "eslint-plugin-cypress": "^2.13.3",
     "eslint-plugin-prefer-let": "^3.0.1",
