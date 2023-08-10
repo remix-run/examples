@@ -25,6 +25,6 @@ startTransition(() => {
       <ClientStyleProvider>
         <RemixBrowser />
       </ClientStyleProvider>
-    </StrictMode>
+    </StrictMode>,
   );
 });
