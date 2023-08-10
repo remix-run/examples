@@ -18,8 +18,8 @@ One notable aspect of Styled Components that we need to manage is the way in whi
 
 - [app/root.tsx](./app/root.tsx) - This is where we render the app and if we're rendering on the server we have placeholder text of `__STYLES__`.
 - [app/entry.server.tsx](./app/entry.server.tsx) - This is where we render the app on the server and replace `__STYLES__` with the styles that styled-components collect.
-- [app/routes/__boundary.tsx](./app/routes/__boundary.tsx) - The top-level error boundary for the app to avoid re-mounting the document.
-- [app/routes/__boundary/\$.tsx](./app/routes/__boundary/$.tsx) - The top-level splat route that manually throws a 404 response so we can catch it in `__boundary.tsx`.
+- [app/routes/\_\_boundary.tsx](./app/routes/__boundary.tsx) - The top-level error boundary for the app to avoid re-mounting the document.
+- [app/routes/\_\_boundary/\$.tsx](./app/routes/__boundary/$.tsx) - The top-level splat route that manually throws a 404 response so we can catch it in `__boundary.tsx`.
 - [components/src/Box.tsx](./components/src/Box.tsx) - An example `styled` component.
 
 ## Related Links
