@@ -6,7 +6,5 @@ export const loader = () => {
   });
 };
 
-export default function NotFound() {
-  // This is needed to tell Remix it isn't a resource route
-  return <></>;
-}
+// This is needed to tell Remix it isn't a resource route
+export default () => null;
