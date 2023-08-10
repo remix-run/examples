@@ -5,7 +5,7 @@ import { Box } from "~/components/Box";
 export default function Index() {
   return (
     <Box>
-      <h1>Welcome to Remix (With Styled Component)</h1>
+      <h1>Welcome to Remix With Styled Components</h1>
       <ul>
         <li>
           <Link to="/error">Error</Link>
