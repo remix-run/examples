@@ -43,7 +43,7 @@ function Document({ children, title }: PropsWithChildren<{ title?: string }>) {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="keywords" content="Remix,jokes" />
         <meta
           name="twitter:image"
