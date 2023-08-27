@@ -1,4 +1,5 @@
-import { ActionArgs, json } from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { Form, Link, useActionData, useNavigation } from "@remix-run/react";
 import * as z from "zod";
 
@@ -108,13 +109,11 @@ export default function RegisterView() {
             name="firstName"
             defaultValue={actionData?.fields?.firstName}
           />
-          {actionData?.fieldErrors?.firstName
-            ? actionData.fieldErrors.firstName.map((error, index) => (
-                <p style={errorTextStyle} key={`first-name-error-${index}`}>
-                  {error}
-                </p>
-              ))
-            : null}
+          {actionData?.fieldErrors?.firstName?.map((error, index) => (
+            <p style={errorTextStyle} key={`first-name-error-${index}`}>
+              {error}
+            </p>
+          ))}
         </div>
 
         <br />
@@ -127,13 +126,11 @@ export default function RegisterView() {
             name="email"
             defaultValue={actionData?.fields?.email}
           />
-          {actionData?.fieldErrors?.email
-            ? actionData.fieldErrors.email.map((error, index) => (
-                <p style={errorTextStyle} key={`email-error-${index}`}>
-                  {error}
-                </p>
-              ))
-            : null}
+          {actionData?.fieldErrors?.email?.map((error, index) => (
+            <p style={errorTextStyle} key={`email-error-${index}`}>
+              {error}
+            </p>
+          ))}
         </div>
 
         <br />
@@ -146,13 +143,11 @@ export default function RegisterView() {
             name="birthday"
             defaultValue={actionData?.fields?.birthday}
           />
-          {actionData?.fieldErrors?.birthday
-            ? actionData.fieldErrors.birthday.map((error, index) => (
-                <p style={errorTextStyle} key={`birthday-error-${index}`}>
-                  {error}
-                </p>
-              ))
-            : null}
+          {actionData?.fieldErrors?.birthday?.map((error, index) => (
+            <p style={errorTextStyle} key={`birthday-error-${index}`}>
+              {error}
+            </p>
+          ))}
         </div>
 
         <br />

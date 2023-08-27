@@ -1,4 +1,5 @@
-import { LoaderArgs, json, redirect } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
 import {
   Form,
   Link,
@@ -11,7 +12,7 @@ import * as z from "zod";
 import { mockProducts } from "~/lib/product.server";
 
 export const loader = ({ request }: LoaderArgs) => {
-  const URLSearchParams = new URL(request.url).searchParams;
+  const { searchParams } = new URL(request.url);
 
   const schema = z.object({
     name: z.string().optional(),
@@ -24,9 +25,7 @@ export const loader = ({ request }: LoaderArgs) => {
   // filter out empty string values from query params
   // otherwise zod will throw while coercing them to number
   const parseResult = schema.safeParse(
-    Object.fromEntries(
-      [...URLSearchParams.entries()].filter(([, v]) => v !== ""),
-    ),
+    Object.fromEntries([...searchParams.entries()].filter(([, v]) => v !== "")),
   );
 
   if (!parseResult.success) {
@@ -67,8 +66,8 @@ export const loader = ({ request }: LoaderArgs) => {
 
   if (pagination.page > totalPageCount) {
     // reset page to 1 and redirect on invalid page number
-    URLSearchParams.set("page", "1");
-    return redirect(`?${URLSearchParams.toString()}`, {
+    searchParams.set("page", "1");
+    return redirect(`?${searchParams.toString()}`, {
       status: 303,
     });
   }
