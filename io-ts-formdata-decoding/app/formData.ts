@@ -17,7 +17,7 @@ type Form = Record<string, any>;
 
 /**
  * Takes a `request` and a runtime representation of a type (see `const User` in
- * `/routes/index.tsx`) and returns the correctly typed form data if it equates
+ * `/routes/_index.tsx`) and returns the correctly typed form data if it equates
  * to the given runtime-type. Throws a 422 otherwise.
  */
 export const decodeFormData = async <DecodedForm extends Form>(

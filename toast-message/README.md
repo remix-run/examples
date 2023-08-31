@@ -19,7 +19,7 @@ We use the `flash` method in the session object to set the message. Once we read
 ## Relevant files
 
 - [root.tsx](./app/root.tsx)
-- [index.tsx](./app/routes/index.tsx)
+- [index.tsx](./app/routes/_index.tsx)
 - [message.server.ts](./app/message.server.ts)
 
 ## Related Links

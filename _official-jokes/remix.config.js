@@ -12,6 +12,6 @@ module.exports = {
   serverModuleFormat: "cjs",
   // appDirectory: "app",
   // assetsBuildDirectory: "public/build",
-  // serverBuildPath: "build/index.js",
   // publicPath: "/build/",
+  // serverBuildPath: "build/index.js",
 };

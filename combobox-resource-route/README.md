@@ -14,9 +14,9 @@ As the user types into the input field, a fetcher loads suggestions from the ser
 
 The relevant files are:
 
-- app/routes/index.tsx - The UI route with the combobox.
-- app/routes/lang-search.tsx - The Resource Route that searches languages.
-- app/models/langs.ts - The "model" that holds the languages data and knows how to search it.
+- [`app/routes/_index.tsx`](app/routes/_index.tsx) - The UI route with the combobox.
+- [`app/routes/lang-search.tsx`](app/routes/lang-search.tsx) - The Resource Route that searches languages.
+- [`app/models/langs.ts`](app/models/langs.ts) - The "model" that holds the languages data and knows how to search it.
 
 ## Related Links
 

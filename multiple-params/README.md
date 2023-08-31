@@ -30,19 +30,19 @@ Here's the output of `remix routes` for this project:
 <Routes>
   <Route file="root.tsx">
     <Route path="clients" file="routes/clients.tsx">
-      <Route path=":clientId" file="routes/clients/$clientId.tsx">
-        <Route path="invoices" file="routes/clients/$clientId/invoices.tsx">
+      <Route path=":clientId" file="routes/clients.$clientId.tsx">
+        <Route path="invoices" file="routes/clients.$clientId.invoices.tsx">
           <Route
             path=":invoiceId"
-            file="routes/clients/$clientId/invoices/$invoiceId.tsx"
+            file="routes/clients.$clientId.invoices.$invoiceId.tsx"
           />
-          <Route index file="routes/clients/$clientId/invoices/index.tsx" />
+          <Route index file="routes/clients.$clientId.invoices._index.tsx" />
         </Route>
-        <Route index file="routes/clients/$clientId/index.tsx" />
+        <Route index file="routes/clients.$clientId._index.tsx" />
       </Route>
-      <Route index file="routes/clients/index.tsx" />
+      <Route index file="routes/clients._index.tsx" />
     </Route>
-    <Route index file="routes/index.tsx" />
+    <Route index file="routes/_index.tsx" />
   </Route>
 </Routes>
 ```
