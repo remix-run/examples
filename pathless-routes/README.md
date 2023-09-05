@@ -34,7 +34,7 @@ app
 
 | URL             | Matched Route                           |
 | --------------- | --------------------------------------- |
-| /               | app/routes/_index.tsx                    |
+| /               | app/routes/\_index.tsx                  |
 | /articles       | app/routes/articles.tsx                 |
 | /articles/hello | app/routes/articles/\_\_layout/hello.md |
 
