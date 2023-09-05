@@ -18,9 +18,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@remix-run/node": "~1.14.2",
-    "@remix-run/react": "~1.14.2",
-    "@remix-run/serve": "~1.14.2",
+    "@remix-run/node": "^1.19.3",
+    "@remix-run/react": "^1.19.3",
+    "@remix-run/serve": "^1.19.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.3"
@@ -30,8 +30,8 @@
     "@babel/core": "^7.22.10",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
-    "@remix-run/dev": "~1.14.2",
-    "@remix-run/eslint-config": "~1.14.2",
+    "@remix-run/dev": "^1.19.3",
+    "@remix-run/eslint-config": "^1.19.3",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@types/styled-components": "^5.1.24",
