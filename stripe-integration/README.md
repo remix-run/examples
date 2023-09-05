@@ -4,17 +4,16 @@ A demo of integrate stripe payment with remix, it handles stripe function purely
 
 Relevant files:
 
-```
-└── app
-    ├── routes
-    ├── api
-    │   └── stripe-web-hook.tsx // api route to get stripe webhook postback
-    │   ├── buy.tsx // buy button and redirect to stripe payment
-    │   └── payment
-    │       ├── cancelled.tsx // stripe will redirect to this page if payment failed
-    │       └── success.tsx // string will redirect to this page if payment sucessful
-    └── utils
-        └── stripe.server.tsx // server side function to init a stripe session
+```text
+app/
+├── routes/
+│   └── api.stripe-web-hook.tsx // api route to get stripe webhook postback
+│   ├── buy.tsx // buy button and redirect to stripe payment
+│   ├── payment.cancelled.tsx // stripe will redirect to this page if payment failed
+│   └── payment.success.tsx // string will redirect to this page if payment successful
+└── utils
+│   └── stripe.server.tsx // server side function to init a stripe session
+└── root.tsx
 ```
 
 ## steps to setup

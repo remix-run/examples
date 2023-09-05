@@ -17,8 +17,8 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 ## Relevant files:
 
-- [app/utils/notifier.server.ts](./app/queues/notifier.server.ts) where we define the necessary components for the background task queue, worker, and scheduler.
-- [app/routes/index.tsx](./app/routes/index.tsx) where background tasks are added to the queue.
+- [`app/utils/notifier.server.ts`](./app/queues/notifier.server.ts) where we define the necessary components for the background task queue, worker, and scheduler.
+- [`app/routes/_index.tsx`](./app/routes/_index.tsx) where background tasks are added to the queue.
 
 ## Related Links
 
