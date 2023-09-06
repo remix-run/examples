@@ -6,7 +6,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useTransition,
+  useNavigation,
 } from "@remix-run/react";
 import NProgress from "nprogress";
 import nProgressStyles from "nprogress/nprogress.css";
@@ -24,14 +24,14 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function App() {
-  const transition = useTransition();
+  const navigation = useNavigation();
   useEffect(() => {
     // when the state is idle then we can to complete the progress bar
-    if (transition.state === "idle") NProgress.done();
+    if (navigation.state === "idle") NProgress.done();
     // and when it's something else it means it's either submitting a form or
     // waiting for the loaders of the next location so we start it
     else NProgress.start();
-  }, [transition.state]);
+  }, [navigation.state]);
 
   return (
     <html lang="en">
