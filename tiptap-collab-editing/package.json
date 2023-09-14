@@ -8,9 +8,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@remix-run/node": "~1.14.2",
-    "@remix-run/react": "~1.14.2",
-    "@remix-run/serve": "~1.14.2",
+    "@remix-run/node": "^1.19.3",
+    "@remix-run/react": "^1.19.3",
+    "@remix-run/serve": "^1.19.3",
     "@tiptap/extension-collaboration": "^2.0.0-beta.33",
     "@tiptap/react": "^2.0.0-beta.108",
     "@tiptap/starter-kit": "^2.0.0-beta.183",
@@ -21,14 +21,14 @@
     "yjs": "^13.5.34"
   },
   "devDependencies": {
-    "@remix-run/dev": "~1.14.2",
-    "@remix-run/eslint-config": "~1.14.2",
+    "@remix-run/dev": "^1.19.3",
+    "@remix-run/eslint-config": "^1.19.3",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "eslint": "^8.27.0",
     "typescript": "^4.8.4"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=14.0.0"
   }
 }

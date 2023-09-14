@@ -16,7 +16,7 @@ Relevant files:
 
 - [app/queues/greetings.server.ts](app/queues/greetings.server.ts)
 - [app/routes/queues/greetings.ts](app/routes/queues/greetings.ts)
-- [app/routes/index.tsx](app/routes/index.tsx)
+- [app/routes/\_index.tsx](app/routes/_index.tsx)
 
 Describe the example and how it demonstrates solving the problem. Reference any relevant files/dependencies if needed.
 

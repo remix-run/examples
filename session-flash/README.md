@@ -10,7 +10,7 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 ## Example
 
-This example shows how to create a simple alert message. Check [app/routes/index.tsx](app/routes/index.tsx) to see the flash message in action:
+This example shows how to create a simple alert message. Check [app/routes/\_index.tsx](app/routes/_index.tsx) to see the flash message in action:
 
 Implementation logic:
 

@@ -17,7 +17,7 @@ And when JavaScript is disabled, `unset` the animation styles so that the page i
 Relevant files:
 
 - [app/root.tsx](./app/root.tsx)
-- [app/routes/index.tsx](./app/routes/index.tsx)
+- [app/routes/\_index.tsx](./app/routes/_index.tsx)
 
 ## Related Links
 

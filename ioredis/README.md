@@ -18,7 +18,7 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 ## Relevant files:
 
 - [app/utils/redis.server.ts](./app/utils/redis.server.ts) where ioredis is setup.
-- [app/routes/index.tsx](./app/routes/index.tsx) where ioredis is used.
+- [app/routes/\_index.tsx](./app/routes/_index.tsx) where ioredis is used.
 
 ## Related Links
 

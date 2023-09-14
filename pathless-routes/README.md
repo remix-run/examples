@@ -12,7 +12,7 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 One of the features of React Router is the ability to have `pathless routes`. This gives the ability to add route layouts without adding segments to the URL.
 
-In this example, we are going to look at a common use case of building a blog with Remix built-in MDX compiler. We have a [index route](./app/routes/index.tsx) which serves as our Home page, and we have a [articles section](./app/routes/articles.tsx) which lists all the articles we have, and also serves as a layout for the articles section.
+In this example, we are going to look at a common use case of building a blog with Remix built-in MDX compiler. We have a [index route](./app/routes/_index.tsx) which serves as our Home page, and we have a [articles section](./app/routes/articles.tsx) which lists all the articles we have, and also serves as a layout for the articles section.
 
 Let's say we want to wrap each article with some styles. Due to the way MDX routes works in Remix, there is no way to include styles directly into the MDX file. We can instead create a pathless route and add our styles there.
 
@@ -34,7 +34,7 @@ app
 
 | URL             | Matched Route                           |
 | --------------- | --------------------------------------- |
-| /               | app/routes/index.tsx                    |
+| /               | app/routes/\_index.tsx                  |
 | /articles       | app/routes/articles.tsx                 |
 | /articles/hello | app/routes/articles/\_\_layout/hello.md |
 

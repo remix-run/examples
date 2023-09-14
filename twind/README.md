@@ -16,7 +16,7 @@ Relevant files:
 
 - [app/entry.server.tsx](./app/entry.server.tsx) where the twind styles have been added to the markup to enable server-side-rendering (SSR) of styles.
 - [app/root.tsx](./app/root.tsx) where twind has been set up.
-- [app/routes/index.tsx](./app/routes/index.tsx) and [app/routes/anything.tsx](./app/routes/anything.tsx) where some basic styling has been demonstrated.
+- [app/routes/\_index.tsx](./app/routes/_index.tsx) and [app/routes/anything.tsx](./app/routes/anything.tsx) where some basic styling has been demonstrated.
 - [remix.config.js](./remix.config.js) where the twind modules have been added to [`serverDependenciesToBundle`](https://remix.run/file-conventions/remix-config#serverdependenciestobundle).
 - [twind.config.ts](./twind.config.ts) (optional) where twind can be [configured](https://twind.dev/handbook/configuration.html).
 
