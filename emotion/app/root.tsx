@@ -1,5 +1,4 @@
 import { withEmotionCache } from "@emotion/react";
-import styled from "@emotion/styled";
 import type { MetaFunction } from "@remix-run/node";
 import {
   Links,
@@ -8,23 +7,22 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch,
+  isRouteErrorResponse,
+  useRouteError,
 } from "@remix-run/react";
 import { useContext, useEffect, useRef } from "react";
 
 import ClientStyleContext from "~/styles/client.context";
 import ServerStyleContext from "~/styles/server.context";
 
-const Container = styled("div")`
-  background-color: #ff0000;
-  padding: 1em;
-`;
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "Remix with Emotion",
-  viewport: "width=device-width,initial-scale=1",
-});
+export const meta: MetaFunction = () => {
+  return [
+    { name: "title", content: "Remix with Emotion" },
+    { name: "viewport", content: "width=device-width,initial-scale=1" },
+    { name: "charset", content: "utf-8" },
+  ]
+}
 
 interface DocumentProps {
   children: React.ReactNode;
@@ -94,26 +92,31 @@ export default function App() {
   );
 }
 
-export function CatchBoundary() {
-  const caught = useCatch();
+export function ErrorBoundary() {
+  const error = useRouteError();
+
+  if (isRouteErrorResponse(error)) {
+    return (
+      <div>
+        <h1>Oops</h1>
+        <p>Status: {error.status}</p>
+        <p>{error.data.message}</p>
+      </div>
+    );
+  }
+
+  // Don't forget to typecheck with your own logic.
+  // Any value can be thrown, not just errors!
+  let errorMessage = "Unknown error";
+  if (error instanceof Error) {
+    errorMessage = error.message;
+  }
 
   return (
-    <Document title={`${caught.status} ${caught.statusText}`}>
-      <Container>
-        <p>
-          [CatchBoundary]: {caught.status} {caught.statusText}
-        </p>
-      </Container>
-    </Document>
-  );
-}
-
-export function ErrorBoundary({ error }: { error: Error }) {
-  return (
-    <Document title="Error!">
-      <Container>
-        <p>[ErrorBoundary]: There was an error: {error.message}</p>
-      </Container>
-    </Document>
+    <div>
+      <h1>Uh oh ...</h1>
+      <p>Something went wrong.</p>
+      <pre>{errorMessage}</pre>
+    </div>
   );
 }
