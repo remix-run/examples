@@ -11,7 +11,8 @@
     "site-dev:extension": "npm run dev --workspace=remix-frontend",
     "site-dev:directus": "directus start",
     "start": "directus start",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@remix-run/css-bundle": "^2.0.1",
@@ -39,6 +40,7 @@
     "directus-extension-seed": "^2.0.4",
     "eslint": "^8.38.0",
     "npm-run-all": "^4.1.5",
+    "patch-package": "^8.0.0",
     "typescript": "^5.1.6"
   },
   "engines": {

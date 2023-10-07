@@ -20,6 +20,14 @@ We can also take advantage of Remix load context and pass Directus utilities to 
 
 In this example, we use the `ItemsService`, which is accessed through load context, to pull our list of blog posts in our loader to render to the page.
 
+### Patching Vue Types
+
+This example installs Directus directly, which includes `vue` as a dependency. Unfortunately, Vue uses interface overloading to alter the way TypeScript types JSX, causing errors in idiomatic React code.
+
+To solve this, this example uses `patch-package` to change the types in the Vue package so they don't interfere with React's JSX typings.
+
+This is handled automatically with a `postinstall` package.json script.
+
 ## Development
 
 This example includes an example environment variables file. 
