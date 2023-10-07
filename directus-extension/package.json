@@ -1,0 +1,50 @@
+{
+  "name": "remix-directus",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "run-s build:*",
+    "build:remix": "remix build",
+    "build:extension": "npm run build --workspace=remix-frontend",
+    "dev": "remix dev --manual -c \"run-p site-dev:*\"",
+    "site-dev:extension": "npm run dev --workspace=remix-frontend",
+    "site-dev:directus": "directus start",
+    "start": "directus start",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@remix-run/css-bundle": "^2.0.1",
+    "@remix-run/node": "^2.0.1",
+    "@remix-run/react": "^2.0.1",
+    "@remix-run/serve": "^2.0.1",
+    "directus": "^10.6.3",
+    "isbot": "^3.6.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.0",
+    "react-syntax-highlighter": "^15.5.0",
+    "rehype-raw": "^7.0.0",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.0",
+    "sqlite3": "^5.1.6",
+    "unified": "^11.0.3"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.0.1",
+    "@remix-run/eslint-config": "^2.0.1",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "@types/react-syntax-highlighter": "^15.5.7",
+    "directus-extension-seed": "^2.0.4",
+    "eslint": "^8.38.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.1.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "workspaces": [
+    "remix-frontend"
+  ]
+}
