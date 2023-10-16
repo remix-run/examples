@@ -4,6 +4,7 @@
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
+    "generate": "drizzle-kit generate:sqlite",
     "start": "remix-serve build",
     "typecheck": "tsc"
   },
@@ -11,6 +12,8 @@
     "@remix-run/node": "^1.19.3",
     "@remix-run/react": "^1.19.3",
     "@remix-run/serve": "^1.19.3",
+    "better-sqlite3": "^9.0.0",
+    "drizzle-orm": "^0.28.6",
     "isbot": "^3.6.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -18,8 +21,10 @@
   "devDependencies": {
     "@remix-run/dev": "^1.19.3",
     "@remix-run/eslint-config": "^1.19.3",
+    "@types/better-sqlite3": "^7.6.5",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
+    "drizzle-kit": "^0.19.13",
     "eslint": "^8.27.0",
     "typescript": "^4.8.4"
   },

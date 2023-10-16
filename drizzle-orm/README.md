@@ -13,8 +13,8 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 Relevant files:
 
 - [drizzle](./drizzle) migrations and drizzle-related meta information
-- [app/schema.ts] table schemas and data models
-- [app/db.server.ts] setup database client
+- [app/db/db.server.ts] setup database client
+- [package.json] add `db:*` scripts and drizzle dependencies
 
 ## Related Links
 
