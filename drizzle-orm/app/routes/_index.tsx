@@ -22,7 +22,7 @@ export async function action({ request }: ActionArgs) {
 }
 
 export async function loader() {
-  const rowsQuery = db.select().from(example);
+  const rowsQuery = db.query.example.findMany();
 
   const lastUpdatedQuery = db
     .select({ updated: sql<string>`MAX(created_at)` })
