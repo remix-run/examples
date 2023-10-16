@@ -13,8 +13,9 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 Relevant files:
 
 - [drizzle](./drizzle) migrations and drizzle-related meta information
-- [app/db/db.server.ts] setup database client
-- [package.json] add `db:*` scripts and drizzle dependencies
+- [app/db.server.ts] setup database client
+- [app/schema.ts] define database schema
+- [package.json] add `generate` script and drizzle dependencies
 
 ## Related Links
 
