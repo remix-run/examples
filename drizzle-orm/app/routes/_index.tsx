@@ -5,8 +5,8 @@ import { db } from "~/db.server";
 import { example } from "~/schema";
 
 export async function action({ request }: ActionArgs) {
-  let formData = await request.formData();
-  let intent = formData.get("intent");
+  const formData = await request.formData();
+  const intent = formData.get("intent");
 
   if (intent === "update") {
     await db.insert(example).values({});
@@ -22,7 +22,7 @@ export async function action({ request }: ActionArgs) {
 }
 
 export function loader() {
-  let result = db
+  const result = db
     .select({
       count: sql<number>`COUNT(*)`,
       lastUpdated: sql<string>`MAX(created_at)`,
