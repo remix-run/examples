@@ -8,7 +8,7 @@ export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
   const intent = formData.get("intent");
 
-  if (intent === "update") {
+  if (intent === "add") {
     await db.insert(example).values({});
     return new Response(null, { status: 201 });
   }
@@ -21,38 +21,41 @@ export async function action({ request }: ActionArgs) {
   return new Response(null, { status: 400 });
 }
 
-export function loader() {
-  const result = db
-    .select({
-      count: sql<number>`COUNT(*)`,
-      lastUpdated: sql<string>`MAX(created_at)`,
-    })
+export async function loader() {
+  const rowsQuery = db.select().from(example);
+
+  const lastUpdatedQuery = db
+    .select({ updated: sql<string>`MAX(created_at)` })
     .from(example)
-    .get();
+    .execute()
+    .then((rows) => rows[0].updated);
 
   return {
-    count: result?.count ?? 0,
-    lastUpdated: result?.lastUpdated ?? "never",
+    rows: await rowsQuery,
+    lastUpdated: await lastUpdatedQuery,
   };
 }
 
 export default function Index() {
-  const { count, lastUpdated } = useLoaderData<typeof loader>();
+  const { rows, lastUpdated } = useLoaderData<typeof loader>();
+
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
       <h1>Welcome to Remix</h1>
-      <p>
-        Count: {count} <br />
-        Last updated: {lastUpdated}
-      </p>
+      <p>Last Updated: {lastUpdated ?? "--"}</p>
       <Form method="post">
-        <button type="submit" name="intent" value="update">
-          Update
+        <button type="submit" name="intent" value="add">
+          Add Row
         </button>
         <button type="submit" name="intent" value="reset">
           Reset
         </button>
       </Form>
+      <ul>
+        {rows.map((row) => (
+          <li key={row.id}>{row.id}</li>
+        ))}
+      </ul>
     </div>
   );
 }
