@@ -2,6 +2,8 @@
 
   This is an example of remix application built using remix nextui and tailwind css
 
+![demo App](remix-next-ui.png)
+
   ## Preview
 
 Open this example on [CodeSandbox](https://codesandbox.com):
