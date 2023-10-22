@@ -1,10 +1,10 @@
-import type { ActionArgs, LoaderArgs } from "@remix-run/node";
+import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 
 import { auth, sessionStorage } from "~/auth.server";
 
-export const action = async ({ request }: ActionArgs) => {
+export const action = async ({ request }: ActionFunctionArgs) => {
   await auth.authenticate("form", request, {
     successRedirect: "/private",
     failureRedirect: "/login",
@@ -12,7 +12,7 @@ export const action = async ({ request }: ActionArgs) => {
 };
 
 type LoaderError = { message: string } | null;
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   await auth.isAuthenticated(request, { successRedirect: "/private" });
   const session = await sessionStorage.getSession(
     request.headers.get("Cookie"),
@@ -25,6 +25,8 @@ export default function Screen() {
   const { error } = useLoaderData<typeof loader>();
 
   return (
+    <>
+      <pre>/login</pre>
     <Form method="post">
       {error ? <div>{error.message}</div> : null}
       <div>
@@ -48,6 +50,7 @@ export default function Screen() {
       </div>
 
       <button>Log In</button>
-    </Form>
+      </Form>
+      </>
   );
 }
