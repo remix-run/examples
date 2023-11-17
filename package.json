@@ -8,7 +8,7 @@
     "lint:fix": "yarn lint --fix"
   },
   "devDependencies": {
-    "@remix-run/eslint-config": "^1.19.3",
+    "@remix-run/eslint-config": "^2.3.0",
     "@types/react": "^18.2.35",
     "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
