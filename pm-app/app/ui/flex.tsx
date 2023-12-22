@@ -32,10 +32,10 @@ const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
             wrap === true
               ? "wrap"
               : wrap === false || wrap === "nowrap"
-              ? "nowrap"
-              : wrap === "reverse"
-              ? "wrap-reverse"
-              : wrap
+                ? "nowrap"
+                : wrap === "reverse"
+                  ? "wrap-reverse"
+                  : wrap
           }`]: wrap != null,
           [`${COMP_CLASS}--align-items-${alignItems}`]: alignItems != null,
           [`${COMP_CLASS}--align-content-${alignContent}`]:

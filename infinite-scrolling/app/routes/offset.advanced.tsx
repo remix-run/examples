@@ -194,8 +194,8 @@ export default function Index() {
                   {item
                     ? item.value
                     : transition.state === "loading"
-                    ? "Loading more..."
-                    : "Nothing to see here..."}
+                      ? "Loading more..."
+                      : "Nothing to see here..."}
                 </span>
               </div>
             );
