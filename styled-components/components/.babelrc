@@ -1,8 +1,8 @@
 {
   "presets": [
     "@babel/preset-typescript",
-    ["@babel/preset-react", { "runtime": "automatic" }],
+    ["@babel/preset-react", { "runtime": "automatic" }]
   ],
   "plugins": ["babel-plugin-styled-components"],
-  "sourceMaps": "inline",
+  "sourceMaps": "inline"
 }
