@@ -2,11 +2,11 @@
 
 This example uses Mux Video, an API-first platform for video. The example features video uploading and playback in a Remix.js application.
 
-This example is useful if you want to build:
-
-- A video on demand service like Youtube or Netflix
-- A platform that supports user uploaded videos like TikTok or Instagram
-- Video into your custom CMS
+This example is useful if you want to build a platform that supports user-uploaded videos. For example:
+- Enabling user profile videos
+- Accepting videos for a video contest promotion
+- Allowing customers to upload screencasts that help with troubleshooting a bug
+- Or even the next Youtube, TikTok, or Instagram
 
 ## Preview
 
