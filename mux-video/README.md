@@ -67,3 +67,5 @@ When creating uploads, this demo sets `cors_origin: "*"` in the [`app/routes/_in
 ### Consider webhooks
 
 In this example, we poll the Mux API to see if our asset is ready.  In production, you'll likely have a database where you can store the `upload.id` and `asset.id`, and you can use [Mux Webhooks](https://docs.mux.com/guides/listen-for-webhooks) to get notified when your upload is complete, and when your asset is ready.
+
+See [`app/routes/mux.webhook.ts`](app/routes/mux.webhook.ts) for an example of how you might handle a Mux webhook.
