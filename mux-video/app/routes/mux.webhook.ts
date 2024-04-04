@@ -1,4 +1,4 @@
-import type { ActionFunctionArgs } from "@remix-run/node";
+import { json, type ActionFunctionArgs } from "@remix-run/node";
 import mux from "~/lib/mux.server";
 
 // while this isn't called anywhere in this example,
@@ -38,9 +38,5 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       break;
   }
 
-  return new Response(JSON.stringify({ message: "ok" }), {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  return json({ message: "ok" })
 };
