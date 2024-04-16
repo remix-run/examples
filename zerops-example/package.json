@@ -7,7 +7,6 @@
     "build": "remix vite:build",
     "dev": "remix vite:dev",
     "start": "cross-env NODE_ENV=production node ./server.js",
-    "typecheck": "tsc"
   },
   "dependencies": {
     "@remix-run/express": "^2.8.1",
