@@ -45,13 +45,9 @@ export function Code({ code }: { code: string }) {
   };
 
   return (
-    <pre >
-          <code>{code}</code>
-                <button
-        onClick={copy}
-        >
-        {icon}
-      </button>
+    <pre>
+      <code>{code}</code>
+      <button onClick={copy}>{icon}</button>
     </pre>
   );
 }
