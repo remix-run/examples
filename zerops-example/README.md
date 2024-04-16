@@ -1,6 +1,6 @@
 # Zerops + Remix - Nodejs - [Preview](https://remixnode-b4-3000.prg1.zerops.app)
 
-![Header Image](/header.png)
+![Header Image](header.png)
 
 A nodejs Remix example for Zerops which you can deploy in 2 simple steps.
 
