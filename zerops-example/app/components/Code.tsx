@@ -45,14 +45,13 @@ export function Code({ code }: { code: string }) {
   };
 
   return (
-    <pre className="bg-[#F7F7F7] rounded-md p-8 my-8 relative">
-      <button
+    <pre >
+          <code>{code}</code>
+                <button
         onClick={copy}
-        className="absolute top-4 right-4  p-2 rounded-md bg-[#585858] text-white"
-      >
+        >
         {icon}
       </button>
-      <code className="text-[#585858] text-sm">{code}</code>
     </pre>
   );
 }

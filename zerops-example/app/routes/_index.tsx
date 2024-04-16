@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import styles from "../styles/main.css?url";
-import { Steps } from "~/components/Steps";
+import { Code } from "~/components/Code";
 
 export const meta: MetaFunction = () => {
   return [
@@ -14,40 +14,35 @@ export const links = () => {
 };
 
 export default function Index() {
+  const Yaml = `project:
+  name: zerops-remix
+
+services:
+  - hostname: remixnode
+    type: nodejs@18
+    buildFromGit: https://github.com/fxck/zerops-remix-nodejs
+    ports:
+      - port: 3000
+        httpSupport: true
+    enableSubdomainAccess: true
+    minContainers: 1`.trim();
+
   return (
-    <div className="pt-20 pb-10">
-      <div className="text-center">
-        <span className="border border-dashed border-[#ACC6FF] bg-[#F6F9FF] text-md text-[#5A8DFF] rounded-md px-4 py-2 font-regular">
-          Developer-First Platform as a Service
-        </span>
+    <div>
+      <div>
         <div>
-          <div className="text-8xl font-bold space-y-3 mt-6 mb-10">
-            <h1>Say Hello to</h1>
-            <h2 className="gradient-text">Remix with Zerops</h2>
-          </div>
-          <p className="max-w-[800px] mx-auto text-2xl font-medium">
-            A Nodejs Remix example for Zerops which you can deploy in 2 simple
-            steps (Technically, we don't count Ctrl + V... but who's checking?).
-            Scroll down to learn how to deploy.{" "}
-          </p>
-          <div className="mt-10 flex text-lg flex-row justify-center items-center space-x-5">
-            <a href="https://discord.gg/5ptAqtpyvh" target="_blank">
-              <button className="primarybutton rounded-md">
-                Discord Community
-              </button>{" "}
-            </a>
-            <a href="https://docs.zerops.io/" target="_blank">
-              <button className="secondarybutton rounded-md">
-                Zerops Docs
-              </button>
-            </a>
-          </div>
+          <h1>Say Hello to Remix with Zerops</h1>
+          <h3>Step 1</h3>
+          <p>Go to <a href="https://app.zerops.io/dashboard/projects" target="_blank">Zerops Dashboard</a> and Click on the 'Import Project' button on the sidebar.</p>
+          <h3>Step 2</h3>
+          <p>Copy the YAML code mentioned below and paste it to import this example.
+            Alternatively, you can clone zerops-solid-static to your Git
+Hub profile and then replace the repository URL in the buildFromGit parameter.</p>
+          <Code code={Yaml} />
+            <p>If you still find yourself stuck in the process join our.<a href="https://discord.gg/5ptAqtpyvh" target="_blank">Discord community</a></p>
         </div>
       </div>
-      <div className="flex justify-center pt-14">
-        <Steps />
-      </div>
-      <p className="text-center mt-10 text-[#939393]">
+      <p>
         Powered by{" "}
         <a href="https://zerops.io" target="_blank">
           Zerops
