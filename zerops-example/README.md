@@ -4,12 +4,6 @@
 
 A nodejs Remix example for Zerops which you can deploy in 2 simple steps.
 
-**Features**
-
-- Remix
-- Tailwind
-- Prettier
-
 ## Instructions to Deploy on Zerops
 
 1. Navigate to the Zerops Dashboard and locate the import project button on the sidebar.
