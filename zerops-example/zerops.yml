@@ -1,0 +1,51 @@
+zerops:
+  # supports monorepositories, just add
+  # one setup section after the other
+  - setup: remixnode
+    # ==== how to build your application ====
+    build:
+      # select what technology should the
+      # build container be based on, can
+      # be different from service technology
+      # see docs for full list
+      base: nodejs@20
+
+      # *optional* add additional dependencies
+      # on top of base technology (combination
+      # will be cached for next build)
+      # prepareCommands:
+      #   - apt-get something
+
+      # build your application
+      buildCommands:
+        - npm i
+        - npm run build
+
+      # select which files / folders to deploy
+      # after the build succesfully finished
+      deploy:
+        - build
+        - server.js
+        - package.json
+        - node_modules
+
+      # *optional*: which files / folders
+      # to cache for the next use
+      cache:
+        - node_modules
+        - package-lock.json
+
+    # ==== how to run your application ====
+    run:
+      # *optional* install dependencies that your
+      # runtime service requires (will be cached)
+      # prepareCommands:
+      #   - apt-get something
+
+      # *optional*: triggered before each start/restart
+      # of your application, to eg. clean cache
+      # initCommands:
+      #  - rm -rf ./cache
+
+      # how to start your application
+      start: npm start
