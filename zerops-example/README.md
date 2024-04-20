@@ -1,4 +1,4 @@
-# Zerops + Remix - Nodejs - [Preview](https://remixnode-b4-3000.prg1.zerops.app)
+# Zerops + Remix - Nodejs - [Preview](https://remixrun.zerops.dev/)
 
 ![Header Image](header.png)
 
