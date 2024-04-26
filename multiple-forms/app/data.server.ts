@@ -20,7 +20,7 @@ async function writeInvitations(invitations: Array<Invitation>) {
   return fs.writeFile("./data.json", JSON.stringify({ invitations }, null, 2));
 }
 
-export async function deleteInvitiation(invitation: Invitation) {
+export async function deleteInvitation(invitation: Invitation) {
   const invitations = await getInvitations();
   await writeInvitations(invitations.filter((i) => i.id !== invitation.id));
 }
