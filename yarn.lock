@@ -1679,10 +1679,10 @@ eslint-module-utils@^2.7.4:
   dependencies:
     debug "^3.2.7"
 
-eslint-plugin-cypress@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/eslint-plugin-cypress/-/eslint-plugin-cypress-3.0.0.tgz#7b893ed0cea6de98bc5e7102d735c23e00d3fe70"
-  integrity sha512-ZQ0l8+fcWDYptaxLkmk2l77TAfmJqNM2SSbC6t9+P/GeMLOu2zq2jtJKsHh+qxZEzkm/5IfFgbwAU3P5AZf7+w==
+eslint-plugin-cypress@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.npmjs.org/eslint-plugin-cypress/-/eslint-plugin-cypress-3.0.2.tgz#297df4e609a38d8cbe5f2ac52e1f682ed07a4922"
+  integrity sha512-5hIWc3SqXSuR+Sd7gmNMzx8yJ3LWQQS0e+qLvEVF4C1JfFtu1s9imtEm1KxlCBCcKb7+6CyR9KQYs0GiI02AlA==
   dependencies:
     globals "^13.20.0"
 
