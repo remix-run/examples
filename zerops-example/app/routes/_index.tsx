@@ -37,7 +37,11 @@ services:
           <h3>Step 1</h3>
           <p>
             Go to{" "}
-            <a href="https://app.zerops.io/dashboard/projects" target="_blank" rel="noreferrer">
+            <a
+              href="https://app.zerops.io/dashboard/projects"
+              target="_blank"
+              rel="noreferrer"
+            >
               Zerops Dashboard
             </a>{" "}
             and Click on the 'Import Project' button on the sidebar.
@@ -52,7 +56,11 @@ services:
           <Code code={Yaml} />
           <p>
             If you still find yourself stuck in the process join our.
-            <a href="https://discord.gg/5ptAqtpyvh" target="_blank" rel="noreferrer">
+            <a
+              href="https://discord.gg/5ptAqtpyvh"
+              target="_blank"
+              rel="noreferrer"
+            >
               Discord community
             </a>
           </p>
