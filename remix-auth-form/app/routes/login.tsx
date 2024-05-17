@@ -15,7 +15,7 @@ type LoaderError = { message: string } | null;
 export const loader = async ({ request }: LoaderArgs) => {
   await auth.isAuthenticated(request, { successRedirect: "/private" });
   const session = await sessionStorage.getSession(
-    request.headers.get("Cookie")
+    request.headers.get("Cookie"),
   );
   const error = session.get(auth.sessionErrorKey) as LoaderError;
   return json({ error });

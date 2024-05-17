@@ -31,7 +31,7 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
         </ReachMenu>
       </div>
     );
-  }
+  },
 );
 DropdownMenu.displayName = "DropdownMenu";
 
@@ -59,7 +59,7 @@ const DropdownMenuButtonUnstyled = React.forwardRef<
       ref={ref}
       className={cx(
         className,
-        "ui--dropdown-menu__button ui--dropdown-menu__button--unstyled"
+        "ui--dropdown-menu__button ui--dropdown-menu__button--unstyled",
       )}
       {...props}
     />
@@ -81,7 +81,7 @@ const DropdownMenuOptionsButton = React.forwardRef<
         {
           "ui--dropdown-menu__options-button--size-8": size === 8,
           "ui--dropdown-menu__options-button--size-10": size === 10,
-        }
+        },
       )}
       aria-label="Options"
       {...props}
@@ -133,7 +133,7 @@ const DropdownMenuItem = React.forwardRef<
       className={cx(
         className,
         "ui--dropdown-menu__item",
-        variant && `ui--dropdown-menu__item--${variant}`
+        variant && `ui--dropdown-menu__item--${variant}`,
       )}
       onSelect={onSelect}
       {...props}
@@ -153,7 +153,7 @@ const DropdownMenuItemLink = React.forwardRef<
       className={cx(
         className,
         "ui--dropdown-menu__item",
-        "ui--dropdown-menu__item-link"
+        "ui--dropdown-menu__item-link",
       )}
       {...props}
     />

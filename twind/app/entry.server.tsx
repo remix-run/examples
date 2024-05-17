@@ -1,6 +1,6 @@
 import { PassThrough } from "stream";
 
-import type { EntryContext } from "@remix-run/node";
+import type { AppLoadContext, EntryContext } from "@remix-run/node";
 import { Response } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import inline from "@twind/with-remix/server";
@@ -13,20 +13,21 @@ const handleRequest = (
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext
+  remixContext: EntryContext,
+  loadContext: AppLoadContext,
 ) =>
   isbot(request.headers.get("user-agent"))
     ? handleBotRequest(
         request,
         responseStatusCode,
         responseHeaders,
-        remixContext
+        remixContext,
       )
     : handleBrowserRequest(
         request,
         responseStatusCode,
         responseHeaders,
-        remixContext
+        remixContext,
       );
 export default handleRequest;
 
@@ -34,7 +35,7 @@ const handleBotRequest = (
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext
+  remixContext: EntryContext,
 ) =>
   new Promise((resolve, reject) => {
     let didError = false;
@@ -51,7 +52,7 @@ const handleBotRequest = (
             new Response(body, {
               headers: responseHeaders,
               status: didError ? 500 : responseStatusCode,
-            })
+            }),
           );
 
           pipe(body);
@@ -64,7 +65,7 @@ const handleBotRequest = (
 
           console.error(error);
         },
-      }
+      },
     );
 
     setTimeout(abort, ABORT_DELAY);
@@ -74,7 +75,7 @@ const handleBrowserRequest = (
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext
+  remixContext: EntryContext,
 ) =>
   new Promise((resolve, reject) => {
     let didError = false;
@@ -91,7 +92,7 @@ const handleBrowserRequest = (
             new Response(body, {
               headers: responseHeaders,
               status: didError ? 500 : responseStatusCode,
-            })
+            }),
           );
 
           pipe(body);
@@ -104,7 +105,7 @@ const handleBrowserRequest = (
 
           console.error(error);
         },
-      }
+      },
     );
 
     setTimeout(abort, ABORT_DELAY);

@@ -27,7 +27,7 @@ const Buttons = () => {
     () => {
       fetcher.submit(null, { method: "post" });
     },
-    { event: "INSERT", table: "clicks" }
+    { event: "INSERT", table: "clicks" },
   );
   return (
     <>

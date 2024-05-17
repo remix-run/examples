@@ -12,10 +12,10 @@ import NProgress from "nprogress";
 import nProgressStyles from "nprogress/nprogress.css";
 import { useEffect } from "react";
 
-export const links: LinksFunction = () => {
+export const links: LinksFunction = () => [
   // if you already have one only add this stylesheet to your list of links
-  return [{ rel: "stylesheet", href: nProgressStyles }];
-};
+  { rel: "stylesheet", href: nProgressStyles },
+];
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

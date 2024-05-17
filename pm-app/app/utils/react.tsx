@@ -19,7 +19,7 @@ export function useFocusOnFormError({
     // If we have a form error, focus its first focusable field
     if (formError) {
       const input = form.querySelector<HTMLInputElement>(
-        "input:not([disabled],[hidden],[aria-hidden=true])"
+        "input:not([disabled],[hidden],[aria-hidden=true])",
       );
       input?.focus();
       return;
@@ -30,7 +30,7 @@ export function useFocusOnFormError({
       for (const fieldName of Object.keys(fieldErrors)) {
         if (fieldErrors[fieldName]) {
           const input = form.querySelector<HTMLInputElement>(
-            `input[name=${fieldName}]:not([disabled],[hidden],[aria-hidden=true])`
+            `input[name=${fieldName}]:not([disabled],[hidden],[aria-hidden=true])`,
           );
           input?.focus();
           return;
@@ -45,12 +45,15 @@ export function useThrottle(value: any, limit: number) {
   const lastRan = React.useRef(Date.now());
 
   React.useEffect(() => {
-    const handler = window.setTimeout(() => {
-      if (Date.now() - lastRan.current >= limit) {
-        setThrottledValue(value);
-        lastRan.current = Date.now();
-      }
-    }, limit - (Date.now() - lastRan.current));
+    const handler = window.setTimeout(
+      () => {
+        if (Date.now() - lastRan.current >= limit) {
+          setThrottledValue(value);
+          lastRan.current = Date.now();
+        }
+      },
+      limit - (Date.now() - lastRan.current),
+    );
 
     return () => window.clearTimeout(handler);
   }, [value, limit]);

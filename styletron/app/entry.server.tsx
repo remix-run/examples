@@ -1,17 +1,18 @@
-import type { EntryContext } from "@remix-run/node";
+import type { AppLoadContext, EntryContext } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import { renderToString } from "react-dom/server";
 
-import { collectStyles } from "./styletron";
+import { collectStyles } from "~/styletron";
 
 export default function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext
+  remixContext: EntryContext,
+  loadContext: AppLoadContext,
 ) {
   let markup = renderToString(
-    <RemixServer context={remixContext} url={request.url} />
+    <RemixServer context={remixContext} url={request.url} />,
   );
 
   // Add server-rendered styles

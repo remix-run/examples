@@ -24,7 +24,7 @@ export default function OAuth() {
 
           submit(formData, { method: "post" });
         }
-      }
+      },
     );
 
     return () => {

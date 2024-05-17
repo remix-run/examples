@@ -17,12 +17,12 @@ type Form = Record<string, any>;
 
 /**
  * Takes a `request` and a runtime representation of a type (see `const User` in
- * `/routes/index.tsx`) and returns the correctly typed form data if it equates
+ * `/routes/_index.tsx`) and returns the correctly typed form data if it equates
  * to the given runtime-type. Throws a 422 otherwise.
  */
 export const decodeFormData = async <DecodedForm extends Form>(
   request: Request,
-  codec: TypeC<DecodedForm>
+  codec: TypeC<DecodedForm>,
 ) => {
   const formData = await request.formData();
 
@@ -41,7 +41,7 @@ export const decodeFormData = async <DecodedForm extends Form>(
         throw new Response(JSON.stringify(errors), { status: 422 });
       },
       // right: successful computation of `codec.decode(form)`
-      (decodedFormData) => decodedFormData
-    )
+      (decodedFormData) => decodedFormData,
+    ),
   );
 };

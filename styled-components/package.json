@@ -2,29 +2,45 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "remix build",
-    "dev": "remix dev",
+    "build": "run-s \"build:*\"",
+    "build:components": "run-p \"build:components:*\"",
+    "build:components:src": "npm run generate:components:src",
+    "build:components:types": "npm run generate:components:types",
+    "build:remix": "remix build",
+    "dev": "run-p \"dev:*\"",
+    "dev:components": "run-p \"dev:components:*\"",
+    "dev:components:src": "npm run generate:components:src -- --watch",
+    "dev:components:types": "npm run generate:components:types -- --watch",
+    "dev:remix": "remix dev",
+    "generate:components:src": "babel components/src --out-dir app/components --extensions .ts,.js,.tsx,.jsx,.cjs,.mjs",
+    "generate:components:types": "tsc --project components/tsconfig.json",
     "start": "remix-serve build",
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@remix-run/node": "~1.14.2",
-    "@remix-run/react": "~1.14.2",
-    "@remix-run/serve": "~1.14.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "@remix-run/node": "^1.19.3",
+    "@remix-run/react": "^1.19.3",
+    "@remix-run/serve": "^1.19.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
-    "@remix-run/dev": "~1.14.2",
-    "@remix-run/eslint-config": "~1.14.2",
-    "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.13",
+    "@babel/cli": "^7.22.10",
+    "@babel/core": "^7.22.10",
+    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.5",
+    "@remix-run/dev": "^1.19.3",
+    "@remix-run/eslint-config": "^1.19.3",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
     "@types/styled-components": "^5.1.24",
+    "babel-plugin-styled-components": "^2.1.4",
     "eslint": "^8.27.0",
+    "npm-run-all": "^4.1.5",
     "typescript": "^4.8.4"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=14.0.0"
   }
 }

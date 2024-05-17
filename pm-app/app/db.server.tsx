@@ -41,18 +41,18 @@ if (process.env.NODE_ENV === "production") {
 
 export async function getUser(
   key: "id" | "email",
-  value: string
+  value: string,
 ): Promise<User | null>;
 export async function getUser(id: User["id"]): Promise<User | null>;
 
 export async function getUser(
   id: string,
-  value?: string
+  value?: string,
 ): Promise<User | null> {
   if (value != null) {
     if (!["id", "email"].includes(id)) {
       throw Error(
-        "Invalid key provided to getUser. Must be either `id` or `email`."
+        "Invalid key provided to getUser. Must be either `id` or `email`.",
       );
     }
     return await prisma.user.findUnique({
@@ -64,41 +64,11 @@ export async function getUser(
   });
 }
 
-export async function getUserSecure(
-  key: "id" | "email",
-  value: string
-): Promise<User | null>;
-export async function getUserSecure(
-  id: string,
-  value: never
-): Promise<User | null>;
-
-export async function getUserSecure(
-  id: string,
-  value?: string
-): Promise<UserSecure | null> {
-  // @ts-ignore
-  const user = await getUser(id, value);
-  if (user) {
-    const { passwordHash, ...secureUser } = user;
-    return secureUser;
-  }
-  return null;
-}
-
 export async function getUsers(): Promise<Array<UserSecure>> {
   const users = await prisma.user.findMany();
   return users.map((user) => {
     const { passwordHash, ...secureUser } = user;
     return secureUser;
-  });
-}
-
-export async function deleteUser(userId: User["id"]) {
-  await prisma.user.delete({
-    where: {
-      id: userId,
-    },
   });
 }
 
@@ -162,7 +132,7 @@ export async function createUser({
 
 export async function verifyLogin(
   email: string,
-  password: string
+  password: string,
 ): Promise<User> {
   const user = await prisma.user.findUnique({ where: { email } });
   if (!user) {
@@ -237,7 +207,7 @@ export async function createProject({
           },
         },
       },
-    })
+    }),
   );
 }
 
@@ -328,63 +298,6 @@ export async function getUserProjects(userId: User["id"]): Promise<Project[]> {
   return projects.map(modelProject);
 }
 
-export async function updateProject(
-  id: string,
-  {
-    members,
-    ...data
-  }: Partial<Pick<Project, "name" | "description" | "ownerId">> & {
-    members?: { add?: string[]; remove?: string[] };
-  }
-): Promise<Project | null> {
-  try {
-    const project = await prisma.project.update({
-      where: { id },
-      data: {
-        name: data.name || undefined,
-        description: data.description || undefined,
-        ownerId: data.ownerId || undefined,
-        members: {
-          create: (members?.add || []).map((userId) => {
-            return {
-              userId,
-            };
-          }),
-
-          delete: (members?.remove || []).map((userId) => {
-            return {
-              userId_projectId: {
-                projectId: id,
-                userId,
-              },
-            };
-          }),
-        },
-      },
-      include: {
-        members: {
-          include: {
-            user: true,
-          },
-        },
-        todoLists: {
-          include: {
-            todos: {
-              orderBy: {
-                createdAt: "asc",
-              },
-            },
-          },
-        },
-      },
-    });
-    return modelProject(project);
-  } catch (error) {
-    if (__DEV__) console.error(error);
-    throw error;
-  }
-}
-
 export async function deleteProject(id: string) {
   try {
     const project = await prisma.project.delete({
@@ -458,7 +371,7 @@ export async function getTodoList(id: string): Promise<TodoList | null> {
 
 export async function updateTodoList(
   id: string,
-  data: Partial<Omit<TodoList, "id" | "todos">>
+  data: Partial<Omit<TodoList, "id" | "todos">>,
 ): Promise<TodoList | null> {
   return await prisma.todoList.update({
     where: { id },
@@ -519,7 +432,7 @@ export async function getAllTodos(): Promise<Todo[]> {
 }
 
 export async function getTodosFromList(
-  listId: TodoList["id"]
+  listId: TodoList["id"],
 ): Promise<Todo[]> {
   return await prisma.todo.findMany({
     where: {
@@ -545,7 +458,7 @@ export async function getAllTodoLists(): Promise<TodoList[]> {
 
 export async function updateTodo(
   id: string,
-  data: Partial<Omit<Todo, "id">>
+  data: Partial<Omit<Todo, "id">>,
 ): Promise<Todo | null> {
   return await prisma.todo.update({
     where: { id },
@@ -565,7 +478,7 @@ function getProjectMembers(
     members: (MembersOnProjects & {
       user: User;
     })[];
-  }
+  },
 ): UserSecure[] {
   const members = project.members.map((member) => {
     const { passwordHash, ...secureUser } = member.user;
@@ -580,7 +493,7 @@ function modelProject(
     members: (MembersOnProjects & {
       user: User;
     })[];
-  }
+  },
 ): Project {
   return {
     ...project,

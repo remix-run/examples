@@ -11,7 +11,7 @@ type SubscriptionOptions = {
 };
 export const usePreviewSubscription = (
   query: string,
-  { initialData, params }: SubscriptionOptions
+  { initialData, params }: SubscriptionOptions,
 ) => {
   const [data, setData] = useState(initialData);
 
@@ -40,7 +40,7 @@ export const usePreviewSubscription = (
           }
 
           setData(result);
-        }
+        },
       );
     };
 

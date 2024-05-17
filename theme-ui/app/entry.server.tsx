@@ -1,17 +1,18 @@
 import { CacheProvider } from "@emotion/react";
 import createEmotionServer from "@emotion/server/create-instance";
-import type { EntryContext } from "@remix-run/node";
+import type { AppLoadContext, EntryContext } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import { renderToString } from "react-dom/server";
 
-import { ServerStyleContext } from "./styles/context";
-import { createEmotionCache } from "./styles/createEmotionCache";
+import { ServerStyleContext } from "~/styles/context";
+import { createEmotionCache } from "~/styles/createEmotionCache";
 
 export default function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext
+  remixContext: EntryContext,
+  loadContext: AppLoadContext,
 ) {
   const cache = createEmotionCache();
   const { extractCriticalToChunks } = createEmotionServer(cache);
@@ -21,7 +22,7 @@ export default function handleRequest(
       <CacheProvider value={cache}>
         <RemixServer context={remixContext} url={request.url} />
       </CacheProvider>
-    </ServerStyleContext.Provider>
+    </ServerStyleContext.Provider>,
   );
 
   const chunks = extractCriticalToChunks(html);
@@ -31,7 +32,7 @@ export default function handleRequest(
       <CacheProvider value={cache}>
         <RemixServer context={remixContext} url={request.url} />
       </CacheProvider>
-    </ServerStyleContext.Provider>
+    </ServerStyleContext.Provider>,
   );
 
   responseHeaders.set("Content-Type", "text/html");

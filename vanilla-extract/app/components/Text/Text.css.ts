@@ -11,7 +11,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 
 export const root = style({
   fontFamily: "Comic Sans MS",
-  lineHeight: "1.4",
+  lineHeight: "1.8",
 });
 
 // This is an example of how we can use `styleVariants`

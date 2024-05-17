@@ -20,12 +20,12 @@ export async function authenticate(
     usernameField: string;
     verify: (username: string, password: string) => Promise<User>;
     failureRedirect?: string;
-  }
+  },
 ): Promise<User> {
   if (request.method.toUpperCase() !== "POST") {
     throw json(
       { message: "`authenticate` can only be called in a POST request" },
-      { status: 405 }
+      { status: 405 },
     );
   }
 
@@ -72,16 +72,16 @@ export async function authenticate(
 
 export async function isAuthenticated(
   request: Session,
-  options?: { failureRedirect?: never }
+  options?: { failureRedirect?: never },
 ): Promise<User | null>;
 export async function isAuthenticated(
   request: Session,
-  options: { failureRedirect: string }
+  options: { failureRedirect: string },
 ): Promise<User>;
 
 export async function isAuthenticated(
   session: Session,
-  options: { failureRedirect?: never } | { failureRedirect: string } = {}
+  options: { failureRedirect?: never } | { failureRedirect: string } = {},
 ): Promise<User | null> {
   const user: User | null = session.get(sessionKey) ?? null;
 

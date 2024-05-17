@@ -29,7 +29,7 @@ Sorry no preview as you'll need an account on Upstash for it
 
 For more info check the following files:
 
-- [app/routes/index.tsx](app/routes/index.tsx)
+- [app/routes/\_index.tsx](app/routes/_index.tsx)
 - [app/sessions.server.ts](app/sessions.server.ts)
 - [app/sessions/upstash.server.ts](app/sessions/upstash.server.ts)
 

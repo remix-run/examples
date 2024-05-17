@@ -52,7 +52,7 @@ export async function requireUserId(
   opts: {
     redirect?: string;
     loginURL: string;
-  }
+  },
 ) {
   const session = await getUserSession(request);
   const userId = session.get(sessionUserKey);
@@ -67,7 +67,7 @@ export async function requireUserId(
 
 export async function getUser(
   request: Request,
-  opts: { loginURL?: string } = {}
+  opts: { loginURL?: string } = {},
 ) {
   const userId = await getUserId(request);
   if (typeof userId !== "string") {
@@ -85,7 +85,7 @@ export async function getUser(
 
 export async function redirectUser(
   request: Request,
-  opts: { redirect: string }
+  opts: { redirect: string },
 ): Promise<null> {
   const user = await getUser(request);
   if (user) {
@@ -96,7 +96,7 @@ export async function redirectUser(
 
 export async function requireUser(
   request: Request,
-  opts: { redirect: string }
+  opts: { redirect: string },
 ): Promise<User> {
   const user = await getUser(request);
   if (!user) {
@@ -107,7 +107,7 @@ export async function requireUser(
 
 export async function logout(request: Request, opts: { redirect: string }) {
   const session = await sessionStorage.getSession(
-    request.headers.get("Cookie")
+    request.headers.get("Cookie"),
   );
   return redirect(opts.redirect, {
     headers: {
@@ -118,7 +118,7 @@ export async function logout(request: Request, opts: { redirect: string }) {
 
 export async function createUserSession(
   userId: User["id"],
-  opts: { redirect: string }
+  opts: { redirect: string },
 ) {
   const session = await sessionStorage.getSession();
   session.set(sessionUserKey, userId);

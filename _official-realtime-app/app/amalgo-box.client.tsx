@@ -24,13 +24,13 @@ export class AmalgoBox extends HTMLElement {
 
   get visibleOptions() {
     return Array.from(
-      this.querySelectorAll("amalgo-option:not([hidden])")
+      this.querySelectorAll("amalgo-option:not([hidden])"),
     ) as Option[];
   }
 
   get highlightedIndex() {
     const activeElement = this.querySelector(
-      "amalgo-option[highlight]"
+      "amalgo-option[highlight]",
     ) as Option;
     return activeElement ? this.visibleOptions.indexOf(activeElement) : -1;
   }
@@ -73,7 +73,7 @@ export class AmalgoBox extends HTMLElement {
   highlightInitial() {
     const highlightValue = this.getAttribute("highlight");
     const option = this.querySelector(
-      `amalgo-option[value="${highlightValue}"]`
+      `amalgo-option[value="${highlightValue}"]`,
     ) as Option;
     if (option) {
       this.highlightOption(option);
@@ -144,7 +144,7 @@ export class AmalgoBox extends HTMLElement {
 
   clearHighlighted() {
     this.querySelector("amalgo-option[highlight]")?.removeAttribute(
-      "highlight"
+      "highlight",
     );
   }
 
@@ -160,7 +160,7 @@ export class AmalgoBox extends HTMLElement {
     this.dispatchEvent(
       new CustomEvent("onOptionSelect", {
         detail: option.getAttribute("value"),
-      })
+      }),
     );
     this.close();
     // let focus rest, otherwise "keyup" will be fired on the button when

@@ -8,7 +8,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import notion from "./notion.server";
+import notion from "~/notion.server";
 
 export const action = async ({ request }: ActionArgs) => {
   const form = await request.formData();

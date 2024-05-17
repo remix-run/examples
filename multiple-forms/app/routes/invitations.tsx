@@ -2,11 +2,11 @@ import type { ActionArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 
-import { sendInvitation } from "~/data.server";
 import {
+  deleteInvitation,
   getInvitations,
   resendInvitation,
-  deleteInvitiation,
+  sendInvitation,
 } from "~/data.server";
 
 export const loader = async () => {
@@ -31,8 +31,8 @@ export const action = async ({ request }: ActionArgs) => {
     // you'll want to handle this in a real app...
     throw new Error("make sure you implement validation");
   }
-  const invitiations = await getInvitations();
-  const invitation = invitiations.find((i) => i.id === invitationId);
+  const invitations = await getInvitations();
+  const invitation = invitations.find((i) => i.id === invitationId);
   if (!invitation) {
     // you'll want to handle this in a real app...
     throw new Error("make sure you implement validation");
@@ -43,7 +43,7 @@ export const action = async ({ request }: ActionArgs) => {
     return redirect(request.url);
   }
   if (formData.get("intent") === "delete") {
-    await deleteInvitiation(invitation);
+    await deleteInvitation(invitation);
     return redirect(request.url);
   }
 };
@@ -60,7 +60,7 @@ export default function Index() {
             <Form method="post">
               <input type="hidden" name="invitationId" value={invitation.id} />
               {`${invitation.email} last sent ${new Date(
-                invitation.sentTime
+                invitation.sentTime,
               ).toLocaleTimeString()}: `}
               <button type="submit" name="intent" value="resend">
                 Resend

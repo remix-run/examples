@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -8,7 +8,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import styles from "./app.css";
+import styles from "~/app.css";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -16,9 +16,7 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-export function links() {
-  return [{ rel: "stylesheet", href: styles }];
-}
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 export default function App() {
   return (

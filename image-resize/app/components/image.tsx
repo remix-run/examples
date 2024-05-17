@@ -28,7 +28,7 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(
         {...{ width, height, ...other }}
       />
     );
-  }
+  },
 );
 
 Image.displayName = "Image";

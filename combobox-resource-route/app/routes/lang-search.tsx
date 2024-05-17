@@ -15,7 +15,7 @@ export const loader = async ({ request }: LoaderArgs) => {
   const url = new URL(request.url);
   const query = url.searchParams.get("q");
 
-  // Search the languages, you can go look at `app/langs.ts` to see what it's
+  // Search the languages, you can go look at `app/models/langs.ts` to see what it's
   // doing, but this part will obviously be different for your app.
   const langs = (await searchLangs(query || "")).slice(0, 20);
 

@@ -13,7 +13,7 @@ const ShadowBox = React.forwardRef<HTMLDivElement, ShadowBoxProps>(
         })}
       />
     );
-  }
+  },
 );
 ShadowBox.displayName = "ShadowBox";
 

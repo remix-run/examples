@@ -5,7 +5,7 @@ const token = process.env.CN_TOKEN;
 
 if (!email || !token) {
   throw new Error(
-    "Missing environment variables CN_EMAIL and CN_TOKEN and CN_SITE"
+    "Missing environment variables CN_EMAIL and CN_TOKEN and CN_SITE",
   );
 }
 

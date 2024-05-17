@@ -18,7 +18,7 @@ type ActionData = {
 export const action = async ({ request }: ActionArgs) => {
   const uploadHandler: UploadHandler = composeUploadHandlers(
     s3UploadHandler,
-    createMemoryUploadHandler()
+    createMemoryUploadHandler(),
   );
   const formData = await parseMultipartFormData(request, uploadHandler);
   const imgSrc = formData.get("img");

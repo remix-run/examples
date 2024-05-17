@@ -10,6 +10,7 @@ import * as React from "react";
 
 import { getUser } from "~/db.server";
 import { createUserSession, register } from "~/session.server";
+import routeStyles from "~/styles/routes/register.css";
 import { Button } from "~/ui/button";
 import { Field, FieldError, FieldProvider, Label } from "~/ui/form";
 import { Link } from "~/ui/link";
@@ -17,15 +18,13 @@ import { Heading } from "~/ui/section-heading";
 import { ShadowBox } from "~/ui/shadow-box";
 import { validateEmail, validatePassword } from "~/utils/validation";
 
-import routeStyles from "../styles/routes/register.css";
-
 export const meta: MetaFunction = () => ({
   title: "Register | PM Camp",
 });
 
-export const links: LinksFunction = () => {
-  return [{ href: routeStyles, rel: "stylesheet" }];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: routeStyles },
+];
 
 export const loader = async ({ request }: LoaderArgs) => {
   //   let session = await sessionStorage.getSession(request.headers.get("Cookie"));
@@ -65,6 +64,7 @@ export const action = async ({ request }: ActionArgs) => {
     typeof redirectTo !== "string"
   ) {
     return json({
+      fieldErrors: null,
       formError: `Something went wrong. Please try again later.`,
     });
   }
@@ -96,13 +96,14 @@ export const action = async ({ request }: ActionArgs) => {
   }
 
   if (Object.values(fieldErrors).some(Boolean)) {
-    return json({ fieldErrors, fields });
+    return json({ fieldErrors, fields, formError: null });
   }
 
   // 3. Check for existing user
   const existingUser = await getUser("email", email);
   if (existingUser) {
     return json({
+      fieldErrors: null,
       fields,
       formError: `Sorry! That email is already taken.`,
     });
@@ -112,6 +113,7 @@ export const action = async ({ request }: ActionArgs) => {
   const user = await register({ email, password, nameFirst, nameLast });
   if (!user) {
     return json({
+      fieldErrors: null,
       fields,
       formError: `Something went wrong with registration. Please try again later!`,
     });
@@ -125,8 +127,7 @@ export const action = async ({ request }: ActionArgs) => {
 };
 
 export default function Register() {
-  const actionData = useActionData<typeof action>() || {};
-  const { fieldErrors, fields, formError } = actionData;
+  const { fieldErrors, fields, formError } = useActionData<typeof action>();
   const [searchParams] = useSearchParams();
 
   React.useEffect(() => {
@@ -169,7 +170,7 @@ export default function Register() {
               id="form-error-text"
               role="alert"
             >
-              {actionData.formError}
+              {formError}
             </span>
           </div>
         ) : null}

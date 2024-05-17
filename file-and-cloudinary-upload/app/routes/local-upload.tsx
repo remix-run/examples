@@ -14,15 +14,15 @@ export const action = async ({ request }: ActionArgs) => {
       directory: "public/uploads",
       maxPartSize: 30000,
     }),
-    createMemoryUploadHandler()
+    createMemoryUploadHandler(),
   );
   const formData = await parseMultipartFormData(request, uploadHandler);
   const image = formData.get("img");
   if (!image || typeof image === "string") {
-    return json({ error: "something wrong" });
+    return json({ error: "something wrong", imgSrc: null });
   }
 
-  return json({ imgSrc: image.name });
+  return json({ error: null, imgSrc: image.name });
 };
 
 export default function Index() {

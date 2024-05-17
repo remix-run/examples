@@ -4,25 +4,31 @@ import bcrypt from "bcryptjs";
 import { db } from "./db.server";
 
 type LoginForm = {
-  username: string;
   password: string;
+  username: string;
 };
 
-export async function register({ username, password }: LoginForm) {
+export async function register({ password, username }: LoginForm) {
   const passwordHash = await bcrypt.hash(password, 10);
   const user = await db.user.create({
-    data: { username, passwordHash },
+    data: { passwordHash, username },
   });
   return { id: user.id, username };
 }
 
-export async function login({ username, password }: LoginForm) {
+export async function login({ password, username }: LoginForm) {
   const user = await db.user.findUnique({
     where: { username },
   });
-  if (!user) return null;
+  if (!user) {
+    return null;
+  }
+
   const isCorrectPassword = await bcrypt.compare(password, user.passwordHash);
-  if (!isCorrectPassword) return null;
+  if (!isCorrectPassword) {
+    return null;
+  }
+
   return { id: user.id, username };
 }
 
@@ -34,7 +40,8 @@ if (!sessionSecret) {
 const storage = createCookieSessionStorage({
   cookie: {
     name: "RJ_session",
-    // secure doesn't work on localhost for Safari
+    // normally you want this to be `secure: true`
+    // but that doesn't work on localhost for Safari
     // https://web.dev/when-to-use-local-https/
     secure: process.env.NODE_ENV === "production",
     secrets: [sessionSecret],
@@ -45,22 +52,25 @@ const storage = createCookieSessionStorage({
   },
 });
 
-export function getUserSession(request: Request) {
+function getUserSession(request: Request) {
   return storage.getSession(request.headers.get("Cookie"));
 }
 
 export async function getUserId(request: Request) {
   const session = await getUserSession(request);
   const userId = session.get("userId");
-  if (!userId || typeof userId !== "string") return null;
+  if (!userId || typeof userId !== "string") {
+    return null;
+  }
   return userId;
 }
 
 export async function requireUserId(
   request: Request,
-  redirectTo: string = new URL(request.url).pathname
+  redirectTo: string = new URL(request.url).pathname,
 ) {
-  const userId = await getUserId(request);
+  const session = await getUserSession(request);
+  const userId = session.get("userId");
   if (!userId || typeof userId !== "string") {
     const searchParams = new URLSearchParams([["redirectTo", redirectTo]]);
     throw redirect(`/login?${searchParams}`);
@@ -74,15 +84,16 @@ export async function getUser(request: Request) {
     return null;
   }
 
-  try {
-    const user = await db.user.findUnique({
-      where: { id: userId },
-      select: { id: true, username: true },
-    });
-    return user;
-  } catch {
-    throw logout(request);
+  const user = await db.user.findUnique({
+    select: { id: true, username: true },
+    where: { id: userId },
+  });
+
+  if (!user) {
+    throw await logout(request);
   }
+
+  return user;
 }
 
 export async function logout(request: Request) {

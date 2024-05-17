@@ -7,7 +7,7 @@ import { getStripeSession, getDomainUrl } from "~/utils/stripe.server";
 export const action = async ({ request }: ActionArgs) => {
   const stripeRedirectUrl = await getStripeSession(
     process.env.PRICE_ID as string,
-    getDomainUrl(request)
+    getDomainUrl(request),
   );
   return redirect(stripeRedirectUrl);
 };

@@ -12,12 +12,9 @@ import {
 } from "@remix-run/react";
 
 import global from "~/dist/styles/global.css";
+import type { User } from "~/models";
 
-import type { User } from "./models";
-
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: global }];
-};
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: global }];
 
 export const loader = async () => {
   return json({
@@ -94,7 +91,7 @@ export function CatchBoundary() {
 
     default:
       throw new Error(
-        `Unexpected caught response with status: ${caught.status}`
+        `Unexpected caught response with status: ${caught.status}`,
       );
   }
 }

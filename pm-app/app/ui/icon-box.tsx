@@ -20,7 +20,7 @@ function IconBox({
           "rounded-lg": !(
             className && /\b(rounded[-\s]|rounded$)/g.test(className)
           ),
-        }
+        },
       )}
     >
       {icon}

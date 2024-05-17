@@ -14,7 +14,7 @@ const hydrate = () => {
         <CacheProvider value={emotionCache}>
           <RemixBrowser />
         </CacheProvider>
-      </StrictMode>
+      </StrictMode>,
     );
   });
 };

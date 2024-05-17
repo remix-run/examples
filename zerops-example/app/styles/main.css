@@ -1,0 +1,30 @@
+p {
+  color: #585858;
+}
+
+a {
+  color: #5282ee;
+  font-weight: 600;
+}
+
+a:hover {
+  color: #4579f1;
+}
+
+pre {
+  background: #f7f7f7;
+  padding: 1rem;
+}
+
+code {
+  color: #585858;
+}
+
+button {
+  border: none;
+  border-radius: 0.25rem;
+  color: #fff;
+  background-color: #585858;
+  padding: 0.25rem;
+  cursor: pointer;
+}

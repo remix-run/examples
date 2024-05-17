@@ -12,7 +12,7 @@ import {
 } from "@remix-run/react";
 import * as React from "react";
 
-import { gdprConsent } from "./cookies";
+import { gdprConsent } from "~/cookies";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const cookieHeader = request.headers.get("Cookie");

@@ -13,7 +13,7 @@ export function getDomainUrl(request: Request) {
 
 export const getStripeSession = async (
   priceId: string,
-  domainUrl: string
+  domainUrl: string,
 ): Promise<string> => {
   const stripe = initStripe(process.env.STRIPE_SECRET_KEY);
   const lineItems = [

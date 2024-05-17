@@ -11,7 +11,7 @@ export function ComplexComponent() {
     function sync() {
       localStorage.setItem("count", JSON.stringify(count));
     },
-    [count]
+    [count],
   );
 
   return (

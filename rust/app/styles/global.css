@@ -42,7 +42,9 @@ body {
 
 h1 {
   color: rgb(254, 204, 27);
-  font-family: Arial black, sans-serif;
+  font-family:
+    Arial black,
+    sans-serif;
 }
 textarea {
   resize: none;

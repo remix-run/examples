@@ -18,7 +18,7 @@ export const loader = async ({ request }: LoaderArgs) => {
   });
 
   const session = await sessionStorage.getSession(
-    request.headers.get("Cookie")
+    request.headers.get("Cookie"),
   );
 
   const error = session.get(authenticator.sessionErrorKey) as LoaderError;

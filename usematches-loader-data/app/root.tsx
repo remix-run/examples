@@ -9,7 +9,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import { getCurrentUser } from "./db.server";
+import { getCurrentUser } from "~/db.server";
 
 /*
  * Return data in any route where it makes sense

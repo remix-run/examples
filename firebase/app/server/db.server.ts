@@ -9,7 +9,7 @@ const converter = <T>() => ({
 
 // helper to apply converter to multiple collections
 const dataPoint = <T extends FirebaseFirestore.DocumentData>(
-  collectionPath: string
+  collectionPath: string,
 ) => getFirestore().collection(collectionPath).withConverter(converter<T>());
 
 type Todo = {

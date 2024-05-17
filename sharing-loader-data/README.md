@@ -13,7 +13,7 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 This is a simple "workshop" app which has a "user" and a list of workshops. The user is loaded in the root loader and needed in the index route. The workshops are loaded in the workshops loader and then used in the individual workshop routes.
 
 - [app/root.tsx](./app/root.tsx) - This loads the user
-- [app/routes/index.tsx](./app/routes/index.tsx) - This accesses the root loader data to display the user's name
+- [app/routes/\_index.tsx](./app/routes/_index.tsx) - This accesses the root loader data to display the user's name
 - [app/routes/workshops.tsx](./app/routes/workshops.tsx) - This loads the workshops to display them in a list of links
 - [app/routes/workshops/$workshopId.tsx](./app/routes/workshops/$workshopId.tsx) - This accesses the workshops loader data to display the workshop details
 
