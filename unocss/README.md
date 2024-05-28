@@ -25,4 +25,4 @@ You can add more presets in [`unocss.config.ts`](./unocss.config.ts).
 ## Related Links
 
 - [UnoCSS GitHub](https://github.com/unocss/unocss)
-- [UnoCSS Docs](https://uno.antfu.me)
+- [UnoCSS Website](https://unocss.dev/)
