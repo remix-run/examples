@@ -1,8 +1,9 @@
+import { createServer } from "http";
+
 import { createRequestHandler } from "@remix-run/express";
 import compression from "compression";
 import express from "express";
 import morgan from "morgan";
-import { createServer } from "http";
 import { Server } from "socket.io";
 
 const viteDevServer =
