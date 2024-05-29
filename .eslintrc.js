@@ -6,7 +6,10 @@ const ERROR = 2;
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
   root: true,
-  extends: ["@remix-run/eslint-config/internal", "plugin:markdown/recommended-legacy"],
+  extends: [
+    "@remix-run/eslint-config/internal",
+    "plugin:markdown/recommended-legacy",
+  ],
   plugins: ["markdown"],
   settings: {
     "import/internal-regex": "^~/",
