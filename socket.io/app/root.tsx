@@ -48,7 +48,8 @@ export default function App() {
   }, [socket]);
 
   return (
-  <SocketProvider socket={socket}>
-    <Outlet />
-    </SocketProvider>);
+    <SocketProvider socket={socket}>
+      <Outlet />
+    </SocketProvider>
+  );
 }

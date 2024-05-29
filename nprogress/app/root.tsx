@@ -16,9 +16,7 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: nProgressStyles },
 ];
 
-export const meta: MetaFunction = () => ([
-  { title: "New Remix App" },
-]);
+export const meta: MetaFunction = () => [{ title: "New Remix App" }];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
