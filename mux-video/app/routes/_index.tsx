@@ -1,7 +1,8 @@
 import MuxUploader from "@mux/mux-uploader-react";
-import { ActionFunctionArgs, json, redirect } from "@remix-run/node";
+import { type ActionFunctionArgs, json, redirect } from "@remix-run/node";
 import { Form, useActionData, useLoaderData } from "@remix-run/react";
 import { useState } from "react";
+
 import mux from "~/lib/mux.server";
 
 export const loader = async () => {
@@ -65,7 +66,7 @@ export default function UploadPage() {
       >
         {isUploadSuccess ? "Watch video" : "Waiting for upload..."}
       </button>
-      {message && <p>{message}</p>}
+      {message ? <p>{message}</p> : null}
     </Form>
   );
 }

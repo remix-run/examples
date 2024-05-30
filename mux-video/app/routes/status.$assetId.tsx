@@ -1,6 +1,8 @@
-import { LoaderFunctionArgs, json, redirect } from "@remix-run/node";
+import type { LoaderFunctionArgs} from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
 import { useFetcher, useLoaderData, useParams, Link } from "@remix-run/react";
 import { useEffect } from "react";
+
 import mux from "~/lib/mux.server";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
@@ -62,13 +64,11 @@ export default function UploadStatus() {
       <p>
         Asset is in an unexpected state: <code>{status}</code>.
       </p>
-      {Array.isArray(errors) && (
-        <ul>
+      {Array.isArray(errors) ? <ul>
           {errors.map((error, key) => (
             <li key={key}>{JSON.stringify(error)}</li>
           ))}
-        </ul>
-      )}
+        </ul> : null}
       <p>
         This is awkward. Let&apos;s <Link to="/">refresh</Link> and try again.
       </p>

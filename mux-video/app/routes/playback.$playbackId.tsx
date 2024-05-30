@@ -1,5 +1,5 @@
 import MuxPlayer from "@mux/mux-player-react";
-import { MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
 import { useParams, Link } from "@remix-run/react";
 
 const title = "View this video created with Mux + Remix";
