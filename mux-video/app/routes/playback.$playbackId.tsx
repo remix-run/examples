@@ -37,11 +37,14 @@ export default function Page() {
   const { playbackId } = useParams();
   return (
     <>
-      <p>
-        This video is ready for playback and sharing
-      </p>
+      <p>This video is ready for playback and sharing</p>
       <MuxPlayer
-        style={{ width: '100%', height: 'auto', aspectRatio: '16/9', marginBottom: '2rem' }}
+        style={{
+          width: "100%",
+          height: "auto",
+          aspectRatio: "16/9",
+          marginBottom: "2rem",
+        }}
         playbackId={playbackId}
         metadata={{ player_name: "remix/examples/mux-video" }}
         accentColor="rgb(37 99 235)"

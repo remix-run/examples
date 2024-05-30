@@ -3,6 +3,7 @@
 This example uses Mux Video, an API-first platform for video. The example features video uploading and playback in a Remix.js application.
 
 This example is useful if you want to build a platform that supports user-uploaded videos. For example:
+
 - Enabling user profile videos
 - Accepting videos for a video contest promotion
 - Allowing customers to upload screencasts that help with troubleshooting a bug
@@ -66,6 +67,5 @@ When creating uploads, this demo sets `cors_origin: "*"` in the [`app/routes/_in
 
 ### Consider webhooks
 
-In this example, we poll the Mux API to see if our asset is ready.  In production, you'll likely have a database where you can store the `upload.id` and `asset.id`, and you can use [Mux Webhooks](https://docs.mux.com/guides/listen-for-webhooks) to get notified when your upload is complete, and when your asset is ready.
 In this example, we poll the Mux API to see if our asset is ready. In production, you'll likely have a database where you can store the `upload.id` and `asset.id`, and you can use [Mux Webhooks](https://docs.mux.com/guides/listen-for-webhooks) to get notified when your upload is complete, and when your asset is ready.
-
+In this example, we poll the Mux API to see if our asset is ready. In production, you'll likely have a database where you can store the `upload.id` and `asset.id`, and you can use [Mux Webhooks](https://docs.mux.com/guides/listen-for-webhooks) to get notified when your upload is complete, and when your asset is ready.

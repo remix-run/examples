@@ -19,7 +19,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const event = mux.webhooks.unwrap(
     body,
     request.headers,
-    process.env.MUX_WEBHOOK_SIGNING_SECRET
+    process.env.MUX_WEBHOOK_SIGNING_SECRET,
   );
 
   // you can also unwrap the payload yourself:
@@ -39,5 +39,5 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       break;
   }
 
-  return json({ message: "ok" })
+  return json({ message: "ok" });
 };

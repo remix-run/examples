@@ -60,10 +60,7 @@ export default function UploadPage() {
         you might have other fields here, like name and description,
         that you'll save in your CMS alongside the uploadId and assetId
       */}
-      <button
-        type="submit"
-        disabled={!isUploadSuccess}
-      >
+      <button type="submit" disabled={!isUploadSuccess}>
         {isUploadSuccess ? "Watch video" : "Waiting for upload..."}
       </button>
       {message ? <p>{message}</p> : null}
