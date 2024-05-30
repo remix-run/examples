@@ -16,21 +16,17 @@ This example shows how to use Leaflet with Remix.
 
 Relevant files:
 
-- [app/components/client-only.tsx](app/components/client-only.tsx)
 - [app/components/map.client.tsx](app/components/map.client.tsx)
 
-Leaflet cannot be rendered on the server side, so we're using the `ClientOnly` component to display a skeleton instead.
+Leaflet cannot be rendered on the server side, so we're using the `ClientOnly` component from `remix-utils` to display a skeleton instead.
 It's important to add the `.client.tsx` suffix to the `Map` component file name, otherwise, you will get this error:
 
 ```
 Error [ERR_REQUIRE_ESM]: require() of ES Module /remix/examples/leaflet/node_modules/react-leaflet/lib/index.js from /remix/examples/leaflet/build/index.js not supported.
 ```
 
-The leaflet styles can be imported either from `node_modules` or CDN.
-If you choose to import the styles from `node_modules`, you'll need to add the leaflet assets in the `/public` folder.
-The assets can be found here: [https://unpkg.com/browse/leaflet@1.8.0/dist/images/](https://unpkg.com/browse/leaflet@1.8.0/dist/images/)
-
 ## Related Links
 
 - [Leaflet docs](https://leafletjs.com/download.html)
 - [React Leaflet docs](https://react-leaflet.js.org/)
+- [remix-utils](https://github.com/sergiodxa/remix-utils)
