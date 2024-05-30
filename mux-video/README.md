@@ -19,7 +19,7 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 ### Step 1. Create a Remix app with this example
 
 ```bash
-npx create-remix@latest --template examples/mux-video
+npx create-remix@latest --template remix-run/examples/mux-video
 ```
 
 ### Step 2. Create an account in Mux
