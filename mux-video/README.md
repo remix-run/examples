@@ -36,7 +36,7 @@ Copy the `.env.example` file in this directory to `.env` (which will be ignored 
 cp .env.example .env
 ```
 
-Then, go to the [settings page](https://dashboard.mux.com/settings/access-tokens) in your Mux dashboard, get a new **API Access Token**. Use that token to set the variables in `.env.local`:
+Then, go to the [settings page](https://dashboard.mux.com/settings/access-tokens) in your Mux dashboard, get a new **API Access Token** with "Mux Video Read" and "Mux Video Write" permissions. Use that token to set the variables in `.env.local`:
 
 - `MUX_TOKEN_ID` should be the `TOKEN ID` of your new token
 - `MUX_TOKEN_SECRET` should be `TOKEN SECRET`
@@ -67,5 +67,5 @@ When creating uploads, this demo sets `cors_origin: "*"` in the [`app/routes/_in
 ### Consider webhooks
 
 In this example, we poll the Mux API to see if our asset is ready.  In production, you'll likely have a database where you can store the `upload.id` and `asset.id`, and you can use [Mux Webhooks](https://docs.mux.com/guides/listen-for-webhooks) to get notified when your upload is complete, and when your asset is ready.
+In this example, we poll the Mux API to see if our asset is ready. In production, you'll likely have a database where you can store the `upload.id` and `asset.id`, and you can use [Mux Webhooks](https://docs.mux.com/guides/listen-for-webhooks) to get notified when your upload is complete, and when your asset is ready.
 
-See [`app/routes/mux.webhook.ts`](app/routes/mux.webhook.ts) for an example of how you might handle a Mux webhook.
