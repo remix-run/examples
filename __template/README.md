@@ -13,6 +13,7 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 ## Example
 
 Describe the example and how it demonstrates solving the problem. Reference any relevant files/dependencies if needed.
+If your example needs to modify the `entry.client.tsx` or `entry.server.tsx` files, use `npx remix reveal` to reveal them.
 
 ## Related Links
 

@@ -13,7 +13,7 @@ You can also initialize a new project with any of these examples using the `--te
 For example:
 
 ```
-npx create-remix@latest --template examples/<example-dir>
+npx create-remix@latest --template remix-run/examples/<example-dir>
 ```
 
 Enjoy!

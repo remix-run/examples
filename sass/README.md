@@ -10,9 +10,9 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 ## Example
 
-The main thing to note here is that `npm run dev` will run the sass compiler, and remix in the same tab uisng `npm-run-all`. When building with `npm run build`, we'll have `npm-run-all` run the sass build and minify the output and run `remix build`.
+Nothing much going on here, sass/scss files imports work out of the box in Vite.
 
 ## Related Links
 
 - [Sass](https://sass-lang.com)
-- [npm-run-all](https://www.npmjs.com/package/npm-run-all)
+- [Vite CSS Pre-processors](https://vitejs.dev/guide/features#css-pre-processors)

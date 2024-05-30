@@ -1,15 +1,14 @@
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  useTransition,
+  useNavigation,
 } from "@remix-run/react";
 import NProgress from "nprogress";
-import nProgressStyles from "nprogress/nprogress.css";
+import nProgressStyles from "nprogress/nprogress.css?url";
 import { useEffect } from "react";
 
 export const links: LinksFunction = () => [
@@ -17,34 +16,35 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: nProgressStyles },
 ];
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "New Remix App",
-  viewport: "width=device-width,initial-scale=1",
-});
+export const meta: MetaFunction = () => [{ title: "New Remix App" }];
 
-export default function App() {
-  const transition = useTransition();
-  useEffect(() => {
-    // when the state is idle then we can to complete the progress bar
-    if (transition.state === "idle") NProgress.done();
-    // and when it's something else it means it's either submitting a form or
-    // waiting for the loaders of the next location so we start it
-    else NProgress.start();
-  }, [transition.state]);
-
+export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
       <body>
-        <Outlet />
+        {children}
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   );
+}
+
+export default function App() {
+  const navigation = useNavigation();
+  useEffect(() => {
+    // when the state is idle then we can to complete the progress bar
+    if (navigation.state === "idle") NProgress.done();
+    // and when it's something else it means it's either submitting a form or
+    // waiting for the loaders of the next location so we start it
+    else NProgress.start();
+  }, [navigation.state]);
+
+  return <Outlet />;
 }

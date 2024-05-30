@@ -92,7 +92,7 @@ export default function Examples() {
             <fieldset>
               <label htmlFor="terms">
                 <input type="checkbox" role="switch" id="terms" name="terms" />I
-                agree to the <a href="#">Privacy Policy</a>
+                agree to the <a href="#privacy-policy">Privacy Policy</a>
               </label>
             </fieldset>
           </form>
@@ -125,15 +125,15 @@ export default function Examples() {
           <h3>Inline text elements</h3>
           <div className="grid">
             <p>
-              <a href="#">Primary link</a>
+              <a href="#primary-link">Primary link</a>
             </p>
             <p>
-              <a href="#" className="secondary">
+              <a href="#secondary" className="secondary">
                 Secondary link
               </a>
             </p>
             <p>
-              <a href="#" className="contrast">
+              <a href="#contrast" className="contrast">
                 Contrast link
               </a>
             </p>

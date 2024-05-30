@@ -12,8 +12,6 @@ Also shows how to know JS loaded and enable a button that needs JS to work.
 
 Open this example on [CodeSandbox](https://codesandbox.com):
 
-<!-- TODO: update this link to the path for your example: -->
-
 [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/client-only-components)
 
 ## Example
