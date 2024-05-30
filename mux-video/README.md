@@ -24,9 +24,9 @@ npx create-remix@latest --template examples/mux-video
 
 ### Step 2. Create an account in Mux
 
-All you need to run this example is a [Mux account](https://www.mux.com?utm_source=remix-examples&utm_medium=mux-video&utm_campaign=remix-examples). You can sign up for free. There are no upfront charges -- you get billed monthly only for what you use.
+All you need to run this example is a [Mux account](https://www.mux.com?utm_source=remix-examples&utm_medium=mux-video&utm_campaign=remix-examples).
 
-Without entering a credit card on your Mux account all videos are in “test mode” which means they are watermarked and clipped to 10 seconds. If you enter a credit card all limitations are lifted and you get \$20 of free credit. The free credit should be plenty for you to test out and play around with everything.
+Before entering a credit card on your Mux account, all videos are in “test mode” which means they are watermarked and clipped to 10 seconds.
 
 ### Step 3. Set up environment variables
 

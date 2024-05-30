@@ -61,7 +61,6 @@ export default function UploadPage() {
       */}
       <button
         type="submit"
-        className="my-4 p-4 py-2 rounded border border-blue-600 text-blue-600 disabled:border-gray-400 disabled:text-gray-400"
         disabled={!isUploadSuccess}
       >
         {isUploadSuccess ? "Watch video" : "Waiting for upload..."}

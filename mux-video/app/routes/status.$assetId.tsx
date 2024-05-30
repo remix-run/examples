@@ -1,7 +1,6 @@
 import { LoaderFunctionArgs, json, redirect } from "@remix-run/node";
-import { useFetcher, useLoaderData, useParams } from "@remix-run/react";
+import { useFetcher, useLoaderData, useParams, Link } from "@remix-run/react";
 import { useEffect } from "react";
-import Link from "~/components/Link";
 import mux from "~/lib/mux.server";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
@@ -52,7 +51,7 @@ export default function UploadStatus() {
   }, [fetcher, assetId, status]);
 
   if (status === "preparing") {
-    return <p className="animate-pulse font-mono">Asset is preparing...</p>;
+    return <p>Asset is preparing...</p>;
   }
 
   // if not preparing, then "errored" or "ready"
@@ -60,17 +59,17 @@ export default function UploadStatus() {
   // we don't expect to see "ready" because "ready" should redirect in the action
   return (
     <>
-      <p className="mb-4 font-mono">
+      <p>
         Asset is in an unexpected state: <code>{status}</code>.
       </p>
       {Array.isArray(errors) && (
-        <ul className="mb-4 font-mono">
+        <ul>
           {errors.map((error, key) => (
             <li key={key}>{JSON.stringify(error)}</li>
           ))}
         </ul>
       )}
-      <p className="font-mono">
+      <p>
         This is awkward. Let&apos;s <Link to="/">refresh</Link> and try again.
       </p>
     </>
