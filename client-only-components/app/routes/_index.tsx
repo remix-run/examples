@@ -1,4 +1,5 @@
-import { ClientOnly, useHydrated } from "remix-utils";
+import { ClientOnly } from "remix-utils/client-only";
+import { useHydrated } from "remix-utils/use-hydrated";
 
 import { BrokenOnTheServer } from "~/components/broken-on-the-server.client";
 import { ComplexComponent } from "~/components/complex-component";
