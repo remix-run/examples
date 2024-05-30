@@ -13,9 +13,11 @@ import { useEventSource } from "remix-utils/sse/react";
 import icons from "~/icons.svg";
 import styles from "~/styles.css?url";
 
-export const meta: MetaFunction = () => [{
-  title: "Remix Fake Linear Demo",
-}];
+export const meta: MetaFunction = () => [
+  {
+    title: "Remix Fake Linear Demo",
+  },
+];
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
@@ -44,7 +46,6 @@ export default function App() {
   useRealtimeIssuesRevalidation();
   return <Outlet />;
 }
-
 
 function useRealtimeIssuesRevalidation() {
   const data = useEventSource("/issues-events");

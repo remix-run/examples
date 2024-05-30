@@ -14,9 +14,11 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   return json(issue);
 };
 
-export const meta: MetaFunction<typeof loader> = ({ data: issue }) => [{
-  title: issue?.title || "Not Found",
-}];
+export const meta: MetaFunction<typeof loader> = ({ data: issue }) => [
+  {
+    title: issue?.title || "Not Found",
+  },
+];
 
 export default function Issue() {
   const issue = useLoaderData<typeof loader>();
