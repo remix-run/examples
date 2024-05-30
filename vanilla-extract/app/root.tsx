@@ -6,7 +6,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import "./global.css"; // FIXME
+import "./global.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
