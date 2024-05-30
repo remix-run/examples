@@ -11,6 +11,7 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 ## Example
 
 This example shows how to use Playwright to write e2e tests with Remix.
+Install dependencies and run the `test:e2e` script.
 
 ## Relevant files
 
