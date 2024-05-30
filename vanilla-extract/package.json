@@ -1,7 +1,9 @@
 {
   "name": "template",
   "private": true,
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css.ts"
+  ],
   "type": "module",
   "scripts": {
     "build": "remix vite:build",
