@@ -1,5 +1,5 @@
 {
-  "name": "template",
+  "name": "leaflet",
   "private": true,
   "sideEffects": false,
   "type": "module",
