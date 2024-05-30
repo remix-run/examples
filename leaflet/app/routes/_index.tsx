@@ -1,4 +1,5 @@
 import type { LinksFunction } from "@remix-run/node";
+import leafletStyles from "leaflet/dist/leaflet.css?url";
 
 import { ClientOnly } from "~/components/client-only";
 import { Map } from "~/components/map.client";
@@ -6,7 +7,7 @@ import { Map } from "~/components/map.client";
 export const links: LinksFunction = () => [
   {
     rel: "stylesheet",
-    href: "https://unpkg.com/leaflet@1.8.0/dist/leaflet.css",
+    href: leafletStyles
   },
 ];
 
