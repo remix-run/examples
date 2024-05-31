@@ -1,10 +1,6 @@
-import type { MetaFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
-// import { json } from "@remix-run/node";
 import {
   Link,
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -12,9 +8,10 @@ import {
   useLoaderData,
   useLocation,
 } from "@remix-run/react";
-import { useEffect } from "react";
+import { json } from "@remix-run/node";
 
 import * as gtag from "~/utils/gtags.client";
+import { useEffect } from "react";
 
 /**
  * @description
@@ -35,13 +32,7 @@ export const loader = async () => {
   return json({ gaTrackingId: process.env.GA_TRACKING_ID });
 };
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "New Remix App",
-  viewport: "width=device-width,initial-scale=1",
-});
-
-export default function App() {
+export function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const { gaTrackingId } = useLoaderData<typeof loader>();
 
@@ -54,6 +45,8 @@ export default function App() {
   return (
     <html lang="en">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
@@ -81,30 +74,32 @@ export default function App() {
             />
           </>
         )}
-
         <header>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/dashboard">Dashboard</Link>
-              </li>
-              <li>
-                <Link to="/contact">Contact</Link>
-              </li>
-              <li>
-                <Link to="/profile">Profile</Link>
-              </li>
-            </ul>
-          </nav>
-        </header>
-        <Outlet />
+  <nav>
+    <ul>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/dashboard">Dashboard</Link>
+      </li>
+      <li>
+        <Link to="/contact">Contact</Link>
+      </li>
+      <li>
+        <Link to="/profile">Profile</Link>
+      </li>
+    </ul>
+  </nav>
+</header>
+        {children}
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   );
+}
+
+export default function App() {
+  return <Outlet />;
 }
