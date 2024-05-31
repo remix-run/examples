@@ -1,20 +1,22 @@
-# TODO: Title of Example
+# Remix Auth - FormStrategy
 
-TODO: Describe the use case here
+Authentication using Remix Auth with the FormStrategy.
 
 ## Preview
 
 Open this example on [CodeSandbox](https://codesandbox.com):
 
-<!-- TODO: update this link to the path for your example: -->
-
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/__template)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/remix-auth-form)
 
 ## Example
 
-Describe the example and how it demonstrates solving the problem. Reference any relevant files/dependencies if needed.
-If your example needs to modify the `entry.client.tsx` or `entry.server.tsx` files, use `npx remix reveal` to reveal them.
+This is using Remix Auth and the `remix-auth-form` packages.
+
+The `/login` route renders a form with a email and password input. After a submit it runs some validations and store the user email in the session.
+
+The `/private` routes redirects the user to `/login` if it's not logged-in, or shows the user email and a logout form if it's logged-in.
 
 ## Related Links
 
-Link to documentation or other related examples.
+- [Remix Auth](https://github.com/sergiodxa/remix-auth)
+- [Remix Auth Form](https://github.com/sergiodxa/remix-auth-form)
