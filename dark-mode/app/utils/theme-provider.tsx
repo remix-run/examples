@@ -124,7 +124,7 @@ const clientThemeCode = `
 })();
 `
   // Remove double slash comments & replace excess white space with a single space.
-  .replace(/((?<=[^:])\/\/.*|\s)+/g, ' ')
+  .replace(/((?<=[^:])\/\/.*|\s)+/g, " ")
   .trim();
 
 const themeStylesCode = `
