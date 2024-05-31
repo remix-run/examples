@@ -12,9 +12,13 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 This example shows how to use Google analytics with Remix.
 
-First you have to get the Google analytics ID and add that key in the [.env.example](./.env.example) file.
+- Copy `.env.example` to `.env`
+- Configure your Google Analytics ID in the `.env` file (read from the `entry.server.tsx` file)
+- Run the project
 
 Check [app/root.tsx](./app/root.tsx) where page tracking code is added. For tracking events check [app/routes/contact.tsx](./app/routes/contact.tsx) file.
+
+The Google Analytics tag is disabled in "development", you can enable it during your test, but make sure to only enable tracking in production.
 
 ## Related Links
 
