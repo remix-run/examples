@@ -51,7 +51,7 @@ This will add the dependency to your `package.json` file.
 
 ```json
     ...
-    "@remix-run/serve": "1.1.3",
+    "@remix-run/serve": "2.9.2",
     "<library-name>": "file:<library-name>/pkg"
     ...
 ```
