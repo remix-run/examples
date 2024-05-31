@@ -119,12 +119,12 @@ function StatusMenu({ issue }: { issue: Issue }) {
           issue.status === 1
             ? "text-yellow-500"
             : issue.status === 2
-            ? "text-orange-500"
-            : issue.status === 3
-            ? "text-green-600"
-            : issue.status === 4
-            ? "text-indigo-600"
-            : "text-gray-300",
+              ? "text-orange-500"
+              : issue.status === 3
+                ? "text-green-600"
+                : issue.status === 4
+                  ? "text-indigo-600"
+                  : "text-gray-300",
         )}
       >
         <use
@@ -132,12 +132,12 @@ function StatusMenu({ issue }: { issue: Issue }) {
             issue.status === 1
               ? "pie-1/4"
               : issue.status === 2
-              ? "pie-1/2"
-              : issue.status === 3
-              ? "pie-3/4"
-              : issue.status === 4
-              ? "check"
-              : "circle"
+                ? "pie-1/2"
+                : issue.status === 3
+                  ? "pie-3/4"
+                  : issue.status === 4
+                    ? "check"
+                    : "circle"
           }`}
         />
       </svg>

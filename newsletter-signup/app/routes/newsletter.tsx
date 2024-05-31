@@ -30,10 +30,10 @@ export default function Newsletter() {
     transition.submission
       ? "submitting"
       : actionData?.subscription
-      ? "success"
-      : actionData?.error
-      ? "error"
-      : "idle";
+        ? "success"
+        : actionData?.error
+          ? "error"
+          : "idle";
 
   const inputRef = useRef<HTMLInputElement>(null);
   const successRef = useRef<HTMLHeadingElement>(null);

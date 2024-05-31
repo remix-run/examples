@@ -20,7 +20,7 @@ Installing Rust:
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-Here we use `wasm-pack` to comile our Rust code down to WASM
+Here we use `wasm-pack` to compile our Rust code down to WASM
 
 Installing [wasm-pack](https://github.com/rustwasm/wasm-pack):
 
@@ -41,7 +41,7 @@ cd <library-name>
 wasm-pack build --target nodejs
 ```
 
-After succesfully bulding the library you can add this to your dependencies by running inside your remix project:
+After successfully building the library you can add this to your dependencies by running inside your remix project:
 
 ```sh
 npm install ./<library-name>/pkg
@@ -51,7 +51,7 @@ This will add the dependency to your `package.json` file.
 
 ```json
     ...
-    "@remix-run/serve": "1.1.3",
+    "@remix-run/serve": "2.9.2",
     "<library-name>": "file:<library-name>/pkg"
     ...
 ```
