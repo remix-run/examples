@@ -1,3 +1,4 @@
+import { json } from "@remix-run/node";
 import {
   Link,
   Links,
@@ -8,10 +9,9 @@ import {
   useLoaderData,
   useLocation,
 } from "@remix-run/react";
-import { json } from "@remix-run/node";
+import { useEffect } from "react";
 
 import * as gtag from "~/utils/gtags.client";
-import { useEffect } from "react";
 
 /**
  * @description
@@ -75,23 +75,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </>
         )}
         <header>
-  <nav>
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/dashboard">Dashboard</Link>
-      </li>
-      <li>
-        <Link to="/contact">Contact</Link>
-      </li>
-      <li>
-        <Link to="/profile">Profile</Link>
-      </li>
-    </ul>
-  </nav>
-</header>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+              <li>
+                <Link to="/contact">Contact</Link>
+              </li>
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
         {children}
         <ScrollRestoration />
         <Scripts />
