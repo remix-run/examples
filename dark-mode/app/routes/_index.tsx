@@ -1,6 +1,6 @@
 import type { LinksFunction } from "@remix-run/node";
 
-import styles from "~/styles/styles.css";
+import styles from "~/styles/styles.css?url";
 import { Theme, Themed, useTheme } from "~/utils/theme-provider";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];

@@ -10,7 +10,7 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 ## Example
 
-In this example, we have a button that toggles the current theme (light / dark). The current value is stored in React context and is used as the className of `<html>` (see [app/root.tsx](app/root.tsx)). Clicking the button toggles the theme, which updates the className, which updates the CSS variables, resulting in the background colour updating (see [app/styles/styles.css](app/styles/styles.css)).
+In this example, we have a button that toggles the current theme (light / dark). The current value is stored in React context and is used as the className of `<html>` (see [app/root.tsx](app/root.tsx)). Clicking the button toggles the theme, which updates the className, which updates the CSS variables, resulting in the background color updating (see [app/styles/styles.css](app/styles/styles.css)).
 
 When the theme value updates, we update a cookie value so that the server can persist the theme value in the future (e.g. when the page is refreshed).
 
