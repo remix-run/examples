@@ -22,9 +22,9 @@ export default function Index() {
   const data = useActionData();
   const [textEditor, setTextEditor] = useState("");
   return (
-   <Form method="post">
-    {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : null}
-    <ClientOnly fallback={<FallbackComponent />}>
+    <Form method="post">
+      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : null}
+      <ClientOnly fallback={<FallbackComponent />}>
         {() => (
           <TextEditor
             name="editor"
@@ -39,6 +39,5 @@ export default function Index() {
       <br />
       <button type="submit">Submit</button>
     </Form>
-  
   );
 }
