@@ -1,12 +1,11 @@
-import type { LoaderArgs, MetaFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import type { LoaderFunctionArgs } from "@remix-run/node";
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  json,
   useLoaderData,
 } from "@remix-run/react";
 
@@ -18,7 +17,7 @@ import {
 } from "~/utils/theme-provider";
 import { getThemeSession } from "~/utils/theme.server";
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const themeSession = await getThemeSession(request);
 
   return json({
@@ -26,29 +25,24 @@ export const loader = async ({ request }: LoaderArgs) => {
   });
 };
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "New Remix App",
-  viewport: "width=device-width,initial-scale=1",
-});
-
-function App() {
+function App({ children }: { children: React.ReactNode }) {
   const data = useLoaderData<typeof loader>();
   const [theme] = useTheme();
 
   return (
     <html lang="en" className={theme ?? ""}>
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
         <ThemeHead ssrTheme={Boolean(data.theme)} />
       </head>
       <body>
-        <Outlet />
+        {children}
         <ThemeBody ssrTheme={Boolean(data.theme)} />
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   );
@@ -59,7 +53,9 @@ export default function AppWithProviders() {
 
   return (
     <ThemeProvider specifiedTheme={data.theme}>
-      <App />
+      <App>
+        <Outlet />
+      </App>
     </ThemeProvider>
   );
 }
