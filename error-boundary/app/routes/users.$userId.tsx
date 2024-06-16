@@ -41,10 +41,9 @@ export default function User() {
 // You can also catch thrown responses from actions as well.
 export function ErrorBoundary() {
   const error = useRouteError();
+  const params = useParams();
 
   if (isRouteErrorResponse(error) && error.status === 404) {
-    const params = useParams();
-
     return (
       <span style={{ color: "red" }}>
         User with ID "{params.userId}" not found!
