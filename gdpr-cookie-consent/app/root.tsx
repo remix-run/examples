@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
+import type { LoaderFunctionArgs } from "@remix-run/node";
 import {
   Links,
   Meta,
@@ -8,7 +8,6 @@ import {
   json,
   useFetcher,
   useLoaderData,
-  useOutletContext,
 } from "@remix-run/react";
 import { useEffect } from "react";
 
@@ -31,7 +30,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   }, [track]);
 
   const analyticsFetcher = useFetcher();
-  
+
   return (
     <html lang="en">
       <head>
@@ -67,6 +66,5 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-
   return <Outlet />;
 }
