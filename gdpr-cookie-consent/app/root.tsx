@@ -7,7 +7,7 @@ import {
   ScrollRestoration,
   json,
   useFetcher,
-  useLoaderData,
+  useRouteLoaderData,
 } from "@remix-run/react";
 import { useEffect } from "react";
 
@@ -16,11 +16,18 @@ import { gdprConsent } from "~/cookies.server";
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
+
   return json({ track: cookie.gdprConsent });
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { track } = useLoaderData<typeof loader>();
+  // We use `useRouteLoaderData` here instead of `useLoaderData` because
+  // the <Layout /> component will also be used by the <ErrorBoundary />
+  // if an error is thrown somewhere in the app, and we can't call
+  // `useLoaderData()` while rendering an <ErrorBoundary />.
+  const rootLoaderData = useRouteLoaderData<{ track?: true }>("root");
+  const track = rootLoaderData?.track ?? false;
+
   useEffect(() => {
     if (track) {
       const script = document.createElement("script");
