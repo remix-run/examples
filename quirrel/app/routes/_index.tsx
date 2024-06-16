@@ -1,5 +1,3 @@
-import { json } from "@remix-run/node";
-
 import greetingsQueue from "~/queues/greetings.server";
 
 export const loader = async () => {
