@@ -87,8 +87,7 @@ export async function updateContact(id: string, updates: ContactMutation) {
   if (!contact) {
     throw new Error(`No contact found for ${id}`);
   }
-  await fakeContacts.set(id, { ...contact, ...updates });
-  return contact;
+  return fakeContacts.set(id, { ...contact, ...updates });
 }
 
 export async function deleteContact(id: string) {

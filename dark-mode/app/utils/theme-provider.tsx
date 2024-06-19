@@ -98,33 +98,34 @@ const clientThemeCode = `
 // a theme, then I'll know what you want in the future and you'll not see this
 // script anymore.
 ;(() => {
-  const theme = window.matchMedia(${JSON.stringify(prefersDarkMQ)}).matches
-    ? 'dark'
-    : 'light';
+  const theme = window.matchMedia('${prefersDarkMQ}').matches
+    ? '${Theme.DARK}'
+    : '${Theme.LIGHT}';
+
   const cl = document.documentElement.classList;
-  const themeAlreadyApplied = cl.contains('light') || cl.contains('dark');
-  if (themeAlreadyApplied) {
+  if (
+    cl.contains('${Theme.LIGHT}') || cl.contains('${Theme.DARK}')
+  ) {
+    // The theme is already applied...
     // this script shouldn't exist if the theme is already applied!
-    console.warn(
-      "Hi there, could you let me know you're seeing this message? Thanks!",
-    );
+    console.warn("See theme-provider.tsx>clientThemeCode>cl.contains");
+    // Hi there, could you let me know you're seeing this console.warn? Thanks!
   } else {
     cl.add(theme);
   }
+
   const meta = document.querySelector('meta[name=color-scheme]');
   if (meta) {
-    if (theme === 'dark') {
-      meta.content = 'dark light';
-    } else if (theme === 'light') {
-      meta.content = 'light dark';
-    }
+    meta.content = theme === '${Theme.DARK}' ? 'dark light' : 'light dark';
   } else {
-    console.warn(
-      "Hey, could you let me know you're seeing this message? Thanks!",
-    );
+    console.warn("See theme-provider.tsx>clientThemeCode>meta");
+    // Hey, could you let me know you're seeing this console.warn? Thanks!
   }
 })();
-`;
+`
+  // Remove double slash comments & replace excess white space with a single space.
+  .replace(/((?<=[^:])\/\/.*|\s)+/g, " ")
+  .trim();
 
 const themeStylesCode = `
   /* default light, but app-preference is "dark" */

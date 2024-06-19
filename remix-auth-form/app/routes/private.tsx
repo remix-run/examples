@@ -20,6 +20,7 @@ export default function Screen() {
   const { email } = useLoaderData<typeof loader>();
   return (
     <>
+      <pre>/private</pre>
       <h1>Hello {email}</h1>
 
       <Form method="post">
