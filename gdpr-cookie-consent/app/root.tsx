@@ -1,35 +1,34 @@
-import type { LoaderArgs, MetaFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import type { LoaderFunctionArgs } from "@remix-run/node";
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  json,
   useFetcher,
-  useLoaderData,
+  useRouteLoaderData,
 } from "@remix-run/react";
-import * as React from "react";
+import { useEffect } from "react";
 
-import { gdprConsent } from "~/cookies";
+import { gdprConsent } from "~/cookies.server";
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
+
   return json({ track: cookie.gdprConsent });
 };
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "New Remix App",
-  viewport: "width=device-width,initial-scale=1",
-});
+export function Layout({ children }: { children: React.ReactNode }) {
+  // We use `useRouteLoaderData` here instead of `useLoaderData` because
+  // the <Layout /> component will also be used by the <ErrorBoundary />
+  // if an error is thrown somewhere in the app, and we can't call
+  // `useLoaderData()` while rendering an <ErrorBoundary />.
+  const rootLoaderData = useRouteLoaderData<{ track?: true }>("root");
+  const track = rootLoaderData?.track ?? false;
 
-export default function App() {
-  const { track } = useLoaderData<typeof loader>();
-  const analyticsFetcher = useFetcher();
-  React.useEffect(() => {
+  useEffect(() => {
     if (track) {
       const script = document.createElement("script");
       script.src = "/dummy-analytics-script.js";
@@ -37,14 +36,18 @@ export default function App() {
     }
   }, [track]);
 
+  const analyticsFetcher = useFetcher();
+
   return (
     <html lang="en">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
       <body>
-        <Outlet />
+        {children}
         {track ? null : (
           <div
             style={{
@@ -64,8 +67,11 @@ export default function App() {
         )}
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   );
+}
+
+export default function App() {
+  return <Outlet />;
 }

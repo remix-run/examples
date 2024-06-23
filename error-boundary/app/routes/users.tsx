@@ -5,7 +5,7 @@ import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import { getUsers } from "~/data.server";
 
 export const meta: MetaFunction = () => {
-  return { title: "Users" };
+  return [{ title: "Users" }];
 };
 
 export const loader = async () => {
