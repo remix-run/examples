@@ -684,10 +684,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@remix-run/eslint-config@^2.9.2":
-  version "2.9.2"
-  resolved "https://registry.npmjs.org/@remix-run/eslint-config/-/eslint-config-2.9.2.tgz#ae917d4278c5cd71589816f745954fb3aeafa02c"
-  integrity sha512-tZV98Fz1QHAwIA9MOo48Es0ltAzvOIj/uCjCDsKOEndhEX+qwH1qC7eLIBGJiRDgEO3hIQUtzUuw5S6J8B2B+w==
+"@remix-run/eslint-config@^2.10.0":
+  version "2.10.0"
+  resolved "https://registry.npmjs.org/@remix-run/eslint-config/-/eslint-config-2.10.0.tgz#90c35edcb64010716498b63cb1bb25620459438c"
+  integrity sha512-6UNOVsV6T7Q0BCQ28heT4tMzZFDnNPTZXzwCM3bPf6gRZgZ8IlBX3ZvmncisRHiiNphYtmXR/p/e3kJWNH5OCA==
   dependencies:
     "@babel/core" "^7.21.8"
     "@babel/eslint-parser" "^7.21.8"
@@ -4131,10 +4131,10 @@ typed-array-length@^1.0.6:
     is-typed-array "^1.1.13"
     possible-typed-array-names "^1.0.0"
 
-typescript@^5.4.5:
-  version "5.4.5"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-5.4.5.tgz#42ccef2c571fdbd0f6718b1d1f5e6e5ef006f611"
-  integrity sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==
+typescript@^5.5.2:
+  version "5.5.2"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-5.5.2.tgz#c26f023cb0054e657ce04f72583ea2d85f8d0507"
+  integrity sha512-NcRtPEOsPFFWjobJEtfihkLCZCXZt/os3zf8nTxjVH3RvTSxjrCamJpbExGvYOF+tFHc3pA65qpdwPbzjohhew==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"
