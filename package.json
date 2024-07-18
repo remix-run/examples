@@ -8,17 +8,17 @@
     "lint:fix": "yarn lint --fix"
   },
   "devDependencies": {
-    "@remix-run/eslint-config": "^2.10.0",
+    "@remix-run/eslint-config": "^2.10.2",
     "@types/react": "^18.3.3",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-markdown": "^5.0.0",
+    "eslint-plugin-markdown": "^5.1.0",
     "eslint-plugin-cypress": "^3.3.0",
     "eslint-plugin-prefer-let": "^3.0.1",
     "jest": "^29.7.0",
     "prettier": "^3.3.2",
     "react": "^18.3.1",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.3"
   },
   "engines": {
     "node": ">=20.0.0"
