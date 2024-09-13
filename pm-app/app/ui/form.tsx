@@ -40,7 +40,7 @@ export function getResolvedFieldProps<T extends ResolvedFieldProps>(
       props["aria-describedby"] != null
         ? `${props["aria-describedby"]} ${context.id}-error`
         : `${context.id}-error`;
-    ariaProps["aria-invalid"] = invalid === "false" ? false : invalid ?? true;
+    ariaProps["aria-invalid"] = invalid === "false" ? false : (invalid ?? true);
   }
 
   return {
