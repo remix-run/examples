@@ -15,8 +15,6 @@ The relevent files are:
 |   │   └── api.tus-cloud-uploads.$fileId.tsx  // Afte file is created Tus makes patch requests to the file that was created using the POST request to update the file in "chunks" for cloud bucket integration
 |   │   └── api.tus-native-uploads.tsx  // initial route Tus uses to POST and create file on local files system
 |   │   └── api.tus-native-uploads.$fileId.tsx  // Afte file is created Tus makes patch requests to the file that was created using the POST request to update the file in "chunks" for local file system integration
-|   └── utils
-|       └── supabaseClient.server.tsx // create supabase client on the server side
 └── .env // hold cloud bucket credentials secret key
 ```
 
@@ -34,7 +32,13 @@ Servers like Cloud Run usually have a fixed limit ~32 mb of what data your uploa
 
 ## Related Links
 
-Tus Protocol generally utilizes a front end and a back end, while integrating Tus-Js-Client npm package was relatively easy in a remix application - integrating Tus Server required either an implemented Node/Expres server that didn't quite fit into the remix architecture of using web fetch Api, rather it uses the native req, res objects in Express, instead of using the TusServer npm package which is tighly couple to Express/Node, the tusHanlerServer files basically implement the tus Server request methods while not being confined to using Express.  The TusHandler handles the same request methods required by the tus protocol "POST" - creation of file, "PATCH" - updates to File - "HEAD" - when needed to retrieve metadata for file  
+Tus Protocol generally utilizes a front end and a back end, while integrating Tus-Js-Client npm package was relatively easy in a remix application - integrating Tus Server required either an implemented Node/Expres server that didn't quite fit into the remix architecture of using web fetch Api, rather it uses the native req, res objects in Express, instead of using the TusServer npm package which is tighly couple to Express/Node, the tusHanlerServer files basically implement the tus Server request methods while not being confined to using Express.  The TusHandler handles the same request methods required by the tus protocol "POST" - creation of file, "PATCH" - updates to File - "HEAD" - when needed to retrieve metadata for file.  
+npm package for tus-js-client - https://github.com/tus/tus-js-client  
+npm package for gcs-store tus-node-server - https://github.com/tus/tus-node-server/tree/main/packages/gcs-store  
+npm pacakge for file-store tus-node-server - https://github.com/tus/tus-node-server/tree/main/packages/file-store  
+code inspiration for request handlers - https://github.com/tus/tus-node-server/tree/main/packages/server    
+
+
 
 ## Production
 On an environment like cloud run you may need to set content security policy header
