@@ -34,7 +34,7 @@ Servers like Cloud Run usually have a fixed limit ~32 mb of what data your uploa
 
 ## Related Links
 
-Tus Protocol generally utilizes a front end and a back end, while integrating Tus-Js-Client npm package was relatively easy in a remix application - integrating Tus Server required either an implemented Node/Expres server that didn't quite fit into the remix architecture of using web fetch Api, rather it uses the native req, res objects in Express, instead of using the TusServer npm package which is tighly couple to Express/Node, the tusHanlerServer files basically implement the tus Server request methods while not being confined to using Express.  The TusHandler handles the same request methods required by the tus protocol "POST" - creation of file, "PATCH" - updates to File - "HEAD" - Get metadata regarding file  
+Tus Protocol generally utilizes a front end and a back end, while integrating Tus-Js-Client npm package was relatively easy in a remix application - integrating Tus Server required either an implemented Node/Expres server that didn't quite fit into the remix architecture of using web fetch Api, rather it uses the native req, res objects in Express, instead of using the TusServer npm package which is tighly couple to Express/Node, the tusHanlerServer files basically implement the tus Server request methods while not being confined to using Express.  The TusHandler handles the same request methods required by the tus protocol "POST" - creation of file, "PATCH" - updates to File - "HEAD" - when needed to retrieve metadata for file  
 
 ## Production
 On an environment like cloud run you may need to set content security policy header
@@ -54,3 +54,10 @@ see issue here - https://github.com/tus/tus-js-client/issues/186
 in `_index.tsx` when tusClientUploader is invoked you have th option to call either `/api/tus-cloud-uploads` endpoint or the `/api/tus-native-uploads` endpoint when calling the cloud-uploads endpoint you must provide a bucketName `${bucketName}` the other endpoint requires a directory path like `./uploads/tus`  
 `npm run dev`
 use ux to upload file and watch the magic happen
+
+## Process  
+The typical flow for tus-js-client involves:
+- An initial POST request to create the upload resource.
+- One or more PATCH requests to upload the file data.
+- HEAD requests as needed to check the status of the existing upload/resource.
+
