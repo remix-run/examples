@@ -21,8 +21,8 @@ You can read more about the use cases of MSW [here](https://mswjs.io/docs/#when-
 
 ## Relevant files
 
-- [mocks](./mocks/index.cjs) - registers the Node HTTP mock server
-- [handlers](./mocks/handlers.cjs) - describes the HTTP mocks
+- [mocks](./mocks/index.ts) - registers the Node HTTP mock server
+- [handlers](./mocks/handlers.ts) - describes the HTTP mocks
 - [package.json](./package.json)
 
 ## Related Links
