@@ -3,8 +3,7 @@ import { PassThrough } from "stream";
 import createEmotionCache from "@emotion/cache";
 import { CacheProvider as EmotionCacheProvider } from "@emotion/react";
 import createEmotionServer from "@emotion/server/create-instance";
-import type { AppLoadContext, EntryContext } from "@remix-run/node";
-import { Response } from "@remix-run/node";
+import {AppLoadContext, createReadableStreamFromReadable, EntryContext} from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import isbot from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
@@ -51,14 +50,14 @@ const handleBotRequest = (
         onAllReady: () => {
           const reactBody = new PassThrough();
           const emotionServer = createEmotionServer(emotionCache);
-
           const bodyWithStyles = emotionServer.renderStylesToNodeStream();
           reactBody.pipe(bodyWithStyles);
 
+          const stream = createReadableStreamFromReadable(reactBody);
           responseHeaders.set("Content-Type", "text/html");
 
           resolve(
-            new Response(bodyWithStyles, {
+            new Response(stream, {
               headers: responseHeaders,
               status: didError ? 500 : responseStatusCode,
             }),
@@ -102,10 +101,11 @@ const handleBrowserRequest = (
           const bodyWithStyles = emotionServer.renderStylesToNodeStream();
           reactBody.pipe(bodyWithStyles);
 
+          const stream = createReadableStreamFromReadable(reactBody);
           responseHeaders.set("Content-Type", "text/html");
 
           resolve(
-            new Response(bodyWithStyles, {
+            new Response(stream, {
               headers: responseHeaders,
               status: didError ? 500 : responseStatusCode,
             }),
