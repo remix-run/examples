@@ -684,10 +684,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@remix-run/eslint-config@^2.13.1":
-  version "2.13.1"
-  resolved "https://registry.npmjs.org/@remix-run/eslint-config/-/eslint-config-2.13.1.tgz#31ee077e9fb98aad90ee6b856991d42a19ce0d52"
-  integrity sha512-UNWRHYa++pWrO6qxNI9z7KrmD0/wncWjS36TujoPmlnVDQ2pKIhNZwBi6otJQIuI8TdUPBZstJNgRJ0TWYok6A==
+"@remix-run/eslint-config@^2.14.0":
+  version "2.14.0"
+  resolved "https://registry.npmjs.org/@remix-run/eslint-config/-/eslint-config-2.14.0.tgz#bddf91b7abea5617e443cbcfc8c46883a3b8f2fd"
+  integrity sha512-/wBt/AVgBMNw8HWifSha/7dwaGudmyWo7FB7M+LKloZPZc+XR60cMqKSXJeWwJTo+pic++4V1GhQnKc+Cx3GyA==
   dependencies:
     "@babel/core" "^7.21.8"
     "@babel/eslint-parser" "^7.21.8"
