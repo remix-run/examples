@@ -6,7 +6,7 @@ Using [antd-style](https://github.com/ant-design/antd-style) to extract styles a
 
 Open this example on [CodeSandbox](https://codesandbox.com):
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/ant-design)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/antd-style)
 
 ## Example
 
