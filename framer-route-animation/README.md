@@ -8,6 +8,8 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/framer-route-animation)
 
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/remix-run/examples)
+
 ## Example
 
 This example demonstrates adding route animations to Remix apps using Framer Motion. Framer provides `AnimatePresence` API, which animates DOM elements mounted and unmounted from the DOM. So when we navigate from one route to another, essentially, we're unmounting the previous route and mounting the new route. We can use this to animate route transitions.
