@@ -8,6 +8,8 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/dark-mode)
 
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/remix-run/examples)
+
 ## Example
 
 In this example, we have a button that toggles the current theme (light / dark). The current value is stored in React context and is used as the className of `<html>` (see [app/root.tsx](app/root.tsx)). Clicking the button toggles the theme, which updates the className, which updates the CSS variables, resulting in the background color updating (see [app/styles/styles.css](app/styles/styles.css)).
