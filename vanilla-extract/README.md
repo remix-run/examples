@@ -8,6 +8,8 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/vanilla-extract)
 
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/remix-run/examples)
+
 ## Example
 
 This example shows how to use the built-in Vanilla Extract support in Remix. Vanilla Extract is a zero-runtime CSS-in-TypeScript library that converts `.css.ts` files into static CSS at build time, providing first-class support for local-scoping of classes, variables, themes and more.
