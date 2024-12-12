@@ -16,6 +16,8 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/graphql-api)
 
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/remix-run/examples)
+
 ## Example
 
 This example makes use of [Remix Resource Routes][link-resource-routes] to fetch data from a sample [GraphQL API][link-sample-api] in addition to exposing that data via a JSON API.

@@ -8,6 +8,8 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/gdpr-cookie-consent)
 
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/remix-run/examples)
+
 ## Example
 
 Users will be presented with a GDPR consent form on every page [app/root.tsx](app/root.tsx) till they submit the accept button.

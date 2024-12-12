@@ -12,6 +12,8 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/outlet-form-rerender)
 
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/remix-run/examples)
+
 ## Example
 
 Here we have a simple example where we list a set of users and, clicking on a user will open a form inside a nested route with details of the user prefilled.

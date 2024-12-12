@@ -8,6 +8,8 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/nprogress)
 
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/remix-run/examples)
+
 ## Example
 
 It shows how to load NProgress, link to their styles from the node_modules folder, and use the useTransition hook to know when a client-side transition, both submit or navigation, is happening to start the progress bar.

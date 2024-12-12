@@ -8,6 +8,8 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/sharing-loader-data)
 
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/remix-run/examples)
+
 ## Example
 
 This is a simple "workshop" app which has a "user" and a list of workshops. The user is loaded in the root loader and needed in the index route. The workshops are loaded in the workshops loader and then used in the individual workshop routes.
