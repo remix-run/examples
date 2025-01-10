@@ -26,16 +26,12 @@ export const loader = async () => {
   const date = new Date();
 
   // today string in "YYYY-MM-DD" format
-  const todayString = `${date.getFullYear()}-${(
-    "00" +
-    (date.getMonth() + 1)
-  ).slice(-2)}-${("00" + date.getDate()).slice(-2)}`;
+  const todayString = date.toISOString().substring(0, 10);
+
+  date.setDate(date.getDate() + 1)
 
   // tomorrow string in "YYYY-MM-DD" format
-  const tomorrowString = `${date.getFullYear()}-${(
-    "00" +
-    (date.getMonth() + 1)
-  ).slice(-2)}-${("00" + (date.getDate() + 1)).slice(-2)}`;
+  const tomorrowString = date.toISOString().substring(0, 10);
 
   return json({ todayString, tomorrowString });
 };
