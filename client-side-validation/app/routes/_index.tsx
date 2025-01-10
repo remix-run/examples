@@ -28,7 +28,7 @@ export const loader = async () => {
   // today string in "YYYY-MM-DD" format
   const todayString = date.toISOString().substring(0, 10);
 
-  date.setDate(date.getDate() + 1)
+  date.setDate(date.getDate() + 1);
 
   // tomorrow string in "YYYY-MM-DD" format
   const tomorrowString = date.toISOString().substring(0, 10);
