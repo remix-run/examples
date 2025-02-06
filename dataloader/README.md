@@ -13,6 +13,8 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/dataloader)
 
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/remix-run/examples)
+
 ## Example
 
 `app/data.server.ts` implements the `db` object which mimics an ORM in the style of [Prisma](https://www.prisma.io/). The method `db.user#findMany` logs _user#findMany_ to the console, for demo purposes.

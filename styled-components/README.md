@@ -8,6 +8,8 @@ Open this example on [CodeSandbox](https://codesandbox.com):
 
 [![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/examples/tree/main/styled-components)
 
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/remix-run/examples)
+
 ## Example
 
 To support server-side rendering without hydration errors, [Styled Components uses a Babel plugin to ensure consistent class names across server and client.](https://styled-components.com/docs/advanced#tooling-setup) In this example the source code for our styled components is in `components/src`. This is compiled with the Babel CLI (to generate JavaScript files) and `tsc` (to generate `.d.ts` files), co-ordinated using [npm-run-all](https://www.npmjs.com/package/npm-run-all). The output from both of these tools is generated in `app/components` which is ignored by Git. The app can then import these components from `~/components/*`.
