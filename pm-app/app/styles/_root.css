@@ -252,10 +252,12 @@
   --colors-shadow-light: hsl(206deg 22% 7% / 35%);
   --colors-shadow-dark: hsl(206deg 22% 7% / 20%);
 
-  --fonts-sans: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica,
-    -apple-system, sans-serif, system-ui;
-  --fonts-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    ui-monospace, monospace;
+  --fonts-sans:
+    SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, -apple-system,
+    sans-serif, system-ui;
+  --fonts-mono:
+    SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", ui-monospace,
+    monospace;
 
   --fonts-mono-light: lighter;
   --fonts-mono-normal: normal;
