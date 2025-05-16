@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": [],
   "compilerOptions": {
     "outDir": "../app/components",
 
