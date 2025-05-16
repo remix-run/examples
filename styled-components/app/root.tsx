@@ -25,6 +25,7 @@ export default function App() {
       <head>
         <Meta />
         <Links />
+        {/* __STYLES__ will be replaced in entry-server.tsx */}
         {typeof document === "undefined" ? "__STYLES__" : null}
       </head>
       <body>
@@ -50,18 +51,18 @@ export function ErrorBoundary() {
           );
     }
 
-    let errorMessage = "Unknown error";
+    let message, stack;;
     let errorStatus = 500;
     if (error instanceof Error) {
-        errorMessage = error.message;
+        message = error.message;
+        stack = error.stack;
     }
 
   return (
     <Box>
-        <h1>Error Boundary</h1>
-        <p>
-            {errorStatus} {errorMessage}
-        </p>
+      <h1>Error Boundary</h1>
+      <p>{message}</p>
+      <pre>{stack}</pre>
     </Box>
   );
 }
