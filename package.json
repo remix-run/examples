@@ -18,7 +18,7 @@
     "jest": "^30.0.5",
     "prettier": "^3.6.2",
     "react": "^18.3.1",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   },
   "engines": {
     "node": ">=20.0.0"
