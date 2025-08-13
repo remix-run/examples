@@ -1,30 +1,35 @@
-import { Outlet, useCatch } from "@remix-run/react";
-
+import { isRouteErrorResponse, Outlet, useRouteError } from "@remix-run/react";
 import { Box } from "~/components/Box";
 
 export default function Boundary() {
   return <Outlet />;
 }
 
-export function CatchBoundary() {
-  const caught = useCatch();
+export function ErrorBoundary() {
+    const error = useRouteError();
 
-  return (
-    <Box>
-      <h1>Catch Boundary</h1>
-      <p>
-        {caught.status} {caught.statusText}
-      </p>
-    </Box>
-  );
-}
+    if (isRouteErrorResponse(error)) {
+        return (
+            <Box>
+              <h1>Catch Boundary</h1>
+              <p>
+                {error.status} {error.statusText}
+              </p>
+            </Box>
+          );
+    }
 
-export function ErrorBoundary({ error }: { error: Error }) {
+    let message, stack;
+    if (error instanceof Error) {
+        message = error.message;
+        stack = error.stack;
+    }
+
   return (
     <Box>
       <h1>Error Boundary</h1>
-      <p>{error.message}</p>
-      <pre>{error.stack}</pre>
+      <p>{message}</p>
+      <pre>{stack}</pre>
     </Box>
   );
 }
