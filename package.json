@@ -15,7 +15,7 @@
     "eslint-plugin-markdown": "^5.1.0",
     "eslint-plugin-cypress": "^3.6.0",
     "eslint-plugin-prefer-let": "^4.0.0",
-    "jest": "^30.0.5",
+    "jest": "^30.1.2",
     "prettier": "^3.6.2",
     "react": "^18.3.1",
     "typescript": "^5.9.2"
