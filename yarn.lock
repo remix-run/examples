@@ -741,10 +741,10 @@
   resolved "https://registry.npmjs.org/@pkgr/core/-/core-0.2.7.tgz#eb5014dfd0b03e7f3ba2eeeff506eed89b028058"
   integrity sha512-YLT9Zo3oNPJoBjBc4q8G2mjU4tqIbf5CEOORbUUr48dCD9q3umJ3IPlVqOqDakPfd2HuwccBaqlGhN4Gmr5OWg==
 
-"@remix-run/eslint-config@^2.17.1":
-  version "2.17.1"
-  resolved "https://registry.npmjs.org/@remix-run/eslint-config/-/eslint-config-2.17.1.tgz#a8349b6cfa93f8f91fdbfcd629170a08e5ce7cf3"
-  integrity sha512-5JVVOImOx90nPe28GnBkIJRlgqPUX4lSd2MPUf5OxuYjGvd9XaIs/bPphU/iiO34e35BKPb2Ib5Cs6rdLrOm7Q==
+"@remix-run/eslint-config@^2.17.2":
+  version "2.17.2"
+  resolved "https://registry.npmjs.org/@remix-run/eslint-config/-/eslint-config-2.17.2.tgz#b399bf88d606a8dca9ba5e9bdb60b3f4473690eb"
+  integrity sha512-amaXcAWYrLQ9d9u/IbfWNWyKnp1lSx+EcvhAoXRZdw7pL3Ndk5dAQNy2oU9lu/CxvRB4LKi7RcFckZ/VuQwHdw==
   dependencies:
     "@babel/core" "^7.21.8"
     "@babel/eslint-parser" "^7.21.8"
