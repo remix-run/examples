@@ -102,16 +102,21 @@ DialogCloseButton.displayName = "DialogCloseButton";
 export { Dialog, DialogContent, DialogOverlay, DialogCloseButton };
 
 interface DialogProps
-  extends ReachDialogProps,
+  extends
+    ReachDialogProps,
     Omit<React.ComponentPropsWithRef<"div">, keyof ReachDialogProps> {}
 
 interface DialogOverlayProps
-  extends ReachDialogOverlayProps,
+  extends
+    ReachDialogOverlayProps,
     Omit<React.ComponentPropsWithRef<"div">, keyof ReachDialogOverlayProps> {}
 
 interface DialogContentProps
-  extends ReachDialogContentProps,
+  extends
+    ReachDialogContentProps,
     Omit<React.ComponentPropsWithRef<"div">, keyof ReachDialogContentProps> {}
 
-interface DialogCloseButtonProps
-  extends Omit<React.ComponentPropsWithRef<"button">, "children"> {}
+interface DialogCloseButtonProps extends Omit<
+  React.ComponentPropsWithRef<"button">,
+  "children"
+> {}

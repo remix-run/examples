@@ -19,7 +19,8 @@ MaxContainer.displayName = "MaxContainer";
 interface MaxContainerOwnProps {}
 
 interface MaxContainerProps
-  extends MaxContainerOwnProps,
+  extends
+    MaxContainerOwnProps,
     Omit<React.ComponentPropsWithRef<"div">, keyof MaxContainerOwnProps> {}
 
 export type { MaxContainerProps };

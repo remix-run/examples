@@ -170,8 +170,10 @@ type InputType =
   | "tel"
   | "url";
 
-export interface FieldProps
-  extends Omit<React.ComponentPropsWithRef<"input">, "type"> {
+export interface FieldProps extends Omit<
+  React.ComponentPropsWithRef<"input">,
+  "type"
+> {
   type?: InputType;
 }
 

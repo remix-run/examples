@@ -9,7 +9,8 @@ declare namespace NodeJS {
 }
 
 interface Window
-  extends EventTarget,
+  extends
+    EventTarget,
     AnimationFrameProvider,
     GlobalEventHandlers,
     WindowEventHandlers,

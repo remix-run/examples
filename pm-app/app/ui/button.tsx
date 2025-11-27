@@ -123,11 +123,9 @@ interface ButtonSharedProps {
 }
 
 interface ButtonProps
-  extends React.ComponentPropsWithRef<"button">,
-    ButtonSharedProps {}
+  extends React.ComponentPropsWithRef<"button">, ButtonSharedProps {}
 interface ButtonDivProps
-  extends React.ComponentPropsWithRef<"div">,
-    ButtonSharedProps {}
+  extends React.ComponentPropsWithRef<"div">, ButtonSharedProps {}
 interface ButtonLinkProps extends LinkProps, ButtonSharedProps {}
 interface ButtonNavLinkProps extends NavLinkProps, ButtonSharedProps {}
 

@@ -110,11 +110,13 @@ interface FlexItemOwnProps {
 }
 
 interface FlexProps
-  extends FlexOwnProps,
+  extends
+    FlexOwnProps,
     Omit<React.ComponentPropsWithRef<"div">, keyof FlexOwnProps> {}
 
 interface FlexItemProps
-  extends FlexItemOwnProps,
+  extends
+    FlexItemOwnProps,
     Omit<React.ComponentPropsWithRef<"div">, keyof FlexItemOwnProps> {}
 
 export type { FlexProps, FlexItemProps };

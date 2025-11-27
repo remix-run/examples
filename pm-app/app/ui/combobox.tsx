@@ -121,30 +121,36 @@ ComboboxOption.displayName = "ComboboxOption";
 ComboboxButton.displayName = "ComboboxButton";
 
 interface ComboboxProps
-  extends ReachComboboxProps,
+  extends
+    ReachComboboxProps,
     Omit<React.ComponentPropsWithRef<"div">, keyof ReachComboboxProps> {}
 
 interface ComboboxInputProps
-  extends ReachComboboxInputProps,
+  extends
+    ReachComboboxInputProps,
     Omit<
       React.ComponentPropsWithRef<"input">,
       "type" | keyof ReachComboboxInputProps
     > {}
 
 interface ComboboxListProps
-  extends ReachComboboxListProps,
+  extends
+    ReachComboboxListProps,
     Omit<React.ComponentPropsWithRef<"ul">, keyof ReachComboboxListProps> {}
 
 interface ComboboxOptionProps
-  extends ReachComboboxOptionProps,
+  extends
+    ReachComboboxOptionProps,
     Omit<React.ComponentPropsWithRef<"li">, keyof ReachComboboxOptionProps> {}
 
 interface ComboboxPopoverProps
-  extends ReachComboboxPopoverProps,
+  extends
+    ReachComboboxPopoverProps,
     Omit<React.ComponentPropsWithRef<"div">, keyof ReachComboboxPopoverProps> {}
 
 interface ComboboxButtonProps
-  extends ReachComboboxButtonProps,
+  extends
+    ReachComboboxButtonProps,
     Omit<
       React.ComponentPropsWithRef<"button">,
       keyof ReachComboboxButtonProps

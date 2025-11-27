@@ -173,30 +173,34 @@ export {
 };
 
 export interface DropdownMenuProps
-  extends Omit<ReachMenuProps, "id">,
+  extends
+    Omit<ReachMenuProps, "id">,
     Omit<React.ComponentPropsWithRef<"div">, keyof ReachMenuProps> {
   id: string;
 }
 
 export interface DropdownMenuButtonProps
-  extends ReachMenuButtonProps,
+  extends
+    ReachMenuButtonProps,
     Omit<React.ComponentPropsWithRef<"button">, keyof ReachMenuButtonProps> {}
 
 export interface DropdownMenuPopoverProps
-  extends ReachMenuPopoverProps,
+  extends
+    ReachMenuPopoverProps,
     Omit<React.ComponentPropsWithRef<"div">, keyof ReachMenuPopoverProps> {}
 
 export interface DropdownMenuListProps
-  extends ReachMenuItemsProps,
+  extends
+    ReachMenuItemsProps,
     Omit<React.ComponentPropsWithRef<"div">, keyof ReachMenuItemsProps> {}
 
 export interface DropdownMenuItemProps
-  extends Omit<ReachMenuItemProps, "onSelect">,
+  extends
+    Omit<ReachMenuItemProps, "onSelect">,
     Omit<React.ComponentPropsWithRef<"div">, keyof ReachMenuItemProps> {
   onSelect?(): void;
   variant?: "danger";
 }
 
 export interface DropdownMenuItemLinkProps
-  extends ReachMenuLinkProps,
-    Omit<LinkProps, keyof ReachMenuLinkProps> {}
+  extends ReachMenuLinkProps, Omit<LinkProps, keyof ReachMenuLinkProps> {}
