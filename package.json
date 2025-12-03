@@ -16,7 +16,7 @@
     "eslint-plugin-cypress": "^3.6.0",
     "eslint-plugin-prefer-let": "^4.0.0",
     "jest": "^30.2.0",
-    "prettier": "^3.7.3",
+    "prettier": "^3.7.4",
     "react": "^18.3.1",
     "typescript": "^5.9.3"
   },
