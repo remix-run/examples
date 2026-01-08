@@ -2017,10 +2017,10 @@ eslint-plugin-node@^11.1.0:
     resolve "^1.10.1"
     semver "^6.1.0"
 
-eslint-plugin-prefer-let@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/eslint-plugin-prefer-let/-/eslint-plugin-prefer-let-4.0.0.tgz#c5fe70b0a65dfa47e681c0ebff36f53487455749"
-  integrity sha512-X4ep5PMO1320HKaNC9DM5+p6XvOhwv+RcqGjhv3aiw9iAtHhiFtdIUB5l0Zya0iM22ys2BGKzrNI9Xpw/ZHooQ==
+eslint-plugin-prefer-let@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/eslint-plugin-prefer-let/-/eslint-plugin-prefer-let-4.0.1.tgz#fc821990b371af0da4e2692aead54034a0b36521"
+  integrity sha512-a+QXFZL+8iVqj2LF/kO/iZAN1quHB1tYr3OaMGxU03tgr9govV8ccQv8QV5G2dQ33VoUibu362DQTIOyDoCPTA==
   dependencies:
     requireindex "~1.2.0"
 
