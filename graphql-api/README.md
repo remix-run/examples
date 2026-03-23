@@ -22,13 +22,13 @@ This example makes use of [Remix Resource Routes][link-resource-routes] to fetch
 
 **The relevant files:**
 
-- [app/routes/api/characters.tsx](./app/routes/api/characters.tsx) & [app/routes/api/character.tsx](./app/routes/api/character.tsx)
+- [app/routes/api.characters.tsx](./app/routes/api.characters.tsx) & [app/routes/api.character.tsx](./app/routes/api.character.tsx)
   - These are the [Remix Resource Routes][link-resource-routes] that expose data via a JSON API
   - They fetch from the [GraphQL API][link-sample-api] using the [Fetch API][link-fetch]
 - [app/routes/\_index.tsx](./app/routes/_index.tsx)
   - This route fetches a list of characters
   - It's able to re-use the loader used by our API directly 🎉
-- [app/routes/character/\$id.tsx](./app/routes/character/$id.tsx)
+- [app/routes/character.$id.tsx](./app/routes/character.$id.tsx)
   - This route fetches a single character from the API we've exposed
   - The loader makes use of a fetch and URL params
 - [codegen.yml](./codegen.yml)
