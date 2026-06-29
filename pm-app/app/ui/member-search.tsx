@@ -40,8 +40,7 @@ export function MemberSearch({
   users: UserSecure[];
   className?: string;
   children:
-    | React.ReactNode
-    | ((props: MemberSearchContextValue) => React.ReactNode);
+    React.ReactNode | ((props: MemberSearchContextValue) => React.ReactNode);
   initialSelection?: UserSecure[];
   selection?: UserSecure[];
   onSelectionChange?: React.Dispatch<React.SetStateAction<UserSecure[]>>;

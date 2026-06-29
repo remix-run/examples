@@ -7,9 +7,12 @@ import AWS from "aws-sdk";
 const { STORAGE_ACCESS_KEY, STORAGE_SECRET, STORAGE_REGION, STORAGE_BUCKET } =
   process.env;
 
-if (
-  !(STORAGE_ACCESS_KEY && STORAGE_SECRET && STORAGE_REGION && STORAGE_BUCKET)
-) {
+if (!(
+  STORAGE_ACCESS_KEY &&
+  STORAGE_SECRET &&
+  STORAGE_REGION &&
+  STORAGE_BUCKET
+)) {
   throw new Error(`Storage is missing required configuration.`);
 }
 

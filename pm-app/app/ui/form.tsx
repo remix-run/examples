@@ -162,13 +162,7 @@ FieldError.displayName = "FieldError";
 
 // Not intended to be exhaustive!
 type InputType =
-  | "email"
-  | "text"
-  | "hidden"
-  | "password"
-  | "search"
-  | "tel"
-  | "url";
+  "email" | "text" | "hidden" | "password" | "search" | "tel" | "url";
 
 export interface FieldProps extends Omit<
   React.ComponentPropsWithRef<"input">,

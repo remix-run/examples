@@ -92,13 +92,7 @@ interface FlexOwnProps {
   justifyContent?: "start" | "end" | "center" | "between" | "around" | "evenly";
   placeItems?: "start" | "end" | "center" | "stretch";
   placeContent?:
-    | "start"
-    | "end"
-    | "center"
-    | "between"
-    | "around"
-    | "evenly"
-    | "stretch";
+    "start" | "end" | "center" | "between" | "around" | "evenly" | "stretch";
 }
 
 interface FlexItemOwnProps {
