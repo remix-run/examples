@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 🥺 Handle Ghosting
-        uses: actions/stale@v10
+        uses: actions/stale@v11
         with:
           days-before-close: 21
           # don't automatically mark issues/PRs as stale
