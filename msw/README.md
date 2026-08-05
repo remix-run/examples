@@ -21,8 +21,10 @@ You can read more about the use cases of MSW [here](https://mswjs.io/docs/#when-
 
 ## Relevant files
 
-- [mocks](./mocks/index.cjs) - registers the Node HTTP mock server
-- [handlers](./mocks/handlers.cjs) - describes the HTTP mocks
+- [server-side mocks](./app/mocks/node.ts) - registers the Node mock server
+- [client-side mocks](./app/mocks/browser.ts) - registers the browser (Worker) mock server
+- [handlers](./app/mocks/handlers.ts) - describes the HTTP mocks
+- [root](./app/root.tsx) - added script to expose the API_BASE environment variable to client-side
 - [package.json](./package.json)
 
 ## Related Links
