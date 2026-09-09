@@ -1,0 +1,32 @@
+{
+  "name": "remix-frontend",
+  "description": "Please enter a description for your extension",
+  "icon": "extension",
+  "version": "1.0.0",
+  "keywords": [
+    "directus",
+    "directus-extension",
+    "directus-custom-endpoint"
+  ],
+  "type": "module",
+  "directus:extension": {
+    "type": "endpoint",
+    "path": "../extensions/endpoints/remix-frontend/index.js",
+    "source": "src/index.ts",
+    "host": "^10.1.11"
+  },
+  "scripts": {
+    "build": "directus-extension build",
+    "dev": "REMIX_ENV=development directus-extension build -w --no-minify"
+  },
+  "devDependencies": {
+    "@directus/extensions-sdk": "10.1.11",
+    "@types/node": "^20.7.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@remix-run/express": "^2.0.1",
+    "@remix-run/node": "^2.0.1",
+    "serve-static": "^1.15.0"
+  }
+}
