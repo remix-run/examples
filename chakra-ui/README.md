@@ -20,4 +20,4 @@ Uncomment the thrown error on `./app/root.tsx` to see how Chackra UI handles you
 
 ## Related Links
 
-[Chakra UI](https://chakra-ui.com/guides/getting-started/remix-guide)
+[Chakra UI](https://chakra-ui.com/docs/get-started/frameworks/remix)
