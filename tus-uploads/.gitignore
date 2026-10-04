@@ -1,0 +1,3 @@
+/uploads
+.env
+/app/config.ts
