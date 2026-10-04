@@ -1,24 +1,18 @@
-import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { json } from '@remix-run/node'
+import { useLoaderData } from '@remix-run/react'
 
-export const loader = async () => {
-  const data = await fetch("https://my-mock-api.com").then((response) =>
-    response.json(),
-  );
-
-  if (!data || typeof data.message !== "string") {
-    throw json({ message: "Server error" }, { status: 500 });
-  }
-
-  return json(data);
-};
+export async function loader() {
+  const res = await fetch(`${process.env.API_BASE}/user`)
+  const data = await res.json()
+  return json(data)
+}
 
 export default function Index() {
-  const data = useLoaderData<typeof loader>();
-
+  const data = useLoaderData<typeof loader>()
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>{data.message}</h1>
+      <h1>Welcome to Remix</h1>
+      <pre>{JSON.stringify(data)}</pre>
     </div>
-  );
+  )
 }
