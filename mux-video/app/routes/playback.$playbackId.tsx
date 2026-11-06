@@ -1,9 +1,9 @@
 import "@videojs/react/video/skin.css";
-import { VideoPlayer, VideoSkin } from "@videojs/react/video";
-import { MuxVideo } from "@videojs/react/media/mux-video";
-import { MuxData } from "@videojs/react/extensions/mux-data";
 import type { MetaFunction } from "@remix-run/node";
 import { useParams, Link } from "@remix-run/react";
+import { MuxData } from "@videojs/react/extensions/mux-data";
+import { MuxVideo } from "@videojs/react/media/mux-video";
+import { VideoPlayer, VideoSkin } from "@videojs/react/video";
 
 const metadata = { player_name: "remix/examples/mux-video" };
 
