@@ -11,8 +11,8 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@mux/mux-node": "^8.7.0",
     "@mux/mux-uploader-react": "^1.0.0-beta.18",
+    "@mux/ts": "^16.0.0",
     "@remix-run/node": "^2.9.2",
     "@remix-run/react": "^2.9.2",
     "@remix-run/serve": "^2.9.2",
