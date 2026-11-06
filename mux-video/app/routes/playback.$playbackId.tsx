@@ -1,6 +1,11 @@
-import MuxPlayer from "@mux/mux-player-react";
+import "@videojs/react/video/skin.css";
+import { VideoPlayer, VideoSkin } from "@videojs/react/video";
+import { MuxVideo } from "@videojs/react/media/mux-video";
+import { MuxData } from "@videojs/react/extensions/mux-data";
 import type { MetaFunction } from "@remix-run/node";
 import { useParams, Link } from "@remix-run/react";
+
+const metadata = { player_name: "remix/examples/mux-video" };
 
 const title = "View this video created with Mux + Remix";
 const description =
@@ -38,17 +43,26 @@ export default function Page() {
   return (
     <>
       <p>This video is ready for playback and sharing</p>
-      <MuxPlayer
-        style={{
-          width: "100%",
-          height: "auto",
-          aspectRatio: "16/9",
-          marginBottom: "2rem",
-        }}
-        playbackId={playbackId}
-        metadata={{ player_name: "remix/examples/mux-video" }}
-        accentColor="rgb(37 99 235)"
-      />
+      <VideoPlayer>
+        <VideoSkin
+          style={
+            {
+              width: "100%",
+              height: "auto",
+              aspectRatio: "16/9",
+              marginBottom: "2rem",
+              "--media-accent-color": "rgb(37 99 235)",
+            } as React.CSSProperties
+          }
+        >
+          <MuxVideo
+            source={{ playbackId: playbackId! }}
+            playsInline
+            crossOrigin="anonymous"
+          />
+          <MuxData metadata={metadata} />
+        </VideoSkin>
+      </VideoPlayer>
       <p>
         Go <Link to="/">back home</Link> to upload another video.
       </p>
