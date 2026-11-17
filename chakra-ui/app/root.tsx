@@ -1,4 +1,4 @@
-import { ChakraProvider, Box, Heading } from "@chakra-ui/react";
+import { Box, ChakraProvider, Heading } from "@chakra-ui/react";
 import type { MetaFunction } from "@remix-run/node";
 import {
   Links,
@@ -7,8 +7,9 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch,
 } from "@remix-run/react";
+import { useContext, useLayoutEffect, useRef } from "react";
+import { ClientStyleContext } from "./clientContext";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -22,6 +23,21 @@ function Document({
   children: React.ReactNode;
   title?: string;
 }) {
+  const clientStyleData = useContext(ClientStyleContext);
+  const reinjectStylesRef = useRef(true);
+
+  /* 
+    We do `useLayoutEffect`, to render the emotion styles, before browser paints the screen.
+    And we want to make sure, we only do this once, when the component mounts.
+  */
+  useLayoutEffect(() => {
+    if (!reinjectStylesRef.current) return;
+
+    clientStyleData?.reset();
+
+    reinjectStylesRef.current = false;
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -46,23 +62,6 @@ export default function App() {
     <Document>
       <ChakraProvider>
         <Outlet />
-      </ChakraProvider>
-    </Document>
-  );
-}
-
-// How ChakraProvider should be used on CatchBoundary
-export function CatchBoundary() {
-  const caught = useCatch();
-
-  return (
-    <Document title={`${caught.status} ${caught.statusText}`}>
-      <ChakraProvider>
-        <Box>
-          <Heading as="h1" bg="purple.600">
-            [CatchBoundary]: {caught.status} {caught.statusText}
-          </Heading>
-        </Box>
       </ChakraProvider>
     </Document>
   );
