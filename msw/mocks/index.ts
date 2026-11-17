@@ -1,6 +1,5 @@
-const { setupServer } = require("msw/node");
-
-const handlers = require("./handlers.cjs");
+import { setupServer } from "msw/node";
+import { handlers } from "./handlers.js";
 
 const server = setupServer(...handlers);
 server.listen({ onUnhandledRequest: "warn" });
