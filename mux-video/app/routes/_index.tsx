@@ -9,7 +9,7 @@ export const loader = async () => {
   // Create an endpoint for MuxUploader to upload to
   const upload = await mux.video.uploads.create({
     new_asset_settings: {
-      playback_policy: ["public"],
+      playback_policies: ["public"],
       encoding_tier: "baseline",
     },
     // in production, you'll want to change this origin to your-domain.com

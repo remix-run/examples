@@ -16,7 +16,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   // It will also provide type-safe access to the payload.
   // Generate MUX_WEBHOOK_SIGNING_SECRET in the Mux dashboard
   // https://dashboard.mux.com/settings/webhooks
-  const event = mux.webhooks.unwrap(
+  const event = await mux.webhooks.unwrap(
     body,
     request.headers,
     process.env.MUX_WEBHOOK_SIGNING_SECRET,

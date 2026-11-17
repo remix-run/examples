@@ -11,12 +11,14 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@mux/mux-node": "^8.7.0",
-    "@mux/mux-player-react": "^2.7.0",
     "@mux/mux-uploader-react": "^1.0.0-beta.18",
+    "@mux/ts": "^16.0.0",
     "@remix-run/node": "^2.9.2",
     "@remix-run/react": "^2.9.2",
     "@remix-run/serve": "^2.9.2",
+    "@videojs/mux-data": "^10.3.0",
+    "@videojs/mux-video": "^10.3.0",
+    "@videojs/react": "^10.3.0",
     "isbot": "^4.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
