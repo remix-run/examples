@@ -1,0 +1,59 @@
+name: 🎭 remix-auth-mockatoo
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - remix-auth-mockatoo/**
+      - .github/workflows/remix-auth-mockatoo.yml
+  pull_request:
+    paths:
+      - remix-auth-mockatoo/**
+      - .github/workflows/remix-auth-mockatoo.yml
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    name: 🎭 Playwright
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: remix-auth-mockatoo
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v7
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: 📥 Install deps
+        run: npm install
+
+      - name: ʦ Typecheck
+        run: npm run typecheck
+
+      - name: 🎭 Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: 🔑 Check Mockatoo test account
+        env:
+          MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
+        run: |
+          if [ -z "$MOCKATOO_TEST_EMAIL" ]; then
+            echo "::notice::MOCKATOO_TEST_EMAIL and MOCKATOO_TEST_PASSWORD aren't set, so the full sign-in test will skip."
+          fi
+
+      - name: 🎭 Run Playwright tests
+        run: npm run test:e2e
+        env:
+          MOCKATOO_TEST_EMAIL: ${{ secrets.MOCKATOO_TEST_EMAIL }}
+          MOCKATOO_TEST_PASSWORD: ${{ secrets.MOCKATOO_TEST_PASSWORD }}
